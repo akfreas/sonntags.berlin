@@ -1,13 +1,21 @@
-const Parse = require('parse/react-native');
-Parse.initialize('sonntags');
-Parse.serverURL = 'http://akfmbp.local:1337/parse'
+import firebase from 'firebase';
+import { Platform } from 'react-native';
 
-const Location = Parse.Object.extend('Location');
+const firebaseConfig = {
+  apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
+  authDomain: "sonntags-c927b.firebaseapp.com",
+  databaseURL: "https://sonntags-c927b.firebaseio.com/",
+  storageBucket: "",
+};
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-function loadLocations() {
-    var query = new Parse.Query(Location);
 
-    return query.find();
+
+function loadLocations(callback) {
+    var ref = firebase.database().ref('locations')
+
+    return fetch('https://s3.amazonaws.com/sonntags/extracted.json').then((response) => response.json())
+
 }
 
 module.exports = {

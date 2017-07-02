@@ -19,8 +19,8 @@ for place in data:
             'location': place.get('location'),
             }
 
-    response = requests.post('http://localhost:1337/parse/classes/Location', json=item, headers=headers)
+    #response = requests.post('http://localhost:1337/parse/classes/Location', json=item, headers=headers)
 
     extracted_data.append(item)
 
-extracted = json.dump(item, open('extracted.json', 'w'))
+extracted = json.dump(extracted_data, open('extracted.json', 'w'))

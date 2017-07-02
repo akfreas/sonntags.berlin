@@ -11,6 +11,7 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import LinksScreen from '../screens/LinksScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import LocationMapView from '../screens/LocationMapView';
 
 export default TabNavigator(
   {
@@ -22,6 +23,9 @@ export default TabNavigator(
     },
     Settings: {
       screen: SettingsScreen,
+    },
+    Map: {
+      screen: LocationMapView,
     },
   },
   {
@@ -36,6 +40,9 @@ export default TabNavigator(
             break;
           case 'Links':
             iconName = 'book';
+            break;
+          case 'Map':
+            iconName = 'map';
             break;
           case 'Settings':
             iconName = 'cog';

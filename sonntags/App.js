@@ -4,13 +4,7 @@ import { AppLoading } from 'expo';
 import { FontAwesome } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
-import connect from 'react-redux';
-
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
-
-import {
-    loadLocations
-} from './actions';
 
 export default class AppContainer extends React.Component {
   state = {
@@ -19,8 +13,6 @@ export default class AppContainer extends React.Component {
 
   componentWillMount() {
     this._loadAssetsAsync();
-      this.props;
-    this.props.dispatch(loadLocations());
   }
 
   async _loadAssetsAsync() {
@@ -69,3 +61,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
 });
+
+function select(store) {
+    return {};
+}
