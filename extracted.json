@@ -1,1 +1,82 @@
-[{"openingHoursText": "Monday to Friday from 06:00 to 22:00\nAll Saturdays from 08:00 to 22:00\nAll Sundays from 08:00 to 22:00\n\nAll holidays from 08:00 to 22:00\n\u00a0\nGood Friday from 08:00 to 22:00\nOstersonntag from 08:00 to 22:00\nEaster Monday from 08:00 to 22:00\n\nAll Advent Sundays from 08:00 to 22:00\nHoly evening from 06:00 to 17:00\n1 + 2 Christmas holiday from 10am to 10pm\n\nNew Year's Eve from 06:00 to 20:00\nNew Year from 10am to 10pm", "phone": "030 78712600", "name": "Edeka Friedrichstrasse Station", "location": {"latitude": 52.4764693, "formattedAddress": "Hildegard-Knef-Platz 1, 10829, Berlin, Germany", "longitude": 13.364075100000036}}, {"openingHoursText": "Monday to Sunday from 8am to 11pm", "phone": "", "name": "Penny Ostbahnhof", "location": {"latitude": 52.5105046, "formattedAddress": "Am Ostbahnhof 9, 10243, Berlin, Germany", "longitude": 13.435005199999978}}, {"openingHoursText": "Monday to Saturday from 6am to 12pm\nSundays and holidays from 8 am - 10 pm", "phone": "", "name": "Rewe Hauptbahnhof", "location": {"latitude": 52.5250839, "formattedAddress": "Berlin Central Station, Europaplatz, Berlin, Germany", "longitude": 13.369402000000036}}, {"openingHoursText": "Monday - Saturday 9am - 10pm\nSundays and holidays 11 am - 10 pm", "phone": "", "name": "Ullrich Zoologischer Garten", "location": {"latitude": 52.5060356, "formattedAddress": "Hardenbergstra\u00dfe 25, 10623, Berlin, Germany", "longitude": 13.330236900000045}}, {"openingHoursText": "Monday to Sunday from 07 to 24 hours", "phone": "", "name": "Rewe Ostbahnhof", "location": {"latitude": 52.5105046, "formattedAddress": "Am Ostbahnhof 9, 10243, Berlin, Germany", "longitude": 13.435005199999978}}, {"openingHoursText": "Monday-Friday 06-22\nSaturday and Sunday 08-22 ", "phone": "", "name": "Edeka Lichtenberg Station", "location": {"latitude": 52.5094112, "formattedAddress": "Weitlingstra\u00dfe 22, 10317, Berlin, Germany", "longitude": 13.497163399999977}}, {"openingHoursText": "Monday to Friday from 6am to 10pm\nSaturday and Sunday from 8am to 10pm", "phone": "", "name": "Edeka S\u00fcdkreuz", "location": {"latitude": 52.4762243, "formattedAddress": "Berlin S\u00fcdkreuz, Hildegard-Knef-Platz 1, 10829, Berlin, Germany", "longitude": 13.364402199999972}}, {"openingHoursText": "Monday to Sunday 8am - 9pm\n\nBakery:\nMonday to Friday from 06:30\nSaturday and Sunday from 08:00", "phone": "", "name": "Denn's Biomarkt Gesundbrunnen Station", "location": {"latitude": 52.54907, "formattedAddress": "Hanne-Sobek-Platz, 13357, Berlin, Germany", "longitude": 13.387484299999983}}]
+[
+  {
+    "openingHoursText": "Monday to Friday from 06:00 to 22:00\nAll Saturdays from 08:00 to 22:00\nAll Sundays from 08:00 to 22:00\n\nAll holidays from 08:00 to 22:00\n \nGood Friday from 08:00 to 22:00\nOstersonntag from 08:00 to 22:00\nEaster Monday from 08:00 to 22:00\n\nAll Advent Sundays from 08:00 to 22:00\nHoly evening from 06:00 to 17:00\n1 + 2 Christmas holiday from 10am to 10pm\n\nNew Year's Eve from 06:00 to 20:00\nNew Year from 10am to 10pm",
+    "phone": "030 78712600",
+    "name": "Edeka Friedrichstrasse Station",
+    "location": {
+      "latitude": 52.5164328,
+      "formattedAddress": "Hildegard-Knef-Platz 1, 10829, Berlin, Germany",
+      "longitude": 13.3684609
+    }
+  },
+  {
+    "openingHoursText": "Monday to Sunday from 8am to 11pm",
+    "phone": "",
+    "name": "Penny Ostbahnhof",
+    "location": {
+      "latitude": 52.5105047,
+      "formattedAddress": "Am Ostbahnhof 9, 10243, Berlin, Germany",
+      "longitude": 13.435005199999978
+    }
+  },
+  {
+    "openingHoursText": "Monday to Saturday from 6am to 12pm\nSundays and holidays from 8 am - 10 pm",
+    "phone": "",
+    "name": "Rewe Hauptbahnhof",
+    "location": {
+      "latitude": 52.5250839,
+      "formattedAddress": "Berlin Central Station, Europaplatz, Berlin, Germany",
+      "longitude": 13.369402000000036
+    }
+  },
+  {
+    "openingHoursText": "Monday - Saturday 9am - 10pm\nSundays and holidays 11 am - 10 pm",
+    "phone": "",
+    "name": "Ullrich Zoologischer Garten",
+    "location": {
+      "latitude": 52.5060356,
+      "formattedAddress": "Hardenbergstraße 25, 10623, Berlin, Germany",
+      "longitude": 13.330236900000045
+    }
+  },
+  {
+    "openingHoursText": "Monday to Sunday from 07 to 24 hours",
+    "phone": "",
+    "name": "Rewe Ostbahnhof",
+    "location": {
+      "latitude": 52.5105046,
+      "formattedAddress": "Am Ostbahnhof 9, 10243, Berlin, Germany",
+      "longitude": 13.435005199999978
+    }
+  },
+  {
+    "openingHoursText": "Monday-Friday 06-22\nSaturday and Sunday 08-22 ",
+    "phone": "",
+    "name": "Edeka Lichtenberg Station",
+    "location": {
+      "latitude": 52.5094112,
+      "formattedAddress": "Weitlingstraße 22, 10317, Berlin, Germany",
+      "longitude": 13.497163399999977
+    }
+  },
+  {
+    "openingHoursText": "Monday to Friday from 6am to 10pm\nSaturday and Sunday from 8am to 10pm",
+    "phone": "",
+    "name": "Edeka Südkreuz",
+    "location": {
+      "latitude": 52.4762243,
+      "formattedAddress": "Berlin Südkreuz, Hildegard-Knef-Platz 1, 10829, Berlin, Germany",
+      "longitude": 13.364402199999972
+    }
+  },
+  {
+    "openingHoursText": "Monday to Sunday 8am - 9pm\n\nBakery:\nMonday to Friday from 06:30\nSaturday and Sunday from 08:00",
+    "phone": "",
+    "name": "Denn's Biomarkt Gesundbrunnen Station",
+    "location": {
+      "latitude": 52.54907,
+      "formattedAddress": "Hanne-Sobek-Platz, 13357, Berlin, Germany",
+      "longitude": 13.387484299999983
+    }
+  }
+]

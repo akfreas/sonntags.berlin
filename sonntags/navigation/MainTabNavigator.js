@@ -18,12 +18,6 @@ export default TabNavigator(
     Home: {
       screen: HomeScreen,
     },
-    Links: {
-      screen: LinksScreen,
-    },
-    Settings: {
-      screen: SettingsScreen,
-    },
     Map: {
       screen: LocationMapView,
     },
@@ -38,14 +32,9 @@ export default TabNavigator(
           case 'Home':
             iconName = 'home';
             break;
-          case 'Links':
-            iconName = 'book';
-            break;
           case 'Map':
             iconName = 'map';
             break;
-          case 'Settings':
-            iconName = 'cog';
         }
         return (
           <FontAwesome

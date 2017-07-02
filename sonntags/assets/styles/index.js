@@ -66,6 +66,27 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
+    list: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap'
+    },
+    locationGridItem: {
+        backgroundColor: '#CCC',
+        margin: 10,
+        width: 100,
+        height: 100,
+    },
+    locationGridIcon: {
+        padding: 0,
+        marginTop: 20,
+        marginLeft: 34,
+        marginRight: 34,
+
+    },
+    locationGridText: {
+        textAlign: 'center',
+    }
 })
 
 module.exports = styles

@@ -2,11 +2,29 @@ import MapView from 'react-native-maps';
 import React, {Component} from 'react';
 
 var styles = require('../assets/styles');
+import {
+    loadLocations
+} from '../actions';
+
 
 export default class LocationMapView extends Component {
 
-    componentWillMount() {
+    constructor(props) {
+        super(props)
+        this.state = {
+            locations: []
+        }
     }
+
+    componentWillMount() {
+        loadLocations().then((locations) => {
+            console.log(locations);
+            this.setState({
+                locations: locations
+            })
+        })
+    }
+
 
     render() {
         return(
@@ -18,7 +36,17 @@ export default class LocationMapView extends Component {
           latitudeDelta: 0.7922,
           longitudeDelta: 0.7421,
         }}
-      />
+      >
+          {this.state.locations.map((location) => {
+            let latlong = {latitude: location.location.latitude, longitude: location.location.longitude};
+            let marker = <MapView.Marker
+                coordinate={latlong}
+                key={location.name}
+                title={location.name}
+                description={location.location.formattedAddress}/>
+            return marker
+        })}
+      </MapView>
         )
     }
 }

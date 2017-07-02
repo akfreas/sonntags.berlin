@@ -15,6 +15,7 @@ import {
 import { MonoText } from '../components/StyledText';
 
 import LocationListItem from '../components/LocationListItem';
+import LocationTypeGrid from '../components/LocationTypeGrid';
 import {
     loadLocations
 } from '../actions';
@@ -52,11 +53,7 @@ export default class HomeScreen extends React.Component {
 
     return (
       <View style={styles.container}>
-        <ScrollView
-          style={styles.container}
-          contentContainerStyle={styles.contentContainer}>
-            <ListView dataSource={this.state.locations} renderRow={this._renderItem.bind(this)} style={styles2.listview}/>
-        </ScrollView>
+          <LocationTypeGrid />
       </View>
     );
   }

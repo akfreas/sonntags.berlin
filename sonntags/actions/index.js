@@ -14,7 +14,13 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 function loadLocations(callback) {
     var ref = firebase.database().ref('locations')
 
-    return fetch('https://s3.amazonaws.com/sonntags/extracted.json').then((response) => response.json())
+    var options = {
+        headers: {
+            'Cache-Control': 'no-cache'
+        }
+    };
+   
+    return fetch('https://s3.amazonaws.com/sonntags/extracted.json', options).then((response) => response.json())
 
 }
 
