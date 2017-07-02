@@ -41,6 +41,10 @@ class LocationTypeGridItem extends Component {
 
 export default class LocationTypeGrid extends Component {
 
+    static navigationOptions = {
+        title: "sonntags.berlin"
+    };
+
 
     constructor(props) {
         super(props);
@@ -68,7 +72,7 @@ export default class LocationTypeGrid extends Component {
 
     categorySelected(category) {
         const { navigate } = this.props.navigation; 
-        navigate('CategoryView', { category: category.id })
+        navigate('CategoryView', { category: category })
         console.log(category);
 
     }

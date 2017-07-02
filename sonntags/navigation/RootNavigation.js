@@ -5,28 +5,35 @@ import {
     AppRegistry
 } from 'react-native';
 
-import MainTabNavigator from './MainTabNavigator';
 import LocationListView from '../screens/LocationListView';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
 
-const RootStackNavigator = StackNavigator(
-  {
+const paramsToProps = (SomeComponent) => { 
+// turns this.props.navigation.state.params into this.params.<x>
+    return class extends React.Component {
+        render() {
+            const {navigation, ...otherProps} = this.props
+            const {state: {params}} = navigation
+            return <SomeComponent {...this.props} {...params} />
+        }
+    }
+}
+const RootStackNavigator = StackNavigator({
     Main: {
-      screen: LocationTypeGrid,
+        screen: paramsToProps(LocationTypeGrid),
     },
-      CategoryView: {
-          screen: LocationListView
-      },
-  },
-  {
+    CategoryView: {
+        screen: paramsToProps(LocationListView)
+    },
+},
+{
     navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
+        headerTitleStyle: {
+            fontWeight: 'normal',
+        },
     }),
-  }
-);
+});
 
 export default class RootNavigator extends React.Component {
   componentDidMount() {

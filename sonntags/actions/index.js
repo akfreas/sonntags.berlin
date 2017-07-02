@@ -17,7 +17,11 @@ const contentfulClient = createClient({
 
 function loadLocations(category) {
 
-    return contentfulClient.getEntries({'category': category}).then((response) => {
+    return contentfulClient.getEntries(
+        {
+            'content_type': 'location', 
+            'fields.category': category
+        }).then((response) => {
         return response.items.map((location) => {
             let fields = location.fields;
             return fields;

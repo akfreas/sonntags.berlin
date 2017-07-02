@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 
 import {
-    ListView
+    ListView,
+    Text
 } from 'react-native';
 
 var styles = require('../assets/styles');
@@ -42,7 +43,9 @@ export default class LocationListView extends Component {
     }
 
     componentWillMount() {
-        loadLocations(this.props.category).then((locations) => {
+        
+        loadLocations(this.props.category.id).then((locations) => {
+            console.log(locations);
             let ds = this.state.dataSource.cloneWithRows(locations);
             this.setState({
                 dataSource: ds
