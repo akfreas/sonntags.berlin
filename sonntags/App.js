@@ -1,10 +1,18 @@
 import React from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import { 
+    Platform, 
+    StatusBar, 
+    View 
+} from 'react-native';
 import { AppLoading } from 'expo';
 import { FontAwesome } from '@expo/vector-icons';
 import RootNavigation from './navigation/RootNavigation';
 
+import NavigationBar from 'react-native-navbar';
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
+
+var styles = require('./assets/styles');
+
 
 export default class AppContainer extends React.Component {
   state = {
@@ -34,6 +42,11 @@ export default class AppContainer extends React.Component {
       this.setState({ appIsReady: true });
     }
   }
+    titleConfig() {
+        return {
+            title: 'sonntags.berlin'
+        }
+    }
 
   render() {
     if (this.state.appIsReady) {
@@ -42,6 +55,11 @@ export default class AppContainer extends React.Component {
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           {Platform.OS === 'android' &&
             <View style={styles.statusBarUnderlay} />}
+ 
+            <NavigationBar
+                title={this.titleConfig()}
+            />
+
           <RootNavigation />
         </View>
       );
@@ -50,17 +68,6 @@ export default class AppContainer extends React.Component {
     }
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  statusBarUnderlay: {
-    height: 24,
-    backgroundColor: 'rgba(0,0,0,0.2)',
-  },
-});
 
 function select(store) {
     return {};

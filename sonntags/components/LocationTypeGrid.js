@@ -21,12 +21,16 @@ class LocationTypeGridItem extends Component {
     render() {
         return (
             <View style={styles.locationGridItem}>
-                <FontAwesome
-                    style={styles.locationGridIcon}
-                    name={this.props.type.icon}
-                    size={32}
-                    color='#3BB9BD'/>
-                <Text style={styles.locationGridText}>{this.props.type.typeName}</Text>
+                <View style={styles.locationGridIconContainer}>
+                    <FontAwesome
+                        style={styles.locationGridIcon}
+                        name={this.props.type.icon}
+                        size={32}
+                        color='#3BB9BD'/>
+                </View>
+                <View style={styles.locationGridTextContainer}>
+                    <Text style={styles.locationGridText}>{this.props.type.typeName}</Text>
+                </View>
             </View>
         )
     }
@@ -66,7 +70,7 @@ export default class LocationTypeGrid extends Component {
     
     render() {
         return (
-            <ListView contentContainerStyle={styles.list}
+            <ListView contentContainerStyle={styles.locationGridList}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}/>
         );

@@ -1,10 +1,110 @@
 const React = require('react-native')
-const {StyleSheet} = React
 const constants = {
   actionColor: '#24CE84'
 };
 
+import {
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  ListView
+} from 'react-native';
+
 var styles = StyleSheet.create({
+  statusBarUnderlay: {
+    height: 24,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+  },
+  container: {
+      marginTop: 24,
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  developmentModeText: {
+    marginBottom: 20,
+    color: 'rgba(0,0,0,0.4)',
+    fontSize: 15,
+    textAlign: 'center',
+  },
+  contentContainer: {
+    paddingTop: 80,
+  },
+  welcomeContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 20,
+  },
+  welcomeImage: {
+    width: 140,
+    height: 38,
+    resizeMode: 'contain',
+    marginTop: 3,
+    marginLeft: -10,
+  },
+  getStartedContainer: {
+    alignItems: 'center',
+    marginHorizontal: 50,
+  },
+  homeScreenFilename: {
+    marginVertical: 7,
+  },
+  codeHighlightText: {
+    color: 'rgba(96,100,109, 0.8)',
+  },
+  codeHighlightContainer: {
+    backgroundColor: 'rgba(0,0,0,0.05)',
+    borderRadius: 3,
+    paddingHorizontal: 4,
+  },
+  getStartedText: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    lineHeight: 23,
+    textAlign: 'center',
+  },
+  tabBarInfoContainer: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    ...Platform.select({
+      ios: {
+        shadowColor: 'black',
+        shadowOffset: { height: -3 },
+        shadowOpacity: 0.1,
+        shadowRadius: 3,
+      },
+      android: {
+        elevation: 20,
+      },
+    }),
+    alignItems: 'center',
+    backgroundColor: '#fbfbfb',
+    paddingVertical: 20,
+  },
+  tabBarInfoText: {
+    fontSize: 17,
+    color: 'rgba(96,100,109, 1)',
+    textAlign: 'center',
+  },
+  navigationFilename: {
+    marginTop: 5,
+  },
+  helpContainer: {
+    marginTop: 15,
+    alignItems: 'center',
+  },
+  helpLink: {
+    paddingVertical: 15,
+  },
+  helpLinkText: {
+    fontSize: 14,
+    color: '#2e78b7',
+  },
+
   container: {
     backgroundColor: '#f2f2f2',
     flex: 1,
@@ -66,26 +166,34 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
-    list: {
+    locationGridList: {
         justifyContent: 'center',
-        flexDirection: 'row',
-        flexWrap: 'wrap'
     },
     locationGridItem: {
         backgroundColor: '#CCC',
-        margin: 10,
-        width: 100,
+        display: 'flex',
+        flexDirection: 'row',
+        marginBottom: 1,
         height: 100,
     },
     locationGridIcon: {
         padding: 0,
-        marginTop: 20,
-        marginLeft: 34,
-        marginRight: 34,
 
     },
+    locationGridIconContainer: {
+        flex: 0.25,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    locationGridTextContainer: {
+        flex: 1.0,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+    }, 
     locationGridText: {
         textAlign: 'center',
+        marginLeft: 10,
+        marginRight: 10,
     }
 })
 
