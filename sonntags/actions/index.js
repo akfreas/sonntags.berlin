@@ -1,5 +1,6 @@
 import firebase from 'firebase';
 import { Platform } from 'react-native';
+import { createClient } from 'contentful';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
@@ -9,19 +10,19 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 
+const contentfulClient = createClient({
+    space: '2dktdnk1iv2v',
+    accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
+})
 
+function loadLocations(category) {
 
-function loadLocations(callback) {
-    var ref = firebase.database().ref('locations')
-
-    var options = {
-        headers: {
-            'Cache-Control': 'no-cache'
-        }
-    };
-   
-    return fetch('https://s3.amazonaws.com/sonntags/extracted.json', options).then((response) => response.json())
-
+    return contentfulClient.getEntries({'category': category}).then((response) => {
+        return response.items.map((location) => {
+            let fields = location.fields;
+            return fields;
+        })
+    })
 }
 
 module.exports = {

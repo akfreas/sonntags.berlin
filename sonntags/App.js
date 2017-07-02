@@ -42,26 +42,11 @@ export default class AppContainer extends React.Component {
       this.setState({ appIsReady: true });
     }
   }
-    titleConfig() {
-        return {
-            title: 'sonntags.berlin'
-        }
-    }
 
   render() {
     if (this.state.appIsReady) {
       return (
-        <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          {Platform.OS === 'android' &&
-            <View style={styles.statusBarUnderlay} />}
- 
-            <NavigationBar
-                title={this.titleConfig()}
-            />
-
-          <RootNavigation />
-        </View>
+        <RootNavigation />
       );
     } else {
       return <AppLoading />;

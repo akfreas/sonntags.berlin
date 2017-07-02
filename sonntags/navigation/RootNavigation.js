@@ -1,15 +1,23 @@
 import { Notifications } from 'expo';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
+import {
+    AppRegistry
+} from 'react-native';
 
 import MainTabNavigator from './MainTabNavigator';
+import LocationListView from '../screens/LocationListView';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import LocationTypeGrid from '../screens/LocationTypeGrid';
 
 const RootStackNavigator = StackNavigator(
   {
     Main: {
-      screen: MainTabNavigator,
+      screen: LocationTypeGrid,
     },
+      CategoryView: {
+          screen: LocationListView
+      },
   },
   {
     navigationOptions: () => ({
@@ -52,3 +60,5 @@ export default class RootNavigator extends React.Component {
     );
   };
 }
+
+AppRegistry.registerComponent('RootStackNavigator', () => RootStackNavigator);

@@ -38,7 +38,7 @@ export default class LocationMapView extends Component {
         }}
       >
           {this.state.locations.map((location) => {
-            let latlong = {latitude: location.location.latitude, longitude: location.location.longitude};
+            let latlong = {latitude: location.location.lat, longitude: location.location.lon};
             let marker = <MapView.Marker
                 coordinate={latlong}
                 key={location.name}
