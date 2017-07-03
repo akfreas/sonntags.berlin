@@ -194,8 +194,25 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         marginLeft: 10,
         marginRight: 10,
+    },
+    locationList: {
+        justifyContent: 'center',
+    },
+    locationListItem: {
+        height: 50.0,
+        display: 'flex',
+        flexDirection: 'row',
+    },
+    locationListItemDistanceContainer: {
+        flex: 0.4,
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    locationListItemTitleContainer: {
+        flex: 1.0,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
     }
-
 })
 
 module.exports = styles

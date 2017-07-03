@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 
 import {
     ListView,
-    Text
+    Text,
+    TouchableOpacity,
+    View
 } from 'react-native';
 
 var styles = require('../assets/styles');
@@ -14,7 +16,16 @@ class LocationListItem extends Component {
 
     render() {
         return (
-            <Text>{this.props.location.name}</Text>
+            <TouchableOpacity onPress={this.props.onLocationSelected}>
+                <View style={styles.locationListItem}>
+                    <View style={styles.locationListItemDistanceContainer}>
+                        <Text>0.5 Km</Text>
+                    </View>
+                    <View style={styles.locationListItemTitleContainer}>
+                        <Text>{this.props.location.name}</Text>
+                    </View>
+                </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -35,10 +46,15 @@ export default class LocationListView extends Component {
         };
     }
 
+    locationSelected(location) {
+    }
 
     renderRow(location) {
         return (
-            <LocationListItem location={location}/>
+            <LocationListItem 
+                location={location}
+                onLocationSelected={this.locationSelected.bind(this)}
+            />
         )
     }
 
@@ -56,6 +72,7 @@ export default class LocationListView extends Component {
     render() {
         return (
             <ListView
+                contentContainerStyle={styles.locationList}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
             />
