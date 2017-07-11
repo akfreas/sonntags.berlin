@@ -122,7 +122,7 @@ var styles = StyleSheet.create({
     paddingBottom: 16,
   },
   map: {
-    ...StyleSheet.absoluteFillObject,
+      height: 200,
   },
   liContainer: {
     flex: 2,
@@ -199,7 +199,8 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
     },
     locationListItem: {
-        height: 50.0,
+        padding: 10.0,
+        height: 70.0,
         display: 'flex',
         flexDirection: 'row',
     },
@@ -210,8 +211,13 @@ var styles = StyleSheet.create({
     },
     locationListItemTitleContainer: {
         flex: 1.0,
-        justifyContent: 'center',
+        //justifyContent: 'start',
         alignItems: 'flex-start',
+    },
+    locationListItemDescriptionText: {
+    },
+    locationListItemTitleText: {
+        fontWeight: 'bold',
     }
 })
 
