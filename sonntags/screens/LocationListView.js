@@ -89,47 +89,41 @@ export default class LocationListView extends Component {
     }
 
     header() {
-        const headerHeight = this.state.scrollY.interpolate({
-            inputRange: [0, 500],
-            outputRange: [500, 60],
-            extrapolate: 'clamp',
-        });
         return (
-            <Animated.View style={[{height: headerHeight}]}>
-            <TouchableWithoutFeedback onPress={this.toggleMapInteraction.bind(this)}>
-          <MapView
-              showsUserLocation={true}
-              showsCompass={false}
-              pitchEnabled={false}
-              zoomEnabled={this.state.mapInteractionsEnabled}
-              scrollEnabled={this.state.mapInteractionsEnabled}
-              style={[styles.map]}
-              initialRegion={{
-                  latitude: 52.4944623,
-                  longitude: 13.4034689,
-                  latitudeDelta: 0.7922,
-                  longitudeDelta: 0.7421,
-                }}
-          >
-                  {this.state.locations.map((location) => {
-                    let latlong = {latitude: location.location.lat, longitude: location.location.lon};
-                    let marker = <MapView.Marker
-                        coordinate={latlong}
-                        key={location.name}
-                    title={location.name}
-                    description={location.location.formattedAddress}/>
-                return marker
-            })}
+            <View style={[styles.mapContainer]}>
+              <MapView
+                  showsUserLocation={true}
+                  showsCompass={false}
+                  pitchEnabled={false}
+                  zoomEnabled={this.state.mapInteractionsEnabled}
+                  scrollEnabled={this.state.mapInteractionsEnabled}
+                  style={[styles.map]}
+                  initialRegion={{
+                      latitude: 52.4944623,
+                      longitude: 13.4034689,
+                      latitudeDelta: 0.7922,
+                      longitudeDelta: 0.7421,
+                    }}
+              >
+                      {this.state.locations.map((location) => {
+                        let latlong = {latitude: location.location.lat, longitude: location.location.lon};
+                        let marker = <MapView.Marker
+                            coordinate={latlong}
+                            key={location.name}
+                        title={location.name}
+                        description={location.location.formattedAddress}/>
+                    return marker
+                })}
         </MapView>
-        </TouchableWithoutFeedback>
-            </Animated.View>
+
+            </View>
         )
 
     }
 
     renderHeader() {
         return (
-            <View style={[{backgroundColor: 'rgba(0,0,0,0)', opacity: 0.0, height: 400.0}]}>
+            <View style={[{backgroundColor: 'rgba(0,0,0,0)', opacity: 0.0, height: 200.0}]}>
                 <Text>Hey</Text>
             </View>
             )
@@ -151,7 +145,7 @@ export default class LocationListView extends Component {
             <ListView
                 renderHeader={this.renderHeader.bind(this)}
                 contentContainerStyle={styles.locationListContainer}
-                style={[{backgroundColor: 'rgba(0,0,0,0)'}]}
+                style={[{backgroundColor: 'rgba(0,0,0,0)', position: 'absolute', top: 0, left: 0, right: 0}]}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
             />

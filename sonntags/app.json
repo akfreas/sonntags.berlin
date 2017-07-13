@@ -21,7 +21,11 @@
       "assetExts": ["ttf"]
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sashimiblade.sonntags"
+    },
+    "android": {
+      "package": "com.sashimiblade.sonntags"
     }
   }
 }
