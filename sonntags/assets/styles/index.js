@@ -124,6 +124,12 @@ var styles = StyleSheet.create({
   map: {
       height: 200,
   },
+    mapDefault: {
+        height: 200,
+    }, 
+    mapExpanded: {
+        height: 500,
+    },
   liContainer: {
     flex: 2,
   },
