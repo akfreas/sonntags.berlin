@@ -12,7 +12,8 @@ import {
     AnimatedValue,
     Animated,
     StyleSheet,
-    Platform
+    Platform,
+    Linking
 } from 'react-native';
 
 import {
@@ -22,7 +23,7 @@ import {
 var styles = StyleSheet.create({
     locationListItem: {
         padding: 10.0,
-        height: 70.0,
+        height: 95.0,
         display: 'flex',
         flexDirection: 'row',
         backgroundColor: '#fff'//rgba(255,255,255,1)
@@ -30,17 +31,24 @@ var styles = StyleSheet.create({
     locationListItemDistanceContainer: {
         flex: 0.4,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: 'purple',
     },
     locationListItemTitleContainer: {
         flex: 1.0,
-        //justifyContent: 'start',
         alignItems: 'flex-start',
     },
     locationListItemDescriptionText: {
     },
     locationListItemTitleText: {
+        color: 'black',
         fontWeight: 'bold',
+        height: 25.0,
+    },
+
+    locationListItemSeparator: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: 'rgb(233, 238, 255)',
     }
 })
 
@@ -65,6 +73,7 @@ function pad(num, size){ return ('000000000' + num).substr(-size); }
 
 class LocationListItem extends Component {
 
+
     render() {
 
         let closingTimeString = pad(this.props.location.closingTime, 4)
@@ -74,17 +83,16 @@ class LocationListItem extends Component {
         let distance = this.props.distanceFromUser.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
         return (
-            <View style={[styles.locationListItem]}>
-                <TouchableOpacity onPress={this.props.onLocationSelected}>
+            <TouchableOpacity onPress={() => this.props.onLocationSelected(this.props.location)}>
                     <View style={[styles.locationListItem]}>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.name}</Text>
-                            <Text style={styles.locationListItemDescriptionText}>Open {openingTime} - {closingTime} {distance}</Text>
+                            <Text style={styles.locationListItemDescriptionText}>Open {openingTime} - {closingTime}</Text>
+                            <Text style={styles.locationListItemDescriptionText}>{distance} km</Text>
                             <Text></Text>
                         </View>
                     </View>
                 </TouchableOpacity>
-            </View>
 
         )
     }
@@ -107,20 +115,42 @@ export default class LocationListView extends Component {
         };
     }
 
+    openMaps(location) {
+        console.log(location);
+        var url = 'https://www.google.com/maps/search/?api=1&query=' + location.address;
+        this.openExternalApp(url)
+    }
+
+    openExternalApp(url) {
+      Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          console.log('Don\'t know how to open URI: ' + url);
+        }
+      });
+    }
+
     locationSelected(location) {
+        this.openMaps(location);
     }
 
     distanceFromUser(location) {
+
+        let userLocation = this.state.userLocation;
+        if (userLocation == undefined || userLocation.coords == undefined) { 
+            return 0.0
+        }
+
         let distance = getDistanceFromLatLonInKm(
-            this.state.userLocation.coords.latitude,  
-            this.state.userLocation.coords.longitude,
+            userLocation.coords.latitude,  
+            userLocation.coords.longitude,
             location.location.lat,
             location.location.lon)
         return distance
     }
 
     locationsSortedByDistance(locations) {
-        if (this.state.userLocation == undefined) { return locations }
         let sortedLocations = locations.sort((a, b) => {
             let distanceA = this.distanceFromUser(a);
             let distanceB = this.distanceFromUser(b);
@@ -227,6 +257,9 @@ export default class LocationListView extends Component {
             )
     }
 
+    renderSeparator() {
+        return (<View style={styles.locationListItemSeparator}/>)
+    }
 
     render() {
 
@@ -234,6 +267,7 @@ export default class LocationListView extends Component {
         <View style={{flex: 1}}>
              <ListView
                 renderHeader={this.renderHeader.bind(this)}
+                renderSeparator={this.renderSeparator.bind(this)}
                 contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
                 style={{backgroundColor: 'rgba(0,0,0,0)', flex: 1}}
                 dataSource={this.state.dataSource}
