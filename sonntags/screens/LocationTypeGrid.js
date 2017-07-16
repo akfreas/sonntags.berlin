@@ -73,8 +73,6 @@ export default class LocationTypeGrid extends Component {
     categorySelected(category) {
         const { navigate } = this.props.navigation; 
         navigate('CategoryView', { category: category })
-        console.log(category);
-
     }
 
     renderRow(item) {

@@ -18,7 +18,6 @@ export default class LocationMapView extends Component {
 
     componentWillMount() {
         loadLocations().then((locations) => {
-            console.log(locations);
             this.setState({
                 locations: locations
             })
