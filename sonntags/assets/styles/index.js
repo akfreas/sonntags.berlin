@@ -172,11 +172,20 @@ var styles = StyleSheet.create({
     paddingTop: 14,
     paddingBottom: 16,
   },
+    categoryTable: {
+
+        backgroundColor: '#fff',
+    },
+    categoryListItemDivider: {
+        height: StyleSheet.hairlineWidth,
+        backgroundColor: 'rgb(233, 238, 255)',
+    }, 
     locationGridList: {
         justifyContent: 'center',
+        backgroundColor: '#fff',
     },
     locationGridItem: {
-        backgroundColor: '#CCC',
+        backgroundColor: '#fff',
         display: 'flex',
         flexDirection: 'row',
         marginBottom: 1,

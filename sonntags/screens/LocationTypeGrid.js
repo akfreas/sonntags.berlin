@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 
-var styles = require('../assets/styles');
+var styles = require('../assets/styles/index.js');
 
 
 class LocationTypeGridItem extends Component {
@@ -64,14 +64,19 @@ export default class LocationTypeGrid extends Component {
 
     locationTypes() {
         return [
+            {typeName: 'Special Sunday Openings', id: 'sonderoeffnung', icon: 'calendar'},
             {typeName: 'Groceries', id: 'grocery', icon: 'shopping-cart'},
             {typeName: 'Home & Garden', id: 'homegarden', icon: 'home'},
-            {typeName: 'Apotheke', id: 'apotheke', icon: 'medkit'}
+            {typeName: 'Apotheke', id: 'apotheke', icon: 'medkit'},
+            {typeName: 'Bike Shops', id: 'bikeshop', icon: 'bicycle'},
         ]
     }
 
     categorySelected(category) {
         const { navigate } = this.props.navigation; 
+        if (category.id == 'sonderoeffnung') {
+            return;
+        }
         navigate('CategoryView', { category: category })
     }
 
@@ -81,10 +86,17 @@ export default class LocationTypeGrid extends Component {
             categorySelected={() => this.categorySelected(item)}/>
         )
     }
+
+    renderSeparator() {
+        return (<View style={styles.categoryListItemDivider}/>)
+    }
     
     render() {
         return (
-            <ListView contentContainerStyle={styles.locationGridList}
+            <ListView 
+                style={styles.categoryTable}
+                renderSeparator={this.renderSeparator.bind(this)} 
+                contentContainerStyle={styles.locationGridList}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}/>
         );
