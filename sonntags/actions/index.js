@@ -29,6 +29,19 @@ function loadLocations(category) {
     })
 }
 
+function loadOpenSundays() {
+    return contentfulClient.getEntries({
+        'content_type': 'sundayOpenings',
+        // 'field.date[gte]': new Date()
+    }).then((response) => {
+        return response.items.map((day) => {
+            let fields = day.fields;
+            return fields;
+        });
+    })
+}
+
 module.exports = {
-    loadLocations: loadLocations
+    loadLocations,
+    loadOpenSundays
 }

@@ -75,15 +75,18 @@ export default class LocationTypeGrid extends Component {
     categorySelected(category) {
         const { navigate } = this.props.navigation; 
         if (category.id == 'sonderoeffnung') {
-            return;
+            navigate('OpenSundays');   
+        } else {
+            navigate('CategoryView', { category: category });
         }
-        navigate('CategoryView', { category: category })
     }
 
     renderRow(item) {
-        return (<LocationTypeGridItem 
-            type={item} 
-            categorySelected={() => this.categorySelected(item)}/>
+        return (
+            <LocationTypeGridItem 
+                type={item} 
+                categorySelected={() => this.categorySelected(item)}
+            />
         )
     }
 
@@ -100,6 +103,5 @@ export default class LocationTypeGrid extends Component {
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}/>
         );
-
     }
 }
