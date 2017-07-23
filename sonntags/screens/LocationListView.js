@@ -155,10 +155,8 @@ export default class LocationListView extends Component {
             let distanceA = this.distanceFromUser(a);
             let distanceB = this.distanceFromUser(b);
             let retVal = distanceA - distanceB;
-            console.log("distances: ", distanceA, distanceB, retVal);
             return retVal;
         });
-        console.log("sorted locations: ", sortedLocations);
 
         return sortedLocations;
 
