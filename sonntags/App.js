@@ -30,6 +30,8 @@ export default class AppContainer extends React.Component {
         fonts: [
           FontAwesome.font,
           { 'space-mono': require('./assets/fonts/SpaceMono-Regular.ttf') },
+          { 'lato-light': require('./assets/fonts/Lato-Light.ttf') },
+          { 'lato-bold': require('./assets/fonts/Lato-Bold.ttf') },
         ],
       });
     } catch (e) {
