@@ -10,6 +10,9 @@
   "jest": {
     "preset": "jest-expo"
   },
+  "rnpm": {
+      "assets": ["./assets/fonts"]
+  },
   "dependencies": {
     "@expo/samples": "~1.0.4",
     "contentful": "^4.5.0",

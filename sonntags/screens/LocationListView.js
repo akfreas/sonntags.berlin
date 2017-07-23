@@ -191,10 +191,10 @@ export default class LocationListView extends Component {
             errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
           });
         } else {
-          this._getLocationAsync();
+            //this._getLocationAsync();
         }
     }
-
+    /*
     _getLocationAsync = async () => {
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
@@ -211,6 +211,7 @@ export default class LocationListView extends Component {
             locations: sorted
         });
     };
+    */
 
     mapView() {
         return (

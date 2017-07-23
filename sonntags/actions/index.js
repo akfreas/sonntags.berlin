@@ -1,6 +1,5 @@
 import firebase from 'firebase';
 import messaging from 'firebase';
-import FCM from 'react-native-fcm';
 import { Platform } from 'react-native';
 import { createClient } from 'contentful';
 
