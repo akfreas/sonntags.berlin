@@ -11,7 +11,9 @@ import {
   View,
   ListView
 } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 var styles = require('../assets/styles/index.js');
 
@@ -23,11 +25,11 @@ class LocationTypeGridItem extends Component {
             <TouchableOpacity onPress={this.props.categorySelected}>
                 <View style={styles.locationGridItem}>
                     <View style={styles.locationGridIconContainer}>
-                        <FontAwesome
+                        <Icon
                             style={styles.locationGridIcon}
                             name={this.props.type.icon}
                             size={32}
-                            color='#3BB9BD'/>
+                            color='#3BB9BD'/>                        
                     </View>
                     <View style={styles.locationGridTextContainer}>
                         <Text style={styles.locationGridText}>{this.props.type.typeName}</Text>
