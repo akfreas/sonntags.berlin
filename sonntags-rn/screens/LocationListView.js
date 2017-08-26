@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import MapView from 'react-native-maps';
 import moment from 'moment';
-import { Constants, Location, Permissions } from 'expo';
 import {
     ScrollView,
     ListView,
@@ -186,7 +185,7 @@ export default class LocationListView extends Component {
             })
         })
 
-        if (Platform.OS === 'android' && !Constants.isDevice) {
+        if (Platform.OS === 'android') {
           this.setState({
             errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
           });
@@ -196,13 +195,14 @@ export default class LocationListView extends Component {
     }
 
     _getLocationAsync = async () => {
+
+        /*
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
           this.setState({
             errorMessage: 'Permission to access location was denied',
           });
         }
-
         let userLocation = await Location.getCurrentPositionAsync({});
         let sorted = this.locationsSortedByDistance(this.state.locations)
         console.log("sorted: ", sorted);
@@ -210,6 +210,7 @@ export default class LocationListView extends Component {
             userLocation: userLocation,
             locations: sorted
         });
+        */
     };
 
     mapView() {

@@ -1,4 +1,3 @@
-import { Notifications } from 'expo';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import {
@@ -59,10 +58,6 @@ export default class RootNavigator extends React.Component {
     // for this function in api/registerForPushNotificationsAsync.js
     registerForPushNotificationsAsync();
 
-    // Watch for incoming notifications
-    this._notificationSubscription = Notifications.addListener(
-      this._handleNotification
-    );
   }
 
   _handleNotification = ({ origin, data }) => {

@@ -1,10 +1,9 @@
-//import firebase from 'firebase';
-//import messaging from 'firebase';
-//import FCM from 'react-native-fcm';
+import firebase from 'firebase';
+import messaging from 'firebase';
+import FCM from 'react-native-fcm';
 import { Platform } from 'react-native';
 import { createClient } from 'contentful';
 
-/*
 const firebaseConfig = {
   apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
   authDomain: "sonntags-c927b.firebaseapp.com",
@@ -15,6 +14,7 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 debugger;
 
+/*
 const FCM = firebase.messaging();
     FCM.requestPermissions();
 firebase.auth.onAuthStateChanged((user: any) => {
