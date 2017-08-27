@@ -331,6 +331,7 @@
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		169CA2C8EB774244AA55ECF2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		19C0C5A41F52CDD200A52C43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		19C0C5C71F52DAF600A52C43 /* SonntagsBerlin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = SonntagsBerlin.entitlements; path = SonntagsBerlin/SonntagsBerlin.entitlements; sourceTree = "<group>"; };
 		1CFCFF1D60B042DA92D0E0E5 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SonntagsBerlin-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SonntagsBerlin-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SonntagsBerlin-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SonntagsBerlin-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -499,6 +500,7 @@
 		13B07FAE1A68108700A75B9A /* SonntagsBerlin */ = {
 			isa = PBXGroup;
 			children = (
+				19C0C5C71F52DAF600A52C43 /* SonntagsBerlin.entitlements */,
 				19C0C5A41F52CDD200A52C43 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -774,6 +776,12 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KGJCC745S9;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1409,6 +1417,7 @@
 			baseConfigurationReference = EE3BA73FDAD6870AA41EA291 /* Pods-SonntagsBerlin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SonntagsBerlin/SonntagsBerlin.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KGJCC745S9;
@@ -1427,6 +1436,8 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = SonntagsBerlin;
+				PROVISIONING_PROFILE = "1cb3788b-1daa-4bf0-87e0-af4f413395f9";
+				PROVISIONING_PROFILE_SPECIFIER = sonntags;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1436,8 +1447,9 @@
 			baseConfigurationReference = 02E522043F6EDBF91F467E94 /* Pods-SonntagsBerlin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SonntagsBerlin/SonntagsBerlin.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KGJCC745S9;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-fcm/ios",
@@ -1453,6 +1465,7 @@
 					"-lc++",
 				);
 				PRODUCT_NAME = SonntagsBerlin;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
