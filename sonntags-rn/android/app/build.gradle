@@ -90,8 +90,8 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "26.0.1"
 
     defaultConfig {
         applicationId "com.sonntagsberlin"
@@ -134,11 +134,22 @@ android {
 
 dependencies {
     compile project(':react-native-vector-icons')
-    compile project(':react-native-maps')
-    compile project(':react-native-firebase')
-    compile project(':react-native-fcm')
+    compile(project(':react-native-maps')) {
+        exclude group: 'com.google.android.gms', module: 'play-services-base'
+        exclude group: 'com.google.android.gms', module: 'play-services-maps'
+    }
+    compile 'com.google.android.gms:play-services-base:11.+'
+    compile 'com.google.android.gms:play-services-maps:11.+'
+    compile 'com.google.android.gms:play-services-location:11.+'
+    compile (project(':react-native-fcm')){
+        exclude group: "com.google.firebase"
+    }
+
+//    compile ("com.google.android.gms:play-services-maps:10.0.1") {
+//        force = true;
+//    }
     compile fileTree(dir: "libs", include: ["*.jar"])
-    compile "com.android.support:appcompat-v7:23.0.1"
+    compile "com.android.support:appcompat-v7:25.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
 }
 

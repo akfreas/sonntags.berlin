@@ -184,17 +184,31 @@ export default class LocationListView extends Component {
                 dataSource: ds,
             })
         })
-
-        if (Platform.OS === 'android') {
-          this.setState({
-            errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-          });
-        } else {
-          this._getLocationAsync();
-        }
     }
 
-    _getLocationAsync = async () => {
+    componentDidMount() {
+        this._getLocationAsync();
+    }
+
+    _getLocationAsync() {
+        navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var userLocation = position;
+        console.log("xxx location: ", userLocation);
+        let sorted = this.locationsSortedByDistance(this.state.locations)
+        this.setState({ 
+            userLocation: userLocation,
+            locations: sorted
+        });
+      },
+      (error) => alert(error.message),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+      this.setState({lastPosition});
+    });
+
 
         /*
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -204,12 +218,6 @@ export default class LocationListView extends Component {
           });
         }
         let userLocation = await Location.getCurrentPositionAsync({});
-        let sorted = this.locationsSortedByDistance(this.state.locations)
-        console.log("sorted: ", sorted);
-        this.setState({ 
-            userLocation: userLocation,
-            locations: sorted
-        });
         */
     };
 
