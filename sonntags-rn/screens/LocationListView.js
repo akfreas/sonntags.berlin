@@ -100,10 +100,9 @@ class LocationListItem extends Component {
 
 export default class LocationListView extends Component {
 
-    static navigationOptions = {
-        title: "Category"
-    };
-
+    static navigationOptions = ({ navigation }) => ({
+        title: navigation.state.params.category.typeName,
+    });
     constructor(props) {
         super(props);
         this.state = {

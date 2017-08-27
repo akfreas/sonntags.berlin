@@ -102,12 +102,15 @@ export default class LocationTypeGrid extends Component {
                     height: 100, 
                     paddingTop: 15,
                     justifyContent: 'center',
-                    alignItems: 'center'
+                    alignItems: 'center',
+                    backgroundColor: '#3BB9BD'
+
                 }}>
                 <Text style={{ textAlign: 'center', 
                     fontFamily: 'lato-bold',
                     fontSize: 32,
                     margin: 5,
+                    color: 'white'
                 }}>Sunday Shopping</Text>
             </View>
             <ListView 

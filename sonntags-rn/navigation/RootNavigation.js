@@ -12,6 +12,8 @@ import OpeningDays from '../screens/OpeningDays';
 const paramsToProps = (SomeComponent) => { 
 // turns this.props.navigation.state.params into this.params.<x>
     return class extends React.Component {
+        static navigationOptions = SomeComponent.navigationOptions;
+    	// everything else, call as SomeComponent
         render() {
             const {navigation, ...otherProps} = this.props
             const {state: {params}} = navigation
@@ -19,12 +21,13 @@ const paramsToProps = (SomeComponent) => {
         }
     }
 }
+
 const RootStackNavigator = StackNavigator({
     Main: {
-        screen: LocationTypeGrid,
+        screen: paramsToProps(LocationTypeGrid),
     },
     CategoryView: {
-        screen: LocationListView,
+        screen: paramsToProps(LocationListView),
     },
     OpenSundays: {
         screen: OpeningDays,
