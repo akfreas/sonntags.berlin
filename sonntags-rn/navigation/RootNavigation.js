@@ -21,21 +21,14 @@ const paramsToProps = (SomeComponent) => {
 }
 const RootStackNavigator = StackNavigator({
     Main: {
-        screen: paramsToProps(LocationTypeGrid),
+        screen: LocationTypeGrid,
     },
     CategoryView: {
-        screen: paramsToProps(LocationListView),
+        screen: LocationListView,
     },
     OpenSundays: {
-        screen: paramsToProps(OpeningDays),
+        screen: OpeningDays,
     },
-},
-{
-    navigationOptions: () => ({
-        headerTitleStyle: {
-            fontWeight: 'normal',
-        },
-    }),
 });
 
 export default class RootNavigator extends React.Component {

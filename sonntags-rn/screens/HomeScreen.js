@@ -25,10 +25,6 @@ import {
 var styles2 = require('../assets/styles');
 
 export default class HomeScreen extends React.Component {
-    static navigationOptions = {
-        header: null,
-    };
-
     constructor(props) {
         super(props);
         this.state = {

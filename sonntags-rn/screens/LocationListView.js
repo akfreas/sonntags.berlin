@@ -194,7 +194,6 @@ export default class LocationListView extends Component {
         navigator.geolocation.getCurrentPosition(
       (position) => {
         var userLocation = position;
-        console.log("xxx location: ", userLocation);
         let sorted = this.locationsSortedByDistance(this.state.locations)
         this.setState({ 
             userLocation: userLocation,

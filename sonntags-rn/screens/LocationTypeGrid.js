@@ -44,9 +44,8 @@ class LocationTypeGridItem extends Component {
 export default class LocationTypeGrid extends Component {
 
     static navigationOptions = {
-        title: "sonntags.berlin"
-    };
-
+        header: null
+    }
 
     constructor(props) {
         super(props);
@@ -98,12 +97,26 @@ export default class LocationTypeGrid extends Component {
     
     render() {
         return (
+            <View style={{ height: "100%"}}>
+                <View style={{
+                    height: 100, 
+                    paddingTop: 15,
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                }}>
+                <Text style={{ textAlign: 'center', 
+                    fontFamily: 'lato-bold',
+                    fontSize: 32,
+                    margin: 5,
+                }}>Sunday Shopping</Text>
+            </View>
             <ListView 
                 style={styles.categoryTable}
                 renderSeparator={this.renderSeparator.bind(this)} 
                 contentContainerStyle={styles.locationGridList}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}/>
+            </View>
         );
     }
 }
