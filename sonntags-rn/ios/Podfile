@@ -9,6 +9,7 @@ target 'SonntagsBerlin' do
   # Pods for SonntagsBerlin
   #
   pod 'Firebase/Messaging'
+  pod 'Firebase/Core'
 #  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   target 'SonntagsBerlinTests' do
     inherit! :search_paths

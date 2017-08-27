@@ -23,6 +23,7 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		16674A341F5FE7B4E07B6FE1 /* Pods_SonntagsBerlinTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B11E29E6A65F6B19C513595 /* Pods_SonntagsBerlinTests.framework */; };
+		19C0C5A51F52CDD200A52C43 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19C0C5A41F52CDD200A52C43 /* GoogleService-Info.plist */; };
 		2A99271075EB4CF898D9F80B /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ADC494250052446398E22FE3 /* SimpleLineIcons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -329,6 +330,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = SonntagsBerlin/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
 		169CA2C8EB774244AA55ECF2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		19C0C5A41F52CDD200A52C43 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1CFCFF1D60B042DA92D0E0E5 /* Lato-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Lato-Bold.ttf"; path = "../assets/fonts/Lato-Bold.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* SonntagsBerlin-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SonntagsBerlin-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* SonntagsBerlin-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "SonntagsBerlin-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,6 +499,7 @@
 		13B07FAE1A68108700A75B9A /* SonntagsBerlin */ = {
 			isa = PBXGroup;
 			children = (
+				19C0C5A41F52CDD200A52C43 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1121,6 +1124,7 @@
 				9EB36CC2AA2A4E60BEBFC734 /* Ionicons.ttf in Resources */,
 				FBCDAB073EDB4F8992D864F4 /* MaterialCommunityIcons.ttf in Resources */,
 				E2622DBB894C4905A4446F69 /* MaterialIcons.ttf in Resources */,
+				19C0C5A51F52CDD200A52C43 /* GoogleService-Info.plist in Resources */,
 				E6855B80CFEB4226B51F5C6D /* Octicons.ttf in Resources */,
 				2A99271075EB4CF898D9F80B /* SimpleLineIcons.ttf in Resources */,
 				55B94EEC3DBA47DCBA8478FD /* Zocial.ttf in Resources */,
