@@ -217,9 +217,10 @@ var styles = StyleSheet.create({
     },
     locationListItem: {
         padding: 10.0,
-        height: 70.0,
+        height: 90.0,
         display: 'flex',
         flexDirection: 'row',
+        backgroundColor: 'white'
     },
     locationListItemDistanceContainer: {
         flex: 0.4,
@@ -232,9 +233,15 @@ var styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     locationListItemDescriptionText: {
+        fontFamily: 'lato-regular',
+    },
+    locationListItemDistanceText: {
+        fontFamily: 'lato-italic',
     },
     locationListItemTitleText: {
-        fontWeight: 'bold',
+
+        fontFamily: 'lato-bold',
+        fontSize: 18
     }
 })
 

@@ -19,6 +19,9 @@ import {
     loadLocations
 } from '../actions';
 
+import LocationListItem from '../components/LocationListItem.js';
+import arrow from '../assets/images/arrow.png';
+
 var styles = StyleSheet.create({
     locationListItem: {
         padding: 10.0,
@@ -67,34 +70,6 @@ function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
 
 function deg2rad(deg) {
   return deg * (Math.PI/180)
-}
-function pad(num, size){ return ('000000000' + num).substr(-size); }
-
-class LocationListItem extends Component {
-
-
-    render() {
-
-        let closingTimeString = pad(this.props.location.closingTime, 4)
-        let openingTimeString = pad(this.props.location.openingTime, 4)
-        let closingTime = moment(closingTimeString, "HHmm").format("HH:mm")
-        let openingTime = moment(openingTimeString, "HHmm").format("HH:mm")
-        let distance = this.props.distanceFromUser.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-
-        return (
-            <TouchableOpacity onPress={() => this.props.onLocationSelected(this.props.location)}>
-                    <View style={[styles.locationListItem]}>
-                        <View style={styles.locationListItemTitleContainer}>
-                            <Text style={styles.locationListItemTitleText}>{this.props.location.name}</Text>
-                            <Text style={styles.locationListItemDescriptionText}>Open {openingTime} - {closingTime}</Text>
-                            <Text style={styles.locationListItemDescriptionText}>{distance} km</Text>
-                            <Text></Text>
-                        </View>
-                    </View>
-                </TouchableOpacity>
-
-        )
-    }
 }
 
 
@@ -242,7 +217,9 @@ export default class LocationListView extends Component {
                             coordinate={latlong}
                             key={location.name}
                         title={location.name}
-                        description={location.location.formattedAddress}/>
+                        image={arrow}
+                        description={location.location.formattedAddress}>
+                         </MapView.Marker>
                     return marker
                 })}
                 </MapView>

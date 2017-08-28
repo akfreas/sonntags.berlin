@@ -15,8 +15,8 @@
   },
   "rnpm": {
       "assets": [
-          "./assets/fonts/Lato-Bold.ttf",
-          "./assets/fonts/Lato-Light.ttf"
+          "./assets/fonts/",
+          "./assets/images/"
       ]
   },
   "jest": {
