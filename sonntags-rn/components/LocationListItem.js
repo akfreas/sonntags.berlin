@@ -11,11 +11,11 @@ import {
   ListView
 } from 'react-native';
 import moment from 'moment';
+import { pad } from '../utilities';
 
 
 var styles = require('../assets/styles');
 
-function pad(num, size){ return ('000000000' + num).substr(-size); }
 export default class LocationListItem extends Component {
 
 

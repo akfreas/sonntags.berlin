@@ -20,6 +20,7 @@ import {
 } from '../actions';
 
 import LocationListItem from '../components/LocationListItem.js';
+import LocationCallout from '../components/LocationCallout.js';
 import arrow from '../assets/images/arrow.png';
 
 var styles = StyleSheet.create({
@@ -88,11 +89,6 @@ export default class LocationListView extends Component {
         };
     }
 
-    openMaps(location) {
-        console.log(location);
-        var url = 'https://www.google.com/maps/search/?api=1&query=' + location.address;
-        this.openExternalApp(url)
-    }
 
     openExternalApp(url) {
       Linking.canOpenURL(url).then(supported => {
@@ -105,7 +101,8 @@ export default class LocationListView extends Component {
     }
 
     locationSelected(location) {
-        this.openMaps(location);
+        const { navigate } = this.props.navigation; 
+        navigate('LocationDetail', {location: location, distanceFromUser: this.distanceFromUser(location)});
     }
 
     distanceFromUser(location) {
@@ -200,7 +197,8 @@ export default class LocationListView extends Component {
         let userLocation = await Location.getCurrentPositionAsync({});
         */
     };
-
+    onCalloutPressed (index) {
+    }
     mapView() {
         return (
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%'}}>
@@ -211,14 +209,19 @@ export default class LocationListView extends Component {
                   pitchEnabled={false}
                   rotateEnabled={false}
                   style={{flex: 1}}>
-                      {this.state.locations.map((location) => {
+                      {this.state.locations.map((location, index) => {
                         let latlong = {latitude: location.location.lat, longitude: location.location.lon};
                         let marker = <MapView.Marker
                             coordinate={latlong}
                             key={location.name}
-                        title={location.name}
+
+                        onPress={() => this.onCalloutPressed(index)}
+                        ref={`callout-${index}`}
+                        zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
+                        title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         image={arrow}
                         description={location.location.formattedAddress}>
+
                          </MapView.Marker>
                     return marker
                 })}
