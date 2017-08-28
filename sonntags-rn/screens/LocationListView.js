@@ -171,44 +171,51 @@ export default class LocationListView extends Component {
         )
     }
 
-    componentWillMount() {
-        
-        loadLocations(this.props.category.id).then((locations) => {
-            let sorted = this.locationsSortedByDistance(locations)
-            let ds = this.state.dataSource.cloneWithRows(sorted);
 
-            console.log("sorted: ", sorted);
+    componentDidMount() {
+        loadLocations(this.props.category.id).then((locations) => {
+            let ds = this.state.dataSource.cloneWithRows(locations);
+
             this.setState({
-                locations: sorted,
+                locations: locations,
                 dataSource: ds,
             })
+        }).then(()=>{
+            this._getLocationAsync();
+        })
+        this.map.animateToRegion(
+        {
+          latitude: 52.4944623,
+          longitude: 13.4034689,
+          latitudeDelta: 0.2922,
+          longitudeDelta: 0.3421,
         })
     }
 
-    componentDidMount() {
-        this._getLocationAsync();
-    }
-
     _getLocationAsync() {
-        navigator.geolocation.getCurrentPosition(
-      (position) => {
-        var userLocation = position;
-        let sorted = this.locationsSortedByDistance(this.state.locations)
-        this.setState({ 
-            userLocation: userLocation,
-            locations: sorted
-        });
-      },
+        console.log("getting location");
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("position: " + position.latitude);
+            var userLocation = position;
+            this.setState({ 
+                userLocation: userLocation,
+            });
+            let sorted = this.locationsSortedByDistance(this.state.locations)
+            this.setState({
+                locations: sorted
+            });
+          },
       (error) => alert(error.message),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      var lastPosition = JSON.stringify(position);
-      this.setState({lastPosition});
-    });
-
 
         /*
+     var us = this;
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      var lastPosition = JSON.stringify(position);
+      us.setState({lastPosition});
+    });
+
         let { status } = await Permissions.askAsync(Permissions.LOCATION);
         if (status !== 'granted') {
           this.setState({
@@ -221,19 +228,14 @@ export default class LocationListView extends Component {
 
     mapView() {
         return (
-            <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%'}}>
-                          <MapView
+            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%'}}>
+                <MapView
+                    ref={ref=> {this.map = ref; }}
                   showsUserLocation={true}
                   showsCompass={false}
                   pitchEnabled={false}
                   rotateEnabled={false}
-                  style={{flex: 1}}
-                  initialRegion={{
-                      latitude: 52.4944623,
-                      longitude: 13.4034689,
-                      latitudeDelta: 0.2922,
-                      longitudeDelta: 0.3421,
-                    }}>
+                  style={{flex: 1}}>
                       {this.state.locations.map((location) => {
                         let latlong = {latitude: location.location.lat, longitude: location.location.lon};
                         let marker = <MapView.Marker

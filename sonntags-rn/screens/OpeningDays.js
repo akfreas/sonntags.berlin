@@ -37,6 +37,11 @@ class OpeningDayItem extends Component {
 }
 
 export default class OpeningDaysList extends Component {
+
+    
+    static navigationOptions = {
+        title: "Special Opening Days"
+    };
  
     constructor(props) {
         super(props);
