@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import moment from 'moment';
 
-import arrow from '../assets/images/arrow.png';
+import arrow from '../assets/images/map-annotation.png';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -23,6 +23,7 @@ import {
 var styles = require('../assets/styles');
 
 export default class LocationDetailView extends Component {
+
     render() {
         let closingTimeString = pad(this.props.location.closingTime, 4)
         let openingTimeString = pad(this.props.location.openingTime, 4)
@@ -32,10 +33,17 @@ export default class LocationDetailView extends Component {
  
         let location = this.props.location;
         return(
-            <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%'}}>
+            <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
+          <View style={{flex: 4}}>
             <MapView
                 ref={ref=> {this.map = ref; }}
               showsUserLocation={true}
+              initialRegion={{
+                  latitude: 52.4944623,
+                  longitude: 13.4034689,
+                  latitudeDelta: 0.2922,
+                  longitudeDelta: 0.3421,
+                }}
               showsCompass={false}
               pitchEnabled={false}
               rotateEnabled={false}
@@ -48,8 +56,7 @@ export default class LocationDetailView extends Component {
                   image={arrow}
               />
           </MapView>
-          <View style={{flex: 2}}>
-              <View style={{flex: 3, padding: 10, backgroundColor: 'white'}}>
+              <View style={{flex: 2, padding: 10, backgroundColor: 'white'}}>
                   <Text style={{fontFamily: 'lato-bold', fontSize: 24}}>{this.props.location.name}</Text>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>
@@ -80,14 +87,22 @@ export default class LocationDetailView extends Component {
         var url = 'https://www.google.com/maps/search/?api=1&query=' + this.props.location.address;
         openExternalApp(url)
     }
-    componentDidMount() {
 
-        this.map.animateToRegion(
-        {
-          latitude: this.props.location.location.lat,
-          longitude: this.props.location.location.lon,
-          latitudeDelta: 0.015,
-          longitudeDelta: 0.015,
-        })
+    componentDidMount() {
+        if (Platform.OS === 'ios') {
+            this.map.animateToRegion(
+            {
+              latitude: this.props.location.location.lat,
+              longitude: this.props.location.location.lon,
+              latitudeDelta: 0.015,
+              longitudeDelta: 0.015,
+            })
+        }
+
+    }
+    
+    componentDidUpdate() {
+
+        console.log("location: " + this.props.location.name);
     }
 }

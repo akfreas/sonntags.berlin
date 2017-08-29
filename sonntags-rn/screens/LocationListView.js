@@ -4,6 +4,7 @@ import moment from 'moment';
 import {
     ScrollView,
     ListView,
+    Dimensions,
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
@@ -19,9 +20,10 @@ import {
     loadLocations
 } from '../actions';
 
+import Icon from 'react-native-vector-icons/Entypo';
 import LocationListItem from '../components/LocationListItem.js';
 import LocationCallout from '../components/LocationCallout.js';
-import arrow from '../assets/images/arrow.png';
+import arrow from '../assets/images/map-annotation.png';
 
 var styles = StyleSheet.create({
     locationListItem: {
@@ -155,6 +157,11 @@ export default class LocationListView extends Component {
         }).then(()=>{
             this._getLocationAsync();
         })
+        /*
+                */
+    }
+
+    componentDidUpdate() {
         this.map.animateToRegion(
         {
           latitude: 52.4944623,
@@ -198,29 +205,47 @@ export default class LocationListView extends Component {
         */
     };
     onCalloutPressed (index) {
+        console.log("location pressed");
     }
     mapView() {
         return (
-            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%'}}>
+            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
                 <MapView
                     ref={ref=> {this.map = ref; }}
                   showsUserLocation={true}
                   showsCompass={false}
                   pitchEnabled={false}
                   rotateEnabled={false}
+
+                  initialRegion={{
+          latitude: 52.4944623,
+          longitude: 13.4034689,
+          latitudeDelta: 0.2922,
+          longitudeDelta: 0.3421,
+        }}
                   style={{flex: 1}}>
+                  
                       {this.state.locations.map((location, index) => {
                         let latlong = {latitude: location.location.lat, longitude: location.location.lon};
                         let marker = <MapView.Marker
                             coordinate={latlong}
                             key={location.name}
 
-                        onPress={() => this.onCalloutPressed(index)}
                         ref={`callout-${index}`}
                         zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
-                        title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         image={arrow}
+                        onCalloutPress={()=>this.locationSelected(location)}
+                        title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         description={location.location.formattedAddress}>
+                        <MapView.Callout  style={{flex: 1, flexDirection: 'row', padding: 5}}>
+                              <Text style={{fontFamily: 'lato-bold'}}>{location.name}</Text>
+                              <Icon
+                                  style={{textAlign: 'center', marginTop: -1}}
+                                  name='chevron-small-right'
+                                  size={20}
+                              >
+                              </Icon>
+                        </MapView.Callout>
 
                          </MapView.Marker>
                     return marker
@@ -231,12 +256,10 @@ export default class LocationListView extends Component {
 
     }
 
-
-
     renderHeader() {
         return (
             <View 
-                style={[{backgroundColor: 'rgba(0,0,0,0)', height: 400.0}]}
+                style={[{backgroundColor: 'rgba(0,0,0,0)', height: Dimensions.get('window').height * 0.5}]}
             >
             {this.mapView()}
         </View>

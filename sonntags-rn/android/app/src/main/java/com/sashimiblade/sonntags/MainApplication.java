@@ -1,4 +1,4 @@
-package com.sonntagsberlin;
+package com.sashimiblade.sonntags;
 
 import android.app.Application;
 

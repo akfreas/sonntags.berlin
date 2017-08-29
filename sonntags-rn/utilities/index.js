@@ -2,7 +2,7 @@ import {
     Linking
 } from 'react-native';
 
-function pad(num, size){ return ('000000000' + num).substr(-size); }
+function pad(num, size){ return ('000000' + num).substr(-size); }
 
 function openExternalApp(url) {
   Linking.canOpenURL(url).then(supported => {

@@ -22,19 +22,36 @@ const paramsToProps = (SomeComponent) => {
         }
     }
 }
+const defaultNavOptions = {
+    headerStyle: { 
+        backgroundColor: '#3BB9BD'
+    },
+    headerTitleStyle: {
+        color: 'white',
+        fontFamily: 'lato-bold',
+        fontSize: 20
+
+    },
+    headerTintColor: 'white'
+}
 
 const RootStackNavigator = StackNavigator({
+    
     Main: {
         screen: paramsToProps(LocationTypeGrid),
+        navigationOptions: defaultNavOptions,
     },
     CategoryView: {
         screen: paramsToProps(LocationListView),
+        navigationOptions: defaultNavOptions,
     },
     OpenSundays: {
         screen: OpeningDays,
+        navigationOptions: defaultNavOptions,
     },
     LocationDetail: {
         screen: paramsToProps(LocationDetailView),
+        navigationOptions: defaultNavOptions,
     },
 });
 

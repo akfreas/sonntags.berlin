@@ -14,10 +14,10 @@
     "test": "node node_modules/jest/bin/jest.js --watch"
   },
   "rnpm": {
-      "assets": [
-          "./assets/fonts/",
-          "./assets/images/"
-      ]
+    "assets": [
+      "./assets/fonts/",
+      "./assets/images/"
+    ]
   },
   "jest": {
     "preset": "jest-expo"
