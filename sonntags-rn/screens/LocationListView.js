@@ -162,13 +162,18 @@ export default class LocationListView extends Component {
     }
 
     componentDidUpdate() {
-        this.map.animateToRegion(
+        let markers = this.state.locations.map((location) => {
+            return location.id;
+        })
+        this.map.fitToSuppliedMarkers(markers, true);
+            /*this.map.animateToRegion(
         {
           latitude: 52.4944623,
           longitude: 13.4034689,
           latitudeDelta: 0.2922,
           longitudeDelta: 0.3421,
         })
+        */
     }
 
     _getLocationAsync() {
@@ -235,6 +240,7 @@ export default class LocationListView extends Component {
                         zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
                         image={arrow}
                         onCalloutPress={()=>this.locationSelected(location)}
+                        identifier={location.id}
                         title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         description={location.location.formattedAddress}>
                         <MapView.Callout  style={{flex: 1, flexDirection: 'row', padding: 5}}>

@@ -89,6 +89,7 @@ export default class LocationDetailView extends Component {
     }
 
     componentDidMount() {
+
         if (Platform.OS === 'ios') {
             this.map.animateToRegion(
             {

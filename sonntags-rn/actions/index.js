@@ -40,7 +40,10 @@ function loadLocations(category) {
             'fields.category': category
         }).then((response) => {
         return response.items.map((location) => {
+            console.log("xxxx");
+            console.log(location);
             let fields = location.fields;
+            fields.id = location.sys.id;
             return fields;
         })
     })
