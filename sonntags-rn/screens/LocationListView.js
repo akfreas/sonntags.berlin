@@ -166,14 +166,6 @@ export default class LocationListView extends Component {
             return location.id;
         })
         this.map.fitToSuppliedMarkers(markers, true);
-            /*this.map.animateToRegion(
-        {
-          latitude: 52.4944623,
-          longitude: 13.4034689,
-          latitudeDelta: 0.2922,
-          longitudeDelta: 0.3421,
-        })
-        */
     }
 
     _getLocationAsync() {

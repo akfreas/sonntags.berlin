@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sashimiblade.sonntags"
-    android:versionCode="1"
+    android:versionCode="2"
     android:versionName="1.0">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,14 +14,27 @@
       android:name=".MainApplication"
       android:allowBackup="true"
       android:label="@string/app_name"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@drawable/icon"
       android:theme="@style/AppTheme">
+        <service
+            android:name=".MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCMIOlLlqT7_CvStwkGYmXJiOWXXX7GTrk"/>
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
+          android:screenOrientation="portrait"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:windowSoftInputMode="adjustResize">
         <intent-filter>
