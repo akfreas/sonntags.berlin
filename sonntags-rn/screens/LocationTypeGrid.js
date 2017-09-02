@@ -1,21 +1,25 @@
 import React, {Component} from 'react';
 
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ListView
+    Image,
+    Linking,
+    Button,
+    Platform,
+    ScrollView,
+    Text,
+    TouchableOpacity,
+    View,
+    StyleSheet,
+    Row,
+    ListView
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import Drawer from 'react-native-drawer';
 
 var styles = require('../assets/styles/index.js');
+import DrawerMenu from '../components/DrawerMenu';
+
 
 
 class LocationTypeGridItem extends Component {
@@ -82,6 +86,10 @@ export default class LocationTypeGrid extends Component {
         }
     }
 
+    openDrawer() {
+        this._drawer.open();
+    }
+
     renderRow(item) {
         return (
             <LocationTypeGridItem 
@@ -97,21 +105,69 @@ export default class LocationTypeGrid extends Component {
     
     render() {
         return (
+            <Drawer 
+                ref={(ref) => this._drawer = ref}
+                type="overlay"
+                tapToClose={true}
+                acceptPan={true}
+                type={'static'}
+                captureGestures={true}
+                openDrawerOffset={0.2}
+
+                content={<DrawerMenu navigation={this.props.navigation}/>}
+            >
             <View style={{ height: "100%"}}>
                 <View style={{
                     height: 100, 
                     paddingTop: 15,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    backgroundColor: '#3BB9BD'
-
+                    backgroundColor: '#3BB9BD',
+                    flexDirection: 'row'
                 }}>
-                <Text style={{ textAlign: 'center', 
-                    fontFamily: 'lato-bold',
-                    fontSize: 32,
-                    margin: 5,
-                    color: 'white'
-                }}>Sunday Shopping</Text>
+                <View style={{
+                    height: 100, 
+                    paddingTop: 15,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: '#3BB9BD',
+                    flexDirection: 'row',
+                    position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        width: '100%',
+                        padding: '5%',
+                     
+                }}>
+                    <Text style={{ textAlign: 'center',
+                        fontFamily: 'lato-bold',
+                        fontSize: 32,
+                       margin: 5,
+                        color: 'white'
+                    }}>sonntags</Text>
+                </View>
+
+
+                    <View style={{
+                        flex: 1, 
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        width: 70,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        position: 'absolute'}}>
+
+                <TouchableOpacity onPress={this.openDrawer.bind(this)}>
+                        <Icon name={'bars'}
+                            size={32}
+                            style={{height: 44, width: 44}}
+                        style={{color: 'white'}}/>
+
+                </TouchableOpacity>
+                    </View>
+
             </View>
             <ListView 
                 style={styles.categoryTable}
@@ -120,6 +176,7 @@ export default class LocationTypeGrid extends Component {
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}/>
             </View>
+        </Drawer>
         );
     }
 }

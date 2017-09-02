@@ -9,6 +9,7 @@ import registerForPushNotificationsAsync from '../api/registerForPushNotificatio
 import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
 import LocationDetailView from '../screens/LocationDetailView.js';
+import NavWebView from '../screens/NavWebView.js';
 
 const paramsToProps = (SomeComponent) => { 
 // turns this.props.navigation.state.params into this.params.<x>
@@ -47,6 +48,10 @@ const RootStackNavigator = StackNavigator({
     },
     OpenSundays: {
         screen: OpeningDays,
+        navigationOptions: defaultNavOptions,
+    },
+    NavWebView: {
+        screen: paramsToProps(NavWebView),
         navigationOptions: defaultNavOptions,
     },
     LocationDetail: {
