@@ -12,27 +12,16 @@ const firebaseConfig = {
 };
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-debugger;
+import Analytics from 'react-native-firebase-analytics';
 
-/*
-const FCM = firebase.messaging();
-    FCM.requestPermissions();
-firebase.auth.onAuthStateChanged((user: any) => {
-  if (user) {
-    this.topic = `/topics/${user.uid}`;
-    FCM.subscribeToTopic(this.topic);
-  } else if (this.topic) {
-    // If the user is logged-out, we unsubscribe
-     FCM.unsubscribeFromTopic(this.topic);
-  }
-});
-*/
 const contentfulClient = createClient({
     space: '2dktdnk1iv2v',
     accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
 })
 
 function loadLocations(category) {
+
+    Analytics.logEvent('load_category', {'category_name': category});
 
     return contentfulClient.getEntries(
         {
@@ -50,6 +39,8 @@ function loadLocations(category) {
 }
 
 function loadOpenSundays() {
+
+    Analytics.logEvent('load_open_sundays');
     return contentfulClient.getEntries({
         'content_type': 'sundayOpenings',
         // 'field.date[gte]': new Date()

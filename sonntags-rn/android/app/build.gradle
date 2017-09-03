@@ -2,6 +2,8 @@ apply plugin: "com.android.application"
 
 import com.android.build.OutputFile
 
+apply from: 'versionCode.gradle'
+
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
  * and bundleReleaseJsAndAssets).
@@ -97,8 +99,8 @@ android {
         applicationId "com.sashimiblade.sonntags"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 1
-        versionName "1.0"
+        versionName VERSION_NAME
+        versionCode Integer.parseInt(VERSION_CODE)
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
@@ -113,8 +115,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            minifyEnabled false
         }
     }
     // applicationVariants are e.g. debug, release
@@ -133,10 +134,11 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-maps')
+    compile project(':react-native-firebase-analytics')
     compile project(':react-native-vector-icons')
     compile(project(':react-native-maps')) {
-        exclude group: 'com.google.android.gms', module: 'play-services-base'
-        exclude group: 'com.google.android.gms', module: 'play-services-maps'
+        exclude group: 'com.google.android.gms'
     }
 
     compile fileTree(dir: "libs", include: ["*.jar"])
@@ -146,6 +148,7 @@ dependencies {
     compile 'com.facebook.react:react-native:+'
     compile 'com.google.firebase:firebase-core:11.2.0'
     compile 'com.google.firebase:firebase-messaging:11.2.0'
+    compile 'com.google.firebase:firebase-crash:11.2.0'
 }
 
 // Run this once to be able to run the application with BUCK

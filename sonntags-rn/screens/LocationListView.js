@@ -20,6 +20,7 @@ import {
     loadLocations
 } from '../actions';
 
+import Analytics from 'react-native-firebase-analytics';
 import Icon from 'react-native-vector-icons/Entypo';
 import LocationListItem from '../components/LocationListItem.js';
 import LocationCallout from '../components/LocationCallout.js';
@@ -102,8 +103,18 @@ export default class LocationListView extends Component {
       });
     }
 
-    locationSelected(location) {
+    locationSelected(location, source) {
         const { navigate } = this.props.navigation; 
+        var userLocation = "undefined"
+        if (this.state.userLocation) {
+            userLocation = this.state.userLocation;
+        }
+        Analytics.logEvent('location_selected', {
+            'location_name': location.name, 
+            'user_location': JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude}), 
+            'source': source,
+            'distance_from_user': this.distanceFromUser(location)
+        });
         navigate('LocationDetail', {location: location, distanceFromUser: this.distanceFromUser(location)});
     }
 
@@ -231,7 +242,7 @@ export default class LocationListView extends Component {
                         ref={`callout-${index}`}
                         zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
                         image={arrow}
-                        onCalloutPress={()=>this.locationSelected(location)}
+                        onCalloutPress={()=>this.locationSelected(location, 'map')}
                         identifier={location.id}
                         title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         description={location.location.formattedAddress}>

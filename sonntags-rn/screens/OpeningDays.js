@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import moment from 'moment';
-
+import Hyperlink from 'react-native-hyperlink';
 import { loadOpenSundays } from '../actions';
 
 
@@ -19,16 +19,16 @@ class OpeningDayItem extends Component {
         let day = dateMoment.format("DD");
         let month = dateMoment.format("MMM");
         return (
-            <View style={{height: 60.0, flex: 1}} >
+            <View style={{height: 70.0, flex: 1}} >
                 <View style={{flexDirection: 'row', height: '100%'}}>
                     <View style={{height: '100%', width: 60.0, justifyContent: 'center'}}>
                         <View style={{width: '70%', height: '70%', margin: '15%'}}>
-                            <Text style={{flex: 1, textAlign: 'center', fontSize: 12, fontFamily: 'lato-bold'}}>{month}</Text>
-                            <Text style={{flex: 2, fontSize: 20, textAlign: 'center', fontFamily: 'lato-bold'}}>{day}</Text>
+                            <Text style={{flex: 1, textAlign: 'center', fontSize: 14, fontFamily: 'lato-bold'}}>{month}</Text>
+                            <Text style={{flex: 2, fontSize: 22, textAlign: 'center', fontFamily: 'lato-bold'}}>{day}</Text>
                         </View>
                     </View>
                     <View style={{height: '100%', width: '80%', margin: 15}}>
-                        <Text numberOfLines={2} style={{flex: 1, fontFamily: 'lato-light'}}>{this.props.openDay.dayName}</Text>
+                        <Text numberOfLines={2} style={{flex: 1, fontFamily: 'lato-light', fontSize: 16}}>{this.props.openDay.dayName}</Text>
                     </View>
                 </View>
             </View>
@@ -81,18 +81,29 @@ export default class OpeningDaysList extends Component {
         });
     }
 
+    openWebsite() {
+        const { navigate } = this.props.navigation;
+        navigate('NavWebView', {title: 'berlin.de', uri: 'http://bit.ly/sonntags-berlin'});
+    }
+
     renderHeader() {
         return (
-            <View style={{height: 130}}>
+            <View style={{flex: 1}}>
                 <View style={{flex: 1, margin: 10}}>
+
+                            <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: 'lato-bold'}}>Things aren't open on Sunday.</Text> 
-                        <Text style={{fontFamily: 'lato-light'}}> Berlin allows for some exceptions.  Here they are.</Text>
+                        <Text style={{fontFamily: 'lato-bold', fontSize: 16}}>Stores aren't open on Sunday.</Text> 
+                        <Text style={{fontFamily: 'lato-regular', fontSize: 16}}>The city of Berlin allows for some exceptions. On these Sundays,
+                            many stores will be open for business.  Each opening day takes place during another city-wide event, listed below.</Text>
+                            <Text style={{fontFamily: 'lato-regular', fontSize: 16}}>{"\n\n"}More info at http://bit.ly/sonntags-berlin</Text>
                     </Text>
+                        </Hyperlink>
 
                 </View>
                 <View style={{flex: 1, margin: 10}}>
                     <View style={{flexDirection: 'row'}}>
+                        {/*
                         <View style={{flex: 4}}>
                             <Text style={{fontFamily: 'lato-bold'}}>Notify me when shops are open on Sundays.</Text>
                         </View>
@@ -102,6 +113,7 @@ export default class OpeningDaysList extends Component {
                                 value={this.state.notificationsOn}
                             />
                         </View>
+                        */}
 
                     </View>
                 </View>

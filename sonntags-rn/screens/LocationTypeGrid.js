@@ -16,6 +16,8 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Drawer from 'react-native-drawer';
+import Analytics from 'react-native-firebase-analytics';
+
 
 var styles = require('../assets/styles/index.js');
 import DrawerMenu from '../components/DrawerMenu';
@@ -87,6 +89,7 @@ export default class LocationTypeGrid extends Component {
     }
 
     openDrawer() {
+        Analytics.logEvent('drawer_open');
         this._drawer.open();
     }
 
@@ -141,7 +144,7 @@ export default class LocationTypeGrid extends Component {
                      
                 }}>
                     <Text style={{ textAlign: 'center',
-                        fontFamily: 'lato-bold',
+                        fontFamily: 'Lato-Bold',
                         fontSize: 32,
                        margin: 5,
                         color: 'white'

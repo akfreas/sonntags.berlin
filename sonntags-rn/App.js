@@ -5,11 +5,13 @@ import {
     View 
 } from 'react-native';
 import RootNavigation from './navigation/RootNavigation';
-
+import IntroScreen from './screens/IntroScreen.js';
 import NavigationBar from 'react-native-navbar';
+
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 
 var styles = require('./assets/styles');
+
 
 
 export default class AppContainer extends React.Component {
@@ -25,6 +27,9 @@ export default class AppContainer extends React.Component {
   }
 
   render() {
+
+      //      return (<IntroScreen/>);
+
       return (
         <RootNavigation />
       );

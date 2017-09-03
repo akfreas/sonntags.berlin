@@ -15,6 +15,7 @@ import moment from 'moment';
 import arrow from '../assets/images/map-annotation.png';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Hyperlink from 'react-native-hyperlink';
 
 import { 
     pad,
@@ -24,17 +25,22 @@ var styles = require('../assets/styles');
 
 export default class LocationDetailView extends Component {
 
+    openWebsite() {
+        const { navigate } = this.props.navigation;
+        navigate('NavWebView', {title: this.props.location.name, uri: this.props.location.websiteUrl});
+    }
+
     render() {
         let closingTimeString = pad(this.props.location.closingTime, 4)
         let openingTimeString = pad(this.props.location.openingTime, 4)
         let closingTime = moment(closingTimeString, "HHmm").format("HH:mm")
         let openingTime = moment(openingTimeString, "HHmm").format("HH:mm")
-        let distance = this.props.distanceFromUser.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        let distance = Math.round(this.props.distanceFromUser * 100) / 100;
  
         let location = this.props.location;
         return(
             <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
-          <View style={{flex: 4}}>
+          <View style={{flex: 3}}>
             <MapView
                 ref={ref=> {this.map = ref; }}
               showsUserLocation={true}
@@ -47,7 +53,7 @@ export default class LocationDetailView extends Component {
               showsCompass={false}
               pitchEnabled={false}
               rotateEnabled={false}
-              style={{flex: 1}}>
+              style={{flex: 3}}>
               <MapView.Marker coordinate={{
                       latitude: location.location.lat, 
                       longitude: location.location.lon
@@ -60,9 +66,11 @@ export default class LocationDetailView extends Component {
                   <Text style={{fontFamily: 'lato-bold', fontSize: 24}}>{this.props.location.name}</Text>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>
+                            <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                             <Text style={styles.locationListItemDescriptionText}>Open Sundays, {openingTime} - {closingTime}</Text>
                             <Text style={styles.locationListItemDistanceText}>{distance} km away</Text>
-                            <Text style={styles.locationListItemDescriptionText}>{this.props.location.websiteUrl}</Text>
+                                <Text style={styles.locationListItemDescriptionText}>{this.props.location.websiteUrl}</Text>
+                            </Hyperlink>
                             <Text style={styles.locationListItemDescriptionText}>{this.props.location.phoneNumber}</Text>
                         </View>
 
