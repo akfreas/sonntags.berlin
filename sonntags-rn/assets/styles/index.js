@@ -209,7 +209,7 @@ var styles = StyleSheet.create({
         textAlign: 'center',
         marginLeft: 10,
         marginRight: 10,
-        fontFamily: 'lato-bold',
+        fontFamily: 'Lato-Bold',
         fontSize: 20
     },
     locationList: {
@@ -233,14 +233,14 @@ var styles = StyleSheet.create({
         alignItems: 'flex-start',
     },
     locationListItemDescriptionText: {
-        fontFamily: 'lato-regular',
+        fontFamily: 'Lato-Regular',
     },
     locationListItemDistanceText: {
         fontFamily: 'lato-italic',
     },
     locationListItemTitleText: {
 
-        fontFamily: 'lato-bold',
+        fontFamily: 'Lato-Bold',
         fontSize: 18
     }
 })

@@ -73,7 +73,10 @@ apply from: 'versionCode.gradle'
  *   extraPackagerArgs: []
  * ]
  */
-
+project.ext.react = [
+        bundleInDebug: true,
+        nodeExecutableAndArgs : ["/usr/local/bin/node"]
+]
 apply from: "../../node_modules/react-native/react.gradle"
 
 /**
@@ -85,11 +88,6 @@ apply from: "../../node_modules/react-native/react.gradle"
  * the correct one based on the CPU architecture of their device.
  */
 def enableSeparateBuildPerCPUArchitecture = false
-
-/**
- * Run Proguard to shrink the Java bytecode in release builds.
- */
-def enableProguardInReleaseBuilds = false
 
 android {
     compileSdkVersion 25
@@ -116,6 +114,8 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+        }
+        debug {
         }
     }
     // applicationVariants are e.g. debug, release

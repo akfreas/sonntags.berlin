@@ -247,7 +247,7 @@ export default class LocationListView extends Component {
                         title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
                         description={location.location.formattedAddress}>
                         <MapView.Callout  style={{flex: 1, flexDirection: 'row', padding: 5}}>
-                              <Text style={{fontFamily: 'lato-bold'}}>{location.name}</Text>
+                              <Text style={{fontFamily: 'Lato-Bold'}}>{location.name}</Text>
                               <Icon
                                   style={{textAlign: 'center', marginTop: -1}}
                                   name='chevron-small-right'

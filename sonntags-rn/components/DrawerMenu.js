@@ -62,7 +62,7 @@ export default class DrawerMenu extends Component {
                         padding: 12,
                         alignSelf: 'stretch'}} key={def.title}>
                         <Text style={{
-                            fontFamily: 'lato-bold',
+                            fontFamily: 'Lato-Bold',
                             color: 'white',
                             fontSize: 20
                         }}>{def.title}</Text>

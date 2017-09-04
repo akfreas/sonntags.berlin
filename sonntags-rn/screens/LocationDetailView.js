@@ -63,7 +63,7 @@ export default class LocationDetailView extends Component {
               />
           </MapView>
               <View style={{flex: 2, padding: 10, backgroundColor: 'white'}}>
-                  <Text style={{fontFamily: 'lato-bold', fontSize: 24}}>{this.props.location.name}</Text>
+                  <Text style={{fontFamily: 'Lato-Bold', fontSize: 24}}>{this.props.location.name}</Text>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>
                             <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
@@ -83,7 +83,7 @@ export default class LocationDetailView extends Component {
                           size={60}
                       >
                       </Icon>
-                      <Text style={{fontFamily: 'lato-regular', textAlign: 'center'}}>Open in Maps</Text>
+                      <Text style={{fontFamily: 'Lato-Regular', textAlign: 'center'}}>Open in Maps</Text>
                   </TouchableOpacity>
               </View>
           </View> 
@@ -92,6 +92,7 @@ export default class LocationDetailView extends Component {
     }
 
     openInMaps() {
+        Analytics.logEvent('open_maps', {'location_name': this.props.location.name});
         var url = 'https://www.google.com/maps/search/?api=1&query=' + this.props.location.address;
         openExternalApp(url)
     }

@@ -23,8 +23,8 @@ class OpeningDayItem extends Component {
                 <View style={{flexDirection: 'row', height: '100%'}}>
                     <View style={{height: '100%', width: 60.0, justifyContent: 'center'}}>
                         <View style={{width: '70%', height: '70%', margin: '15%'}}>
-                            <Text style={{flex: 1, textAlign: 'center', fontSize: 14, fontFamily: 'lato-bold'}}>{month}</Text>
-                            <Text style={{flex: 2, fontSize: 22, textAlign: 'center', fontFamily: 'lato-bold'}}>{day}</Text>
+                            <Text style={{flex: 1, textAlign: 'center', fontSize: 14, fontFamily: 'Lato-Bold'}}>{month}</Text>
+                            <Text style={{flex: 2, fontSize: 22, textAlign: 'center', fontFamily: 'Lato-Bold'}}>{day}</Text>
                         </View>
                     </View>
                     <View style={{height: '100%', width: '80%', margin: 15}}>
@@ -93,10 +93,10 @@ export default class OpeningDaysList extends Component {
 
                             <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: 'lato-bold', fontSize: 16}}>Stores aren't open on Sunday.</Text> 
-                        <Text style={{fontFamily: 'lato-regular', fontSize: 16}}>The city of Berlin allows for some exceptions. On these Sundays,
+                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>Stores aren't open on Sunday.</Text> 
+                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>The city of Berlin allows for some exceptions. On these Sundays,
                             many stores will be open for business.  Each opening day takes place during another city-wide event, listed below.</Text>
-                            <Text style={{fontFamily: 'lato-regular', fontSize: 16}}>{"\n\n"}More info at http://bit.ly/sonntags-berlin</Text>
+                            <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{"\n\n"}More info at http://bit.ly/sonntags-berlin</Text>
                     </Text>
                         </Hyperlink>
 
@@ -105,7 +105,7 @@ export default class OpeningDaysList extends Component {
                     <View style={{flexDirection: 'row'}}>
                         {/*
                         <View style={{flex: 4}}>
-                            <Text style={{fontFamily: 'lato-bold'}}>Notify me when shops are open on Sundays.</Text>
+                            <Text style={{fontFamily: 'Lato-Bold'}}>Notify me when shops are open on Sundays.</Text>
                         </View>
                         <View style={{flex: 1}}>
                             <Switch style={{}} 
