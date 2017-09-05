@@ -92,7 +92,6 @@ export default class LocationListView extends Component {
         };
     }
 
-
     openExternalApp(url) {
       Linking.canOpenURL(url).then(supported => {
         if (supported) {
@@ -107,11 +106,12 @@ export default class LocationListView extends Component {
         const { navigate } = this.props.navigation; 
         var userLocation = "undefined"
         if (this.state.userLocation) {
-            userLocation = this.state.userLocation;
+            let userLocation = this.state.userLocation;
+            userLocation = JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude});
         }
         Analytics.logEvent('location_selected', {
             'location_name': location.name, 
-            'user_location': JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude}), 
+            'user_location': userLocation, 
             'source': source,
             'distance_from_user': this.distanceFromUser(location)
         });
@@ -122,7 +122,7 @@ export default class LocationListView extends Component {
 
         let userLocation = this.state.userLocation;
         if (userLocation == undefined || userLocation.coords == undefined) { 
-            return 0.0
+            return null
         }
 
         let distance = getDistanceFromLatLonInKm(
@@ -134,6 +134,7 @@ export default class LocationListView extends Component {
     }
 
     locationsSortedByDistance(locations) {
+        
         let sortedLocations = locations.sort((a, b) => {
             let distanceA = this.distanceFromUser(a);
             let distanceB = this.distanceFromUser(b);
@@ -191,8 +192,8 @@ export default class LocationListView extends Component {
             this.setState({
                 locations: sorted
             });
-          },
-      (error) => alert(error.message),
+        },(error) => {
+        } ,
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
 

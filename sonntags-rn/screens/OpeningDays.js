@@ -93,7 +93,7 @@ export default class OpeningDaysList extends Component {
 
                             <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>Stores aren't open on Sunday.</Text> 
+                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>Most stores aren't open on Sunday. {'\n'}</Text> 
                         <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>The city of Berlin allows for some exceptions. On these Sundays,
                             many stores will be open for business.  Each opening day takes place during another city-wide event, listed below.</Text>
                             <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{"\n\n"}More info at http://bit.ly/sonntags-berlin</Text>

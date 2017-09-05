@@ -23,7 +23,7 @@ export default class DrawerMenu extends Component {
 
     aboutTapped() {
         const { navigate } = this.props.navigation; 
-        navigate('NavWebView', {title: 'About', uri: 'sashimiblade.com/sonntags/about'});
+        navigate('NavWebView', {title: 'About', uri: 'https://sonntags.sashimiblade.com/about'});
     }
 
     feedbackTapped() {

@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import moment from 'moment';
 
+import Analytics from 'react-native-firebase-analytics';
+
 import arrow from '../assets/images/map-annotation.png';
 import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -35,7 +37,7 @@ export default class LocationDetailView extends Component {
         let openingTimeString = pad(this.props.location.openingTime, 4)
         let closingTime = moment(closingTimeString, "HHmm").format("HH:mm")
         let openingTime = moment(openingTimeString, "HHmm").format("HH:mm")
-        let distance = Math.round(this.props.distanceFromUser * 100) / 100;
+        let distance = this.props.distanceFromUser ? Math.round(this.props.distanceFromUser * 100) / 100 : null;
  
         let location = this.props.location;
         return(
@@ -68,7 +70,9 @@ export default class LocationDetailView extends Component {
                             <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>
                             <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                             <Text style={styles.locationListItemDescriptionText}>Open Sundays, {openingTime} - {closingTime}</Text>
-                            <Text style={styles.locationListItemDistanceText}>{distance} km away</Text>
+                            {distance ?
+                                <Text style={styles.locationListItemDistanceText}>{distance} km away</Text> : <Text/>
+                            }
                                 <Text style={styles.locationListItemDescriptionText}>{this.props.location.websiteUrl}</Text>
                             </Hyperlink>
                             <Text style={styles.locationListItemDescriptionText}>{this.props.location.phoneNumber}</Text>
