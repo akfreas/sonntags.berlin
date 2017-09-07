@@ -98,6 +98,7 @@ android {
         minSdkVersion 16
         targetSdkVersion 22
         versionName VERSION_NAME
+        multiDexEnabled true
         versionCode Integer.parseInt(VERSION_CODE)
         ndk {
             abiFilters "armeabi-v7a", "x86"
@@ -134,9 +135,7 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-firebase')
     compile project(':react-native-fcm')
-    compile project(':react-native-maps')
     compile project(':react-native-firebase-analytics')
     compile project(':react-native-vector-icons')
     compile(project(':react-native-maps')) {
@@ -145,12 +144,12 @@ dependencies {
 
     compile fileTree(dir: "libs", include: ["*.jar"])
     // From node_modules
-    compile 'com.google.android.gms:play-services-maps:11.2.0'
     compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.google.android.gms:play-services-maps:11.2.2'
     compile 'com.facebook.react:react-native:+'
-    compile 'com.google.firebase:firebase-core:11.2.0'
-    compile 'com.google.firebase:firebase-messaging:11.2.0'
-    compile 'com.google.firebase:firebase-crash:11.2.0'
+    compile 'com.google.firebase:firebase-core:11.2.2'
+    compile 'com.google.firebase:firebase-messaging:11.2.2'
+    compile 'com.google.firebase:firebase-crash:11.2.2'
 }
 
 // Run this once to be able to run the application with BUCK

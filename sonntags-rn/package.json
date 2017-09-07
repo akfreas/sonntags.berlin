@@ -31,7 +31,6 @@
     "react-native-app-intro": "^1.1.5",
     "react-native-drawer": "^2.5.0",
     "react-native-fcm": "^9.1.0",
-    "react-native-firebase": "^2.1.4",
     "react-native-firebase-analytics": "^3.0.2",
     "react-native-hyperlink": "0.0.11",
     "react-native-maps": "^0.16.2",

@@ -3,13 +3,10 @@ package com.sashimiblade.sonntags;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import io.invertase.firebase.RNFirebasePackage;
-import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
-import com.evollu.react.fcm.FIRMessagingPackage;
 import com.airbnb.android.react.maps.MapsPackage;
+import com.evollu.react.fcm.FIRMessagingPackage;
 import com.evollu.react.fa.FIRAnalyticsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -30,10 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNFirebasePackage(),
-            new RNFirebaseAnalyticsPackage(),
-            new FIRMessagingPackage(),
             new MapsPackage(),
+            new FIRMessagingPackage(),
             new FIRAnalyticsPackage(),
             new VectorIconsPackage()
       );
