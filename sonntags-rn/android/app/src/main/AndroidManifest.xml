@@ -2,7 +2,6 @@
     package="com.sashimiblade.sonntags"
     android:versionCode="2"
     android:versionName="1.0">
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>

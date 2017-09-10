@@ -22,6 +22,8 @@ import Analytics from 'react-native-firebase-analytics';
 var styles = require('../assets/styles/index.js');
 import DrawerMenu from '../components/DrawerMenu';
 
+import { loadCategories } from '../actions';
+
 
 
 class LocationTypeGridItem extends Component {
@@ -33,12 +35,12 @@ class LocationTypeGridItem extends Component {
                     <View style={styles.locationGridIconContainer}>
                         <Icon
                             style={styles.locationGridIcon}
-                            name={this.props.type.icon}
+                            name={this.props.type.iconName}
                             size={32}
                             color='#3BB9BD'/>                        
                     </View>
                     <View style={styles.locationGridTextContainer}>
-                        <Text style={styles.locationGridText}>{this.props.type.typeName}</Text>
+                        <Text style={styles.locationGridText}>{this.props.type.name}</Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -63,13 +65,17 @@ export default class LocationTypeGrid extends Component {
     }
     
     componentDidMount() {
-        let ds = this.state.dataSource.cloneWithRows(this.locationTypes());
-        this.setState({
-            dataSource: ds
-        })
+
+        loadCategories().then((categories) => {
+            let ds = this.state.dataSource.cloneWithRows(categories);
+            this.setState({
+                dataSource: ds
+            })
+        });
     }
 
     locationTypes() {
+
         return [
             {typeName: 'Special Sunday Openings', id: 'sonderoeffnung', icon: 'calendar'},
             {typeName: 'Groceries', id: 'grocery', icon: 'shopping-cart'},

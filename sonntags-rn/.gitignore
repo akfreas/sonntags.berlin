@@ -6,6 +6,7 @@ npm-debug.*
 *.apk
 *.ap_
 *.ipa
+*.dSYM.zip
 
 # Files for the ART/Dalvik VM
 *.dex

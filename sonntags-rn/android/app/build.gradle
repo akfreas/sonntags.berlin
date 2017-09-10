@@ -90,9 +90,9 @@ apply from: "../../node_modules/react-native/react.gradle"
 def enableSeparateBuildPerCPUArchitecture = false
 
 android {
+
     compileSdkVersion 25
     buildToolsVersion "26.0.1"
-
     defaultConfig {
         applicationId "com.sashimiblade.sonntags"
         minSdkVersion 16
@@ -102,6 +102,16 @@ android {
         versionCode Integer.parseInt(VERSION_CODE)
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            if (project.hasProperty('RELEASE_STORE_FILE')) {
+                storeFile file(RELEASE_STORE_FILE)
+                storePassword RELEASE_STORE_PASSWORD
+                keyAlias RELEASE_KEY_ALIAS
+                keyPassword RELEASE_KEY_PASSWORD
+            }
         }
     }
     splits {
@@ -115,8 +125,10 @@ android {
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
         }
         debug {
+            minifyEnabled false
         }
     }
     // applicationVariants are e.g. debug, release
@@ -135,14 +147,12 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-maps')
     compile project(':react-native-fcm')
     compile project(':react-native-firebase-analytics')
     compile project(':react-native-vector-icons')
-    compile(project(':react-native-maps')) {
-        exclude group: 'com.google.android.gms'
-    }
-
-    compile fileTree(dir: "libs", include: ["*.jar"])
+    compile(project(':react-native-maps'))
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     // From node_modules
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.google.android.gms:play-services-maps:11.2.2'
