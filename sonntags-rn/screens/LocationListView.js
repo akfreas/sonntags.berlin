@@ -80,7 +80,7 @@ function deg2rad(deg) {
 export default class LocationListView extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        title: navigation.state.params.category.typeName,
+        title: navigation.state.params.category.name,
     });
     constructor(props) {
         super(props);
@@ -159,7 +159,7 @@ export default class LocationListView extends Component {
 
 
     componentDidMount() {
-        loadLocations(this.props.category.id).then((locations) => {
+        loadLocations(this.props.category).then((locations) => {
             let ds = this.state.dataSource.cloneWithRows(locations);
 
             this.setState({

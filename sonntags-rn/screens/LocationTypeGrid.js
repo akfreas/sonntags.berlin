@@ -50,10 +50,17 @@ class LocationTypeGridItem extends Component {
 
 
 export default class LocationTypeGrid extends Component {
+    
+    static navigationOptions = ({ navigation }) => ({
+        title: 'sonntags',
+        headerLeft:<TouchableOpacity onPress={()=> this.props.openDrawer()}>
+           <Icon name={'bars'}
+               size={32}
+               style={{height: 44, width: 44}}
+           style={{color: 'white'}}/>
+           </TouchableOpacity>
 
-    static navigationOptions = {
-        header: null
-    }
+    });
 
     constructor(props) {
         super(props);
@@ -67,22 +74,12 @@ export default class LocationTypeGrid extends Component {
     componentDidMount() {
 
         loadCategories().then((categories) => {
-            let ds = this.state.dataSource.cloneWithRows(categories);
+            let withSpecialSundays = [{name: 'Special Sunday Openings', id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
+            let ds = this.state.dataSource.cloneWithRows(withSpecialSundays);
             this.setState({
                 dataSource: ds
             })
         });
-    }
-
-    locationTypes() {
-
-        return [
-            {typeName: 'Special Sunday Openings', id: 'sonderoeffnung', icon: 'calendar'},
-            {typeName: 'Groceries', id: 'grocery', icon: 'shopping-cart'},
-            {typeName: 'Home & Garden', id: 'homegarden', icon: 'home'},
-            {typeName: 'Apotheke', id: 'apotheke', icon: 'medkit'},
-            {typeName: 'Bike Shops', id: 'bikeshop', icon: 'bicycle'},
-        ]
     }
 
     categorySelected(category) {
@@ -126,64 +123,12 @@ export default class LocationTypeGrid extends Component {
                 content={<DrawerMenu navigation={this.props.navigation}/>}
             >
             <View style={{ height: "100%"}}>
-                <View style={{
-                    height: 100, 
-                    paddingTop: 15,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#3BB9BD',
-                    flexDirection: 'row'
-                }}>
-                <View style={{
-                    height: 100, 
-                    paddingTop: 15,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: '#3BB9BD',
-                    flexDirection: 'row',
-                    position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        bottom: 0,
-                        width: '100%',
-                        padding: '5%',
-                     
-                }}>
-                    <Text style={{ textAlign: 'center',
-                        fontFamily: 'Lato-Bold',
-                        fontSize: 32,
-                       margin: 5,
-                        color: 'white'
-                    }}>sonntags</Text>
-                </View>
-
-
-                    <View style={{
-                        flex: 1, 
-                        top: 0,
-                        left: 0,
-                        bottom: 0,
-                        width: 70,
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        position: 'absolute'}}>
-
-                <TouchableOpacity onPress={this.openDrawer.bind(this)}>
-                        <Icon name={'bars'}
-                            size={32}
-                            style={{height: 44, width: 44}}
-                        style={{color: 'white'}}/>
-
-                </TouchableOpacity>
-                    </View>
-
-            </View>
-            <ListView 
-                style={styles.categoryTable}
-                renderSeparator={this.renderSeparator.bind(this)} 
-                contentContainerStyle={styles.locationGridList}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderRow.bind(this)}/>
+                <ListView 
+                    style={styles.categoryTable}
+                    renderSeparator={this.renderSeparator.bind(this)} 
+                    contentContainerStyle={styles.locationGridList}
+                    dataSource={this.state.dataSource}
+                    renderRow={this.renderRow.bind(this)}/>
             </View>
         </Drawer>
         );

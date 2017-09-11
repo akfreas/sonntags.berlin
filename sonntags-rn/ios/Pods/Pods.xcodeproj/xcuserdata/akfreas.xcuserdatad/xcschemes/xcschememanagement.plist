@@ -24,6 +24,26 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RNFirebase.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RNVectorIcons.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>React.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Yoga.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,7 +52,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>3B20E3F05193481CD2C8C96BD8EBD66E</key>
+		<key>0F7207886111268A53C9D718A8768E09</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5D4A9995B53AC9E31E9EFFD726A152CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,12 +67,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C60330BB40496A86FA52C87181ACDCB</key>
+		<key>A9009B88561FA90776CE14EA7C975884</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B0147338F13B51A03739D2692F36A1C3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C5848261501659C7E48C4B102A75B381</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>C5B80060FE8C664DF08841000F41D515</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DB9A551E943738B6FF308150B3ED0F49</key>
 		<dict>
 			<key>primary</key>
 			<true/>

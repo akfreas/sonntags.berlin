@@ -38,18 +38,20 @@ function loadCategories() {
 
 function loadLocations(category) {
 
-    Analytics.logEvent('load_category', {'category_name': category});
-    console.log(category);
-
+    let categoryId = category.id;
+    Analytics.logEvent('load_category', {'category_name': category.name});
     return contentfulClient.getEntries(
         {
             'content_type': 'location', 
-            'fields.category': category.id
+            'fields.category.sys.id': categoryId
         }).then((response) => {
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;
             return fields;
+        }, (error)=> {
+            console.log('eeeeee');
+            console.lgo(error);
         })
     })
 }

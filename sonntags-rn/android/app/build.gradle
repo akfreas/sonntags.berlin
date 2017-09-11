@@ -147,6 +147,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-firebase')
     compile project(':react-native-maps')
     compile project(':react-native-fcm')
     compile project(':react-native-firebase-analytics')

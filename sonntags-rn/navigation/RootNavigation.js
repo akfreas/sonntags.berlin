@@ -47,7 +47,7 @@ const RootStackNavigator = StackNavigator({
         navigationOptions: defaultNavOptions,
     },
     OpenSundays: {
-        screen: OpeningDays,
+        screen: paramsToProps(OpeningDays),
         navigationOptions: defaultNavOptions,
     },
     NavWebView: {
