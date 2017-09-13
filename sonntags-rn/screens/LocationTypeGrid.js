@@ -15,12 +15,11 @@ import {
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Drawer from 'react-native-drawer';
 import Analytics from 'react-native-firebase-analytics';
 
+import { NavigationActions } from 'react-navigation'
 
 var styles = require('../assets/styles/index.js');
-import DrawerMenu from '../components/DrawerMenu';
 
 import { loadCategories } from '../actions';
 
@@ -53,7 +52,7 @@ export default class LocationTypeGrid extends Component {
     
     static navigationOptions = ({ navigation }) => ({
         title: 'sonntags',
-        headerLeft:<TouchableOpacity onPress={()=> this.props.openDrawer()}>
+        headerLeft:<TouchableOpacity onPress={()=> navigation.navigate('DrawerOpen')}>
            <Icon name={'bars'}
                size={32}
                style={{height: 44, width: 44}}
@@ -91,10 +90,7 @@ export default class LocationTypeGrid extends Component {
         }
     }
 
-    openDrawer() {
-        Analytics.logEvent('drawer_open');
-        this._drawer.open();
-    }
+    
 
     renderRow(item) {
         return (
@@ -111,17 +107,6 @@ export default class LocationTypeGrid extends Component {
     
     render() {
         return (
-            <Drawer 
-                ref={(ref) => this._drawer = ref}
-                type="overlay"
-                tapToClose={true}
-                acceptPan={true}
-                type={'static'}
-                captureGestures={true}
-                openDrawerOffset={0.2}
-
-                content={<DrawerMenu navigation={this.props.navigation}/>}
-            >
             <View style={{ height: "100%"}}>
                 <ListView 
                     style={styles.categoryTable}
@@ -130,7 +115,6 @@ export default class LocationTypeGrid extends Component {
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
             </View>
-        </Drawer>
         );
     }
 }

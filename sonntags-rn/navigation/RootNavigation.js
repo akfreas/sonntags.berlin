@@ -10,6 +10,8 @@ import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
 import LocationDetailView from '../screens/LocationDetailView.js';
 import NavWebView from '../screens/NavWebView.js';
+import Drawer from 'react-native-drawer';
+import DrawerMenu from '../components/DrawerMenu';
 
 const paramsToProps = (SomeComponent) => { 
 // turns this.props.navigation.state.params into this.params.<x>
@@ -58,19 +60,42 @@ const RootStackNavigator = StackNavigator({
         screen: paramsToProps(LocationDetailView),
         navigationOptions: defaultNavOptions,
     },
+    
 });
 
 export default class RootNavigator extends React.Component {
+
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
+    console.log("xxxxxxx");
+    console.log(this._navigator);
+
+
   }
 
+  openDrawer() {
+      Analytics.logEvent('drawer_open');
+      this._drawer.open();
+  }
   componentWillUnmount() {
     this._notificationSubscription && this._notificationSubscription.remove();
   }
 
   render() {
-    return <RootStackNavigator />;
+    console.log(this._navigator);
+      return (
+                <Drawer 
+                ref={(ref) => this._drawer = ref}
+                type="overlay"
+                tapToClose={true}
+                acceptPan={true}
+                type={'static'}
+                captureGestures={true}
+                openDrawerOffset={0.2}
+                content={<DrawerMenu navigation={this.props.navigation}/>}
+            >
+              <RootStackNavigator ref={(ref)=> this._navigator = ref} params={{openDrawer: this.openDrawer.bind(this)}}/>
+        </Drawer>);
   }
 
   _registerForPushNotifications() {

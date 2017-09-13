@@ -12,15 +12,9 @@ const firebaseConfig = {
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 import Analytics from 'react-native-firebase-analytics';
-/*
 const contentfulClient = createClient({
     space: '2dktdnk1iv2v',
     accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
-})
-*/
-const contentfulClient = createClient({
-    space: 'st6zqe001opr',
-    accessToken: '01965564d67d78b2063888085ba7d7098bb4de751116295468cea528fe0fe50a'
 })
 
 
@@ -43,7 +37,7 @@ function loadLocations(category) {
     return contentfulClient.getEntries(
         {
             'content_type': 'location', 
-            'fields.category.sys.id': categoryId
+            'fields.categoryRef.sys.id': categoryId
         }).then((response) => {
         return response.items.map((location) => {
             let fields = location.fields;
