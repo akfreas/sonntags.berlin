@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -53,6 +52,7 @@
 		F8047B0FD95B484CB0C2CA26 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F73EFB84A29460E9E3D52F3 /* Foundation.ttf */; };
 		FB3BFB56039246009B51A49C /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 76056F7CEE03454DA3211417 /* Lato-Light.ttf */; };
 		FBCDAB073EDB4F8992D864F4 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 169CA2C8EB774244AA55ECF2 /* MaterialCommunityIcons.ttf */; };
+		766532E3C0B949258CA249B5 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DABCA481D245DBBEDF6027 /* libRNAdMobManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -365,6 +365,8 @@
 		EE3BA73FDAD6870AA41EA291 /* Pods-SonntagsBerlin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SonntagsBerlin.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SonntagsBerlin/Pods-SonntagsBerlin.debug.xcconfig"; sourceTree = "<group>"; };
 		F08761CAAE1C409EBB445568 /* RNFIRMessaging.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFIRMessaging.xcodeproj; path = "../node_modules/react-native-fcm/ios/RNFIRMessaging.xcodeproj"; sourceTree = "<group>"; };
 		FEB763D8AFF14BDDA324E748 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
+		40C6D363D48B47268BD2D4F5 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; name = "RNAdMobManager.xcodeproj"; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F9DABCA481D245DBBEDF6027 /* libRNAdMobManager.a */ = {isa = PBXFileReference; name = "libRNAdMobManager.a"; path = "libRNAdMobManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +400,7 @@
 				B6D87BC655854B8FBD625D58 /* libRNVectorIcons.a in Frameworks */,
 				C8A43C58012568EF0FF7F5C6 /* Pods_SonntagsBerlin.framework in Frameworks */,
 				BAF1BE6E1804417F8B64E2A8 /* libRNFIRAnalytics.a in Frameworks */,
+				766532E3C0B949258CA249B5 /* libRNAdMobManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,6 +519,18 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		1943D4791F69D793004783AA /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				48A6FF9333C240639ABCD271 /* libRNFIRMessaging.a */,
+				75E5582403BB43279A6129BD /* libRNFirebase.a */,
+				102C039B18074331A61E6F03 /* libAirMaps.a */,
+				B6C3DE3261094D8DBC07D965 /* libRNVectorIcons.a */,
+				5C0FBC83E7BE4BC893D47021 /* libRNFIRAnalytics.a */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		199A29851F5AEC540057F824 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +619,7 @@
 				932B35C875C4481DAFD568EB /* AirMaps.xcodeproj */,
 				C9BA6EF2A3654ED798789849 /* RNVectorIcons.xcodeproj */,
 				EA99DB9FAE5148F4B029B2DA /* RNFIRAnalytics.xcodeproj */,
+				40C6D363D48B47268BD2D4F5 /* RNAdMobManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -627,6 +643,7 @@
 				FF8AF07602334C0E9F286D95 /* Resources */,
 				3A26913AB75EC10F96F3BDA6 /* Pods */,
 				D92D0EFB38145CCEF38B895E /* Frameworks */,
+				1943D4791F69D793004783AA /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1301,12 +1318,14 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase-analytics/ios",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = SonntagsBerlinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1336,12 +1355,14 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase-analytics/ios",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = SonntagsBerlinTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1363,7 +1384,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SonntagsBerlin/SonntagsBerlin.entitlements;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KGJCC745S9;
 				HEADER_SEARCH_PATHS = (
@@ -1373,6 +1394,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase-analytics/ios",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = SonntagsBerlin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1397,7 +1419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = SonntagsBerlin/SonntagsBerlin.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = KGJCC745S9;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1406,6 +1428,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-firebase-analytics/ios",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = SonntagsBerlin/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

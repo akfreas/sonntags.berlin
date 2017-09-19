@@ -16,12 +16,13 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Analytics from 'react-native-firebase-analytics';
-
 import { NavigationActions } from 'react-navigation'
+import { connect } from 'react-redux'
+
 
 var styles = require('../assets/styles/index.js');
 
-import { loadCategories } from '../actions';
+import { loadCategories, toggleDrawer } from '../actions';
 
 
 
@@ -48,30 +49,46 @@ class LocationTypeGridItem extends Component {
 }
 
 
-export default class LocationTypeGrid extends Component {
+class LocationTypeGrid extends Component {
     
-    static navigationOptions = ({ navigation }) => ({
+    static navigationOptions = ({ navigation }) => {
+        const { params = {} } = navigation.state;
+        return {
         title: 'sonntags',
-        headerLeft:<TouchableOpacity onPress={()=> navigation.navigate('DrawerOpen')}>
+        headerLeft:<TouchableOpacity onPress={()=> params.openDrawer() }>
+
            <Icon name={'bars'}
                size={32}
                style={{height: 44, width: 44}}
            style={{color: 'white'}}/>
            </TouchableOpacity>
 
-    });
+    }};
 
     constructor(props) {
         super(props);
+
         this.state = {
             dataSource: new ListView.DataSource({
                 rowHasChanged: (row1, row2) => row1 !== row2,
             })
         }
     }
+
+    onNavigatorEvent(event) {
+        if (event.type == 'DrawerOpen') {
+
+        }
+    }
+
+    openDrawer() {
+        this.props.ourToggleDrawer();
+        console.log("open da drawer");
+    }
     
     componentDidMount() {
 
+        this.props.navigation.setParams({ openDrawer: this.openDrawer.bind(this) });
         loadCategories().then((categories) => {
             let withSpecialSundays = [{name: 'Special Sunday Openings', id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
             let ds = this.state.dataSource.cloneWithRows(withSpecialSundays);
@@ -118,3 +135,10 @@ export default class LocationTypeGrid extends Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+    };
+}
+
+export default connect(mapStateToProps, { ourToggleDrawer: toggleDrawer })(LocationTypeGrid);

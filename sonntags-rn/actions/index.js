@@ -10,6 +10,12 @@ const firebaseConfig = {
   storageBucket: "",
 };
 
+import {
+    DRAWER_OPEN,
+    DRAWER_CLOSE,
+    TOGGLE_DRAWER,
+} from '../constants/ActionTypes';
+
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 import Analytics from 'react-native-firebase-analytics';
 const contentfulClient = createClient({
@@ -17,6 +23,24 @@ const contentfulClient = createClient({
     accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
 })
 
+
+function toggleDrawer() {
+    return {
+        type: TOGGLE_DRAWER
+    };
+}
+
+function openDrawer() {
+    return {
+        type: DRAWER_OPEN
+    };
+}
+
+function closeDrawer() {
+    return {
+        type: TOGGLE_DRAWER
+    };
+}
 
 function loadCategories() {
     return contentfulClient.getEntries(
@@ -27,7 +51,6 @@ function loadCategories() {
                 return fields;
             });
     });
-
 }
 
 function loadLocations(category) {
@@ -44,8 +67,7 @@ function loadLocations(category) {
             fields.id = location.sys.id;
             return fields;
         }, (error)=> {
-            console.log('eeeeee');
-            console.lgo(error);
+            console.log(error);
         })
     })
 }
@@ -68,4 +90,7 @@ module.exports = {
     loadLocations,
     loadOpenSundays,
     loadCategories,
+    openDrawer,
+    closeDrawer,
+    toggleDrawer,
 }

@@ -100,6 +100,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     rootViewController.view = rootView;
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
+#if TARGET_IPHONE_SIMULATOR
+    [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:NO];
+#endif
+
+    
     // [END register_for_notifications]
   }
   return YES;

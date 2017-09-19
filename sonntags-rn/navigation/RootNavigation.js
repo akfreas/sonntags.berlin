@@ -4,6 +4,7 @@ import {
     AppRegistry
 } from 'react-native';
 
+import { connect } from 'react-redux';
 import LocationListView from '../screens/LocationListView';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
@@ -63,7 +64,14 @@ const RootStackNavigator = StackNavigator({
     
 });
 
-export default class RootNavigator extends React.Component {
+class RootNavigator extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            drawerOpen: false
+        };
+    }
 
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
@@ -82,7 +90,7 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    console.log(this._navigator);
+      debugger;
       return (
                 <Drawer 
                 ref={(ref) => this._drawer = ref}
@@ -94,7 +102,7 @@ export default class RootNavigator extends React.Component {
                 openDrawerOffset={0.2}
                 content={<DrawerMenu navigation={this.props.navigation}/>}
             >
-              <RootStackNavigator ref={(ref)=> this._navigator = ref} params={{openDrawer: this.openDrawer.bind(this)}}/>
+              <RootStackNavigator ref={(ref)=> this._navigator = ref}/>
         </Drawer>);
   }
 
@@ -114,4 +122,13 @@ export default class RootNavigator extends React.Component {
   };
 }
 
-AppRegistry.registerComponent('RootStackNavigator', () => RootStackNavigator);
+
+function mapStateToProps(state) {
+    return {
+        drawerOpen: state.drawerOpen
+    }
+}
+const _RootStackNavigator = connect(mapStateToProps, {})(RootStackNavigator);
+
+export default _RootStackNavigator;
+AppRegistry.registerComponent('RootStackNavigator', () => _RootStackNavigator);
