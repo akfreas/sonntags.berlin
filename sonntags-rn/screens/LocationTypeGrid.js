@@ -83,7 +83,6 @@ class LocationTypeGrid extends Component {
 
     openDrawer() {
         this.props.ourToggleDrawer();
-        console.log("open da drawer");
     }
     
     componentDidMount() {

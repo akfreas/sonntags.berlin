@@ -12,8 +12,9 @@ export default function rootReducer(state=initialState, action) {
     switch(action.type) {
 
         case TOGGLE_DRAWER:
+            let isOpen = !state.drawerOpen
             return Object.assign({}, state, {
-                drawerOpen: !state.drawerOpen
+                drawerOpen: isOpen
             });
 
         case DRAWER_OPEN:
@@ -28,6 +29,6 @@ export default function rootReducer(state=initialState, action) {
             });
 
         default:
-            break
+            return state;
     }
 }

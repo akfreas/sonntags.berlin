@@ -8,95 +8,67 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>36</integer>
 		</dict>
 		<key>Pods-SonntagsBerlin.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>38</integer>
 		</dict>
 		<key>Pods-SonntagsBerlinTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>39</integer>
 		</dict>
 		<key>Protobuf.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>40</integer>
 		</dict>
 		<key>RNFirebase.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>42</integer>
 		</dict>
 		<key>RNVectorIcons.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>43</integer>
 		</dict>
 		<key>React.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>41</integer>
 		</dict>
 		<key>Yoga.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>44</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
+			<key>orderHint</key>
+			<integer>37</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
-	<dict>
-		<key>0F7207886111268A53C9D718A8768E09</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>5D4A9995B53AC9E31E9EFFD726A152CC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>79062AEC74C33A95858D25407BDE3051</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A9009B88561FA90776CE14EA7C975884</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B0147338F13B51A03739D2692F36A1C3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C5848261501659C7E48C4B102A75B381</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>C5B80060FE8C664DF08841000F41D515</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DB9A551E943738B6FF308150B3ED0F49</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E4DD95323C54A78F879DAB0F1508B8E7</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-	</dict>
+	<dict/>
 </dict>
 </plist>

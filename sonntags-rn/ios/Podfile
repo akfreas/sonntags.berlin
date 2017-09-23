@@ -16,6 +16,7 @@ target 'SonntagsBerlin' do
     # Add any other subspecs you want to use in your project
   ]
   pod 'Firebase/Messaging'
+  pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Core'
   pod 'Firebase/Crash'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'

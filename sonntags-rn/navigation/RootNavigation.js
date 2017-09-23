@@ -64,33 +64,22 @@ const RootStackNavigator = StackNavigator({
     
 });
 
-class RootNavigator extends React.Component {
+class _RootNavigator extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {
-            drawerOpen: false
-        };
     }
 
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
-    console.log("xxxxxxx");
     console.log(this._navigator);
-
-
   }
 
-  openDrawer() {
-      Analytics.logEvent('drawer_open');
-      this._drawer.open();
-  }
   componentWillUnmount() {
     this._notificationSubscription && this._notificationSubscription.remove();
   }
 
   render() {
-      debugger;
       return (
                 <Drawer 
                 ref={(ref) => this._drawer = ref}
@@ -98,6 +87,7 @@ class RootNavigator extends React.Component {
                 tapToClose={true}
                 acceptPan={true}
                 type={'static'}
+                open={this.props.drawerOpen}
                 captureGestures={true}
                 openDrawerOffset={0.2}
                 content={<DrawerMenu navigation={this.props.navigation}/>}
@@ -105,7 +95,6 @@ class RootNavigator extends React.Component {
               <RootStackNavigator ref={(ref)=> this._navigator = ref}/>
         </Drawer>);
   }
-
   _registerForPushNotifications() {
     // Send our push token over to our backend so we can receive notifications
     // You can comment the following line out if you want to stop receiving
@@ -128,7 +117,7 @@ function mapStateToProps(state) {
         drawerOpen: state.drawerOpen
     }
 }
-const _RootStackNavigator = connect(mapStateToProps, {})(RootStackNavigator);
+const RootNavigator = connect(mapStateToProps, {})(_RootNavigator);
 
-export default _RootStackNavigator;
-AppRegistry.registerComponent('RootStackNavigator', () => _RootStackNavigator);
+export default RootNavigator;
+AppRegistry.registerComponent('RootStackNavigator', () => RootNavigator);

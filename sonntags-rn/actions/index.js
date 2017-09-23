@@ -43,14 +43,22 @@ function closeDrawer() {
 }
 
 function loadCategories() {
-    return contentfulClient.getEntries(
-        { 'content_type': 'category' }).then((response)=> {
-            return response.items.map((category) => {
+    return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE'}).then((entries) => {
+        debugger;
+            return entries.items[0].fields.list.map((category) => {
                 let fields = category.fields;
                 fields.id = category.sys.id;
                 return fields;
             });
+
+    }, (error) => {
+        debugger;
     });
+        /* 
+    getEntries(
+        { 'content_type': 'category' }).then((response)=> {
+    });
+    */
 }
 
 function loadLocations(category) {
