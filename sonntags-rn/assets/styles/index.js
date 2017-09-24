@@ -189,7 +189,7 @@ var styles = StyleSheet.create({
         display: 'flex',
         flexDirection: 'row',
         marginBottom: 1,
-        height: 100,
+        height: 80,
     },
     locationGridIcon: {
         padding: 0,

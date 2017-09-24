@@ -44,7 +44,6 @@ function closeDrawer() {
 
 function loadCategories() {
     return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE'}).then((entries) => {
-        debugger;
             return entries.items[0].fields.list.map((category) => {
                 let fields = category.fields;
                 fields.id = category.sys.id;
@@ -52,7 +51,6 @@ function loadCategories() {
             });
 
     }, (error) => {
-        debugger;
     });
         /* 
     getEntries(

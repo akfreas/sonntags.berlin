@@ -14,6 +14,13 @@ import {
     ListView
 } from 'react-native';
 
+import { 
+  AdMobBanner, 
+  AdMobInterstitial, 
+  PublisherBanner,
+  AdMobRewarded
+} from 'react-native-admob'
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
@@ -124,12 +131,19 @@ class LocationTypeGrid extends Component {
     render() {
         return (
             <View style={{ height: "100%"}}>
+
                 <ListView 
                     style={styles.categoryTable}
                     renderSeparator={this.renderSeparator.bind(this)} 
                     contentContainerStyle={styles.locationGridList}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
+                <AdMobBanner
+                  bannerSize="fullBanner"
+                  adUnitID="ca-app-pub-5197876894535655/8159389107"
+                  testDeviceID="EMULATOR"
+                  didFailToReceiveAdWithError={this.bannerError} />
+
             </View>
         );
     }
