@@ -190,7 +190,8 @@ export default class LocationListView extends Component {
             });
             let sorted = this.locationsSortedByDistance(this.state.locations)
             this.setState({
-                locations: sorted
+                locations: sorted,
+                dataSource: this.state.dataSource.cloneWithRows(sorted),
             });
         },(error) => {
         } ,

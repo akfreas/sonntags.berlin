@@ -32,19 +32,12 @@
 			<key>orderHint</key>
 			<integer>6</integer>
 		</dict>
-		<key>RNFirebase.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>8</integer>
-		</dict>
 		<key>RNVectorIcons.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>9</integer>
+			<integer>8</integer>
 		</dict>
 		<key>React.xcscheme</key>
 		<dict>
@@ -58,7 +51,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>9</integer>
 		</dict>
 		<key>nanopb.xcscheme</key>
 		<dict>
