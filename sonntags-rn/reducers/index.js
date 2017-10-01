@@ -5,11 +5,17 @@ import {
 } from '../constants/ActionTypes';
 
 const initialState = {
-    drawerOpen: false
+    drawerOpen: false,
+    userLocation: null,
 }
 
 export default function rootReducer(state=initialState, action) {
     switch(action.type) {
+
+        case 'SET_LOCATION':
+            return Object.assign({}, state, {
+                userLocation: action.userLocation
+            });
 
         case TOGGLE_DRAWER:
             let isOpen = !state.drawerOpen

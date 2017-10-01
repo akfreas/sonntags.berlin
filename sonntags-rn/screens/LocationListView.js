@@ -3,7 +3,7 @@ import MapView from 'react-native-maps';
 import moment from 'moment';
 import {
     ScrollView,
-    ListView,
+    FlatList,
     Dimensions,
     Text,
     TouchableOpacity,
@@ -17,7 +17,8 @@ import {
 } from 'react-native';
 
 import {
-    loadLocations
+    loadLocations,
+    getUserLocation
 } from '../actions';
 
 import Analytics from 'react-native-firebase-analytics';
@@ -25,6 +26,7 @@ import Icon from 'react-native-vector-icons/Entypo';
 import LocationListItem from '../components/LocationListItem.js';
 import LocationCallout from '../components/LocationCallout.js';
 import arrow from '../assets/images/map-annotation.png';
+import { connect } from 'react-redux'
 
 var styles = StyleSheet.create({
     locationListItem: {
@@ -77,7 +79,7 @@ function deg2rad(deg) {
 }
 
 
-export default class LocationListView extends Component {
+class LocationListView extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.category.name,
@@ -86,9 +88,6 @@ export default class LocationListView extends Component {
         super(props);
         this.state = {
             locations: [],
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            })
         };
     }
 
@@ -160,63 +159,37 @@ export default class LocationListView extends Component {
 
     componentDidMount() {
         loadLocations(this.props.category).then((locations) => {
-            let ds = this.state.dataSource.cloneWithRows(locations);
-
+            let sorted = locations
+            if (this.props.userLocation) {
+                sorted = this.locationsSortedByDistance(locations);
+            }
             this.setState({
-                locations: locations,
-                dataSource: ds,
+                locations: sorted,
             })
         }).then(()=>{
-            this._getLocationAsync();
+            this.props.getUserLocation();
         })
-        /*
-                */
     }
 
     componentDidUpdate() {
         let markers = this.state.locations.map((location) => {
             return location.id;
         })
-        this.map.fitToSuppliedMarkers(markers, true);
+        //this.map.fitToSuppliedMarkers(markers, true);
     }
 
-    _getLocationAsync() {
-        console.log("getting location");
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log("position: " + position.latitude);
-            var userLocation = position;
-            this.setState({ 
-                userLocation: userLocation,
-            });
-            let sorted = this.locationsSortedByDistance(this.state.locations)
-            this.setState({
-                locations: sorted,
-                dataSource: this.state.dataSource.cloneWithRows(sorted),
-            });
-        },(error) => {
-        } ,
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+    
+    componentWillReceiveProps(nextProps) {
 
-        /*
-     var us = this;
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-      var lastPosition = JSON.stringify(position);
-      us.setState({lastPosition});
-    });
-
-        let { status } = await Permissions.askAsync(Permissions.LOCATION);
-        if (status !== 'granted') {
-          this.setState({
-            errorMessage: 'Permission to access location was denied',
-          });
-        }
-        let userLocation = await Location.getCurrentPositionAsync({});
-        */
-    };
-    onCalloutPressed (index) {
-        console.log("location pressed");
+        this.setState({
+            userLocation: nextProps.userLocation,
+        });
+        let sorted = this.locationsSortedByDistance(this.state.locations);
+        this.setState({
+            locations: sorted,
+        });
     }
+
     mapView() {
         return (
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
@@ -286,13 +259,18 @@ export default class LocationListView extends Component {
 
         return (
         <View style={{flex: 1}}>
-             <ListView
-                renderHeader={this.renderHeader.bind(this)}
-                renderSeparator={this.renderSeparator.bind(this)}
-                contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
-                style={{backgroundColor: 'rgba(0,0,0,0)', flex: 1}}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderRow.bind(this)}
+
+             <FlatList
+                ItemSeparatorComponent={({highlighted}) => (
+                    <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
+               )}
+               contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
+                style={{backgroundColor: 'gray', flex: 1, top: 100}}
+                data={this.state.locations}
+                bounces={false}
+                extraData={this.state.locations}
+                renderItem={({item}) => this.renderRow(item)}
+                keyExtractor={item => item.id}
             />
 
         </View>
@@ -301,3 +279,18 @@ export default class LocationListView extends Component {
 
 }
 
+function mapStateToProps(state) {
+    return {
+        userLocation: state.userLocation
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getUserLocation: () => {
+            return dispatch(getUserLocation()) 
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationListView);

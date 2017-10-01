@@ -17,6 +17,13 @@
 #import "AppDelegate.h"
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <React/RCTDevMenu.h>
+
+@implementation OurApplication
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+  [[NSNotificationCenter defaultCenter] postNotificationName:RCTShowDevMenuNotification object:nil];
+}
+@end
 
 #if defined(__IPHONE_10_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_10_0
 @import UserNotifications;
@@ -38,6 +45,7 @@
 @implementation AppDelegate
 
 NSString *const kGCMMessageIDKey = @"gcm.message_id";
+
 
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
@@ -100,7 +108,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     rootViewController.view = rootView;
     self.window.rootViewController = rootViewController;
     [self.window makeKeyAndVisible];
-#if TARGET_IPHONE_SIMULATOR
+#ifdef DEBUG
     [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:NO];
 #endif
 

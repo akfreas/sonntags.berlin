@@ -10,6 +10,9 @@
 #import <UIKit/UIKit.h>
 @import Firebase;
 
+@interface OurApplication : UIApplication
+@end
+
 @interface AppDelegate : UIResponder<UIApplicationDelegate, FIRMessagingDelegate>
 
 @property (nonatomic, strong) UIWindow *window;

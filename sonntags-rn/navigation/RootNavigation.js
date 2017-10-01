@@ -72,7 +72,6 @@ class _RootNavigator extends React.Component {
 
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
-    console.log(this._navigator);
   }
 
   componentWillUnmount() {

@@ -11,13 +11,15 @@ import { Provider } from 'react-redux'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 import rootReducer from './reducers'
 import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 var styles = require('./assets/styles');
 
 
 const store = createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(applyMiddleware(thunkMiddleware)),
 )
 
 export default class AppContainer extends React.Component {

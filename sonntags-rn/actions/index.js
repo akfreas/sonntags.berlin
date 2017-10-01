@@ -59,6 +59,24 @@ function loadCategories() {
     */
 }
 
+function getUserLocation(dispatch) {
+    return (dispatch) => {
+        console.log("getting location");
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log("position: " + position.latitude);
+            dispatch({
+                type: 'SET_LOCATION',
+                userLocation: position
+            });
+        }, (error) => {
+            debugger;
+            console.log(error);
+        },
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+      );
+    };
+}
+
 function loadLocations(category) {
 
     let categoryId = category.id;
@@ -99,4 +117,5 @@ module.exports = {
     openDrawer,
     closeDrawer,
     toggleDrawer,
+    getUserLocation,
 }
