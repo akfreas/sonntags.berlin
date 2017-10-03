@@ -13,8 +13,19 @@ import LocationDetailView from '../screens/LocationDetailView.js';
 import NavWebView from '../screens/NavWebView.js';
 import Drawer from 'react-native-drawer';
 import DrawerMenu from '../components/DrawerMenu';
+import styles from '../assets/styles';
+import MainLocationMap from '../screens/MainLocationMap';
 
-const paramsToProps = (SomeComponent) => { 
+
+import { 
+  AdMobBanner, 
+  AdMobInterstitial, 
+  PublisherBanner,
+  AdMobRewarded
+} from 'react-native-admob'
+
+
+const paramsToProps = (SomeComponent) => {
 // turns this.props.navigation.state.params into this.params.<x>
     return class extends React.Component {
         static navigationOptions = SomeComponent.navigationOptions;
@@ -27,20 +38,15 @@ const paramsToProps = (SomeComponent) => {
     }
 }
 const defaultNavOptions = {
-    headerStyle: { 
+    headerStyle: {
         backgroundColor: '#3BB9BD'
     },
-    headerTitleStyle: {
-        color: 'white',
-        fontFamily: 'lato-bold',
-        fontSize: 20
-
-    },
+    headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'white'
 }
 
 const RootStackNavigator = StackNavigator({
-    
+
     Main: {
         screen: paramsToProps(LocationTypeGrid),
         navigationOptions: defaultNavOptions,
@@ -61,7 +67,7 @@ const RootStackNavigator = StackNavigator({
         screen: paramsToProps(LocationDetailView),
         navigationOptions: defaultNavOptions,
     },
-    
+
 });
 
 class _RootNavigator extends React.Component {
@@ -80,7 +86,7 @@ class _RootNavigator extends React.Component {
 
   render() {
       return (
-                <Drawer 
+                <Drawer
                 ref={(ref) => this._drawer = ref}
                 type="overlay"
                 tapToClose={true}
@@ -92,6 +98,11 @@ class _RootNavigator extends React.Component {
                 content={<DrawerMenu navigation={this.props.navigation}/>}
             >
               <RootStackNavigator ref={(ref)=> this._navigator = ref}/>
+                              <AdMobBanner
+                  bannerSize="smartBannerPortrait"
+                  adUnitID="ca-app-pub-5197876894535655/8159389107"
+                  testDeviceID="EMULATOR"
+                  didFailToReceiveAdWithError={this.bannerError} />
         </Drawer>);
   }
   _registerForPushNotifications() {

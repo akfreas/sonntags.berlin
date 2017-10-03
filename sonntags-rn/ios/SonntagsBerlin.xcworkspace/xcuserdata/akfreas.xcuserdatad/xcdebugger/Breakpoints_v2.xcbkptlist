@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../node_modules/react-native/React/DevSupport/RCTDevMenu.m"
+            timestampString = "528744222.259554"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "-RCT_motionEnded:withEvent:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIWindow(RCTDevMenu) RCT_motionEnded:withEvent:]"
+                  moduleName = "SonntagsBerlin"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akfreas/github/SonntagsBerlin/sonntags-rn/node_modules/react-native/React/DevSupport/RCTDevMenu.m"
+                  timestampString = "528753145.578652"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIWindow(RCTDevMenu) RCT_motionEnded:withEvent:]"
+                  moduleName = "React"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/akfreas/github/SonntagsBerlin/sonntags-rn/node_modules/react-native/React/DevSupport/RCTDevMenu.m"
+                  timestampString = "528753145.908154"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

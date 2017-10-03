@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
+    Modal,
     AnimatedValue,
     Animated,
     StyleSheet,
@@ -25,6 +26,8 @@ import Analytics from 'react-native-firebase-analytics';
 import Icon from 'react-native-vector-icons/Entypo';
 import LocationListItem from '../components/LocationListItem.js';
 import LocationCallout from '../components/LocationCallout.js';
+import HamburgerBars from '../components/HamburgerBars.js';
+import NavigationBar from 'react-native-navbar';
 import arrow from '../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 
@@ -63,13 +66,13 @@ var styles = StyleSheet.create({
 function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
-  var dLon = deg2rad(lon2-lon1); 
-  var a = 
+  var dLon = deg2rad(lon2-lon1);
+  var a =
     Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
     Math.sin(dLon/2) * Math.sin(dLon/2)
-    ; 
-  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    ;
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
   var d = R * c; // Distance in km
   return d;
 }
@@ -83,11 +86,14 @@ class LocationListView extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: navigation.state.params.category.name,
+        headerRight:<HamburgerBars onPress={()=> navigation.state.params.showList()}/>
     });
+
     constructor(props) {
         super(props);
         this.state = {
             locations: [],
+            modalVisible: false,
         };
     }
 
@@ -102,15 +108,15 @@ class LocationListView extends Component {
     }
 
     locationSelected(location, source) {
-        const { navigate } = this.props.navigation; 
+        const { navigate } = this.props.navigation;
         var userLocation = "undefined"
         if (this.state.userLocation) {
             let userLocation = this.state.userLocation;
             userLocation = JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude});
         }
         Analytics.logEvent('location_selected', {
-            'location_name': location.name, 
-            'user_location': userLocation, 
+            'location_name': location.name,
+            'user_location': userLocation,
             'source': source,
             'distance_from_user': this.distanceFromUser(location)
         });
@@ -120,12 +126,12 @@ class LocationListView extends Component {
     distanceFromUser(location) {
 
         let userLocation = this.state.userLocation;
-        if (userLocation == undefined || userLocation.coords == undefined) { 
+        if (userLocation == undefined || userLocation.coords == undefined) {
             return null
         }
 
         let distance = getDistanceFromLatLonInKm(
-            userLocation.coords.latitude,  
+            userLocation.coords.latitude,
             userLocation.coords.longitude,
             location.location.lat,
             location.location.lon)
@@ -133,7 +139,7 @@ class LocationListView extends Component {
     }
 
     locationsSortedByDistance(locations) {
-        
+
         let sortedLocations = locations.sort((a, b) => {
             let distanceA = this.distanceFromUser(a);
             let distanceB = this.distanceFromUser(b);
@@ -147,7 +153,7 @@ class LocationListView extends Component {
 
     renderRow(location) {
         return (
-            <LocationListItem 
+            <LocationListItem
                 location={location}
                 userLocation={this.state.userLocation}
                 distanceFromUser={this.distanceFromUser(location)}
@@ -156,8 +162,16 @@ class LocationListView extends Component {
         )
     }
 
+    showList() {
+        this.setState({
+            modalVisible: true
+        });
+    }
+
 
     componentDidMount() {
+        this.props.navigation.setParams({showList: this.showList.bind(this)});
+
         loadLocations(this.props.category).then((locations) => {
             let sorted = locations
             if (this.props.userLocation) {
@@ -178,7 +192,7 @@ class LocationListView extends Component {
         //this.map.fitToSuppliedMarkers(markers, true);
     }
 
-    
+
     componentWillReceiveProps(nextProps) {
 
         this.setState({
@@ -207,7 +221,7 @@ class LocationListView extends Component {
           longitudeDelta: 0.3421,
         }}
                   style={{flex: 1}}>
-                  
+
                       {this.state.locations.map((location, index) => {
                         let latlong = {latitude: location.location.lat, longitude: location.location.lon};
                         let marker = <MapView.Marker
@@ -242,7 +256,7 @@ class LocationListView extends Component {
 
     renderHeader() {
         return (
-            <View 
+            <View
                 style={[{backgroundColor: 'rgba(0,0,0,0)', height: Dimensions.get('window').height * 0.5}]}
             >
             {this.mapView()}
@@ -255,24 +269,54 @@ class LocationListView extends Component {
         return (<View style={styles.locationListItemSeparator}/>)
     }
 
+    rightButtonConfig() {
+        return {
+            title: 'Close',
+            handler: () => this.setState({modalVisible: false}),
+          style: [{
+          }],
+        }
+    }
+
+    titleConfig() {
+      return {
+        title: this.props.category.name,
+          style: {
+              color: '#3BB9BD',
+              fontFamily: 'Lato-Bold',
+          },
+      }
+    }
+
     render() {
 
         return (
         <View style={{flex: 1}}>
 
-             <FlatList
-                ItemSeparatorComponent={({highlighted}) => (
-                    <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
-               )}
-               contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
-                style={{backgroundColor: 'gray', flex: 1, top: 100}}
-                data={this.state.locations}
-                bounces={false}
-                extraData={this.state.locations}
-                renderItem={({item}) => this.renderRow(item)}
-                keyExtractor={item => item.id}
-            />
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible}
+            >
+                <NavigationBar
+                    rightButton={this.rightButtonConfig()}
+                    title={this.titleConfig()}
+                />
+                 <FlatList
+                    ItemSeparatorComponent={({highlighted}) => (
+                        <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
+                   )}
+                   contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
+                    style={{backgroundColor: 'gray', flex: 1}}
+                    data={this.state.locations}
+                    bounces={false}
+                    extraData={this.state.locations}
+                    renderItem={({item}) => this.renderRow(item)}
+                    keyExtractor={item => item.id}
+                />
+            </Modal>
 
+            {this.mapView()}
         </View>
         );
     }
@@ -288,7 +332,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserLocation: () => {
-            return dispatch(getUserLocation()) 
+            return dispatch(getUserLocation())
         }
     }
 }

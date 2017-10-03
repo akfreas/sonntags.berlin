@@ -30,30 +30,9 @@ import { connect } from 'react-redux'
 var styles = require('../assets/styles/index.js');
 
 import { loadCategories, toggleDrawer } from '../actions';
+import LocationTypeGridItem from '../components/LocationTypeGridItem';
 
-
-
-class LocationTypeGridItem extends Component {
-
-    render() {
-        return (
-            <TouchableOpacity onPress={this.props.categorySelected}>
-                <View style={styles.locationGridItem}>
-                    <View style={styles.locationGridIconContainer}>
-                        <Icon
-                            style={styles.locationGridIcon}
-                            name={this.props.type.iconName}
-                            size={32}
-                            color='#3BB9BD'/>                        
-                    </View>
-                    <View style={styles.locationGridTextContainer}>
-                        <Text style={styles.locationGridText}>{this.props.type.name}</Text>
-                    </View>
-                </View>
-            </TouchableOpacity>
-        )
-    }
-}
+import HamburgerBars from '../components/HamburgerBars.js';
 
 
 class LocationTypeGrid extends Component {
@@ -62,14 +41,7 @@ class LocationTypeGrid extends Component {
         const { params = {} } = navigation.state;
         return {
         title: 'sonntags',
-        headerLeft:<TouchableOpacity onPress={()=> params.openDrawer() }>
-
-           <Icon name={'bars'}
-               size={32}
-               style={{height: 44, width: 44}}
-           style={{color: 'white'}}/>
-           </TouchableOpacity>
-
+        headerLeft:<HamburgerBars onPress={()=> params.openDrawer() }/>
     }};
 
     constructor(props) {
@@ -138,12 +110,6 @@ class LocationTypeGrid extends Component {
                     contentContainerStyle={styles.locationGridList}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}/>
-                <AdMobBanner
-                  bannerSize="fullBanner"
-                  adUnitID="ca-app-pub-5197876894535655/8159389107"
-                  testDeviceID="EMULATOR"
-                  didFailToReceiveAdWithError={this.bannerError} />
-
             </View>
         );
     }

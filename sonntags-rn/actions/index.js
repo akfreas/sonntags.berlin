@@ -79,13 +79,12 @@ function getUserLocation(dispatch) {
 
 function loadLocations(category) {
 
-    let categoryId = category.id;
-    Analytics.logEvent('load_category', {'category_name': category.name});
-    return contentfulClient.getEntries(
-        {
-            'content_type': 'location', 
-            'fields.categoryRef.sys.id': categoryId
-        }).then((response) => {
+    let queryDict = {content_type: 'location'}
+    if (category) {
+        queryDict['fields.categoryRef.sys.id'] = category.id;
+        Analytics.logEvent('load_category', {'category_name': category.name});
+    } 
+    return contentfulClient.getEntries(queryDict).then((response) => {
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;

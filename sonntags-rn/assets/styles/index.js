@@ -14,6 +14,12 @@ import {
 } from 'react-native';
 
 var styles = StyleSheet.create({
+    headerTitleStyle: {
+        color: 'white',
+        fontFamily: 'lato-bold',
+        fontSize: 20
+
+    },
   statusBarUnderlay: {
     height: 24,
     backgroundColor: 'rgba(0,0,0,0.2)',

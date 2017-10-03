@@ -19,6 +19,10 @@ var styles = require('../assets/styles');
 export default class LocationListItem extends Component {
 
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
 
         let closingTimeString = pad(this.props.location.closingTime, 4)
