@@ -108,6 +108,9 @@ class LocationListView extends Component {
     }
 
     locationSelected(location, source) {
+        this.setState({
+            modalVisible: false
+        });
         const { navigate } = this.props.navigation;
         var userLocation = "undefined"
         if (this.state.userLocation) {

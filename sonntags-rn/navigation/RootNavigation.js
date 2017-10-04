@@ -4,6 +4,7 @@ import {
     AppRegistry
 } from 'react-native';
 
+import { closeDrawer } from '../actions';
 import { connect } from 'react-redux';
 import LocationListView from '../screens/LocationListView';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
@@ -41,6 +42,7 @@ const defaultNavOptions = {
     headerStyle: {
         backgroundColor: '#3BB9BD'
     },
+    headerBackTitle: null,
     headerTitleStyle: styles.headerTitleStyle,
     headerTintColor: 'white'
 }
@@ -91,8 +93,9 @@ class _RootNavigator extends React.Component {
                 type="overlay"
                 tapToClose={true}
                 acceptPan={true}
-                type={'static'}
+                type={'displace'}
                 open={this.props.drawerOpen}
+                onClose={() => this.props.setDrawerClosed() }
                 captureGestures={true}
                 openDrawerOffset={0.2}
                 content={<DrawerMenu navigation={this.props.navigation}/>}
@@ -127,7 +130,7 @@ function mapStateToProps(state) {
         drawerOpen: state.drawerOpen
     }
 }
-const RootNavigator = connect(mapStateToProps, {})(_RootNavigator);
+const RootNavigator = connect(mapStateToProps, {setDrawerClosed: closeDrawer})(_RootNavigator);
 
 export default RootNavigator;
 AppRegistry.registerComponent('RootStackNavigator', () => RootNavigator);

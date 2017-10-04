@@ -148,9 +148,6 @@ android {
 
 dependencies {
     compile project(':react-native-maps')
-    compile project(':react-native-firebase-analytics')
-    compile project(':react-native-admob')
-    compile(project(':react-native-maps'))
     compile (project(':react-native-admob'))
     compile(project(':react-native-firebase-analytics'))
     compile project(':react-native-vector-icons')
