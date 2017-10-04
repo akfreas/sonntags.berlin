@@ -21,7 +21,9 @@
 
 @implementation OurApplication
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+#ifdef DEBUG
   [[NSNotificationCenter defaultCenter] postNotificationName:RCTShowDevMenuNotification object:nil];
+#endif
 }
 @end
 
