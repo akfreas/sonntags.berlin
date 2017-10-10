@@ -9,8 +9,13 @@ const initialState = {
     userLocation: null,
 }
 
+import RootStackNavigator from '../navigation/RootStackNavigator';
+
 export default function rootReducer(state=initialState, action) {
     switch(action.type) {
+
+        case 'Navigation/NAVIGATE':
+            return RootStackNavigator.router.getStateForAction(action, state);
 
         case 'SET_LOCATION':
             return Object.assign({}, state, {

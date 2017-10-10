@@ -10,7 +10,11 @@ import NavigationBar from 'react-native-navbar';
 import { Provider } from 'react-redux'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
 import rootReducer from './reducers'
-import { createStore, applyMiddleware } from 'redux'
+import { 
+    createStore, 
+    applyMiddleware,
+    combineReducers,
+} from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension';
 
@@ -18,7 +22,7 @@ var styles = require('./assets/styles');
 
 
 const store = createStore(
-    rootReducer,
+    combineReducers({nav: rootReducer}),
     composeWithDevTools(applyMiddleware(thunkMiddleware)),
 )
 

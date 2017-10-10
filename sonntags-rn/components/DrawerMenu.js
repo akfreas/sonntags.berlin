@@ -11,24 +11,23 @@ import {
     WebView,
     PropTypes
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 
 import calendarDays from '../assets/images/calendardays.png';
 
-export default class DrawerMenu extends Component {
+class DrawerMenu extends Component {
 
     addBusinessTapped() {
-        const { navigate } = this.props.navigation; 
-        navigate('NavWebView', {title: 'Add Business', uri: 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3'});
+        this.props.navigate('Add Business','https://goo.gl/forms/XMG8yMHfzU0rZ4qH3');
     }
 
     aboutTapped() {
-        const { navigate } = this.props.navigation; 
-        navigate('NavWebView', {title: 'About', uri: 'https://sonntags.sashimiblade.com/'});
+        this.props.navigate('About','https://sonntags.sashimiblade.com/');
     }
 
     feedbackTapped() {
-        const { navigate } = this.props.navigation; 
-        navigate('NavWebView', {title: 'Give Feedback', uri: 'https://goo.gl/forms/mBVANkMs4aT4rcEW2'});
+        this.props.navigate('Give Feedback', 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
     }
 
     cellComponentDef() {
@@ -76,3 +75,15 @@ export default class DrawerMenu extends Component {
     }
 
 }
+
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        navigate: (title, uri) => {
+            return dispatch(NavigationActions.navigate({routeName: 'NavWebView'}));
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps)(DrawerMenu);

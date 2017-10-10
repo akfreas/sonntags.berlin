@@ -6,17 +6,11 @@ import {
 
 import { closeDrawer } from '../actions';
 import { connect } from 'react-redux';
-import LocationListView from '../screens/LocationListView';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-import LocationTypeGrid from '../screens/LocationTypeGrid';
-import OpeningDays from '../screens/OpeningDays';
-import LocationDetailView from '../screens/LocationDetailView.js';
-import NavWebView from '../screens/NavWebView.js';
 import Drawer from 'react-native-drawer';
 import DrawerMenu from '../components/DrawerMenu';
-import styles from '../assets/styles';
 import MainLocationMap from '../screens/MainLocationMap';
-
+import { RootStackNavigator } from './RootStackNavigator';
 
 import { 
   AdMobBanner, 
@@ -25,52 +19,7 @@ import {
   AdMobRewarded
 } from 'react-native-admob'
 
-
-const paramsToProps = (SomeComponent) => {
-// turns this.props.navigation.state.params into this.params.<x>
-    return class extends React.Component {
-        static navigationOptions = SomeComponent.navigationOptions;
-    	// everything else, call as SomeComponent
-        render() {
-            const {navigation, ...otherProps} = this.props
-            const {state: {params}} = navigation
-            return <SomeComponent {...this.props} {...params} />
-        }
-    }
-}
-const defaultNavOptions = {
-    headerStyle: {
-        backgroundColor: '#3BB9BD'
-    },
-    headerBackTitle: null,
-    headerTitleStyle: styles.headerTitleStyle,
-    headerTintColor: 'white'
-}
-
-const RootStackNavigator = StackNavigator({
-
-    Main: {
-        screen: paramsToProps(LocationTypeGrid),
-        navigationOptions: defaultNavOptions,
-    },
-    CategoryView: {
-        screen: paramsToProps(LocationListView),
-        navigationOptions: defaultNavOptions,
-    },
-    OpenSundays: {
-        screen: paramsToProps(OpeningDays),
-        navigationOptions: defaultNavOptions,
-    },
-    NavWebView: {
-        screen: paramsToProps(NavWebView),
-        navigationOptions: defaultNavOptions,
-    },
-    LocationDetail: {
-        screen: paramsToProps(LocationDetailView),
-        navigationOptions: defaultNavOptions,
-    },
-
-});
+import { addNavigationHelpers } from 'react-navigation';
 
 class _RootNavigator extends React.Component {
 
@@ -87,6 +36,7 @@ class _RootNavigator extends React.Component {
   }
 
   render() {
+      debugger
       return (
                 <Drawer
                 ref={(ref) => this._drawer = ref}
@@ -100,7 +50,11 @@ class _RootNavigator extends React.Component {
                 openDrawerOffset={0.2}
                 content={<DrawerMenu navigation={this.props.navigation}/>}
             >
-              <RootStackNavigator ref={(ref)=> this._navigator = ref}/>
+                <RootStackNavigator navigation={addNavigationHelpers({
+                    dispatch: this.props.dispatch,
+                    state: this.props.nav,
+                })}
+                    ref={(ref)=> this._navigator = ref}/>
                               <AdMobBanner
                   bannerSize="smartBannerPortrait"
                   adUnitID="ca-app-pub-5197876894535655/8159389107"
@@ -130,7 +84,13 @@ function mapStateToProps(state) {
         drawerOpen: state.drawerOpen
     }
 }
-const RootNavigator = connect(mapStateToProps, {setDrawerClosed: closeDrawer})(_RootNavigator);
+const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
+    debugger
+    return {
+        setDrawerClosed: closeDrawer,
+        dispatch: dispatch
+    }
+})(_RootNavigator);
 
 export default RootNavigator;
 AppRegistry.registerComponent('RootStackNavigator', () => RootNavigator);
