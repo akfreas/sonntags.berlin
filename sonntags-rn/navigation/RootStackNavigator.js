@@ -50,7 +50,6 @@ export const RootStackNavigator = StackNavigator({
         screen: paramsToProps(LocationDetailView),
         navigationOptions: defaultNavOptions,
     },
-
 });
 
 

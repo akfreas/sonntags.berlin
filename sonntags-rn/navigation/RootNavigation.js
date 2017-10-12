@@ -36,7 +36,6 @@ class _RootNavigator extends React.Component {
   }
 
   render() {
-      debugger
       return (
                 <Drawer
                 ref={(ref) => this._drawer = ref}
@@ -50,9 +49,10 @@ class _RootNavigator extends React.Component {
                 openDrawerOffset={0.2}
                 content={<DrawerMenu navigation={this.props.navigation}/>}
             >
+                
                 <RootStackNavigator navigation={addNavigationHelpers({
                     dispatch: this.props.dispatch,
-                    state: this.props.nav,
+                    state: this.props.navigation,
                 })}
                     ref={(ref)=> this._navigator = ref}/>
                               <AdMobBanner
@@ -81,11 +81,11 @@ class _RootNavigator extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        drawerOpen: state.drawerOpen
+        drawerOpen: state.main.drawerOpen,
+        navigation: state.navigation
     }
 }
 const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
-    debugger
     return {
         setDrawerClosed: closeDrawer,
         dispatch: dispatch

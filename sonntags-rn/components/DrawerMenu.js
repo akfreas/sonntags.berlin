@@ -6,6 +6,7 @@ import {
     Platform,
     Text,
     TouchableOpacity,
+    Modal,
     View,
     StyleSheet,
     WebView,
@@ -13,13 +14,29 @@ import {
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import NavWebView from '../screens/NavWebView';
 
 import calendarDays from '../assets/images/calendardays.png';
 
 class DrawerMenu extends Component {
 
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            modalVisible: false,
+            displayedPage: {}
+        };
+    }
+
+
     addBusinessTapped() {
-        this.props.navigate('Add Business','https://goo.gl/forms/XMG8yMHfzU0rZ4qH3');
+        this.setState({
+            modalVisible: true,
+            displayedPage: {
+                title: 'Add Business',
+                uri:  'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3',
+        }});
     }
 
     aboutTapped() {
@@ -40,36 +57,46 @@ class DrawerMenu extends Component {
 
     render() {
         return (
-            <View style={{backgroundColor: '#EEA845', flex: 1}}>
-                <View style={{height: 100, /*overflow: 'hidden'*/}}>
-                    <Image source={require('../assets/images/so-icon.png')} style={{
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        position: 'absolute',
-                        height: '100%',
-                        width: 100,
-                        resizeMode: 'contain',
-                    }}/>
-                </View>
-                <View style={{backgroundColor: 'white', height: 1, width: '100%'}}/>
-                {this.cellComponentDef().map((def) => {
-                    return(
-                        <TouchableOpacity key={def.title} onPress={def.target}>
-                    <View style={{
-                        height: 50, 
-                        padding: 12,
-                        alignSelf: 'stretch'}} key={def.title}>
-                        <Text style={{
-                            fontFamily: 'Lato-Bold',
-                            color: 'white',
-                            fontSize: 20
-                        }}>{def.title}</Text>
-                    </View> 
-                </TouchableOpacity>
-                    )
-                })}
-               
+        <View style={{backgroundColor: '#EEA845', flex: 1}}>
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible}
+            >
+                <NavWebView 
+                    uri={this.state.displayedPage.uri}
+                    title={this.state.displayedPage.title}
+                />
+            </Modal>
+                    <View style={{height: 100, /*overflow: 'hidden'*/}}>
+                        <Image source={require('../assets/images/so-icon.png')} style={{
+                            left: 0,
+                            top: 0,
+                            bottom: 0,
+                            position: 'absolute',
+                            height: '100%',
+                            width: 100,
+                            resizeMode: 'contain',
+                        }}/>
+                    </View>
+                    <View style={{backgroundColor: 'white', height: 1, width: '100%'}}/>
+                    {this.cellComponentDef().map((def) => {
+                        return(
+                            <TouchableOpacity key={def.title} onPress={def.target}>
+                        <View style={{
+                            height: 50, 
+                            padding: 12,
+                            alignSelf: 'stretch'}} key={def.title}>
+                            <Text style={{
+                                fontFamily: 'Lato-Bold',
+                                color: 'white',
+                                fontSize: 20
+                            }}>{def.title}</Text>
+                        </View> 
+                    </TouchableOpacity>
+                        )
+                    })}
+                   
             </View>
         )
     }
@@ -81,7 +108,11 @@ class DrawerMenu extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (title, uri) => {
-            return dispatch(NavigationActions.navigate({routeName: 'NavWebView'}));
+            return dispatch(
+                NavigationActions.navigate({
+                    routeName: 'NavWebView',
+                    params: {title: title, uri: uri}
+                }));
         }
     }
 }
