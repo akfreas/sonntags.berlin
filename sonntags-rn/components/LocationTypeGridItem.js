@@ -13,7 +13,7 @@ import {
     Row,
     ListView
 } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 var styles = require('../assets/styles');

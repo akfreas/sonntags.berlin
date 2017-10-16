@@ -14,6 +14,7 @@ import {
     DRAWER_OPEN,
     DRAWER_CLOSE,
     TOGGLE_DRAWER,
+    SET_DRAWER_GESTURES_ENABLED,
 } from '../constants/ActionTypes';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
@@ -109,6 +110,13 @@ function loadOpenSundays() {
     })
 }
 
+function setDrawerGesturesEnabled(enabled) {
+    return {
+        type: SET_DRAWER_GESTURES_ENABLED,
+        drawerGesturesEnabled: enabled
+    }
+}
+
 module.exports = {
     loadLocations,
     loadOpenSundays,
@@ -117,4 +125,5 @@ module.exports = {
     closeDrawer,
     toggleDrawer,
     getUserLocation,
+    setDrawerGesturesEnabled,
 }

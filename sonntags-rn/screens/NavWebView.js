@@ -14,6 +14,7 @@ import {
 
 import calendarDays from '../assets/images/calendardays.png';
 import Analytics from 'react-native-firebase-analytics';
+import NavigationBar from 'react-native-navbar';
 
 
 
@@ -30,13 +31,37 @@ export default class NavWebView extends Component {
         Analytics.logEvent('open_web_view', {'url': props.uri});
     }
 
+    rightButtonConfig() {
+        return {
+            title: 'Close',
+            handler: () => this.props.rightButtonPressed(),
+          style: [{
+          }],
+        }
+    }
+    titleConfig() {
+      return {
+        title: this.props.title,
+          style: {
+              color: '#3BB9BD',
+              fontFamily: 'Lato-Bold',
+          },
+      }
+    }
+
     render() {
 
         return(
-            <WebView
-                source={{uri: this.props.uri}}
-                style={{marginTop: 0}}
-            />
+            <View style={{flex: 1}}>
+                 <NavigationBar
+                    rightButton={this.rightButtonConfig()}
+                    title={this.titleConfig()}
+                />
+                <WebView
+                    source={{uri: this.props.uri}}
+                    style={{marginTop: 0, flex: 1}}
+                />
+            </View>
         )
 
     }

@@ -21,7 +21,7 @@ import {
   AdMobRewarded
 } from 'react-native-admob'
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'

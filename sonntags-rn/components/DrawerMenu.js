@@ -17,6 +17,10 @@ import { connect } from 'react-redux';
 import NavWebView from '../screens/NavWebView';
 
 import calendarDays from '../assets/images/calendardays.png';
+import { 
+    closeDrawer,
+    setDrawerGesturesEnabled,
+} from '../actions'
 
 class DrawerMenu extends Component {
 
@@ -29,22 +33,28 @@ class DrawerMenu extends Component {
         };
     }
 
-
-    addBusinessTapped() {
+    showPage(title, uri) {
+        this.props.setDrawerGesturesEnabled(false);
         this.setState({
             modalVisible: true,
             displayedPage: {
-                title: 'Add Business',
-                uri:  'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3',
+                title: title,
+                uri:  uri,
         }});
+
+    }
+
+
+    addBusinessTapped() {
+        this.showPage('Add Business', 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')
     }
 
     aboutTapped() {
-        this.props.navigate('About','https://sonntags.sashimiblade.com/');
+        this.showPage('About','https://sonntags.sashimiblade.com/');
     }
 
     feedbackTapped() {
-        this.props.navigate('Give Feedback', 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
+        this.showPage('Give Feedback', 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
     }
 
     cellComponentDef() {
@@ -53,6 +63,11 @@ class DrawerMenu extends Component {
             {title: 'Feedback', target: this.feedbackTapped.bind(this)},
             {title: 'About', target: this.aboutTapped.bind(this)},
         ]
+    }
+
+    closeModal() {
+        this.setState({modalVisible: false})
+        this.props.setDrawerGesturesEnabled(true)
     }
 
     render() {
@@ -66,6 +81,7 @@ class DrawerMenu extends Component {
                 <NavWebView 
                     uri={this.state.displayedPage.uri}
                     title={this.state.displayedPage.title}
+                    rightButtonPressed={() => this.closeModal()}
                 />
             </Modal>
                     <View style={{height: 100, /*overflow: 'hidden'*/}}>
@@ -113,7 +129,13 @@ const mapDispatchToProps = (dispatch) => {
                     routeName: 'NavWebView',
                     params: {title: title, uri: uri}
                 }));
-        }
+        },
+        closeDrawer: () => {
+            return dispatch(closeDrawer());
+        },
+        setDrawerGesturesEnabled: (enabled) => {
+            return dispatch(setDrawerGesturesEnabled(enabled));
+        },
     }
 }
 

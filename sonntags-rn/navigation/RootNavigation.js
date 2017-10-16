@@ -37,18 +37,19 @@ class _RootNavigator extends React.Component {
 
   render() {
       return (
-                <Drawer
-                ref={(ref) => this._drawer = ref}
-                type="overlay"
-                tapToClose={true}
-                acceptPan={true}
-                type={'displace'}
-                open={this.props.drawerOpen}
-                onClose={() => this.props.setDrawerClosed() }
-                captureGestures={true}
-                openDrawerOffset={0.2}
-                content={<DrawerMenu navigation={this.props.navigation}/>}
-            >
+        <Drawer
+            ref={(ref) => this._drawer = ref}
+            type="overlay"
+            tapToClose={true}
+            acceptPan={true}
+            acceptTap={false}
+            type={'displace'}
+            open={this.props.drawerOpen}
+            onClose={() => this.props.setDrawerClosed() }
+            captureGestures={this.props.drawerGesturesEnabled}
+            openDrawerOffset={0.2}
+            content={<DrawerMenu navigation={this.props.navigation}/>}
+        >
                 
                 <RootStackNavigator navigation={addNavigationHelpers({
                     dispatch: this.props.dispatch,
@@ -62,6 +63,9 @@ class _RootNavigator extends React.Component {
                   didFailToReceiveAdWithError={this.bannerError} />
         </Drawer>);
   }
+    componentWillReceiveProps(props) {
+        console.log(props);
+    }
   _registerForPushNotifications() {
     // Send our push token over to our backend so we can receive notifications
     // You can comment the following line out if you want to stop receiving
@@ -82,12 +86,15 @@ class _RootNavigator extends React.Component {
 function mapStateToProps(state) {
     return {
         drawerOpen: state.main.drawerOpen,
-        navigation: state.navigation
+        navigation: state.navigation,
+        drawerGesturesEnabled: state.main.drawerGesturesEnabled,
     }
 }
 const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
     return {
-        setDrawerClosed: closeDrawer,
+        setDrawerClosed: () => {
+            dispatch(closeDrawer())
+        },
         dispatch: dispatch
     }
 })(_RootNavigator);

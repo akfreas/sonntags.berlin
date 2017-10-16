@@ -19,7 +19,7 @@ import {
 
 import {
     loadLocations,
-    getUserLocation
+    getUserLocation,
 } from '../actions';
 
 import Analytics from 'react-native-firebase-analytics';
@@ -226,10 +226,14 @@ class LocationListView extends Component {
                   style={{flex: 1}}>
 
                       {this.state.locations.map((location, index) => {
+                          let key = location.name;
+                          if (location.sourceId) {
+                              key = key + "_" + location.sourceId
+                          }
                         let latlong = {latitude: location.location.lat, longitude: location.location.lon};
                         let marker = <MapView.Marker
                             coordinate={latlong}
-                            key={location.name}
+                            key={key}
 
                         ref={`callout-${index}`}
                         zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
@@ -280,7 +284,6 @@ class LocationListView extends Component {
           }],
         }
     }
-
     titleConfig() {
       return {
         title: this.props.category.name,
@@ -328,14 +331,15 @@ class LocationListView extends Component {
 
 function mapStateToProps(state) {
     return {
-        userLocation: state.userLocation
+        userLocation: state.main.userLocation,
+        drawerGesturesEnabled: state.main.drawerGesturesEnabled,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserLocation: () => {
-            return dispatch(getUserLocation())
+            return dispatch(getUserLocation());
         }
     }
 }

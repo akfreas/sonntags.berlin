@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../node_modules/react-native/React/DevSupport/RCTDevMenu.m"
-            timestampString = "529482949.471634"
+            timestampString = "529886037.178116"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
@@ -26,12 +26,12 @@
                   moduleName = "SonntagsBerlin"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/akfreas/github/SonntagsBerlin/sonntags-rn/node_modules/react-native/React/DevSupport/RCTDevMenu.m"
-                  timestampString = "529367210.058593"
+                  timestampString = "529869852.582836"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "43">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -41,12 +41,33 @@
                   moduleName = "React"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/akfreas/github/SonntagsBerlin/sonntags-rn/node_modules/react-native/React/DevSupport/RCTDevMenu.m"
-                  timestampString = "529367210.320343"
+                  timestampString = "529869852.935057"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
                   endingLineNumber = "25"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "43">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "-[UIViewController presentViewController:animated:completion:]"
+            moduleName = "">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[UIViewController presentViewController:animated:completion:]"
+                  moduleName = "UIKit"
+                  usesParentBreakpointCondition = "Yes"
+                  offsetFromSymbolStart = "0">
                </Location>
             </Locations>
          </BreakpointContent>
