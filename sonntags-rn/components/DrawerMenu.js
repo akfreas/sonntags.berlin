@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 import {
     Image,
-    Button,
     Platform,
     Text,
     TouchableOpacity,
@@ -15,6 +14,8 @@ import {
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import NavWebView from '../screens/NavWebView';
+import Share, {ShareSheet, Button} from 'react-native-share';
+import { StatusBar } from 'react-native'
 
 import calendarDays from '../assets/images/calendardays.png';
 import { 
@@ -57,11 +58,21 @@ class DrawerMenu extends Component {
         this.showPage('Give Feedback', 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
     }
 
+    shareApp() {
+        Share.open({
+            title: "Sonntags",
+            message: "Sunday shopping.",
+            url: "http://sonntags.sashimiblade.com",
+            subject: "Check out this app"
+        });
+    }
+
     cellComponentDef() {
         return [
             {title: 'Add Business', target: this.addBusinessTapped.bind(this)},
             {title: 'Feedback', target: this.feedbackTapped.bind(this)},
             {title: 'About', target: this.aboutTapped.bind(this)},
+            {title: 'Share Sonntags', target: this.shareApp.bind(this)},
         ]
     }
 
@@ -78,12 +89,15 @@ class DrawerMenu extends Component {
                 transparent={false}
                 visible={this.state.modalVisible}
             >
+              <StatusBar barStyle = "dark-content" hidden = {false}/>
                 <NavWebView 
                     uri={this.state.displayedPage.uri}
                     title={this.state.displayedPage.title}
                     rightButtonPressed={() => this.closeModal()}
                 />
             </Modal>
+
+                  <StatusBar barStyle = "light-content" hidden = {false}/>
                     <View style={{height: 100, /*overflow: 'hidden'*/}}>
                         <Image source={require('../assets/images/so-icon.png')} style={{
                             left: 0,

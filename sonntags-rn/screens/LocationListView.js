@@ -17,6 +17,9 @@ import {
     Linking
 } from 'react-native';
 
+import { StatusBar } from 'react-native';
+
+
 import {
     loadLocations,
     getUserLocation,
@@ -304,10 +307,12 @@ class LocationListView extends Component {
                 transparent={false}
                 visible={this.state.modalVisible}
             >
+                <StatusBar barStyle = "dark-content" hidden = {false}/>
                 <NavigationBar
                     rightButton={this.rightButtonConfig()}
                     title={this.titleConfig()}
                 />
+
                  <FlatList
                     ItemSeparatorComponent={({highlighted}) => (
                         <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
@@ -322,6 +327,7 @@ class LocationListView extends Component {
                 />
             </Modal>
 
+             <StatusBar barStyle = "light-content" hidden = {false}/>
             {this.mapView()}
         </View>
         );
