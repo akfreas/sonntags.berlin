@@ -33,7 +33,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNAdMobPackage(),
             new MapsPackage(),
             new FIRAnalyticsPackage(),
-            new RNAdMobPackage(),
             new VectorIconsPackage()
       );
     }

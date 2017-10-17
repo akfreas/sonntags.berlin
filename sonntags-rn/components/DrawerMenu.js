@@ -61,9 +61,9 @@ class DrawerMenu extends Component {
     shareApp() {
         Share.open({
             title: "Sonntags",
-            message: "Sunday shopping.",
+            message: "Find shops open on Sundays with the Sonntags app!",
             url: "http://sonntags.sashimiblade.com",
-            subject: "Check out this app"
+            subject: "Check it out!"
         });
     }
 
@@ -88,6 +88,7 @@ class DrawerMenu extends Component {
                 animationType="slide"
                 transparent={false}
                 visible={this.state.modalVisible}
+                onRequestClose={() => {}}
             >
               <StatusBar barStyle = "dark-content" hidden = {false}/>
                 <NavWebView 

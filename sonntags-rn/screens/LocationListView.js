@@ -4,6 +4,7 @@ import moment from 'moment';
 import {
     ScrollView,
     FlatList,
+    Image,
     Dimensions,
     Text,
     TouchableOpacity,
@@ -299,6 +300,8 @@ class LocationListView extends Component {
 
     render() {
 
+        let width = Dimensions.get('window').width
+        let height = Dimensions.get('window').height
         return (
         <View style={{flex: 1}}>
 
@@ -306,6 +309,7 @@ class LocationListView extends Component {
                 animationType="slide"
                 transparent={false}
                 visible={this.state.modalVisible}
+                onRequestClose={() => {}}
             >
                 <StatusBar barStyle = "dark-content" hidden = {false}/>
                 <NavigationBar
@@ -313,18 +317,29 @@ class LocationListView extends Component {
                     title={this.titleConfig()}
                 />
 
-                 <FlatList
-                    ItemSeparatorComponent={({highlighted}) => (
-                        <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
-                   )}
-                   contentContainerStyle={{justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0)'}}
-                    style={{backgroundColor: 'gray', flex: 1}}
-                    data={this.state.locations}
-                    bounces={false}
-                    extraData={this.state.locations}
-                    renderItem={({item}) => this.renderRow(item)}
-                    keyExtractor={item => item.id}
-                />
+                <View style={{flex: 1, backgroundColor: '#C2FDFF'}}>
+                    <View>
+                        <Image style={{
+                            height: width, 
+                            width: width, 
+                            position: 'absolute', 
+                            bottom: -height,
+                            left: 0,
+                        }} source={require('../assets/images/icon_background.png')}/>
+                        </View>
+                     <FlatList
+                        ItemSeparatorComponent={({highlighted}) => (
+                            <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
+                       )}
+                       contentContainerStyle={{justifyContent: 'center', backgroundColor: 'white'}}
+                        style={{backgroundColor: 'transparent', flex: 1}}
+                        data={this.state.locations}
+                        bounces={false}
+                        extraData={this.state.locations}
+                        renderItem={({item}) => this.renderRow(item)}
+                        keyExtractor={item => item.id}
+                    />
+                </View>
             </Modal>
 
              <StatusBar barStyle = "light-content" hidden = {false}/>
