@@ -41,6 +41,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.3.0)
+  - RCTMapboxGL (5.1.0)
   - React (0.48.4):
     - React/Core (= 0.48.4)
   - React/BatchedBridge (0.48.4):
@@ -72,6 +73,7 @@ DEPENDENCIES:
   - Firebase/Crash
   - Firebase/Messaging
   - Google-Mobile-Ads-SDK
+  - RCTMapboxGL (from `../node_modules/react-native-mapbox-gl/ios`)
   - React/BatchedBridge (from `../node_modules/react-native`)
   - React/Core (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -82,6 +84,8 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 EXTERNAL SOURCES:
+  RCTMapboxGL:
+    :path: ../node_modules/react-native-mapbox-gl/ios
   React:
     :path: ../node_modules/react-native
   RNVectorIcons:
@@ -100,10 +104,11 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  RCTMapboxGL: 6c6ad6452df4ceb53609b90c53bf50fd3d4c884d
   React: 6d68659481a8a56e0f6b3dbecd984d5b9bb2d6c5
   RNVectorIcons: 208e7e1507e3bc800619caf1c2748ad6b6b68188
   Yoga: ccefa1454b2e9825dce3b2df98088b7f0e3c2675
 
-PODFILE CHECKSUM: 7a6cb3dd7f1302088429d3051acd69352486491b
+PODFILE CHECKSUM: e04c77b843ef8a15d5bad9ea479454eda287b8d3
 
 COCOAPODS: 1.3.1

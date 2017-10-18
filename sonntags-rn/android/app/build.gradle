@@ -147,6 +147,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-mapbox-gl')
     compile project(':react-native-share')
     compile project(':react-native-admob')
     compile project(':react-native-maps')

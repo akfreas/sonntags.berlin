@@ -34,6 +34,7 @@ import HamburgerBars from '../components/HamburgerBars.js';
 import NavigationBar from 'react-native-navbar';
 import arrow from '../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
+import LocationMapView from '../components/LocationMapView'; 
 
 var styles = StyleSheet.create({
     locationListItem: {
@@ -214,52 +215,7 @@ class LocationListView extends Component {
     mapView() {
         return (
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
-                <MapView
-                    ref={ref=> {this.map = ref; }}
-                  showsUserLocation={true}
-                  showsCompass={false}
-                  pitchEnabled={false}
-                  rotateEnabled={false}
-
-                  initialRegion={{
-          latitude: 52.4944623,
-          longitude: 13.4034689,
-          latitudeDelta: 0.2922,
-          longitudeDelta: 0.3421,
-        }}
-                  style={{flex: 1}}>
-
-                      {this.state.locations.map((location, index) => {
-                          let key = location.name;
-                          if (location.sourceId) {
-                              key = key + "_" + location.sourceId
-                          }
-                        let latlong = {latitude: location.location.lat, longitude: location.location.lon};
-                        let marker = <MapView.Marker
-                            coordinate={latlong}
-                            key={key}
-
-                        ref={`callout-${index}`}
-                        zIndex={this.state.selectedCalloutIndex === index ? 999 : 0}
-                        image={arrow}
-                        onCalloutPress={()=>this.locationSelected(location, 'map')}
-                        identifier={location.id}
-                        title={location.name.length > 20 ? location.name.split(" ")[0] : location.name}
-                        description={location.location.formattedAddress}>
-                        <MapView.Callout  style={{flex: 1, flexDirection: 'row', padding: 5}}>
-                              <Text style={{fontFamily: 'Lato-Bold'}}>{location.name}</Text>
-                              <Icon
-                                  style={{textAlign: 'center', marginTop: -1}}
-                                  name='chevron-small-right'
-                                  size={20}
-                              >
-                              </Icon>
-                        </MapView.Callout>
-
-                         </MapView.Marker>
-                    return marker
-                })}
-                </MapView>
+                <LocationMapView/> 
             </View>
         )
 
