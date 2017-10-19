@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -40,7 +39,6 @@
 		695396BD35B14961BCE912A6 /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3C0823C55E704A1F9ED7329E /* Lato-Hairline.ttf */; };
 		766532E3C0B949258CA249B5 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F9DABCA481D245DBBEDF6027 /* libRNAdMobManager.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		8880EC75A71C469DB5CA02E9 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 102C039B18074331A61E6F03 /* libAirMaps.a */; };
 		9EB36CC2AA2A4E60BEBFC734 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8C3E8DDEDFDF4188951D4E9E /* Ionicons.ttf */; };
 		A0C29CB7711845A5ADC1CBEE /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C39B8C03F3A84F79875B3E72 /* EvilIcons.ttf */; };
 		B11180DFB5C34E818C55B0DB /* Lato-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E8EDFDFD26314692A1114734 /* Lato-BlackItalic.ttf */; };
@@ -413,7 +411,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				8880EC75A71C469DB5CA02E9 /* libAirMaps.a in Frameworks */,
 				B6D87BC655854B8FBD625D58 /* libRNVectorIcons.a in Frameworks */,
 				BAF1BE6E1804417F8B64E2A8 /* libRNFIRAnalytics.a in Frameworks */,
 				766532E3C0B949258CA249B5 /* libRNAdMobManager.a in Frameworks */,

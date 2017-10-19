@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import MapView from 'react-native-maps';
 import moment from 'moment';
 import {
     ScrollView,
@@ -215,7 +214,9 @@ class LocationListView extends Component {
     mapView() {
         return (
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
-                <LocationMapView/> 
+                <LocationMapView
+                    locations={this.state.locations}
+                /> 
             </View>
         )
 

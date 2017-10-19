@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import Drawer from 'react-native-drawer';
 import DrawerMenu from '../components/DrawerMenu';
-import MainLocationMap from '../screens/MainLocationMap';
 import { RootStackNavigator } from './RootStackNavigator';
 
 import { 

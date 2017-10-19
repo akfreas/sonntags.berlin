@@ -15,7 +15,6 @@ import moment from 'moment';
 import Analytics from 'react-native-firebase-analytics';
 
 import arrow from '../assets/images/map-annotation.png';
-import MapView from 'react-native-maps';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Hyperlink from 'react-native-hyperlink';
 
@@ -43,27 +42,6 @@ export default class LocationDetailView extends Component {
         return(
             <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
           <View style={{flex: 3}}>
-            <MapView
-                ref={ref=> {this.map = ref; }}
-              showsUserLocation={true}
-              initialRegion={{
-                  latitude: 52.4944623,
-                  longitude: 13.4034689,
-                  latitudeDelta: 0.2922,
-                  longitudeDelta: 0.3421,
-                }}
-              showsCompass={false}
-              pitchEnabled={false}
-              rotateEnabled={false}
-              style={{flex: 3}}>
-              <MapView.Marker coordinate={{
-                      latitude: location.location.lat, 
-                      longitude: location.location.lon
-              }}
-                  key={location.name}
-                  image={arrow}
-              />
-          </MapView>
               <View style={{flex: 2, padding: 10, backgroundColor: 'white'}}>
                   <Text style={{fontFamily: 'Lato-Bold', fontSize: 24}}>{this.props.location.name}</Text>
                         <View style={styles.locationListItemTitleContainer}>
