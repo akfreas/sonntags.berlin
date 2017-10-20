@@ -57,6 +57,7 @@ class MainLocationMap extends Component {
         this.state = {
             locations: [],
             modalVisible: false,
+            bottomAnim: new Animated.Value(-100),
         };
     }
 
@@ -177,6 +178,13 @@ class MainLocationMap extends Component {
         this.setState({
             selectedLocation: selectedLocation
         });
+        Animated.timing(
+            this.state.bottomAnim,
+            {
+                toValue: 0,
+                duration: 200
+            }
+        ).start();
     }
        
     modalView() {
@@ -205,23 +213,28 @@ class MainLocationMap extends Component {
         let itemView = null;
         if (this.state.selectedLocation) {
             itemView = (
-                <View style={{backgroundColor: 'white', position: 'absolute', bottom: 0, width: width}}>
+                <Animated.View style={{
+                    backgroundColor: 'white', 
+                    position: 'absolute', 
+                    bottom: this.state.bottomAnim, 
+                    width: width,
+                }}>
                     <LocationListItem 
                         location={this.state.selectedLocation}
                         userLocation={this.props.userLocation}
                         distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
                         onLocationSelected={this.locationSelected.bind(this)}
                     />
-                </View>
+                </Animated.View>
             );
         }
         return (
-        <View style={{flex: 1}}>
-            {this.modalView()}
-             <StatusBar barStyle = "light-content" hidden = {false}/>
-            {this.mapView()}
-            {itemView}
-        </View>
+            <View style={{flex: 1}}>
+                {this.modalView()}
+                 <StatusBar barStyle = "light-content" hidden = {false}/>
+                {this.mapView()}
+                {itemView}
+            </View>
         );
     }
 
