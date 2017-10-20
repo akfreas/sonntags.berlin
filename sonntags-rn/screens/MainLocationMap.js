@@ -1,156 +1,208 @@
-import MapView from 'react-native-maps';
 import React, {Component} from 'react';
-import { connect } from 'react-redux'
+import moment from 'moment';
+import {
+    ScrollView,
+    FlatList,
+    Image,
+    Dimensions,
+    Text,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
+    Modal,
+    AnimatedValue,
+    Animated,
+    StyleSheet,
+    Platform,
+    Linking
+} from 'react-native';
+
+import { StatusBar } from 'react-native';
+
 
 import {
     loadLocations,
-    getUserLocation
+    getUserLocation,
+    distanceFromUserLocation,
 } from '../actions';
 
-import {
-    TouchableOpacity,
-    Text,
-    View,
-} from 'react-native';
-
-import Icon from 'react-native-vector-icons/Entypo';
 import Analytics from 'react-native-firebase-analytics';
+import Icon from 'react-native-vector-icons/Entypo';
+import LocationCallout from '../components/LocationCallout.js';
+import HamburgerBars from '../components/HamburgerBars.js';
+import NavigationBar from 'react-native-navbar';
+import LocationListView from '../components/LocationListView';
 import arrow from '../assets/images/map-annotation.png';
-import arrowSelected from '../assets/images/arrow-selected.png';
-import LocationListItem from '../components/LocationListItem.js';
-
+import { connect } from 'react-redux'
+import LocationMapView from '../components/LocationMapView'; 
 
 class MainLocationMap extends Component {
 
+    static navigationOptions = ({ navigation }) => ({
+        title: navigation.state.params.category.name,
+        headerRight:<HamburgerBars onPress={()=> navigation.state.params.showList()}/>
+    });
 
     constructor(props) {
         super(props);
         this.state = {
             locations: [],
-        }
+            modalVisible: false,
+        };
     }
 
-    componentDidMount() {
-        loadLocations().then((locations) => {
-            this.setState({
-                locations: locations
-            });
-            this.props.getUserLocation();
-        })
+    openExternalApp(url) {
+      Linking.canOpenURL(url).then(supported => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          console.log('Don\'t know how to open URI: ' + url);
+        }
+      });
     }
 
     locationSelected(location, source) {
+        this.setState({
+            modalVisible: false
+        });
         const { navigate } = this.props.navigation;
         var userLocation = "undefined"
         if (this.state.userLocation) {
             let userLocation = this.state.userLocation;
             userLocation = JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude});
         }
+        let distanceFromUser = distanceFromUserLocation(location, this.state.userLocation);
         Analytics.logEvent('location_selected', {
             'location_name': location.name,
             'user_location': userLocation,
             'source': source,
-            'distance_from_user': this.distanceFromUser(location)
+            'distance_from_user': distanceFromUser
         });
-        navigate('LocationDetail', {location: location, distanceFromUser: this.distanceFromUser(location)});
+        navigate('LocationDetail', {
+            location: location, 
+            distanceFromUser: distanceFromUser
+        });
     }
 
-    locationSelected() {
+    
+
+    locationsSortedByDistance(locations) {
+
+        let sortedLocations = locations.sort((a, b) => {
+            let distanceA = distanceFromUserLocation(a, this.state.userLocation);
+            let distanceB = distanceFromUserLocation(b, this.state.userLocation);
+            let retVal = distanceA - distanceB;
+            return retVal;
+        });
+
+        return sortedLocations;
+
     }
 
-    distanceFromUser(location) {
+    
 
-        let userLocation = this.state.userLocation;
-        if (userLocation == undefined || userLocation.coords == undefined) {
-            return null
-        }
-
-        let distance = getDistanceFromLatLonInKm(
-            userLocation.coords.latitude,
-            userLocation.coords.longitude,
-            location.location.lat,
-            location.location.lon)
-        return distance
+    showList() {
+        this.setState({
+            modalVisible: true
+        });
     }
+
+
+    componentDidMount() {
+        this.props.navigation.setParams({showList: this.showList.bind(this)});
+
+        loadLocations(this.props.category).then((locations) => {
+            let sorted = locations
+            if (this.props.userLocation) {
+                sorted = this.locationsSortedByDistance(locations);
+            }
+            this.setState({
+                locations: sorted,
+            })
+        }).then(()=>{
+            this.props.getUserLocation();
+        })
+    }
+
+    componentDidUpdate() {
+        let markers = this.state.locations.map((location) => {
+            return location.id;
+        })
+        //this.map.fitToSuppliedMarkers(markers, true);
+    }
+
 
     componentWillReceiveProps(nextProps) {
 
         this.setState({
             userLocation: nextProps.userLocation,
         });
+        let sorted = this.locationsSortedByDistance(this.state.locations);
+        this.setState({
+            locations: sorted,
+        });
     }
 
-    arrowForLocation(location) {
-        if (this.state.selectedLocation && location.id == this.state.selectedLocation.id) {
-            return arrowSelected;
-        } else {
-            return arrow;
-        }
+    mapView() {
+        return (
+            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
+                <LocationMapView
+                    locations={this.state.locations}
+                    centerLocation={this.props.userLocation}
+                    onAnnotationTapped={this.onAnnotationTapped.bind(this)}
+                /> 
+            </View>
+        )
+
     }
+
+    onAnnotationTapped(annotation) {
+    }
+       
 
     render() {
+
+        let width = Dimensions.get('window').width
+        let height = Dimensions.get('window').height
         return (
-            
-            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
-                <MapView
-                        ref={ref=> {this.map = ref; }}
-                      showsUserLocation={true}
-                      showsCompass={false}
-                      pitchEnabled={false}
-                      rotateEnabled={false}
+        <View style={{flex: 1}}>
 
-                      initialRegion={{
-                          latitude: 52.4944623,
-                          longitude: 13.4034689,
-                          latitudeDelta: 0.2922,
-                          longitudeDelta: 0.3421,
-                    }}
-            style={{flex: 1}}>
-            {this.state.locations.map((location, index) => {
-                            let latlong = {latitude: location.location.lat, longitude: location.location.lon};
-                            let ref = `callout-${index}`;
-                            let marker = <MapView.Marker
-                                coordinate={latlong}
-                                key={location.name}
+            <Modal
+                animationType="slide"
+                transparent={false}
+                visible={this.state.modalVisible}
+                onRequestClose={() => {}}
+            >
+                <LocationListView 
+                    category={this.props.category}
+                    locations={this.state.locations}
+                    userLocation={this.props.userLocation}
+                    onCloseButtonTapped={() => this.setState({modalVisible: false})}
+                    onLocationSelected={this.locationSelected.bind(this)}
+                />
+            </Modal>
 
-                            ref={ref}
-                            image={this.arrowForLocation(location)}
-                            onPress={(marker) => {
-                                this.setState({selectedLocation: location});
-                            }}
-                            identifier={location.id}
-                            description={location.location.formattedAddress}>
-                             </MapView.Marker>
-                        return marker
-                    })}
-            </MapView>
-            {this.state.selectedLocation &&
-            <LocationListItem
-                location={this.state.selectedLocation}
-                userLocation={this.state.userLocation}
-                distanceFromUser={this.distanceFromUser(this.state.selectedLocation)}
-                onLocationSelected={this.locationSelected.bind(this)}
-            />}
-
+             <StatusBar barStyle = "light-content" hidden = {false}/>
+            {this.mapView()}
         </View>
-
-        )
+        );
     }
+
 }
 
 function mapStateToProps(state) {
     return {
-    };
+        userLocation: state.main.userLocation,
+        drawerGesturesEnabled: state.main.drawerGesturesEnabled,
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getUserLocation: () => {
-            return dispatch(getUserLocation())
+            return dispatch(getUserLocation());
         }
     }
 }
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainLocationMap);

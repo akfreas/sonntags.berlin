@@ -5,7 +5,7 @@ import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
 import LocationDetailView from '../screens/LocationDetailView.js';
 import NavWebView from '../screens/NavWebView.js';
-import LocationListView from '../screens/LocationListView';
+import MainLocationMap from '../screens/MainLocationMap';
 
 const paramsToProps = (SomeComponent) => {
 // turns this.props.navigation.state.params into this.params.<x>
@@ -35,7 +35,7 @@ export const RootStackNavigator = StackNavigator({
         navigationOptions: defaultNavOptions,
     },
     CategoryView: {
-        screen: paramsToProps(LocationListView),
+        screen: paramsToProps(MainLocationMap),
         navigationOptions: defaultNavOptions,
     },
     OpenSundays: {
