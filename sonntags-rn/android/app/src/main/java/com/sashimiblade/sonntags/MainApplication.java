@@ -6,9 +6,7 @@ import com.facebook.react.ReactApplication;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import cl.json.RNSharePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
-import com.airbnb.android.react.maps.MapsPackage;
 import com.evollu.react.fa.FIRAnalyticsPackage;
-import com.sbugert.rnadmob.RNAdMobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -33,13 +31,11 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactNativeMapboxGLPackage(),
             new RNSharePackage(),
             new RNAdMobPackage(),
-            new MapsPackage(),
             new FIRAnalyticsPackage(),
             new VectorIconsPackage()
       );
     }
   };
-
   @Override
   public ReactNativeHost getReactNativeHost() {
     return mReactNativeHost;
