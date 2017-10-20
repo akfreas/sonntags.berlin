@@ -92,6 +92,7 @@ export default class LocationMapView extends Component {
                 id: location.id,
                 coordinates: [location.location.lat, location.location.lon],
                 type: 'point',
+                location: location,
             }
         });
         this.setState({

@@ -19,6 +19,14 @@ import {
 
 import { StatusBar } from 'react-native';
 
+import { 
+  AdMobBanner, 
+  AdMobInterstitial, 
+  PublisherBanner,
+  AdMobRewarded
+} from 'react-native-admob'
+
+
 
 import {
     loadLocations,
@@ -35,6 +43,7 @@ import LocationListView from '../components/LocationListView';
 import arrow from '../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
+import LocationListItem from '../components/LocationListItem';
 
 class MainLocationMap extends Component {
 
@@ -63,7 +72,8 @@ class MainLocationMap extends Component {
 
     locationSelected(location, source) {
         this.setState({
-            modalVisible: false
+            modalVisible: false,
+            selectedLocation: location
         });
         const { navigate } = this.props.navigation;
         var userLocation = "undefined"
@@ -151,23 +161,27 @@ class MainLocationMap extends Component {
                     centerLocation={this.props.userLocation}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
                 /> 
+            <AdMobBanner
+                  bannerSize="smartBannerPortrait"
+                  adUnitID="ca-app-pub-5197876894535655/8159389107"
+                  testDeviceID="EMULATOR"
+                  didFailToReceiveAdWithError={this.bannerError} />
+
             </View>
         )
 
     }
 
     onAnnotationTapped(annotation) {
+        let selectedLocation = this.state.locations.find((object)=> object.id == annotation.id);
+        this.setState({
+            selectedLocation: selectedLocation
+        });
     }
        
-
-    render() {
-
-        let width = Dimensions.get('window').width
-        let height = Dimensions.get('window').height
+    modalView() {
         return (
-        <View style={{flex: 1}}>
-
-            <Modal
+             <Modal
                 animationType="slide"
                 transparent={false}
                 visible={this.state.modalVisible}
@@ -181,9 +195,32 @@ class MainLocationMap extends Component {
                     onLocationSelected={this.locationSelected.bind(this)}
                 />
             </Modal>
+        )
+    }
 
+    render() {
+
+        let width = Dimensions.get('window').width
+        let height = Dimensions.get('window').height
+        let itemView = null;
+        if (this.state.selectedLocation) {
+            itemView = (
+                <View style={{backgroundColor: 'white', position: 'absolute', bottom: 0, width: width}}>
+                    <LocationListItem 
+                        location={this.state.selectedLocation}
+                        userLocation={this.props.userLocation}
+                        distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
+                        onLocationSelected={this.locationSelected.bind(this)}
+                    />
+                </View>
+            );
+        }
+        return (
+        <View style={{flex: 1}}>
+            {this.modalView()}
              <StatusBar barStyle = "light-content" hidden = {false}/>
             {this.mapView()}
+            {itemView}
         </View>
         );
     }

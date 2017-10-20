@@ -11,13 +11,6 @@ import Drawer from 'react-native-drawer';
 import DrawerMenu from '../components/DrawerMenu';
 import { RootStackNavigator } from './RootStackNavigator';
 
-import { 
-  AdMobBanner, 
-  AdMobInterstitial, 
-  PublisherBanner,
-  AdMobRewarded
-} from 'react-native-admob'
-
 import { addNavigationHelpers } from 'react-navigation';
 
 class _RootNavigator extends React.Component {
@@ -55,11 +48,7 @@ class _RootNavigator extends React.Component {
                     state: this.props.navigation,
                 })}
                     ref={(ref)=> this._navigator = ref}/>
-                              <AdMobBanner
-                  bannerSize="smartBannerPortrait"
-                  adUnitID="ca-app-pub-5197876894535655/8159389107"
-                  testDeviceID="EMULATOR"
-                  didFailToReceiveAdWithError={this.bannerError} />
+              
         </Drawer>);
   }
     componentWillReceiveProps(props) {
