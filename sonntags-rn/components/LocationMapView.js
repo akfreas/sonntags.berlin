@@ -82,16 +82,27 @@ export default class LocationMapView extends Component {
 
     componentWillReceiveProps(props) {
         if (props.locations) {
-            this.handleNewLocationProps(props.locations);
+            this.handleNewLocationProps(props.locations, props.selectedLocation);
         }
     }
 
-    handleNewLocationProps(locations) {
+    handleNewLocationProps(locations, selectedLocation) {
+
         let newAnnotations = locations.map((location) => {
+            let arrowImage = 'arrow.png';
+            if (selectedLocation && 
+                location.id == selectedLocation.id) {
+                arrowImage = 'arrow-selected.png'
+            }
             return {
                 id: location.id,
                 coordinates: [location.location.lat, location.location.lon],
                 type: 'point',
+                annotationImage: {
+                    source: {uri: arrowImage},
+                    height: 35,
+                    width: 35
+                },
                 location: location,
             }
         });

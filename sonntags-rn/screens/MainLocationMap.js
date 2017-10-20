@@ -161,6 +161,7 @@ class MainLocationMap extends Component {
                     locations={this.state.locations}
                     centerLocation={this.props.userLocation}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
+                    selectedLocation={this.state.selectedLocation}
                 /> 
             <AdMobBanner
                   bannerSize="smartBannerPortrait"
@@ -211,6 +212,7 @@ class MainLocationMap extends Component {
         let width = Dimensions.get('window').width
         let height = Dimensions.get('window').height
         let itemView = null;
+
         if (this.state.selectedLocation) {
             itemView = (
                 <Animated.View style={{
