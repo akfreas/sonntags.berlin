@@ -46,7 +46,7 @@ export default class LocationMapView extends Component {
     console.log('onUpdateUserLocation', location);
   };
   onOpenAnnotation = (annotation) => {
-    console.log('onOpenAnnotation', annotation);
+      this.props.onAnnotationTapped(annotation)
   };
   onRightAnnotationTapped = (e) => {
     console.log('onRightAnnotationTapped', e);
@@ -92,13 +92,6 @@ export default class LocationMapView extends Component {
                 id: location.id,
                 coordinates: [location.location.lat, location.location.lon],
                 type: 'point',
-                title: location.name,
-                subtitle: location.address,
-                rightCalloutAccessory: {
-                    source: {uri: 'https://cldup.com/9Lp0EaBw5s.png'},
-                    height: 25,
-                    width: 25
-                },
             }
         });
         this.setState({
@@ -139,7 +132,7 @@ export default class LocationMapView extends Component {
                       initialCenterCoordinate={this.state.center}
                       initialZoomLevel={9}
                       initialDirection={0}
-                      annotations={[]}
+                      annotations={this.state.annotations}
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
@@ -156,8 +149,7 @@ export default class LocationMapView extends Component {
                       onLongPress={this.onLongPress}
                       onTap={this.onTap}
                   >
-                      {this.renderAnnotations()}   
-  </MapView>
+            </MapView>
             </View>
         )
     }

@@ -217,10 +217,14 @@ class LocationListView extends Component {
                 <LocationMapView
                     locations={this.state.locations}
                     centerLocation={this.props.userLocation}
+                    onAnnotationTapped={this.onAnnotationTapped.bind(this)}
                 /> 
             </View>
         )
 
+    }
+
+    onAnnotationTapped(annotation) {
     }
 
     renderHeader() {
