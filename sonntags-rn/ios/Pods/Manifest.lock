@@ -64,7 +64,7 @@ PODS:
   - React/RCTWebSocket (0.48.4):
     - React/Core
     - React/RCTBlob
-  - RNVectorIcons (4.4.0):
+  - RNVectorIcons (4.4.2):
     - React
   - Yoga (0.48.4.React)
 
@@ -106,7 +106,7 @@ SPEC CHECKSUMS:
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   RCTMapboxGL: 6c6ad6452df4ceb53609b90c53bf50fd3d4c884d
   React: 6d68659481a8a56e0f6b3dbecd984d5b9bb2d6c5
-  RNVectorIcons: 208e7e1507e3bc800619caf1c2748ad6b6b68188
+  RNVectorIcons: c1821d56c775cc5a3bca66c77dfc8cb4a90d27e2
   Yoga: ccefa1454b2e9825dce3b2df98088b7f0e3c2675
 
 PODFILE CHECKSUM: e04c77b843ef8a15d5bad9ea479454eda287b8d3

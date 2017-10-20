@@ -216,6 +216,7 @@ class LocationListView extends Component {
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
                 <LocationMapView
                     locations={this.state.locations}
+                    centerLocation={this.props.userLocation}
                 /> 
             </View>
         )
