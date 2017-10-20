@@ -89,10 +89,10 @@ export default class LocationMapView extends Component {
     handleNewLocationProps(locations, selectedLocation) {
 
         let newAnnotations = locations.map((location) => {
-            let arrowImage = 'arrow.png';
+            let arrowImage = 'arrow';
             if (selectedLocation && 
                 location.id == selectedLocation.id) {
-                arrowImage = 'arrow-selected.png'
+                arrowImage = 'arrow_selected';
             }
             return {
                 id: location.id,
@@ -104,7 +104,7 @@ export default class LocationMapView extends Component {
                     width: 35
                 },
                 location: location,
-            }
+            };
         });
         this.setState({
             annotations: newAnnotations
@@ -112,7 +112,6 @@ export default class LocationMapView extends Component {
     }
 
     renderAnnotations() {
-        let arrow_img = require('../assets/images/arrow.png');
         let annotationViews = this.state.annotations.map((annotation) => {
             return (
               <Annotation
