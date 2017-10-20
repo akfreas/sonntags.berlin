@@ -72,8 +72,10 @@ class MainLocationMap extends Component {
     }
 
     locationSelected(location, source) {
+        let previousLocation = this.state.selectedLocation;
         this.setState({
             modalVisible: false,
+            previousLocation: previousLocation,
             selectedLocation: location
         });
         const { navigate } = this.props.navigation;
@@ -162,6 +164,7 @@ class MainLocationMap extends Component {
                     centerLocation={this.props.userLocation}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
                     selectedLocation={this.state.selectedLocation}
+                    onTap={this.onMapTapped.bind(this)}
                 /> 
             <AdMobBanner
                   bannerSize="smartBannerPortrait"
@@ -174,11 +177,34 @@ class MainLocationMap extends Component {
 
     }
 
-    onAnnotationTapped(annotation) {
-        let selectedLocation = this.state.locations.find((object)=> object.id == annotation.id);
+    onMapTapped() {
         this.setState({
-            selectedLocation: selectedLocation
+            previousLocation: this.state.selectedLocation
         });
+        setTimeout(() => {
+            if (this.state.previousLocation && this.state.selectedLocation 
+                && this.state.selectedLocation.id == this.state.previousLocation.id) {
+                this.setState({
+                    selectedLocation: null
+                });
+                this.hideLocationSummary();
+            }
+        }, 2000);
+    }
+
+    hideLocationSummary() {
+        Animated.timing(
+            this.state.bottomAnim,
+            {
+                toValue: -100,
+                duration: 200
+            }
+        ).start();
+    }
+
+
+    showLocationSummary() {
+
         Animated.timing(
             this.state.bottomAnim,
             {
@@ -186,6 +212,14 @@ class MainLocationMap extends Component {
                 duration: 200
             }
         ).start();
+    }
+
+    onAnnotationTapped(annotation) {
+        let selectedLocation = this.state.locations.find((object)=> object.id == annotation.id);
+        this.setState({
+            selectedLocation: selectedLocation
+        });
+        this.showLocationSummary();
     }
        
     modalView() {

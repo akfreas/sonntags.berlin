@@ -40,7 +40,7 @@ export default class LocationMapView extends Component {
     console.log('onRegionDidChange', location);
   };
   onRegionWillChange = (location) => {
-    console.log('onRegionWillChange', location);
+      
   };
   onUpdateUserLocation = (location) => {
     console.log('onUpdateUserLocation', location);
@@ -55,7 +55,9 @@ export default class LocationMapView extends Component {
     console.log('onLongPress', location);
   };
   onTap = (location) => {
-    console.log('onTap', location);
+      if (this.props.onTap) {
+          this.props.onTap();
+      }
   };
   onChangeUserTrackingMode = (userTrackingMode) => {
     this.setState({ userTrackingMode });
