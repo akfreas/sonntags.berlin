@@ -40,6 +40,7 @@ import LocationCallout from '../components/LocationCallout.js';
 import HamburgerBars from '../components/HamburgerBars.js';
 import NavigationBar from 'react-native-navbar';
 import LocationListView from '../components/LocationListView';
+import LocationDetailSummaryView from '../components/LocationDetailSummaryView';
 import arrow from '../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
@@ -161,7 +162,6 @@ class MainLocationMap extends Component {
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
                 <LocationMapView
                     locations={this.state.locations}
-                    centerLocation={this.props.userLocation}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
                     selectedLocation={this.state.selectedLocation}
                     onTap={this.onMapTapped.bind(this)}
@@ -255,11 +255,10 @@ class MainLocationMap extends Component {
                     bottom: this.state.bottomAnim, 
                     width: width,
                 }}>
-                    <LocationListItem 
+                    <LocationDetailSummaryView 
                         location={this.state.selectedLocation}
-                        userLocation={this.props.userLocation}
                         distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
-                        onLocationSelected={this.locationSelected.bind(this)}
+                        openWebsite={() => {}}
                     />
                 </Animated.View>
             );

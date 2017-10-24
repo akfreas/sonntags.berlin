@@ -25,6 +25,11 @@ Mapbox.setAccessToken(accessToken);
 
 export default class LocationMapView extends Component {
 
+
+    constructor(props) {
+        super(props);
+    }
+
 	state = {
 		center: {
 			latitude: 52.5174389,
@@ -46,7 +51,9 @@ export default class LocationMapView extends Component {
     console.log('onUpdateUserLocation', location);
   };
   onOpenAnnotation = (annotation) => {
-      this.props.onAnnotationTapped(annotation)
+      if (this.props.onAnnotationTapped) {
+          this.props.onAnnotationTapped(annotation);
+      }
   };
   onRightAnnotationTapped = (e) => {
     console.log('onRightAnnotationTapped', e);
@@ -76,6 +83,15 @@ export default class LocationMapView extends Component {
     });
   }
 
+    componentDidMount() {
+        this.handleNewLocationProps(this.props.locations);
+        if (this.props.centerCoordinate) {
+            this.setState({
+                center: this.props.centerCoordinate
+            });
+        }
+    }
+
   componentWillUnmount() {
     this._offlineProgressSubscription.remove();
     this._offlineMaxTilesSubscription.remove();
@@ -85,6 +101,12 @@ export default class LocationMapView extends Component {
     componentWillReceiveProps(props) {
         if (props.locations) {
             this.handleNewLocationProps(props.locations, props.selectedLocation);
+        }
+
+        if (props.centerCoordinate) {
+            this.setState({
+                center: props.centerCoordinate
+            });
         }
     }
 
@@ -143,7 +165,7 @@ export default class LocationMapView extends Component {
                       ref={map => { this._map = map; }}
                       style={{flex: 1}}
                       initialCenterCoordinate={this.state.center}
-                      initialZoomLevel={9}
+                      initialZoomLevel={this.props.initialZoomLevel ? this.props.initialZoomLevel : 9}
                       initialDirection={0}
                       annotations={this.state.annotations}
                       rotateEnabled={false}
