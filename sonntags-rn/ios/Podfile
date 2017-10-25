@@ -9,7 +9,7 @@ target 'SonntagsBerlin' do
   # Pods for SonntagsBerlin
   #
   #
-  pod "Yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  pod 'yoga', path: "./../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
   pod 'React', :path => '../node_modules/react-native', :subspecs => [
     'BatchedBridge', # Required For React Native 0.45.0+
     'Core',
