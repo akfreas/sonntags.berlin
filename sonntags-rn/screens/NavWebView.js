@@ -9,15 +9,13 @@ import {
     View,
     StyleSheet,
     WebView,
-    PropTypes
+    PropTypes,
+    StatusBar
 } from 'react-native';
 
 import calendarDays from '../assets/images/calendardays.png';
 import Analytics from 'react-native-firebase-analytics';
 import NavigationBar from 'react-native-navbar';
-
-
-
 
 export default class NavWebView extends Component {
 
@@ -53,6 +51,7 @@ export default class NavWebView extends Component {
 
         return(
             <View style={{flex: 1}}>
+                 <StatusBar barStyle = "dark-content" hidden = {false}/>
                  <NavigationBar
                     rightButton={this.rightButtonConfig()}
                     title={this.titleConfig()}

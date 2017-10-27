@@ -109,13 +109,12 @@ class MainLocationMap extends Component {
         if (this.state.selectedLocation.address) {
             locationShareMessage += "\n" + this.state.selectedLocation.address
         }
-        locationShareMessage += "\nOpen " + this.state.selectedLocation.name
-        locationShareMessage += "\n\nSee more at http://bit.ly/sonntags-shopping"
+        locationShareMessage += "\n" + this.state.selectedLocation.openingHoursString
+        locationShareMessage += "\n\nhttp://bit.ly/sonntags-shopping"
         Share.open({
             title: this.state.selectedLocation.name,
             message: locationShareMessage,
-            url: "http://sonntags.sashimiblade.com",
-            subject: "Check it out!"
+            subject: "Shop here on Sundays"
         });
     }
    
