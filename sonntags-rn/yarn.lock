@@ -277,9 +277,9 @@ aws4@^1.2.1, aws4@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
 
-axios@contentful/axios#fix/https-via-http-proxy:
+"axios@https://github.com/contentful/axios/archive/fix/https-via-http-proxy.tar.gz":
   version "0.16.2"
-  resolved "https://codeload.github.com/contentful/axios/tar.gz/e9a9c62ce02115f7a4d7f197ba43362dcf0ea3d0"
+  resolved "https://github.com/contentful/axios/archive/fix/https-via-http-proxy.tar.gz#bb534c3cb2894129e223c56f1bdad574a7c9f1b7"
   dependencies:
     follow-redirects "^1.2.3"
     is-buffer "^1.1.5"
@@ -1350,11 +1350,11 @@ contentful-sdk-core@^5.0.0:
     lodash "^4.17.4"
     qs "^6.5.1"
 
-contentful@^4.6.1:
-  version "4.6.4"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-4.6.4.tgz#59c4b11810ebe1e425ff5905b053007ec4820097"
+contentful@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-5.0.2.tgz#c9c1cdb800b4f82e4dccf98425285b6d8654a90b"
   dependencies:
-    axios contentful/axios#fix/https-via-http-proxy
+    axios "https://github.com/contentful/axios/archive/fix/https-via-http-proxy.tar.gz"
     contentful-sdk-core "^5.0.0"
     json-stringify-safe "^5.0.1"
     lodash "^4.17.4"
@@ -2156,10 +2156,6 @@ http-signature@~1.2.0:
     assert-plus "^1.0.0"
     jsprim "^1.2.2"
     sshpk "^1.7.0"
-
-http@0.0.0:
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/http/-/http-0.0.0.tgz#86e6326d29c5d039de9fac584a45689f929f4f72"
 
 iconv-lite@0.4.11:
   version "0.4.11"
