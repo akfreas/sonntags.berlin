@@ -10,15 +10,23 @@ target 'SonntagsBerlin' do
   #
   #
   pod 'yoga', path: "./../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
-  pod 'React', :path => '../node_modules/react-native', :subspecs => [
-    'BatchedBridge', # Required For React Native 0.45.0+
-    'Core',
-    'DevSupport', # Include this to enable In-App Devmenu if RN >= 0.43
-    'RCTText',
-    'RCTNetwork',
-    'RCTWebSocket', # needed for debugging
-    # Add any other subspecs you want to use in your project
-  ]
+  pod 'React',
+    :path => "../node_modules/react-native",
+    :subspecs => [
+      "Core",
+      "ART",
+      "RCTActionSheet",
+      "RCTAnimation",
+      "RCTCameraRoll",
+      "RCTGeolocation",
+      "RCTImage",
+      "RCTNetwork",
+      "RCTText",
+      "RCTVibration",
+      "RCTWebSocket",
+      "DevSupport",
+      "BatchedBridge"
+    ]
   pod 'Firebase/Messaging'
   pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Core'
