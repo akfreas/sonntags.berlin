@@ -26,7 +26,10 @@ import {
   AdMobRewarded
 } from 'react-native-admob'
 
-
+import { 
+    pad,
+    openExternalApp
+} from '../utilities';
 
 import {
     loadLocations,
@@ -34,17 +37,22 @@ import {
     distanceFromUserLocation,
 } from '../actions';
 
+import NavWebView from '../screens/NavWebView';
 import Analytics from 'react-native-firebase-analytics';
-import Icon from 'react-native-vector-icons/Entypo';
 import LocationCallout from '../components/LocationCallout.js';
 import HamburgerBars from '../components/HamburgerBars.js';
 import NavigationBar from 'react-native-navbar';
 import LocationListView from '../components/LocationListView';
 import LocationDetailSummaryView from '../components/LocationDetailSummaryView';
+import LocationActionComponent from '../components/LocationActionComponent';
 import arrow from '../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
 import LocationListItem from '../components/LocationListItem';
+import Share, {ShareSheet, Button} from 'react-native-share';
+
+let width = Dimensions.get('window').width
+let height = Dimensions.get('window').height
 
 class MainLocationMap extends Component {
 
@@ -52,30 +60,21 @@ class MainLocationMap extends Component {
         title: navigation.state.params.category.name,
         headerRight:<HamburgerBars onPress={()=> navigation.state.params.showList()}/>
     });
-
+    
     constructor(props) {
         super(props);
         this.state = {
             locations: [],
-            modalVisible: false,
+            listViewModalVisible: false,
             bottomAnim: new Animated.Value(-100),
+            websiteModalVisible: false,
         };
-    }
-
-    openExternalApp(url) {
-      Linking.canOpenURL(url).then(supported => {
-        if (supported) {
-          Linking.openURL(url);
-        } else {
-          console.log('Don\'t know how to open URI: ' + url);
-        }
-      });
     }
 
     locationSelected(location, source) {
         let previousLocation = this.state.selectedLocation;
         this.setState({
-            modalVisible: false,
+            listViewModalVisible: false,
             previousLocation: previousLocation,
             selectedLocation: location
         });
@@ -97,8 +96,29 @@ class MainLocationMap extends Component {
             distanceFromUser: distanceFromUser
         });
     }
+ 
+    openInMaps() {
+        Analytics.logEvent('open_maps', {'location_name': this.state.selectedLocation.name});
+        var url = 'https://www.google.com/maps/search/?api=1&query=' + this.state.selectedLocation.address;
+        openExternalApp(url)
+    }
 
-    
+    shareSelectedLocation() {
+        let locationShareMessage = "Shop here on Sundays:"
+        locationShareMessage += "\n" + this.state.selectedLocation.name 
+        if (this.state.selectedLocation.address) {
+            locationShareMessage += "\n" + this.state.selectedLocation.address
+        }
+        locationShareMessage += "\nOpen " + this.state.selectedLocation.name
+        locationShareMessage += "\n\nSee more at http://bit.ly/sonntags-shopping"
+        Share.open({
+            title: this.state.selectedLocation.name,
+            message: locationShareMessage,
+            url: "http://sonntags.sashimiblade.com",
+            subject: "Check it out!"
+        });
+    }
+   
 
     locationsSortedByDistance(locations) {
 
@@ -113,11 +133,9 @@ class MainLocationMap extends Component {
 
     }
 
-    
-
     showList() {
         this.setState({
-            modalVisible: true
+            listViewModalVisible: true
         });
     }
 
@@ -221,51 +239,86 @@ class MainLocationMap extends Component {
         });
         this.showLocationSummary();
     }
+
+    modalWebView() {
+        if (this.state.selectedLocation) {
+            return (
+                 <Modal
+                    animationType="slide"
+                    transparent={false}
+                    visible={this.state.websiteModalVisible}
+                    onRequestClose={() => {}}
+                >
+                    <NavWebView 
+                        uri={this.state.selectedLocation.websiteUrl}
+                        title={this.state.selectedLocation.name}
+                        rightButtonPressed={() => this.setState({ websiteModalVisible: false })}
+                    />
+                </Modal>
+            )
+        } else {
+            return null
+        }
+    }
        
-    modalView() {
+    modalListView() {
         return (
              <Modal
                 animationType="slide"
                 transparent={false}
-                visible={this.state.modalVisible}
+                visible={this.state.listViewModalVisible}
                 onRequestClose={() => {}}
             >
                 <LocationListView 
                     category={this.props.category}
                     locations={this.state.locations}
                     userLocation={this.props.userLocation}
-                    onCloseButtonTapped={() => this.setState({modalVisible: false})}
+                    onCloseButtonTapped={() => this.setState({listViewModalVisible: false})}
                     onLocationSelected={this.locationSelected.bind(this)}
                 />
             </Modal>
         )
     }
 
+    openWebsite() {
+        this.setState({
+            websiteModalVisible: true
+        });
+    }
+
+    itemView() {
+        return (
+            <Animated.View style={{
+                backgroundColor: 'white', 
+                position: 'absolute', 
+                bottom: this.state.bottomAnim, 
+                width: width,
+            }}>
+                <LocationDetailSummaryView 
+                    location={this.state.selectedLocation}
+                    distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
+                    openWebsite={() => this.openWebsite()}
+                    startPhoneCall={() => {}}
+                />
+                <LocationActionComponent
+                    googleMapsAction={() => this.openInMaps()}
+                    shareAction={() => this.shareSelectedLocation()}
+                 />
+            </Animated.View>
+        )
+    }
+
     render() {
 
-        let width = Dimensions.get('window').width
-        let height = Dimensions.get('window').height
         let itemView = null;
 
         if (this.state.selectedLocation) {
-            itemView = (
-                <Animated.View style={{
-                    backgroundColor: 'white', 
-                    position: 'absolute', 
-                    bottom: this.state.bottomAnim, 
-                    width: width,
-                }}>
-                    <LocationDetailSummaryView 
-                        location={this.state.selectedLocation}
-                        distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
-                        openWebsite={() => {}}
-                    />
-                </Animated.View>
-            );
+            itemView = this.itemView()
         }
         return (
             <View style={{flex: 1}}>
-                {this.modalView()}
+                {this.modalListView()}
+                {this.modalWebView()}
                  <StatusBar barStyle = "light-content" hidden = {false}/>
                 {this.mapView()}
                 {itemView}

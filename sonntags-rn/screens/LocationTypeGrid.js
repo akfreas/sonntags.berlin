@@ -85,8 +85,6 @@ class LocationTypeGrid extends Component {
         }
     }
 
-    
-
     renderRow(item) {
         return (
             <LocationTypeGridItem 

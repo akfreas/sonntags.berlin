@@ -16,8 +16,12 @@ import {
     TOGGLE_DRAWER,
     SET_DRAWER_GESTURES_ENABLED,
 } from '../constants/ActionTypes';
+import { 
+    pad,
+} from '../utilities';
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
+import moment from 'moment';
 import Analytics from 'react-native-firebase-analytics';
 const contentfulClient = createClient({
     space: '2dktdnk1iv2v',
@@ -88,6 +92,7 @@ function loadLocations(category) {
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;
+            fields.openingHoursString = formatHourString(fields);
             return fields;
         }, (error)=> {
             console.log(error);
@@ -129,6 +134,17 @@ function distanceFromUserLocation(location, userLocation) {
         return distance
 }
 
+function formatHourString(location) {
+
+    let closingTimeString = pad(location.closingTime, 4);
+    let openingTimeString = pad(location.openingTime, 4);
+    let closingTime = moment(closingTimeString, "HHmm").format("HH:mm");
+    let openingTime = moment(openingTimeString, "HHmm").format("HH:mm");
+    let timeString = "Open Sundays, " + openingTime + " - " +  closingTime;
+        
+    return timeString; 
+}
+
 function loadOpenSundays() {
 
     Analytics.logEvent('load_open_sundays');
@@ -160,4 +176,5 @@ module.exports = {
     getUserLocation,
     setDrawerGesturesEnabled,
     distanceFromUserLocation,
+    formatHourString,
 }
