@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 import messaging from 'firebase';
 import { Platform } from 'react-native';
-import { createClient } from 'contentful';
+const { createClient } = require('contentful/dist/contentful.browser.min.js');
 
 const firebaseConfig = {
   apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
