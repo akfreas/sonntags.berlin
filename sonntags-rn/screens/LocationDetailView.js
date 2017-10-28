@@ -37,7 +37,7 @@ export default class LocationDetailView extends Component {
 
         let location = this.props.location;
         return(
-        <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
+        <View style={{flex: 1}}>
           <View style={{flex: 1}}>
               <LocationDetailSummaryView 
                   location={this.props.location} 
@@ -47,7 +47,7 @@ export default class LocationDetailView extends Component {
               <LocationMapView 
                   locations={[location]}
                   initialZoomLevel={11}
-                  style={{flex: 2}}
+                  style={{flex: 1}}
                   centerCoordinate={{
                       latitude: this.props.location.location.lat,
                       longitude: this.props.location.location.lon,
@@ -65,15 +65,9 @@ export default class LocationDetailView extends Component {
     }
 
     componentDidMount() {
-
-        if (Platform.OS === 'ios') {
-            
-        }
-
     }
     
     componentDidUpdate() {
-
         console.log("location: " + this.props.location.name);
     }
 }

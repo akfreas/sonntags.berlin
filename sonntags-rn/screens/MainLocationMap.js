@@ -98,8 +98,18 @@ class MainLocationMap extends Component {
     }
  
     openInMaps() {
+
         Analytics.logEvent('open_maps', {'location_name': this.state.selectedLocation.name});
-        var url = 'https://www.google.com/maps/search/?api=1&query=' + this.state.selectedLocation.address;
+        let queryString = null;
+        if (this.state.selectedLocation.address) {
+            queryString = this.state.selectedLocation.address;
+        } else {
+            queryString = this.state.selectedLocation.location.lat + "+" + this.state.selectedLocation.location.lon;
+        }
+
+
+
+        var url = 'https://www.google.com/maps/search/?api=1&query=' + queryString;
         openExternalApp(url)
     }
 
@@ -114,7 +124,11 @@ class MainLocationMap extends Component {
         Share.open({
             title: this.state.selectedLocation.name,
             message: locationShareMessage,
-            subject: "Shop here on Sundays"
+            subject: "Shop here on Sundays",
+        }).then((result) => {
+            Analytics.logEvent('location_share_succeeded');
+        }).catch((result) => {
+            Analytics.logEvent('location_share_cancelled');
         });
     }
    
@@ -287,7 +301,12 @@ class MainLocationMap extends Component {
 
     itemView() {
         return (
-            <Animated.View style={{
+            <Animated.View 
+                style={{
+                    shadowOffset: {width: 0, height: 0},
+                    shadowOpacity: 0.2,
+                    shadowRadius: 5.0,
+                    shadowColor: 'black',
                 backgroundColor: 'white', 
                 position: 'absolute', 
                 bottom: this.state.bottomAnim, 

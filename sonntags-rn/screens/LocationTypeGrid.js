@@ -101,13 +101,13 @@ class LocationTypeGrid extends Component {
     render() {
         return (
             <View style={{ height: "100%"}}>
-
                 <ListView 
                     style={styles.categoryTable}
                     renderSeparator={this.renderSeparator.bind(this)} 
                     contentContainerStyle={styles.locationGridList}
                     dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}/>
+                    renderRow={this.renderRow.bind(this)}
+                />
             </View>
         );
     }
