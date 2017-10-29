@@ -9,7 +9,9 @@ target 'SonntagsBerlin' do
   # Pods for SonntagsBerlin
   #
   #
-  pod 'yoga', path: "./../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
+    pod 'Yoga',
+    :path => "../node_modules/react-native/ReactCommon/yoga"
+
   pod 'React',
     :path => "../node_modules/react-native",
     :subspecs => [
@@ -25,7 +27,6 @@ target 'SonntagsBerlin' do
       "RCTVibration",
       "RCTWebSocket",
       "DevSupport",
-      "BatchedBridge"
     ]
   pod 'Firebase/Messaging'
   pod 'Google-Mobile-Ads-SDK'
@@ -37,6 +38,12 @@ target 'SonntagsBerlin' do
     inherit! :search_paths
     # Pods for testing
   end
-
+    post_install do |installer|
+      installer.pods_project.targets.each do |target|
+        if target.name == "React"
+          target.remove_from_project
+        end
+      end
+    end
 end
 

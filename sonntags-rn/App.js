@@ -19,7 +19,7 @@ import thunkMiddleware from 'redux-thunk';
 import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-var styles = require('./assets/styles');
+var styles = require('./assets/styles/index.js');
 
 
 

@@ -3,6 +3,7 @@ package com.sashimiblade.sonntags;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.evollu.react.fa.FIRAnalyticsPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import cl.json.RNSharePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
@@ -28,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new FIRAnalyticsPackage(),
             new ReactNativeMapboxGLPackage(),
             new RNSharePackage(),
             new RNAdMobPackage(),
