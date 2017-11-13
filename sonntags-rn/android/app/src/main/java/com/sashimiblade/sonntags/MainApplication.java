@@ -1,13 +1,12 @@
 package com.sashimiblade.sonntags;
 
-import android.app.Application;
+import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import com.evollu.react.fa.FIRAnalyticsPackage;
 import com.mapbox.reactnativemapboxgl.ReactNativeMapboxGLPackage;
 import cl.json.RNSharePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
-import com.evollu.react.fa.FIRAnalyticsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -17,7 +16,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainApplication extends Application implements ReactApplication {
+public class MainApplication extends MultiDexApplication implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -33,7 +32,6 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactNativeMapboxGLPackage(),
             new RNSharePackage(),
             new RNAdMobPackage(),
-            new FIRAnalyticsPackage(),
             new VectorIconsPackage()
       );
     }

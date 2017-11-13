@@ -5,39 +5,37 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.003035">
+      <testcase classname="fastlane.lanes" name="0: Verifying required fastlane version" time="0.002254">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.002607">
+      <testcase classname="fastlane.lanes" name="1: default_platform" time="0.00224">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: cocoapods" time="18.054304">
+      <testcase classname="fastlane.lanes" name="2: cocoapods" time="16.206687">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: increment_build_number" time="6.581102">
+      <testcase classname="fastlane.lanes" name="3: increment_build_number" time="7.614601">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: sigh" time="8.878395">
+      <testcase classname="fastlane.lanes" name="4: sigh" time="10.294142">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: gym" time="193.1392">
+      <testcase classname="fastlane.lanes" name="5: gym" time="331.899548">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: pilot" time="978.32366">
-        
-          <failure message="/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/actions/actions_helper.rb:48:in `execute_action'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:234:in `block in execute_action'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:230:in `chdir'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:230:in `execute_action'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:148:in `trigger_action_by_name'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/fast_file.rb:146:in `method_missing'&#10;Fastfile:37:in `block (2 levels) in parsing_binding'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/lane.rb:33:in `call'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:49:in `block in execute'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:45:in `chdir'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/runner.rb:45:in `execute'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/lane_manager.rb:54:in `cruise_lane'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/command_line_handler.rb:30:in `handle'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/commands_generator.rb:104:in `block (2 levels) in run'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.5/lib/commander/command.rb:178:in `call'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.5/lib/commander/command.rb:153:in `run'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.5/lib/commander/runner.rb:476:in `run_active_command'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane_core/lib/fastlane_core/ui/fastlane_runner.rb:66:in `run!'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/commander-fastlane-4.4.5/lib/commander/delegates.rb:15:in `run!'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/commands_generator.rb:303:in `run'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/commands_generator.rb:42:in `start'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/fastlane/lib/fastlane/cli_tools_distributor.rb:66:in `take_off'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/fastlane-2.62.0/bin/fastlane:20:in `&lt;top (required)&gt;'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/bin/fastlane:22:in `load'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/bin/fastlane:22:in `&lt;top (required)&gt;'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli/exec.rb:74:in `load'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli/exec.rb:74:in `kernel_load'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli/exec.rb:27:in `run'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli.rb:360:in `exec'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/vendor/thor/lib/thor.rb:369:in `dispatch'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli.rb:20:in `dispatch'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/vendor/thor/lib/thor/base.rb:444:in `start'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/cli.rb:10:in `start'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/exe/bundle:35:in `block in &lt;top (required)&gt;'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/lib/bundler/friendly_errors.rb:121:in `with_friendly_errors'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/lib/ruby/gems/2.5.0/gems/bundler-1.15.1/exe/bundle:27:in `&lt;top (required)&gt;'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/bin/bundle:22:in `load'&#10;/Users/akfreas/.rbenv/versions/2.4.0-dev/bin/bundle:22:in `&lt;main&gt;'&#10;&#10;765: unexpected token at '&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&#10;&lt;head&gt;&#10;&lt;title&gt;&lt;/title&gt;&#10;&lt;link rel=&quot;stylesheet&quot; href=&quot;/styles/main.css&quot;&gt;&#10;&lt;style type='text/css'&gt;&#10;    /*include ../../dist/styles/main.css*/&#10;&lt;/style&gt;&#10;&lt;/head&gt;&#10;&#10;&lt;body&gt;&lt;div id=&quot;wrapper&quot; class=&quot;j42&quot;&gt;&#10;&lt;h2&gt;Internal Server Error&lt;/h2&gt;&lt;/div&gt;&#10;&#10;&lt;div class=&quot;footer&quot;&gt;&#10;    &lt;p&gt;Copyright &amp;copy; &lt;span id='year'&gt;2015&lt;/span&gt; Apple Inc. All rights reserved.&lt;/p&gt;&#10;    &lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.apple.com/legal/internet-services/itunes/us/terms.html&quot;&gt;Terms of Service&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.apple.com/legal/privacy&quot;&gt;Privacy Policy&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.apple.com/support/&quot;&gt;Contact Us&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&#10;&lt;/div&gt;&#10;&#10;&#10;&lt;script type='text/javascript'&gt;(function() {&#10;    var isIos = navigator.userAgent.match(/(iPod|iPhone|iPad)/);&#10;    document.body.setAttribute( 'class', (!isIos) ? 'otherBrowser' : 'isMobileSafari' )&#10;    var yearEl = document.getElementById('year');&#10;    if (yearEl) { yearEl.textContent = new Date().getFullYear(); }&#10;})();&#10;&lt;/script&gt;&#10;&#10;&lt;/body&gt;&#10;&lt;/html&gt;'" />
+      <testcase classname="fastlane.lanes" name="6: pilot" time="703.378926">
         
       </testcase>
     
