@@ -17,6 +17,7 @@ import arrow from '../assets/images/map-annotation.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Hyperlink from 'react-native-hyperlink';
 import LocationMapView from '../components/LocationMapView.js';
+import Polyglot from 'polyglot';
 
 import { 
     pad,

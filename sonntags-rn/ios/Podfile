@@ -31,6 +31,7 @@ target 'SonntagsBerlin' do
   pod 'Firebase/Messaging'
   pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Core'
+  pod 'RNI18n', :path => '../node_modules/react-native-i18n'
   pod 'Firebase/Crash'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'RCTMapboxGL', :path => '../node_modules/react-native-mapbox-gl/ios'
