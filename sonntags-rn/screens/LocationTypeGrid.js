@@ -26,6 +26,9 @@ import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
+import {create_i18n} from '../utilities';
+
+var I18n = create_i18n();
 
 var styles = require('../assets/styles/index.js');
 
@@ -68,7 +71,7 @@ class LocationTypeGrid extends Component {
 
         this.props.navigation.setParams({ openDrawer: this.openDrawer.bind(this) });
         loadCategories().then((categories) => {
-            let withSpecialSundays = [{name: 'Special Sunday Openings', id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
+            let withSpecialSundays = [{name: I18n.t('special_opening_days_title'), id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
             let ds = this.state.dataSource.cloneWithRows(withSpecialSundays);
             this.setState({
                 dataSource: ds

@@ -17,6 +17,10 @@ import NavWebView from '../screens/NavWebView';
 import Share, {ShareSheet, Button} from 'react-native-share';
 import { StatusBar } from 'react-native'
 
+import {create_i18n} from '../utilities';
+
+var I18n = create_i18n();
+
 import calendarDays from '../assets/images/calendardays.png';
 import { 
     closeDrawer,
@@ -47,32 +51,32 @@ class DrawerMenu extends Component {
 
 
     addBusinessTapped() {
-        this.showPage('Add Business', 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')
+        this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')
     }
 
     aboutTapped() {
-        this.showPage('About','https://sonntags.sashimiblade.com/');
+        this.showPage(I18n.t('about'),'https://sonntags.sashimiblade.com/');
     }
 
     feedbackTapped() {
-        this.showPage('Give Feedback', 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
+        this.showPage(I18n.t('give_feedback'), 'https://goo.gl/forms/mBVANkMs4aT4rcEW2');
     }
 
     shareApp() {
         Share.open({
             title: "Sonntags",
-            message: "Find shops open on Sundays with the Sonntags app!",
+            message: I18n.t('share_message'),
             url: "http://sonntags.sashimiblade.com",
-            subject: "Check it out!"
+            subject: I18n.t('share_subject'),
         });
     }
 
     cellComponentDef() {
         return [
-            {title: 'Add Business', target: this.addBusinessTapped.bind(this)},
-            {title: 'Feedback', target: this.feedbackTapped.bind(this)},
-            {title: 'About', target: this.aboutTapped.bind(this)},
-            {title: 'Share Sonntags', target: this.shareApp.bind(this)},
+            {title: I18n.t('add_business'), target: this.addBusinessTapped.bind(this)},
+            {title: I18n.t('give_feedback'), target: this.feedbackTapped.bind(this)},
+            {title: I18n.t('about'), target: this.aboutTapped.bind(this)},
+            {title: I18n.t('share'), target: this.shareApp.bind(this)},
         ]
     }
 

@@ -18,7 +18,10 @@ import {
 } from '../constants/ActionTypes';
 import { 
     pad,
+    create_i18n,
 } from '../utilities';
+
+var I18n = create_i18n();
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 import moment from 'moment';
@@ -48,8 +51,16 @@ function closeDrawer() {
 }
 
 function loadCategories() {
-    return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE'}).then((entries) => {
+    var locale = I18n.currentLocale().split('-');
+    if (locale.length > 0) {
+        locale = locale[0];
+    } else {
+        locale = "en";
+    }
+
+    return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
             return entries.items[0].fields.list.map((category) => {
+
                 let fields = category.fields;
                 fields.id = category.sys.id;
                 return fields;
@@ -140,7 +151,7 @@ function formatHourString(location) {
     let openingTimeString = pad(location.openingTime, 4);
     let closingTime = moment(closingTimeString, "HHmm").format("HH:mm");
     let openingTime = moment(openingTimeString, "HHmm").format("HH:mm");
-    let timeString = "Open Sundays, " + openingTime + " - " +  closingTime;
+    let timeString = I18n.t('open_sundays') + openingTime + " - " +  closingTime;
         
     return timeString; 
 }
@@ -150,7 +161,7 @@ function loadOpenSundays() {
     Analytics.logEvent('load_open_sundays');
     return contentfulClient.getEntries({
         'content_type': 'sundayOpenings',
-        // 'field.date[gte]': new Date()
+        'fields.date[gte]': new Date(),
     }).then((response) => {
         return response.items.map((day) => {
             let fields = day.fields;

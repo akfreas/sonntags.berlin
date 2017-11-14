@@ -17,8 +17,9 @@ import arrow from '../assets/images/map-annotation.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Hyperlink from 'react-native-hyperlink';
 import LocationMapView from '../components/LocationMapView.js';
-import Polyglot from 'polyglot';
+import {create_i18n} from '../utilities';
 
+var I18n = create_i18n();
 import { 
     pad,
     openExternalApp
@@ -38,7 +39,7 @@ export default class LocationDetailSummaryView extends Component {
                         <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.props.openWebsite.bind(this)}>
                             <Text style={styles.locationListItemDescriptionText}>{this.props.location.openingHoursString}</Text>
                             {distance ?
-                                <Text style={styles.locationListItemDistanceText}>{distance} km away</Text> : <Text/>
+                                <Text style={styles.locationListItemDistanceText}>{distance} {I18n.t('distance')}</Text> : <Text/>
                             }
                             <Text style={styles.locationListItemDescriptionText}>{this.props.location.websiteUrl}</Text>
                         </Hyperlink>

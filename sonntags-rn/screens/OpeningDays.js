@@ -11,6 +11,9 @@ import moment from 'moment';
 import Hyperlink from 'react-native-hyperlink';
 import { loadOpenSundays } from '../actions';
 
+import {create_i18n} from '../utilities';
+
+var I18n = create_i18n();
 
 class OpeningDayItem extends Component {
 
@@ -40,7 +43,7 @@ export default class OpeningDaysList extends Component {
 
     
     static navigationOptions = {
-        title: "Special Opening Days"
+        title: I18n.t('special_opening_days_title')
     };
  
     constructor(props) {
@@ -93,10 +96,9 @@ export default class OpeningDaysList extends Component {
 
                             <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>Most stores aren't open on Sunday. {'\n'}</Text> 
-                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>The city of Berlin allows for some exceptions. On these Sundays,
-                            many stores will be open for business.  Each opening day takes place during another city-wide event, listed below.</Text>
-                            <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{"\n\n"}More info at http://bit.ly/sonntags-berlin</Text>
+                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>{I18n.t('opening_days_bold')}{'\n'}</Text> 
+                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{I18n.t('opening_days_text')}</Text>
+                            <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{"\n\n"}{I18n.t('more_info')}</Text>
                     </Text>
                         </Hyperlink>
 
