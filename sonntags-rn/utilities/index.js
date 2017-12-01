@@ -43,10 +43,10 @@ function create_i18n() {
             give_feedback: 'Feedback Teilen',
             about: 'Info',
             share: 'Sonntags Teilen',
-            share_message: 'Finde Geschäfte, die am Sonntags geöffnet sind!',
+            share_message: 'Finde Geschäfte die am Sonntag geöffnet sind!',
             share_subject: 'Guck mal hin!',
-            opening_days_bold: 'Sonntag is doch kein Offentag.',
-            opening_days_text: 'Ausser diese Tage, die in Berlin eine besondere Veranstaltung stattfindet. Am deisen Sonntags kann mann in viele Läden kaufen gehen.',
+            opening_days_bold: 'Sonntags sind die meisten Geschäfte nicht offen.',
+            opening_days_text: 'Die Stadt Berlin erlaubt einige Ausnahmen. An diesen Sonntagen werden viele Geschäfte geöffnet sein. Jeder Verkaufsoffene Sonntag ist in Verbindung mit einer besondere Veranstaltung nachfolgend aufgeführt.',
             more_info: 'Mehr Infos: http://bit.ly/sonntags-berlin',
             special_opening_days_title: 'Sonderöffnungen',
         }

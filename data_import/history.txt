@@ -1,0 +1,743 @@
+ 1/1: q
+ 6/1: emoj = ['💸'', '📲'', '🐖']
+ 6/2: emoj = ['💸'', '📲'', '🐖'']
+ 6/3: emoj = ['💸'', '📲', '🐖'']
+ 6/4: emoj = ['💸'', '📲', '🐖']
+ 6/5: emoj = ['💸', '📲', '🐖']
+ 6/6: emoj
+ 6/7: print(emoj)
+ 6/8: print emoji
+ 6/9: print emoj
+6/10:
+print emoj[0\
+]
+s = "yes I think that's a good idea."
+s.split(' ')
+ 7/1: from parse_rest import query
+ 8/1: from parse_rest
+from parse_rest import query
+query
+from parse_rest import core
+from parse_rest import Object
+from parse_rest.core import Object
+from parse_rest.datatypes import Object
+10/7:
+class Image(Object):
+    pass
+Image.Query.all()
+r = ['a', 'b', 'c', 'd']
+25/2:
+for (index, val) in r:
+    print index,val
+q
+a = [1, 2, 3, 4, 5]
+a[:6]
+a[:63]
+a = FF
+from umm_app.models import UMMGroup
+UMMGroup.objects.for_admin
+UMMUser.objects.all()
+from umm_app.models import UMMUser
+UMMUser.objects.all()
+from umm_app.models import UMMUser
+UMMUser.objects.all()
+a = UMMUser.objects.all()[1]
+a
+from umm_app.models import UMMGroup
+UMMGroup.objects.for_admin(a)
+from umm_app.models import UMMGroup
+from umm_app.models import UMMUser
+a = UMMUser.objects.all()[1]
+a
+UMMGroup.objects.for_admin(a)
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users'))
+from django.db.models import Count
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users'))
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users'))[0].user_count
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True))[0]
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True))
+34/12:
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=Count('roles')
+)
+from django.db import models
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))
+from umm_app.models import Role
+UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))
+r = t[0]
+r
+r.role_count
+r.user_count
+t = UMMGroup.objects.for_admin(a).annotate(user=a, user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))
+r.user_count
+r.role
+r.roles
+t.query
+print t.query
+t = UMMGroup.objects.for_admin(a).annotate(user=a, user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles')
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles')
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles').get(id=1)
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles').get(project__in=a.projects)
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles').get(project=a.projects[0])
+a.projects
+a
+from umm_app.models import Project
+a.roles
+a.roles.all()
+Role.objects.all()
+r = Role.objects.all()[0]
+a.roles.add(r)
+a.save()
+a.projects
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('roles').get(project=a.projects[0])
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).select_related('project').get(project=a.projects[0])
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related('project').get(project=a.projects[0])
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related('roles').get(project=a.projects[0])
+t
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related('roles')
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related('roles').filter(project__in=a.projects)
+t
+print t.query
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related('roles').filter(project__in=a.projects)
+34/53:
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(Prefetch('roles', queryset=Roles.objects.filter(project__in=a.projects))
+
+)
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Roles.objects.filter(project__in=a.projects)))
+from umm_app.models import Role
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))
+t.query
+print t.query
+r = t[0]
+r.roles
+r.roles.all()
+a.projects
+[x.project for x inr.roles.all()]
+[x.project for x in r.roles.all()]
+Project.objects.all()
+Project(name='number2').save()
+Project.objects.all()
+Role(name='Cleaner', project=Project.objects.get(name='number2')).save()
+Role.objects.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))
+t
+d = t[0]
+d.roles.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))[0]
+t.roles
+t.roles.all()
+t
+Roles.object.get(name="Cleaner")
+Role.object.get(name="Cleaner")
+Role.objects.get(name="Cleaner")
+w = Role.objects.get(name="Cleaner")
+t.roles.add(w)
+t.save()
+t.roles.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))
+t
+t = t[0]
+t
+t.roles.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))[0]
+t.roles.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))[0]
+t.roles.all()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))[0]
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField())))
+t.query
+print t.query
+print t.roles
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))[0]
+t.roles.get_queryset
+t.roles.raw
+t.roles.raw()
+t = UMMGroup.objects.for_admin(a).annotate(user_count=Count('users', distinct=True), role_count=models.Sum(models.Case(models.When(roles__in=Role.objects.for_admin(a), then=1), default=0, output_field=models.IntegerField()))).prefetch_related(models.Prefetch('roles', queryset=Role.objects.filter(project__in=a.projects)))[0]
+t
+t.role_count
+t.roles.count()
+a
+a.projects
+a.roles
+a.roles.all()
+z = a.roles.all()[0]
+z.users
+z.users.remove(a)
+z.save()
+z.users.add(a)
+z.save()
+a.adminProjects.all()
+UMMUser.objects.get(username="not_superuser")
+q = UMMUser.objects.get(username="not_superuser")
+a.adminProjects.add
+p
+from urrlib2 import *
+from urllib2 import *
+urlparse("https:%2F%2Fs3.amazonaws.com%2Felasticbeanstalk-samples-us-east-1%2Feb-parse-server-sample%2Fparse-server-example.zip")
+urlparse.urlunparse("https:%2F%2Fs3.amazonaws.com%2Felasticbeanstalk-samples-us-east-1%2Feb-parse-server-sample%2Fparse-server-example.zip")
+import urllib
+urllib.unquote("https:%2F%2Fs3.amazonaws.com%2Felasticbeanstalk-samples-us-east-1%2Feb-parse-server-sample%2Fparse-server-example.zip")
+import requests
+requests.get("https://emio-frontend.com/api/prod/v2.01/")
+requests.get("https://emio-frontend.com/api/prod/v2.01/")
+rx = requests.get("https://emio-frontend.com/api/prod/v2.01/")
+rx.content.json()
+rx.json()
+rx = requests.get("https://emio-frontend.com/api/prod/v2.01/cars")
+rx.json()
+cs = rx.json()
+len(cs)
+[v['reservationState'] for v in cs]
+[v['reservationState'] for v in cs if v['reservationState'] == 1]
+rx = requests.get("https://emio-frontend.com/api/prod/v2.01/cars").json()
+tx
+rx
+len(rx)
+rx = requests.get("https://emio-frontend.com/api/prod/v2.04/users/11798/").json()
+rx = requests.get("https://emio-frontend.com/api/prod/v2.04/users/11798/").json()
+rx.json()
+rx
+rx = requests.get("https://emio-frontend.com/api/prod/v2.01/users/11798/").json()
+rx
+rx = requests.get("https://emio-frontend.com/api/prod/v2.01/users/11798/").json()
+tx
+rx
+45/1:
+[1, 2, 3].join(",")(
+
+)
+a = [1, 2, 3]
+a.join
+join
+",".join(a)
+46/1:
+if any((c in chars) for c in s):
+
+    
+    d
+    ei
+bool("false")
+a= [2, 3]
+a.first
+[1, 2, 3].join("d")
+",".join
+",".join("3")
+",".join(["3"])
+"23423".join(["3"])
+join
+str.join
+",".join(["a"])
+",".join(["a", "b"])
+md5
+from crypt
+from crypt import md5
+import crypt
+crypt.crypt
+crypt.crypt()
+import md5
+import hashlib
+hashlib.md5
+hashlib.md5()
+dir*hashlib.md5()
+dir(hashlib.md5())
+mx = hashlib.md5()
+mx.name
+mx.hexdigest
+mx.hexdigest()
+mx = hashlib.md5("skdf")
+mx
+mx.hexdigest()
+import uuid
+uuid.UUID()
+uuid.UUID.hex
+uuid.UUID.hex()
+uuid.UUID.hex
+uuid.uuid1
+uuid.uuid1()
+uuid.uuid1()
+uuid.uuid1().stringvalue
+ui = uuid.uuid1()
+ui.bytes
+ui.fields
+ui.url
+ui.urn
+str(ui)
+import env
+from sys import env
+import sys
+import os
+os.getenv('AWS_ACCESS_KEY')
+import base6464
+import base64
+base64.encode("-asldkfj")
+base64.encode(input="ksdjf")
+base64.b64encode(input="ksdjf")
+base64.b64encode("ksdjf")
+%history -g
+import boto3
+client = boto3.client('cognito-identity')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1_7KxduokG2')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1:7KxduokG2')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east:7KxduokG2')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1:7KxduokG2')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1:22503d1b-506b-4184-92d4-43a4e563d59a')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1:22503d1b-506b-4184-92d4-43a4e563d59a')
+client.get_id(AccountId='860542411812', IdentityPoolId='us-east-1:22503d1b-506b-4184-92d4-43a4e563d59a')
+import boto
+import boto3
+boto3.client
+boto3.session
+boto3.session.Session
+boto3.session.Session
+boto3.session.Session.region
+boto3.session
+boto3.session.region_name
+he = "WowWWW"
+he.lower
+he.lower()
+from jinja2 import Environment as JinjaEnv
+temp = JinjaEnv(variable_start_string="{{", variable_end_string="}}")
+import json
+temp.from_string(json.load("./iam_policies/metadata_access.json"))
+temp.from_string(json.load(open("./iam_policies/metadata_access.json")))
+temp = JinjaEnv(variable_start_string="{{", variable_end_string="}}", line_statement_prefix="%")
+temp.from_string(json.load(open("./iam_policies/metadata_access.json")))
+temp.from_string(open("./iam_policies/metadata_access.json").readlines())
+ox = open("./iam_policies/metadata_access.json").readlines()
+ox
+temp.from_string(ox)
+ox =
+ox = open("./iam_policies/metadata_access.json")
+ox.read()
+ox = _
+temp.from_string(ox)
+tx = temp.from_string(ox)
+205/18:
+tx.render(context = {'app_id': app_id
+)}
+context = {'app_id': app_id}
+context = {'app_id': 'xLqs6XAykzfiXNJFXey3CcQmDouaf2jEvUqZMtwm'}
+tx.render(context)
+208/1:
+class IFA:
+    def a():
+        print "pwwsss"
+ax = IFA()
+ax.a()
+ax.a
+208/5:
+class IFA:
+    def a(self):
+        print "pwwsss"
+ax.a
+ax.a()
+ax = IFA()
+ax.a()
+[] + None
+[] + None
+a = None
+[] + a if a is not None
+if a is not None: x
+x
+x = []
+x.append(1)
+x
+[x for x in [1, 2, 3, 4, 5] if x > 2]
+"a" is "a"
+"a" == "a"
+"a" === "a"
+from botocore.errorfactory import ResourceNotFoundException
+import botocorere
+import botocore
+botocore.errorfactory
+from botocore.errorfactory import *
+import boto3
+        client = boto3.client('cognito-idp')
+client
+client.list_user_pools()
+client.list_user_pools(MaxResults=30)
+tx = client.list_user_pools(MaxResults=30)
+tx
+type(tx)
+tx.keys()
+tx = client.list_user_pools(MaxResults=30)['UserPools']
+tx.keys()
+[t for t in tx if t['Name'] == 'zydeco']
+t
+client.delete_user_pool()
+client.delete_user_pool(UserPoolId=)
+t
+client.delete_user_pool(UserPoolId=t['Id'])
+[client.delete_user_pool(UserPoolId=t['Id']) for t in tx if t['Name'] == 'zydeco']
+tx.keys()
+tx = client.list_user_pools(MaxResults=30)['UserPools']
+[client.delete_user_pool(UserPoolId=t['Id']) for t in tx if t['Name'] == 'zydeco']
+[client.delete_user_pool(UserPoolId=t['Id']) for t in client.list_user_pools(MaxResults=30)['UserPools'] if t['Name'] == 'zydeco']
+import boto
+import boto3
+[client.delete_user_pool(UserPoolId=t['Id']) for t in client.list_user_pools(MaxResults=30)['UserPools'] if t['Name'] == 'zydeco']
+client = boto3.client('cognito-identity')
+[client.delete_user_pool(UserPoolId=t['Id']) for t in client.list_user_pools(MaxResults=30)['UserPools'] if t['Name'] == 'zydeco']
+client =         client = boto3.client('cognito-idp')
+        client = boto3.client('cognito-idp')
+[client.delete_user_pool(UserPoolId=t['Id']) for t in client.list_user_pools(MaxResults=30)['UserPools'] if t['Name'] == 'zydeco']
+x = {}
+xt = {'a': 1}
+xt
+xt.get('x')
+getattr(xt, 'a')
+import os
+import sys
+uuid.uuid4().hex
+import uuid
+uuid.uuid4().hex
+type(uuid.uuid4().hex)
+import pprint
+pprint({'hey': 'you'})
+pprint.pprint({'hey': 'you'})
+ax = {'a': 1}
+ax.get('b', None)
+ax.get('b', 'not found')
+""Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶""
+"Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶"
+"Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶""
+"Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶
+"Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶"
+tx = "Great burger with an awesome bun at Voudookitchen, the jalapeño was a nice touch 🌶🌶🌶"
+tx
+q
+import json
+json.dumps({1})
+json.dumps({'1': 1})
+ax = [1, 2, 3]
+ax.append
+ax.append(4)
+ax
+import parse
+import python_parse
+import parsepy
+import parse_rest
+register('hoopstacam', 'xy', master_key='f266ca36b11f4ab8aed3dd35d2237867')
+468/6:
+from parse_rest.datatypes import Function, Object, GeoPoint
+from parse_rest.connection import register
+from parse_rest.query import QueryResourceDoesNotExist
+from parse_rest.connection import ParseBatcher
+from parse_rest.core import ResourceRequestBadRequest, ParseError
+register('hoopstacam', 'xy', master_key='f266ca36b11f4ab8aed3dd35d2237867')
+import os
+os.environ["PARSE_API_ROOT"] = 'http://api.hoopstacam.sashimiblade.com/parse'
+468/10:
+class Image(Object):
+    pass
+Image.Query.all()
+register('hoopstacam', 'xy', master_key='f266ca36b11f4ab8aed3dd35d2237867')
+Image.Query.all()
+fx = open('responses')
+fx.readlines()[0]
+fx.readlines()[2]
+open('responses').readlines()[2]
+import re
+matcher = re.compile("(.*|S3DA=(.*)|")
+matcher = re.compile("(.*)|S3DA=(.*)|")
+rx = open('responses').readlines()[2]
+matcher.match(rx)
+mx = matcher.match(rx)
+mx
+mx.groups
+mx.groups()
+mx.groupdict()
+527/15:
+mx.groups()[1
+]
+mx.groups()[1]
+matcher = re.compile("(.*)\|S3DA=(.*)\|")
+mx = matcher.match(rx)
+mx.groups()
+matcher = re.compile("(.*)\|S3DA=(.*?)\|")
+mx = matcher.match(rx)
+mx
+mx.groups()
+matcher = re.compile("(.*)(\|S3DA=)(.*?)(\|.*)")
+mx = matcher.match(rx)
+mx
+mx.groups()
+"".join(mx.groups())
+matcher
+ matcher
+type(matcher)
+import json
+json.dump()
+lambda x: return
+import spotipy
+tx = [1, 2, 3]
+tx.extend([4, 5, 6])
+tx
+"asdf".split()
+"asdf sadf".split()
+tx = [1, 2, 3, 4]
+xrange(10)
+[for i in xrange(10)]
+[i in xrange(10)]
+[i for i in  xrange(10)]
+[i for i in  xrange(100)][:10]
+[i for i in  xrange(100)][::10]
+[i for i in  xrange(100)][:10:]
+[i for i in  xrange(100)][:10:100]
+[i for i in  xrange(100)][:10:9]
+rx = [i for i in  xrange(100)]
+rx
+rx.pop(10)
+rx.pop(10)
+579/15:
+while len(rx) > 0:
+    print rx[:99]
+    rx.pop(99)
+579/16:
+while len(rx) > 0:
+    print rx[:99]
+
+
+    rx.pop(99)
+rx = [i for i in  xrange(100)]
+579/18:
+while len(rx) > 0:
+    print rx[:99]
+
+
+    rx.pop(99)
+min(1, 3)
+rx
+rx.pop(3)
+rx
+len(rx)
+rx.pop(3)
+len(rx)
+rx[100:]
+rx[10:]
+len(rx[10:])
+len(rx[20:])
+rx = [i for i in  xrange(100)]
+len(rx[20:])
+rx[99:]
+rx[80:]
+rx[:80]
+579/35:
+rx[:min(1000, len(rx)
+)]
+rx[:min(10, len(rx))]
+start = 24
+start.zfill(2)
+str(start).zfill(2)
+str(start).zfill(4)
+str(start).zfill(-4)
+o = open('berlin_germany_osm_point.geojson')
+import json
+points = json.load(o)
+import geojson
+geo = geojson.load(o)
+o
+o.seek(0)
+geo = geojson.load(o)
+q
+import geopandas
+o = open('berlin_germany_osm_point.geojson')
+geopandas.read_file(o)
+geopandas.read_file(filename='berlin_germany_osm_point.geojson')
+tx = _
+type(tx)
+tx.query('name == Edeka')
+tx.query('name == "Edeka"')
+tx.query('name == "*Edeka*"')
+tx.query('name == "Edeka"')
+tx.query('name == "Edeka"')
+ex = tx.query('name == "Edeka"')
+ex
+ex[0]
+ex.all
+ex.all[0]
+ex.all()
+type(ex.all)
+ex.all
+mx = ex.all
+type(mx)
+mx
+mx()
+ex.to_json()
+tx.query('tags')
+import geopandas
+geopandas.read_file(filename='berlin_germany_osm_point.geojson')
+tx = _
+ex = tx.query('name == "Edeka"')
+ex.query('tags')
+ex.query('tags != None')
+ex.query('tags != ""')
+tagged = ex.query('tags != ""')
+tagged.all()
+tagged.to_json()
+tagged.to_clipboard
+tagged.to_clipboard()
+tagged.to_crs()
+js = tagged.to_json()
+jx = open('/Volumes/ramdisk/filtered.json')
+jx = open('/Volumes/ramdisk/filtered.json', 'w+')
+import json
+json.dump()
+json.dump(js, jx)
+fs
+js
+json.dump(js, json.loads(jx))
+type(js)
+js
+json.dump(json.loads(js), jx)
+jxx = json.loads(js)
+jxx.keys()
+jx.seek(0)
+jx.write(js)
+jx.flush()
+gs
+js
+json.loads(js)
+bx = _
+[x for x in bx if x['tags']]
+[x for x in bx]
+[x for x in bx['type']]
+[x for x in bx['type']]
+[x for x in bx]
+[x for x in bx]
+x
+bx
+type(bx)
+[x for x in bx['features']]
+x
+[x for x in bx['features'] if x['tags']]
+x
+[x for x in bx['features'] if x['properties'].ge['tags']]
+x.get('tags')
+[x for x in bx['features'] if x['properties'].get('tags')]
+hours = [x for x in bx['features'] if 'hours' in x['properties'].get('tags')]
+hours
+hours = [x for x in bx['features'] if 'Su' in x['properties'].get('tags')]
+hours
+len(hours)
+[s['tags'] for s in hours]
+[s.get('tags') for s in hours]
+[s['properties'].get('tags') for s in hours]
+[json.loads(s['properties'].get('tags')) for s in hours]
+[json.loads(s['properties'].get('tags')) for s in hours]
+tl = "sdfs"0
+tl = "sdfs"
+tl.decode('utf8')
+[json.loads(s['properties'].get('tags').decode('utf8')) for s in hours]
+[json.loads(s['properties'].get('tags').encode('utf8')) for s in hours]
+[s['properties'].get('tags') for s in hours]
+hours = [x for x in bx['features'] if 'So' in x['properties'].get('tags')]
+hours
+import geojson
+tr = geojson.load(open('berlin_germany_osm_point.geojson'))
+fp = open('berlin_germany_osm_point.geojson')
+fs = fp.readlines()
+fs[0]
+import geopandas
+gs = geopandas.read_file(filename='berlin_germany_osm_point.geojson')
+js = gs.to_json()
+fp = open('supermarkets.geojson')
+import json
+js = json.open(fp)
+js = json.load(fp)
+pf
+pf
+fp
+js = json.load(fp)
+fp.readlines()
+fp.seek(0)
+fp.readlines()
+import json
+js = json.load(open('sundays.geojson'))
+js
+len(js)
+js.keys()
+len(js['features'])
+ft = js['features']
+ft[0]
+ft[0]['tags']
+ft[0]['properties']
+ft[0]['properties']['tags']
+tg = ft[0]['properties']['tags']
+tg.split(",")
+[x for split(x, "=>") in tg.split(",")]
+[split(x, "=>") for x in tg.split(",")]
+[x.split("=>") for x in tg.split(",")]
+[{key: value in x.split("=>")} for x in tg.split(",")]
+[{key: value for key, value in x.split("=>")} for x in tg.split(",")]
+[{key: value for (key, value) in x.split("=>")} for x in tg.split(",")]
+key
+[{key: value for (key, value) in x.split("=>")} for x in tg.split(",")]
+x.split("=>")
+{key: value for (key, value) in x.split("=>")}
+{key: value for key, value in x.split("=>")}
+{key: value for key, value in x.split("=>")}
+mx =  x.split("=>")
+len(mx)
+{key for key, value in x.split("=>")}
+{key for key in x.split("=>")}
+[x.split("=>") for x in tg.split(",")]
+[tuple(x.split("=>")) for x in tg.split(",")]
+[{key: value for (key, value) in tuple(x.split("=>"))} for x in tg.split(",")]
+[{key for key in tuple(x.split("=>"))} for x in tg.split(",")]
+[tuple(x.split("=>")) for x in tg.split(",")]
+[tuple(x.split("=>")) for x in tg.split(",")]
+{key: value for (key, value) in (1, 2)}
+{key: value for (key, value) in (1, 2)}
+{key: value for (key, value) in [(1, 2)}]
+{key: value for (key, value) in [(1, 2)]]
+{key: value for (key, value) in [(1, 2)]}
+[{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split(",")]
+makeDict = lambda tg: [{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split(",")]
+673/43:
+for item in ft:
+    break
+len(ft)
+listings = ft
+673/46:
+for listing in listings:
+    listing['tags'] = makeDict(listing['tags'])
+673/47:
+for listing in listings:
+    listing['properties']['tags'] = makeDict(listing['properties']['tags'])
+tg
+x
+makeDict
+listing['properties']['tags']
+makeDict(listing['properties']['tags'])
+tg
+tg = listing['properties']['tags']
+[{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split(",")]
+tg
+[{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split(",")]
+key
+[tuple(x.split("=>")) for x in tg.split(",")]
+[{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split(", ")]
+[{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split("\", \"")]
+makeDict = lambda tg: [{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split("\", \"")]
+673/63:
+for listing in listings:
+    listing['properties']['tags'] = makeDict(listing['properties']['tags'])
+x
+makeDict = lambda tg: [{key: value for (key, value) in [tuple(x.split("=>"))]} for x in tg.split("\", \"")]
+import pyYaml
+import pyyaml
+import PyYAML
+import yaml
+673/70:
+for listing in listings:
+    listing['properties']['tags'] = makeDict(listing['properties']['tags'])
+listing['properties']['tags']
+listings = ft
+listings[0]['properties']['tags']
+js = json.load(open('sundays.geojson'))
+ft = js['features']
+listings = ft
+listings[0]['properties']['tags']
+yaml.load(_)
+   1: %history -g -f history.txt

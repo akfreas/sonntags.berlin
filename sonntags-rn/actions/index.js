@@ -52,6 +52,7 @@ function closeDrawer() {
 
 function loadCategories() {
     var locale = I18n.currentLocale().split('-');
+
     if (locale.length > 0) {
         locale = locale[0];
     } else {
