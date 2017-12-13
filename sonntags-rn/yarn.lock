@@ -3741,9 +3741,9 @@ react-native-drawer@^2.5.0:
     prop-types "^15.5.8"
     tween-functions "^1.0.1"
 
-react-native-firebase-analytics@^3.0.2:
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/react-native-firebase-analytics/-/react-native-firebase-analytics-3.0.6.tgz#3360af9947874f70c16cf40f6e8e0794349a9b20"
+react-native-firebase-analytics@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-firebase-analytics/-/react-native-firebase-analytics-4.0.1.tgz#7edb75f3bbc10adf2ef6d2bccd70b0bea1c5ecd7"
 
 react-native-hyperlink@0.0.11:
   version "0.0.11"

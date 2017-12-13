@@ -18,6 +18,7 @@ import {
 import thunkMiddleware from 'redux-thunk';
 import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import Analytics from 'react-native-firebase-analytics';
 
 var styles = require('./assets/styles/index.js');
 
@@ -39,7 +40,8 @@ export default class AppContainer extends React.Component {
   };
 
   componentWillMount() {
-    this._loadAssetsAsync();
+      this._loadAssetsAsync();
+      Analytics.setEnabled(true);
   }
 
   async _loadAssetsAsync() {

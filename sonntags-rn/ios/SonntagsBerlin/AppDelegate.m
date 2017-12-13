@@ -18,7 +18,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <React/RCTDevMenu.h>
-
+@import Firebase;
 @implementation OurApplication
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
 #ifdef DEBUG
@@ -112,6 +112,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self.window makeKeyAndVisible];
 #ifdef DEBUG
     [[FIRAnalyticsConfiguration sharedInstance] setAnalyticsCollectionEnabled:NO];
+#else
+    [FIRApp configure];
 #endif
 
     
