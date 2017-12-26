@@ -8,58 +8,80 @@ import contentful
 class ContentfulImporter(object):
 
 
-    def __init__(self):
+    def __init__(self, space_id, access_token=None, publish_token=None):
 
         super(ContentfulImporter, self).__init__()
-        self.space_id = '2dktdnk1iv2v'
-        self.access_token = '8559f3884f60fdd6f3a07de91411be8be4bd74478b8ad326e671399b7a486162'
-        self.contentful_client = contentful.Client(self.space_id, self.access_token)
-        self.unique_source_ids = self.fetch_unique_source_ids()
-        self.category_map = self.fetch_category_map()
+        self.space_id = space_id
+        self.access_token = access_token
+        self.publish_token = publish_token
+        self.content_type_map = None
+
+        if access_token:
+            self.contentful_client = contentful.Client(self.space_id, self.access_token)
+            self.unique_source_ids = self.fetch_unique_source_ids()
+            self.category_map = self.fetch_category_map()
+
+    def create_location_content_type(self, content_type_json):
+        self.perform_contentful_request('post', '/content_types', content_type_json, False)
 
     def fetch_unique_source_ids(self):
-        rx = self.contentful_client.entries({'content_type': 'location'})
-        field_list = [x.fields().get('source_id') for x in rx if x.fields().get('source_id') is not None]
-        return field_list
+        try:
+            rx = self.contentful_client.entries({'content_type': 'location'})
+            field_list = [x.fields().get('source_id') for x in rx if x.fields().get('source_id') is not None]
+            return field_list
+        except:
+            return []
+
+    def fetch_content_type_id(self, content_type_name):
+
+        if self.content_type_map is None:
+            self.content_type_map = {content_type.name.lower(): content_type.id for content_type in self.contentful_client.content_types()}
+        
+        return self.content_type_map.get(content_type_name.lower())
 
     def fetch_category_map(self):
-        categories = self.contentful_client.entries({'content_type': 'category'})
-        category_map = {category.name.lower().replace(' ', '_'): category.sys['id'] for category in categories.items}
+        try:
+            categories = self.contentful_client.entries({'content_type': 'category'})
+            category_map = {category.name.lower().replace(' ', '_'): category.sys['id'] for category in categories.items}
 
-        return category_map
+            return category_map
+        except:
+            return {}
 
-    @property
-    def _publish_headers(self):
+    def _publish_headers(self, content_type_id):
         return {
-            'Authorization': 'Bearer CFPAT-232539b20e313d9db3dc4cf8a226052b48af6fdaaaabdf395624726e370ebfef',
-            'X-Contentful-Content-Type': 'location'
+            'Authorization': 'Bearer {}'.format(self.publish_token),
+            'X-Contentful-Content-Type': content_type_id
         }
 
     @property
     def _content_headers(self):
         return {
-            'Authorization': 'Bearer CFPAT-232539b20e313d9db3dc4cf8a226052b48af6fdaaaabdf395624726e370ebfef',
+            'Authorization': 'Bearer {}'.format(self.publish_token),
         }
 
     @property
     def space_url(self):
         return 'https://api.contentful.com/spaces/{}'.format(self.space_id)
 
-    def perform_contentful_request(self, req_method, endpoint, fields = None):
+    def perform_contentful_request(self, req_method, endpoint, content_type, fields = None, localized = True):
     
         method = None
         formatted_fields = None
         
         if req_method == 'post':
             method = requests.post
-            formatted_fields = {'fields': {key: {"en-US": fields[key]} for key in fields}}
+            if localized:
+                formatted_fields = {'fields': {key: {"en": fields[key]} for key in fields}}
+            else:
+                formatted_fields = fields
         elif req_method == 'get':
             method = requests.get
 
 
         request = method(
             self.space_url + endpoint, 
-            headers=self._publish_headers, 
+            headers=self._publish_headers(self.fetch_content_type_id(content_type)), 
             json=formatted_fields
         )
 
@@ -76,18 +98,18 @@ class ContentfulImporter(object):
         category_id = self.category_map[category]
         new_fields.update({
             'dataSource': source,
-            'sourceId': source_id,
-            'category': category,
+            'sourceId': str(source_id),
             'categoryRef': {'sys': {'id': category_id, 'linkType': 'Entry', 'type': 'Link'}}
         })
 
-        request = self.perform_contentful_request('post', '/entries', new_fields)
+        request = self.perform_contentful_request('post', '/entries', 'location', new_fields)
         response = request.json()
+
         if request.status_code < 300:
             print 'created location {} successfully: id {}'.format(fields['name'].encode('utf-8'), response['sys']['id'])
         else:
-            print 'failed to create with fields {}, got back {}'.format(fields, response)
-
+            print 'failed to create with fields {}, got back {}'.format(new_fields, response)
+            raise Exception('ContentfulImportException')
 
 
     def import_rewe_to_go(self):
