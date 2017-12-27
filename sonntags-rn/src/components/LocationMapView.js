@@ -148,22 +148,15 @@ export default class LocationMapView extends Component {
              <MapboxGL.MapView
                       ref={map => { this._map = map; }}
                       style={{flex: 1}}
-                      centerCoordinate={[-73.99155, 40.73581]}
-                      initialZoomLevel={this.props.initialZoomLevel ? this.props.initialZoomLevel : 9}
+                      centerCoordinate={[13.39127, 52.51743]}
+                      zoomLevel={this.props.initialZoomLevel ? this.props.initialZoomLevel : 9}
                       initialDirection={0}
                       annotations={this.state.annotations}
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
                       styleURL={MapboxGL.StyleURL.Dark}
-                      userTrackingMode={this.state.userTrackingMode}
-                      onChangeUserTrackingMode={this.onChangeUserTrackingMode}
-                      onRegionDidChange={this.onRegionDidChange}
-                      onRegionWillChange={this.onRegionWillChange}
                       onOpenAnnotation={this.onOpenAnnotation}
-                      onRightAnnotationTapped={this.onRightAnnotationTapped}
-                      onUpdateUserLocation={this.onUpdateUserLocation}
-                      onLongPress={this.onLongPress}
                       onTap={this.onTap}
                   >
             </MapboxGL.MapView>

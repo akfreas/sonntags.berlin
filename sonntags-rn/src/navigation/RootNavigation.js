@@ -26,27 +26,12 @@ class _RootNavigator extends React.Component {
 
   render() {
       return (
-        <Drawer
-            ref={(ref) => this._drawer = ref}
-            type="overlay"
-            tapToClose={true}
-            acceptPan={true}
-            acceptTap={false}
-            type={'displace'}
-            open={this.props.drawerOpen}
-            onClose={() => this.props.setDrawerClosed() }
-            captureGestures={this.props.drawerGesturesEnabled}
-            openDrawerOffset={0.2}
-            content={<DrawerMenu navigation={this.props.navigation}/>}
-        >
-                
                 <RootStackNavigator navigation={addNavigationHelpers({
                     dispatch: this.props.dispatch,
                     state: this.props.navigation,
                 })}
                     ref={(ref)=> this._navigator = ref}/>
-              
-        </Drawer>);
+      );
   }
     componentWillReceiveProps(props) {
         console.log(props);
