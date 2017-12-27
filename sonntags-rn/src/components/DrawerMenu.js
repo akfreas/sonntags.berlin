@@ -21,7 +21,7 @@ import {create_i18n} from '../utilities';
 
 var I18n = create_i18n();
 
-import calendarDays from '../assets/images/calendardays.png';
+import calendarDays from '../../assets/images/calendardays.png';
 import { 
     closeDrawer,
     setDrawerGesturesEnabled,
@@ -104,7 +104,7 @@ class DrawerMenu extends Component {
 
                   <StatusBar barStyle = "light-content" hidden = {false}/>
                     <View style={{height: 100, /*overflow: 'hidden'*/}}>
-                        <Image source={require('../assets/images/so-icon.png')} style={{
+                        <Image source={require('../../assets/images/so-icon.png')} style={{
                             left: 0,
                             top: 0,
                             bottom: 0,

@@ -45,7 +45,7 @@ import NavigationBar from 'react-native-navbar';
 import LocationListView from '../components/LocationListView';
 import LocationDetailSummaryView from '../components/LocationDetailSummaryView';
 import LocationActionComponent from '../components/LocationActionComponent';
-import arrow from '../assets/images/map-annotation.png';
+import arrow from '../../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
 import LocationListItem from '../components/LocationListItem';

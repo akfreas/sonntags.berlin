@@ -13,7 +13,7 @@ import {
     StatusBar
 } from 'react-native';
 
-import calendarDays from '../assets/images/calendardays.png';
+import calendarDays from '../../assets/images/calendardays.png';
 import Analytics from 'react-native-firebase-analytics';
 import NavigationBar from 'react-native-navbar';
 

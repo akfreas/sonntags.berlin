@@ -30,7 +30,7 @@ import {create_i18n} from '../utilities';
 
 var I18n = create_i18n();
 
-var styles = require('../assets/styles/index.js');
+var styles = require('../styles/index.js');
 
 import { loadCategories, toggleDrawer } from '../actions';
 import LocationTypeGridItem from '../components/LocationTypeGridItem';

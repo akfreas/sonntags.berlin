@@ -18,9 +18,9 @@ import MapboxGL, { MapView, Annotation }from '@mapbox/react-native-mapbox-gl';
 
 import PropTypes from 'prop-types';
 
-var styles = require('../assets/styles');
+var styles = require('../styles');
 
-const forwardArrow = require('../assets/images/arrow-forward.png');
+const forwardArrow = require('../../assets/images/arrow-forward.png');
 const accessToken = 'pk.eyJ1IjoiYWtmcmVhcyIsImEiOiJjajh3b252ODkxcW9jMnFydmw1NzNzNGtiIn0.8IeSD3SyJIf8gbXhqwHIAA';
 
 MapboxGL.setAccessToken(accessToken);

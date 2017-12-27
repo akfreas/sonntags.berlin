@@ -14,7 +14,7 @@ import moment from 'moment';
 import { pad } from '../utilities';
 
 
-var styles = require('../assets/styles');
+var styles = require('../styles');
 
 export default class LocationListItem extends Component {
 

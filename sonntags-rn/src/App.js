@@ -5,7 +5,6 @@ import {
     View 
 } from 'react-native';
 import RootNavigation from './navigation/RootNavigation';
-import IntroScreen from './screens/IntroScreen.js';
 import NavigationBar from 'react-native-navbar';
 import { Provider } from 'react-redux'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
@@ -20,7 +19,7 @@ import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Analytics from 'react-native-firebase-analytics';
 
-var styles = require('./assets/styles/index.js');
+var styles = require('./styles/index.js');
 
 
 

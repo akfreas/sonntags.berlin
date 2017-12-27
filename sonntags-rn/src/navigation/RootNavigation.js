@@ -6,7 +6,6 @@ import {
 
 import { closeDrawer } from '../actions';
 import { connect } from 'react-redux';
-import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import Drawer from 'react-native-drawer';
 import DrawerMenu from '../components/DrawerMenu';
 import { RootStackNavigator } from './RootStackNavigator';
@@ -20,11 +19,9 @@ class _RootNavigator extends React.Component {
     }
 
   componentDidMount() {
-    this._notificationSubscription = this._registerForPushNotifications();
   }
 
   componentWillUnmount() {
-    this._notificationSubscription && this._notificationSubscription.remove();
   }
 
   render() {
@@ -54,15 +51,7 @@ class _RootNavigator extends React.Component {
     componentWillReceiveProps(props) {
         console.log(props);
     }
-  _registerForPushNotifications() {
-    // Send our push token over to our backend so we can receive notifications
-    // You can comment the following line out if you want to stop receiving
-    // a notification every time you open the app. Check out the source
-    // for this function in api/registerForPushNotificationsAsync.js
-    registerForPushNotificationsAsync();
-
-  }
-
+  
   _handleNotification = ({ origin, data }) => {
     console.log(
       `Push notification ${origin} with data: ${JSON.stringify(data)}`

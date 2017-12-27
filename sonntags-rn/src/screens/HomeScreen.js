@@ -11,7 +11,7 @@ import {
   ListView
 } from 'react-native';
 
-var styles = require('../assets/styles');
+var styles = require('../styles');
 
 
 import { MonoText } from '../components/StyledText';
@@ -22,7 +22,7 @@ import {
     loadLocations
 } from '../actions';
 
-var styles2 = require('../assets/styles');
+var styles2 = require('../styles');
 
 export default class HomeScreen extends React.Component {
     constructor(props) {

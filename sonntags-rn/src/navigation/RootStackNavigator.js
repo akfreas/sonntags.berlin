@@ -1,6 +1,6 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import styles from '../assets/styles';
+import styles from '../styles';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
 import LocationDetailView from '../screens/LocationDetailView.js';

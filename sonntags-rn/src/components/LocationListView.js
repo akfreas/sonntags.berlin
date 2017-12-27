@@ -98,7 +98,7 @@ export default class LocationListView extends Component {
                             position: 'absolute', 
                             bottom: -height,
                             left: 0,
-                        }} source={require('../assets/images/icon_background.png')}/>
+                        }} source={require('../../assets/images/icon_background.png')}/>
                         </View>
                      <FlatList
                         ItemSeparatorComponent={({highlighted}) => (

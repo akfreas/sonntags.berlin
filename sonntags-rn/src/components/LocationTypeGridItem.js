@@ -16,7 +16,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-var styles = require('../assets/styles');
+var styles = require('../styles');
 
 export default class LocationTypeGridItem extends Component {
 

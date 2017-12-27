@@ -14,7 +14,7 @@ import moment from 'moment';
 
 import Analytics from 'react-native-firebase-analytics';
 
-import arrow from '../assets/images/map-annotation.png';
+import arrow from '../../assets/images/map-annotation.png';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Hyperlink from 'react-native-hyperlink';
 import LocationMapView from '../components/LocationMapView';
@@ -24,7 +24,7 @@ import {
     pad,
     openExternalApp
 } from '../utilities';
-var styles = require('../assets/styles');
+var styles = require('../styles');
 
 export default class LocationDetailView extends Component {
 
