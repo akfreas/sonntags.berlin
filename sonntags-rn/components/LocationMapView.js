@@ -14,14 +14,17 @@ import {
     ListView
 } from 'react-native';
 
-import Mapbox, { MapView, Annotation }from 'react-native-mapbox-gl';
+import MapboxGL, { MapView, Annotation }from '@mapbox/react-native-mapbox-gl';
+
 import PropTypes from 'prop-types';
 
+var styles = require('../assets/styles');
 
 const forwardArrow = require('../assets/images/arrow-forward.png');
 const accessToken = 'pk.eyJ1IjoiYWtmcmVhcyIsImEiOiJjajh3b252ODkxcW9jMnFydmw1NzNzNGtiIn0.8IeSD3SyJIf8gbXhqwHIAA';
 
-Mapbox.setAccessToken(accessToken);
+MapboxGL.setAccessToken(accessToken);
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class LocationMapView extends Component {
 
@@ -31,12 +34,12 @@ export default class LocationMapView extends Component {
     }
 
 	state = {
-		center: {
-			latitude: 52.5174389,
-			longitude: 13.3912796
-		},
+		center: [
+			52.5174389,
+			13.3912796
+        ],
 		zoom: 11,
-		userTrackingMode: Mapbox.userTrackingMode.none,
+		userTrackingMode: MapboxGL.UserTrackingModes.Follow,
 		annotations: []
 	};
 
@@ -44,23 +47,12 @@ export default class LocationMapView extends Component {
     this.setState({ currentZoom: location.zoomLevel });
     console.log('onRegionDidChange', location);
   };
-  onRegionWillChange = (location) => {
-      
-  };
-  onUpdateUserLocation = (location) => {
-    console.log('onUpdateUserLocation', location);
-  };
   onOpenAnnotation = (annotation) => {
       if (this.props.onAnnotationTapped) {
           this.props.onAnnotationTapped(annotation);
       }
   };
-  onRightAnnotationTapped = (e) => {
-    console.log('onRightAnnotationTapped', e);
-  };
-  onLongPress = (location) => {
-    console.log('onLongPress', location);
-  };
+
   onTap = (location) => {
       if (this.props.onTap) {
           this.props.onTap();
@@ -68,19 +60,10 @@ export default class LocationMapView extends Component {
   };
   onChangeUserTrackingMode = (userTrackingMode) => {
     this.setState({ userTrackingMode });
-    console.log('onChangeUserTrackingMode', userTrackingMode);
   };
 
   componentWillMount() {
-    this._offlineProgressSubscription = Mapbox.addOfflinePackProgressListener(progress => {
-      console.log('offline pack progress', progress);
-    });
-    this._offlineMaxTilesSubscription = Mapbox.addOfflineMaxAllowedTilesListener(tiles => {
-      console.log('offline max allowed tiles', tiles);
-    });
-    this._offlineErrorSubscription = Mapbox.addOfflineErrorListener(error => {
-      console.log('offline error', error);
-    });
+
   }
 
     componentDidMount() {
@@ -120,7 +103,7 @@ export default class LocationMapView extends Component {
             }
             return {
                 id: location.id,
-                coordinates: [location.location.lat, location.location.lon],
+                coordinates: [parseFloat(location.location.lat), parseFloat(location.location.lon)],
                 type: 'point',
                 annotationImage: {
                     source: {uri: arrowImage},
@@ -138,20 +121,21 @@ export default class LocationMapView extends Component {
     renderAnnotations() {
         let annotationViews = this.state.annotations.map((annotation) => {
             return (
-              <Annotation
+              <MapboxGL.PointAnnotation
                     id={annotation.id}
                     key={annotation.id}
-                    coordinate={{
-                        latitude: annotation.coordinates[0], 
-                        longitude: annotation.coordinates[1]
-                    }}
-                    annotationImageSource={{}}
+                    coordinate={[annotation.coordinates]}
                     style={{alignItems: 'center', justifyContent: 'center', position: 'absolute'}}
                   >
                     <View style={{width: 25, height: 25, backgroundColor: 'transparent', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Image style={{flex: 1}} source={arrow_img}/>
+                        <Icon
+                            style={styles.locationGridIcon}
+                            name={'tree'}
+                            size={32}
+                            color='#3BB9BD'/>                        
+
                     </View>
-              </Annotation>
+              </MapboxGL.PointAnnotation>
             )
         });
 
@@ -161,20 +145,18 @@ export default class LocationMapView extends Component {
     render() {
         return(
             <View style={{flex: 1, alignItems: 'stretch'}}>
-             <MapView
+             <MapboxGL.MapView
                       ref={map => { this._map = map; }}
                       style={{flex: 1}}
-                      initialCenterCoordinate={this.state.center}
+                      centerCoordinate={[-73.99155, 40.73581]}
                       initialZoomLevel={this.props.initialZoomLevel ? this.props.initialZoomLevel : 9}
                       initialDirection={0}
                       annotations={this.state.annotations}
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
-                      showsUserLocation={true}
-                      styleURL={Mapbox.mapStyles.light}
+                      styleURL={MapboxGL.StyleURL.Dark}
                       userTrackingMode={this.state.userTrackingMode}
-                      annotationsAreImmutable
                       onChangeUserTrackingMode={this.onChangeUserTrackingMode}
                       onRegionDidChange={this.onRegionDidChange}
                       onRegionWillChange={this.onRegionWillChange}
@@ -184,7 +166,7 @@ export default class LocationMapView extends Component {
                       onLongPress={this.onLongPress}
                       onTap={this.onTap}
                   >
-            </MapView>
+            </MapboxGL.MapView>
             </View>
         )
     }

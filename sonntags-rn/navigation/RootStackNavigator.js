@@ -31,7 +31,7 @@ const defaultNavOptions = {
 export const RootStackNavigator = StackNavigator({
 
     Main: {
-        screen: paramsToProps(LocationTypeGrid),
+        screen: paramsToProps(MainLocationMap),
         navigationOptions: defaultNavOptions,
     },
     CategoryView: {

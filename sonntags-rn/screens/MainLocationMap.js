@@ -50,6 +50,7 @@ import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
 import LocationListItem from '../components/LocationListItem';
 import Share, {ShareSheet, Button} from 'react-native-share';
+import LocationTypeGrid from '../screens/LocationTypeGrid';
 
 let width = Dimensions.get('window').width
 let height = Dimensions.get('window').height
@@ -57,7 +58,7 @@ let height = Dimensions.get('window').height
 class MainLocationMap extends Component {
 
     static navigationOptions = ({ navigation }) => ({
-        title: navigation.state.params.category.name,
+        title: 'sonntags',
         headerRight:<HamburgerBars onPress={()=> navigation.state.params.showList()}/>
     });
     
@@ -282,13 +283,7 @@ class MainLocationMap extends Component {
                 visible={this.state.listViewModalVisible}
                 onRequestClose={() => {}}
             >
-                <LocationListView 
-                    category={this.props.category}
-                    locations={this.state.locations}
-                    userLocation={this.props.userLocation}
-                    onCloseButtonTapped={() => this.setState({listViewModalVisible: false})}
-                    onLocationSelected={this.locationSelected.bind(this)}
-                />
+                <LocationTypeGrid/> 
             </Modal>
         )
     }

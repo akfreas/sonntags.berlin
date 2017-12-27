@@ -91,12 +91,12 @@ def enableSeparateBuildPerCPUArchitecture = false
 
 android {
 
-    compileSdkVersion 25
+    compileSdkVersion 26
     buildToolsVersion "26.0.1"
     defaultConfig {
         applicationId "com.sashimiblade.sonntags"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionName VERSION_NAME
         multiDexEnabled true
         versionCode Integer.parseInt(VERSION_CODE)
@@ -150,20 +150,20 @@ android {
 }
 
 dependencies {
+    compile project(':mapbox-react-native-mapbox-gl')
     compile project(':react-native-i18n')
     compile project(':react-native-firebase-analytics')
-    compile project(':react-native-mapbox-gl')
     compile project(':react-native-share')
     compile project(':react-native-admob')
     compile project(':react-native-vector-icons')
 
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // From node_modules
-    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.facebook.react:react-native:+'
-    compile 'com.google.firebase:firebase-core:11.6.0'
-    compile 'com.google.firebase:firebase-messaging:11.6.0'
-    compile 'com.google.firebase:firebase-crash:11.6.0'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    compile 'com.google.firebase:firebase-messaging:11.8.0'
+    compile 'com.google.firebase:firebase-crash:11.8.0'
     compile 'com.android.support:multidex:1.0.1'
 }
 

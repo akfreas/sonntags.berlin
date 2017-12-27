@@ -25,6 +25,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@mapbox/react-native-mapbox-gl": "https://github.com/mapbox/react-native-mapbox-gl#6.0.2",
     "babel-preset-react-native": "^2.1.0",
     "contentful": "^5.0.2",
     "firebase": "^4.3.0",
@@ -37,7 +38,6 @@
     "react-native-firebase-analytics": "^4.0.1",
     "react-native-hyperlink": "0.0.11",
     "react-native-i18n": "^2.0.9",
-    "react-native-mapbox-gl": "^5.2.0",
     "react-native-navbar": "^2.0.1",
     "react-native-share": "^1.0.23",
     "react-native-vector-icons": "^4.4.0",
