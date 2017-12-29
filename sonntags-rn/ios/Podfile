@@ -9,9 +9,7 @@ target 'SonntagsBerlin' do
   # Pods for SonntagsBerlin
   #
   #
-    pod 'Yoga',
-    :path => "../node_modules/react-native/ReactCommon/yoga"
-
+    pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
   pod 'React',
     :path => "../node_modules/react-native",
     :subspecs => [
@@ -34,7 +32,7 @@ target 'SonntagsBerlin' do
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
   pod 'Firebase/Crash'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
-  pod 'RCTMapboxGL', :path => '../node_modules/react-native-mapbox-gl/ios'
+  pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
   target 'SonntagsBerlinTests' do
     inherit! :search_paths
     # Pods for testing
