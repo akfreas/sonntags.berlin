@@ -96,10 +96,10 @@ export default class LocationMapView extends Component {
     handleNewLocationProps(locations, selectedLocation) {
 
         let newAnnotations = locations.map((location) => {
-            let arrowImage = 'arrow';
+            let selected = false;
             if (selectedLocation && 
                 location.id == selectedLocation.id) {
-                arrowImage = 'arrow_selected';
+                selected = true;
             }
             return {
                 id: location.id,
@@ -107,21 +107,23 @@ export default class LocationMapView extends Component {
                 type: 'point',
                 category: location.category,
                 iconName: location.iconName,
-                annotationImage: {
-                    source: {uri: arrowImage},
-                    height: 35,
-                    width: 35
-                },
+                selected: selected,
                 location: location,
             };
         });
         this.setState({
-            annotations: newAnnotations
+            annotations: newAnnotations,
         });
     }
 
     renderAnnotations() {
         let annotationViews = this.state.annotations.map((annotation) => {
+            backgroundColor = 'white';
+            iconColor = '#3BB9BD';
+            if (annotation.selected) {
+                backgroundColor = '#EEA845';
+                iconColor = 'white';
+            }
             return (
               <MapboxGL.PointAnnotation
                     id={annotation.id}
@@ -129,17 +131,21 @@ export default class LocationMapView extends Component {
                     coordinate={annotation.coordinates}
                     style={{alignItems: 'center', justifyContent: 'center', position: 'absolute'}}
                 >
+                    <TouchableOpacity onPress={() => this.props.onAnnotationTapped(annotation)}>
+
                     <View style={{
-                        width: 25, height: 25, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
+                        width: 30, height: 30, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
                         borderRadius: 100/2,
-                        backgroundColor: 'white'
+                        backgroundColor: backgroundColor,
+
                     }}>
                          <Icon
                             style={styles.locationGridIcon}
                             name={annotation.iconName}
                             size={14}
-                            color='#3BB9BD'/>
+                            color={iconColor}/>
                     </View>
+                </TouchableOpacity>
               </MapboxGL.PointAnnotation>
 
                             )
@@ -163,7 +169,7 @@ export default class LocationMapView extends Component {
                       zoomEnabled={true}
                       styleURL={MapboxGL.StyleURL.Dark}
                       onOpenAnnotation={this.onOpenAnnotation}
-                      onTap={this.onTap}
+                      onPress={this.onTap}
                   >
                       {this.renderAnnotations()}
             </MapboxGL.MapView>
