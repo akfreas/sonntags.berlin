@@ -104,6 +104,7 @@ function loadLocations(category) {
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;
+            fields.iconName = location.fields.categoryRef.fields.iconName;
             fields.openingHoursString = formatHourString(fields);
             return fields;
         }, (error)=> {

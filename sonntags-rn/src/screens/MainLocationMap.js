@@ -33,6 +33,7 @@ import {
 
 import {
     loadLocations,
+    loadCategories,
     getUserLocation,
     distanceFromUserLocation,
 } from '../actions';

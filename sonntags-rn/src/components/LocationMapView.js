@@ -103,8 +103,10 @@ export default class LocationMapView extends Component {
             }
             return {
                 id: location.id,
-                coordinates: [parseFloat(location.location.lat), parseFloat(location.location.lon)],
+                coordinates: [parseFloat(location.location.lon), parseFloat(location.location.lat)],
                 type: 'point',
+                category: location.category,
+                iconName: location.iconName,
                 annotationImage: {
                     source: {uri: arrowImage},
                     height: 35,
@@ -124,19 +126,23 @@ export default class LocationMapView extends Component {
               <MapboxGL.PointAnnotation
                     id={annotation.id}
                     key={annotation.id}
-                    coordinate={[annotation.coordinates]}
+                    coordinate={annotation.coordinates}
                     style={{alignItems: 'center', justifyContent: 'center', position: 'absolute'}}
-                  >
-                    <View style={{width: 25, height: 25, backgroundColor: 'transparent', flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                        <Icon
+                >
+                    <View style={{
+                        width: 25, height: 25, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
+                        borderRadius: 100/2,
+                        backgroundColor: 'white'
+                    }}>
+                         <Icon
                             style={styles.locationGridIcon}
-                            name={'tree'}
-                            size={32}
-                            color='#3BB9BD'/>                        
-
+                            name={annotation.iconName}
+                            size={14}
+                            color='#3BB9BD'/>
                     </View>
               </MapboxGL.PointAnnotation>
-            )
+
+                            )
         });
 
         return annotationViews;
@@ -159,6 +165,7 @@ export default class LocationMapView extends Component {
                       onOpenAnnotation={this.onOpenAnnotation}
                       onTap={this.onTap}
                   >
+                      {this.renderAnnotations()}
             </MapboxGL.MapView>
             </View>
         )
