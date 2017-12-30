@@ -118,10 +118,10 @@ export default class LocationMapView extends Component {
 
     renderAnnotations() {
         let annotationViews = this.state.annotations.map((annotation) => {
-            backgroundColor = 'white';
-            iconColor = '#3BB9BD';
+            backgroundColor = '#EEA845';
+            iconColor = 'white';
             if (annotation.selected) {
-                backgroundColor = '#EEA845';
+                backgroundColor = '#3BB9BD';
                 iconColor = 'white';
             }
             return (
@@ -134,7 +134,7 @@ export default class LocationMapView extends Component {
                     <TouchableOpacity onPress={() => this.props.onAnnotationTapped(annotation)}>
 
                     <View style={{
-                        width: 30, height: 30, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
+                        width: 27, height: 27, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
                         borderRadius: 100/2,
                         backgroundColor: backgroundColor,
 
@@ -168,7 +168,7 @@ export default class LocationMapView extends Component {
                       scrollEnabled={true}
                       zoomEnabled={true}
                       pitchEnabled={false}
-                      styleURL={MapboxGL.StyleURL.Dark}
+                      styleURL={'mapbox://styles/akfreas/cjbtmvqcaarka2qtgs0yakriu'}
                       onOpenAnnotation={this.onOpenAnnotation}
                       onPress={this.onTap}
                   >
