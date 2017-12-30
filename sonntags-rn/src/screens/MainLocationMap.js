@@ -69,7 +69,7 @@ class MainLocationMap extends Component {
         this.state = {
             locations: [],
             listViewModalVisible: false,
-            bottomAnim: new Animated.Value(-100),
+            bottomAnim: new Animated.Value(0),
             websiteModalVisible: false,
         };
     }
@@ -216,9 +216,6 @@ class MainLocationMap extends Component {
     }
 
     clearSelectedLocation() {
-        this.setState({
-            selectedLocation: null
-        });
         this.hideLocationSummary();
     }
 
@@ -235,13 +232,18 @@ class MainLocationMap extends Component {
     }
 
     hideLocationSummary() {
+
         Animated.timing(
             this.state.bottomAnim,
             {
                 toValue: -this.detailViewHeight,
-                duration: 200
+                duration: 200,
             }
-        ).start();
+        ).start((finished) => {
+            this.setState({
+                selectedLocation: null
+            });
+        });
     }
 
 
