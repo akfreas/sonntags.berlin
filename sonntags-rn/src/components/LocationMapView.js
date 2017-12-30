@@ -167,6 +167,7 @@ export default class LocationMapView extends Component {
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
+                      pitchEnabled={false}
                       styleURL={MapboxGL.StyleURL.Dark}
                       onOpenAnnotation={this.onOpenAnnotation}
                       onPress={this.onTap}

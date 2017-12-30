@@ -8,6 +8,7 @@ import {
     Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
+    PanResponder,
     View,
     Modal,
     AnimatedValue,
@@ -192,7 +193,11 @@ class MainLocationMap extends Component {
 
     mapView() {
         return (
-            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}>
+            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}
+            onLayout={(event) => {
+                var {x, y, width, height} = event.nativeEvent.layout;
+                this.mainViewHeight = height;
+            }}>
                 <LocationMapView
                     locations={this.state.locations}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
@@ -210,6 +215,13 @@ class MainLocationMap extends Component {
 
     }
 
+    clearSelectedLocation() {
+        this.setState({
+            selectedLocation: null
+        });
+        this.hideLocationSummary();
+    }
+
     onMapTapped() {
         this.setState({
             previousLocation: this.state.selectedLocation
@@ -217,10 +229,7 @@ class MainLocationMap extends Component {
         setTimeout(() => {
             if (this.state.previousLocation && this.state.selectedLocation 
                 && this.state.selectedLocation.id == this.state.previousLocation.id) {
-                this.setState({
-                    selectedLocation: null
-                });
-                this.hideLocationSummary();
+                this.clearSelectedLocation();        
             }
         }, 2000);
     }
@@ -229,7 +238,7 @@ class MainLocationMap extends Component {
         Animated.timing(
             this.state.bottomAnim,
             {
-                toValue: -100,
+                toValue: -this.detailViewHeight,
                 duration: 200
             }
         ).start();
@@ -288,6 +297,49 @@ class MainLocationMap extends Component {
             </Modal>
         )
     }
+    setBottomAnim(value) {
+        if (value > 0) {
+            return
+        }
+        this.state.bottomAnim.setValue(value);
+    }
+
+    releaseSwipeGesture() {
+
+        let midpoint = this.mainViewHeight - this.detailViewHeight * 0.9;
+        let position = this.detailViewY;
+        if (position > midpoint) {
+            this.clearSelectedLocation();
+        } else {
+            this.showLocationSummary();
+        }
+    }
+
+    componentWillMount() {
+        this._panResponder = PanResponder.create({
+          onStartShouldSetPanResponder: (evt, gestureState) => true,
+          onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
+          onMoveShouldSetPanResponder: (evt, gestureState) => true,
+          onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+
+          onPanResponderGrant: (evt, gestureState) => {
+            this.animationStart = gestureState.y0;
+          },
+          onPanResponderMove: (evt, gestureState) => {
+              this.setBottomAnim(this.animationStart - gestureState.moveY);
+          },
+          onPanResponderTerminationRequest: (evt, gestureState) => true,
+          onPanResponderRelease: (evt, gestureState) => {
+            this.releaseSwipeGesture();
+          },
+          onPanResponderTerminate: (evt, gestureState) => {
+          },
+          onShouldBlockNativeResponder: (evt, gestureState) => {
+            return true;
+          },
+        });
+
+    }
 
     openWebsite() {
         this.setState({
@@ -307,10 +359,20 @@ class MainLocationMap extends Component {
                 position: 'absolute', 
                 bottom: this.state.bottomAnim, 
                 width: width,
-            }}>
+                }}
+                {...this._panResponder.panHandlers}
+                    onLayout={(event) => {
+                        console.log(event.nativeEvent.layout);
+                        var {x, y, width, height} = event.nativeEvent.layout;
+                        this.detailViewHeight = height;
+                        this.detailViewY = y;
+                    }}
+
+            >
                 <LocationDetailSummaryView 
                     location={this.state.selectedLocation}
                     distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
+                    ref={'detailView'}
                     openWebsite={() => this.openWebsite()}
                     startPhoneCall={() => {}}
                 />
