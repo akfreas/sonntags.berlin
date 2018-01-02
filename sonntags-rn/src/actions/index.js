@@ -93,13 +93,17 @@ function getUserLocation(dispatch) {
     };
 }
 
-function loadLocations(category) {
+function loadLocations(category, boundingBox) {
 
     let queryDict = {content_type: 'location'}
     if (category) {
         queryDict['fields.categoryRef.sys.id'] = category.id;
         Analytics.logEvent('load_category', {'category_name': category.name});
     } 
+    if (boundingBox) {
+        var bb = boundingBox;
+        queryDict['fields.location[within]'] = bb[0][1] + ',' + bb[0][0] + ',' + bb[1][1] + ',' + bb[1][0];
+    }
     return contentfulClient.getEntries(queryDict).then((response) => {
         return response.items.map((location) => {
             let fields = location.fields;

@@ -32,7 +32,7 @@ var I18n = create_i18n();
 
 var styles = require('../styles/index.js');
 
-import { loadCategories, toggleDrawer } from '../actions';
+import { loadCategories } from '../actions';
 import LocationTypeGridItem from '../components/LocationTypeGridItem';
 
 import HamburgerBars from '../components/HamburgerBars.js';
@@ -44,7 +44,7 @@ class LocationTypeGrid extends Component {
         const { params = {} } = navigation.state;
         return {
         title: 'sonntags',
-        headerLeft:<HamburgerBars onPress={()=> params.openDrawer() }/>
+            headerLeft:<HamburgerBars/>
     }};
 
     constructor(props) {
@@ -57,19 +57,8 @@ class LocationTypeGrid extends Component {
         }
     }
 
-    onNavigatorEvent(event) {
-        if (event.type == 'DrawerOpen') {
-
-        }
-    }
-
-    openDrawer() {
-        this.props.ourToggleDrawer();
-    }
-    
     componentDidMount() {
 
-        this.props.navigation.setParams({ openDrawer: this.openDrawer.bind(this) });
         loadCategories().then((categories) => {
             let withSpecialSundays = [{name: I18n.t('special_opening_days_title'), id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
             let ds = this.state.dataSource.cloneWithRows(withSpecialSundays);
@@ -121,4 +110,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { ourToggleDrawer: toggleDrawer })(LocationTypeGrid);
+export default connect(mapStateToProps)(LocationTypeGrid);

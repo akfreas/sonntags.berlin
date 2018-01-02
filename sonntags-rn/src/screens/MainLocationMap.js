@@ -44,6 +44,7 @@ import Analytics from 'react-native-firebase-analytics';
 import LocationCallout from '../components/LocationCallout.js';
 import HamburgerBars from '../components/HamburgerBars.js';
 import NavigationBar from 'react-native-navbar';
+import MapButtonPanel from '../components/MapButtonPanel';
 import LocationListView from '../components/LocationListView';
 import LocationDetailSummaryView from '../components/LocationDetailSummaryView';
 import LocationActionComponent from '../components/LocationActionComponent';
@@ -151,15 +152,16 @@ class MainLocationMap extends Component {
 
     showList() {
         this.setState({
-            listViewModalVisible: true
+            listViewModalVisible: !this.state.listViewModalVisible
         });
     }
 
-
-    componentDidMount() {
-        this.props.navigation.setParams({showList: this.showList.bind(this)});
-
-        loadLocations(this.props.category).then((locations) => {
+    loadLocationsForState(bounds) {
+        debugger
+        if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) { 
+            return
+        }
+        loadLocations(this.props.category, bounds).then((locations) => {
             let sorted = locations
             if (this.props.userLocation) {
                 sorted = this.locationsSortedByDistance(locations);
@@ -169,7 +171,11 @@ class MainLocationMap extends Component {
             })
         }).then(()=>{
             this.props.getUserLocation();
-        })
+        });
+    }
+
+    componentDidMount() {
+        this.props.navigation.setParams({showList: this.showList.bind(this)});
     }
 
     componentDidUpdate() {
@@ -191,6 +197,11 @@ class MainLocationMap extends Component {
         });
     }
 
+
+    onRegionDidChange(coordinates) {
+        this.loadLocationsForState(coordinates);
+    }
+
     mapView() {
         return (
             <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}
@@ -201,15 +212,11 @@ class MainLocationMap extends Component {
                 <LocationMapView
                     locations={this.state.locations}
                     onAnnotationTapped={this.onAnnotationTapped.bind(this)}
+                    onRegionDidChange={this.onRegionDidChange.bind(this)}
                     selectedLocation={this.state.selectedLocation}
                     onTap={this.onMapTapped.bind(this)}
+                    ref={map => { this._map = map; }}
                 /> 
-            <AdMobBanner
-                  bannerSize="smartBannerPortrait"
-                  adUnitID="ca-app-pub-5197876894535655/8159389107"
-                  testDeviceID="EMULATOR"
-                  didFailToReceiveAdWithError={this.bannerError} />
-
             </View>
         )
 
@@ -283,20 +290,16 @@ class MainLocationMap extends Component {
                 </Modal>
             )
         } else {
-            return null
+            return null;
         }
     }
        
     modalListView() {
+        if (this.state.listViewModalVisible == false) {
+            return null;
+        }
         return (
-             <Modal
-                animationType="slide"
-                transparent={false}
-                visible={this.state.listViewModalVisible}
-                onRequestClose={() => {}}
-            >
-                <LocationTypeGrid/> 
-            </Modal>
+            <LocationTypeGrid/> 
         )
     }
     setBottomAnim(value) {
@@ -395,10 +398,10 @@ class MainLocationMap extends Component {
         }
         return (
             <View style={{flex: 1}}>
-                {this.modalListView()}
                 {this.modalWebView()}
                  <StatusBar barStyle = "light-content" hidden = {false}/>
                 {this.mapView()}
+                {this.modalListView()}
                 {itemView}
             </View>
         );

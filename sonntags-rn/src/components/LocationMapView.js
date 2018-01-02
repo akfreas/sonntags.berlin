@@ -43,10 +43,7 @@ export default class LocationMapView extends Component {
 		annotations: []
 	};
 
-  onRegionDidChange = (location) => {
-    this.setState({ currentZoom: location.zoomLevel });
-    console.log('onRegionDidChange', location);
-  };
+  
   onOpenAnnotation = (annotation) => {
       if (this.props.onAnnotationTapped) {
           this.props.onAnnotationTapped(annotation);
@@ -116,6 +113,10 @@ export default class LocationMapView extends Component {
         });
     }
 
+    getVisibleBounds() {
+        return this._map.getVisibleBounds();
+    }
+
     renderAnnotations() {
         let annotationViews = this.state.annotations.map((annotation) => {
             backgroundColor = '#EEA845';
@@ -154,6 +155,11 @@ export default class LocationMapView extends Component {
         return annotationViews;
     }
 
+    onRegionDidChange(region) {
+        this.props.onRegionDidChange(region.properties.visibleBounds);
+        console.log(region);
+    }
+
     render() {
         return(
             <View style={{flex: 1, alignItems: 'stretch'}}>
@@ -167,6 +173,7 @@ export default class LocationMapView extends Component {
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
+                      onRegionDidChange={this.onRegionDidChange.bind(this)}
                       pitchEnabled={false}
                       styleURL={'mapbox://styles/akfreas/cjbtmvqcaarka2qtgs0yakriu'}
                       onOpenAnnotation={this.onOpenAnnotation}
