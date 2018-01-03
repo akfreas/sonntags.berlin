@@ -21,9 +21,18 @@ var styles = require('../styles');
 export default class LocationTypeGridItem extends Component {
 
     render() {
+
+        let rowStyle = styles.locationGridItem;
+        if (this.props.type.backgroundColor) {
+            rowStyle = [rowStyle, {backgroundColor: this.props.type.backgroundColor}];
+        }
+        if (this.props.active) {
+            rowStyle = [rowStyle, {backgroundColor: '#E4E3D8'}];
+        }
+
         return (
             <TouchableOpacity onPress={this.props.categorySelected}>
-                <View style={styles.locationGridItem}>
+                <View style={rowStyle}>
                     <View style={styles.locationGridIconContainer}>
                         <Icon
                             style={styles.locationGridIcon}

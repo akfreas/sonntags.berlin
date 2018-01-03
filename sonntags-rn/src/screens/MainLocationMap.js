@@ -152,16 +152,16 @@ class MainLocationMap extends Component {
 
     showList() {
         this.setState({
-            listViewModalVisible: !this.state.listViewModalVisible
+            listViewModalVisible: true
         });
     }
 
-    loadLocationsForState(bounds) {
-        debugger
+    loadLocationsForState() {
+        let bounds = this.currentMapRegion;
         if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) { 
             return
         }
-        loadLocations(this.props.category, bounds).then((locations) => {
+        loadLocations(this.state.selectedCategory, bounds).then((locations) => {
             let sorted = locations
             if (this.props.userLocation) {
                 sorted = this.locationsSortedByDistance(locations);
@@ -199,7 +199,8 @@ class MainLocationMap extends Component {
 
 
     onRegionDidChange(coordinates) {
-        this.loadLocationsForState(coordinates);
+        this.currentMapRegion = coordinates;
+        this.loadLocationsForState();
     }
 
     mapView() {
@@ -273,6 +274,17 @@ class MainLocationMap extends Component {
         this.showLocationSummary();
     }
 
+    onListItemSelected = (category) => {
+
+        this.setStatelistViewModalVisible = false;
+
+        this.setState({
+            selectedCategory: category,
+            listViewModalVisible: false
+        });
+        this.loadLocationsForState();
+    }
+
     modalWebView() {
         if (this.state.selectedLocation) {
             return (
@@ -299,7 +311,9 @@ class MainLocationMap extends Component {
             return null;
         }
         return (
-            <LocationTypeGrid/> 
+            <LocationTypeGrid 
+                activeFilter={this.state.selectedCategory} 
+                onItemSelected={this.onListItemSelected}/> 
         )
     }
     setBottomAnim(value) {

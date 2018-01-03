@@ -57,12 +57,18 @@ class LocationTypeGrid extends Component {
     componentDidMount() {
 
         loadCategories().then((categories) => {
-            let withAllCategory = [{
-                name: I18n.t('special_opening_days_title'), 
-                id: 'sonderoeffnung', 
-                iconName: 'sigma'}].concat(categories);
+            let ds = null;
+            if (this.props.activeFilter) {
+                let withAllCategory = [{
+                    name: I18n.t('clear_filter'), 
+                    backgroundColor: '#FDAF5A',
+                    iconName: 'close'}].concat(categories);
 
-            let ds = this.state.dataSource.cloneWithRows(withAllCategory);
+                ds = this.state.dataSource.cloneWithRows(withAllCategory);
+            } else {
+                ds = this.state.dataSource.cloneWithRows(categories);
+            }
+
             this.setState({
                 dataSource: ds
             })
@@ -70,11 +76,10 @@ class LocationTypeGrid extends Component {
     }
 
     categorySelected(category) {
-        const { navigate } = this.props.navigation; 
-        if (category.id == 'sonderoeffnung') {
-            navigate('OpenSundays');   
+        if (!category.id) {
+            this.props.onItemSelected(null);
         } else {
-            navigate('CategoryView', { category: category });
+            this.props.onItemSelected(category);
         }
     }
 
@@ -82,6 +87,7 @@ class LocationTypeGrid extends Component {
         return (
             <LocationTypeGridItem 
                 type={item} 
+                active={item.id && this.props.activeFilter && item.id == this.props.activeFilter.id}
                 categorySelected={() => this.categorySelected(item)}
             />
         )
