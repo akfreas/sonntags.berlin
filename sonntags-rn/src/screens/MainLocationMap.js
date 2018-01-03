@@ -15,7 +15,8 @@ import {
     Animated,
     StyleSheet,
     Platform,
-    Linking
+    Linking,
+    Button
 } from 'react-native';
 
 import { StatusBar } from 'react-native';
@@ -42,7 +43,6 @@ import {
 import NavWebView from '../screens/NavWebView';
 import Analytics from 'react-native-firebase-analytics';
 import LocationCallout from '../components/LocationCallout.js';
-import HamburgerBars from '../components/HamburgerBars.js';
 import NavigationBar from 'react-native-navbar';
 import MapButtonPanel from '../components/MapButtonPanel';
 import LocationListView from '../components/LocationListView';
@@ -52,8 +52,9 @@ import arrow from '../../assets/images/map-annotation.png';
 import { connect } from 'react-redux'
 import LocationMapView from '../components/LocationMapView'; 
 import LocationListItem from '../components/LocationListItem';
-import Share, {ShareSheet, Button} from 'react-native-share';
+import Share, {ShareSheet} from 'react-native-share';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 let width = Dimensions.get('window').width
 let height = Dimensions.get('window').height
@@ -62,7 +63,6 @@ class MainLocationMap extends Component {
 
     static navigationOptions = ({ navigation }) => ({
         title: 'sonntags',
-        headerRight:<HamburgerBars onPress={()=> navigation.state.params.showList()}/>
     });
     
     constructor(props) {
@@ -389,6 +389,28 @@ class MainLocationMap extends Component {
         )
     }
 
+    mapButtonPanel() {
+
+        let config = [
+            {icon: 'filter', target: ()=> this.showList() },
+            {icon: 'map-marker-plus', target: ()=> { console.log('heyyyy')} },
+            {icon: 'calendar-range', target: ()=> { console.log('heyyyy')} }
+        ];
+
+        return (
+            <View style={{
+                flex:1, 
+                alignSelf: 'flex-end', 
+                flexDirection: 'row', 
+                alignItems: 'center', 
+                right: 0, 
+                width: 60
+            }}>
+            <MapButtonPanel buttons={config}/> 
+            </View>
+        )
+    }
+
     render() {
 
         let itemView = null;
@@ -400,7 +422,9 @@ class MainLocationMap extends Component {
             <View style={{flex: 1}}>
                 {this.modalWebView()}
                  <StatusBar barStyle = "light-content" hidden = {false}/>
-                {this.mapView()}
+                 {this.mapView()}
+
+                 {this.mapButtonPanel()}
                 {this.modalListView()}
                 {itemView}
             </View>

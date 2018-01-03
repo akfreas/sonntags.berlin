@@ -21,7 +21,6 @@ import {
   AdMobRewarded
 } from 'react-native-admob'
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -35,7 +34,6 @@ var styles = require('../styles/index.js');
 import { loadCategories } from '../actions';
 import LocationTypeGridItem from '../components/LocationTypeGridItem';
 
-import HamburgerBars from '../components/HamburgerBars.js';
 
 
 class LocationTypeGrid extends Component {
@@ -44,7 +42,6 @@ class LocationTypeGrid extends Component {
         const { params = {} } = navigation.state;
         return {
         title: 'sonntags',
-            headerLeft:<HamburgerBars/>
     }};
 
     constructor(props) {
@@ -60,8 +57,12 @@ class LocationTypeGrid extends Component {
     componentDidMount() {
 
         loadCategories().then((categories) => {
-            let withSpecialSundays = [{name: I18n.t('special_opening_days_title'), id: 'sonderoeffnung', iconName: 'calendar'}].concat(categories);
-            let ds = this.state.dataSource.cloneWithRows(withSpecialSundays);
+            let withAllCategory = [{
+                name: I18n.t('special_opening_days_title'), 
+                id: 'sonderoeffnung', 
+                iconName: 'sigma'}].concat(categories);
+
+            let ds = this.state.dataSource.cloneWithRows(withAllCategory);
             this.setState({
                 dataSource: ds
             })

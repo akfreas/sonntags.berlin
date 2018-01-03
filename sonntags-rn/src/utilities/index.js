@@ -35,6 +35,7 @@ function create_i18n() {
             opening_days_text: 'The city of Berlin allows for some exceptions. On these Sundays, many stores will be open for business.  Each opening day takes place during another city-wide event, listed below.',
             more_info: 'More info at http://bit.ly/sonntags-berlin',
             special_opening_days_title: 'Special Opening Days',
+            clear_filter: 'Clear Filter',
         },
         de: {
             distance: 'km entfernt',
@@ -49,6 +50,7 @@ function create_i18n() {
             opening_days_text: 'Die Stadt Berlin erlaubt einige Ausnahmen. An diesen Sonntagen werden viele Geschäfte geöffnet sein. Jeder Verkaufsoffene Sonntag ist in Verbindung mit einer besondere Veranstaltung nachfolgend aufgeführt.',
             more_info: 'Mehr Infos: http://bit.ly/sonntags-berlin',
             special_opening_days_title: 'Sonderöffnungen',
+            clear_filter: 'Clear Filter',
         }
     };
     return I18n;
