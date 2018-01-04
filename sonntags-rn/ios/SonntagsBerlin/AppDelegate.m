@@ -52,7 +52,6 @@ NSString *const kGCMMessageIDKey = @"gcm.message_id";
 - (BOOL)application:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   // [START configure_firebase]
-  [FIRApp configure];
   // [END configure_firebase]
   
   // [START set_messaging_delegate]
