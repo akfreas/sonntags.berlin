@@ -35,7 +35,6 @@ import {
 
 import {
     loadLocations,
-    loadCategories,
     getUserLocation,
     distanceFromUserLocation,
 } from '../actions';
@@ -151,6 +150,7 @@ class MainLocationMap extends Component {
     }
 
     showList() {
+        this.hideLocationSummary();
         this.setState({
             listViewModalVisible: true
         });
@@ -281,8 +281,9 @@ class MainLocationMap extends Component {
         this.setState({
             selectedCategory: category,
             listViewModalVisible: false
+        }, () => {;
+            this.loadLocationsForState();
         });
-        this.loadLocationsForState();
     }
 
     modalWebView() {
