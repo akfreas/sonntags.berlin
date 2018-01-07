@@ -5,6 +5,7 @@ import {
     Linking,
     Button,
     Platform,
+    Dimensions,
     ScrollView,
     Text,
     TouchableOpacity,
@@ -24,6 +25,7 @@ import {
 import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
+import MapButtonPanel from '../components/MapButtonPanel';
 
 import {create_i18n} from '../utilities';
 
@@ -33,6 +35,9 @@ var styles = require('../styles/index.js');
 
 import { loadCategories } from '../actions';
 import LocationTypeGridItem from '../components/LocationTypeGridItem';
+
+let width = Dimensions.get('window').width
+let height = Dimensions.get('window').height
 
 
 
@@ -99,14 +104,30 @@ class LocationTypeGrid extends Component {
     
     render() {
         return (
-            <View style={{ height: "100%"}}>
+            <View style={{ height: "100%", backgroundColor: 'orange'}}>
+             
+                    
                 <ListView 
-                    style={styles.categoryTable}
+                    style={[styles.categoryTable, {position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}]}
                     renderSeparator={this.renderSeparator.bind(this)} 
-                    contentContainerStyle={styles.locationGridList}
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}
-                />
+                >
+             </ListView>
+             <View  style={{
+                        alignSelf: 'flex-end',
+                        flexDirection: 'row',
+                        paddingTop: 0,
+                        position: 'absolute',
+                        alignItems: 'center',
+                        top: height/2-30,
+                        width: 60,
+                        height: 60
+             }}>
+             <MapButtonPanel buttons={[{icon: 'close', target: this.props.onCloseTapped}]}/>
+            </View>
+
+
             </View>
         );
     }

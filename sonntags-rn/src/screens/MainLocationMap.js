@@ -63,13 +63,14 @@ class MainLocationMap extends Component {
     static navigationOptions = ({ navigation }) => ({
         title: 'sonntags',
     });
+
     
     constructor(props) {
         super(props);
         this.state = {
             locations: [],
-            listViewModalVisible: false,
             bottomAnim: new Animated.Value(0),
+            categoryViewAnim: new Animated.Value(0),
             websiteModalVisible: false,
         };
     }
@@ -77,7 +78,6 @@ class MainLocationMap extends Component {
     locationSelected(location, source) {
         let previousLocation = this.state.selectedLocation;
         this.setState({
-            listViewModalVisible: false,
             previousLocation: previousLocation,
             selectedLocation: location
         });
@@ -148,11 +148,32 @@ class MainLocationMap extends Component {
         return sortedLocations;
 
     }
+    hideCategoryList = () => {
+        Animated.timing(
+            this.state.categoryViewAnim,
+            {
+                toValue: -this.categoryViewHeight,
+                duration: 200
+            }
+        ).start((finished) => {
+            this.setState({
+                categoryListShown: true
+            });
+        });
+    }
 
-    showList() {
+    showCategoryList = () => {
         this.hideLocationSummary();
-        this.setState({
-            listViewModalVisible: true
+        Animated.timing(
+            this.state.categoryViewAnim,
+            {
+                toValue: 0,
+                duration: 200
+            }
+        ).start((finished) => {
+            this.setState({
+                categoryListShown: true
+            });
         });
     }
 
@@ -175,7 +196,6 @@ class MainLocationMap extends Component {
     }
 
     componentDidMount() {
-        this.props.navigation.setParams({showList: this.showList.bind(this)});
     }
 
     componentDidUpdate() {
@@ -276,11 +296,10 @@ class MainLocationMap extends Component {
 
     onListItemSelected = (category) => {
 
-        this.setStatelistViewModalVisible = false;
 
+        this.hideCategoryList();
         this.setState({
             selectedCategory: category,
-            listViewModalVisible: false
         }, () => {;
             this.loadLocationsForState();
         });
@@ -308,13 +327,26 @@ class MainLocationMap extends Component {
     }
        
     modalListView() {
-        if (this.state.listViewModalVisible == false) {
-            return null;
-        }
         return (
-            <LocationTypeGrid 
-                activeFilter={this.state.selectedCategory} 
-                onItemSelected={this.onListItemSelected}/> 
+            <Animated.View style={{ top: this.state.categoryViewAnim}}
+                    onLayout={(event) => {
+                        var {x, y, width, height} = event.nativeEvent.layout;
+                        console.log("grid height", height);
+                        if (this.hasPerformedLayout) { return; }
+                        this.state.categoryViewAnim.setValue(-height);
+                        this.categoryViewHeight = height;
+                        this.categoryViewY = y;
+                            this.hasPerformedLayout = true;
+                    }}
+
+            >
+                <LocationTypeGrid 
+                    activeFilter={this.state.selectedCategory} 
+                    onItemSelected={this.onListItemSelected}
+                    onCloseTapped={this.hideCategoryList}
+
+                    /> 
+            </Animated.View>
         )
     }
     setBottomAnim(value) {
@@ -382,7 +414,6 @@ class MainLocationMap extends Component {
                 }}
                 {...this._panResponder.panHandlers}
                     onLayout={(event) => {
-                        console.log(event.nativeEvent.layout);
                         var {x, y, width, height} = event.nativeEvent.layout;
                         this.detailViewHeight = height;
                         this.detailViewY = y;
@@ -407,7 +438,7 @@ class MainLocationMap extends Component {
     mapButtonPanel() {
 
         let config = [
-            {icon: 'filter', target: ()=> this.showList() },
+            {icon: 'filter', target: this.showCategoryList },
             {icon: 'map-marker-plus', target: ()=> { console.log('heyyyy')} },
             {icon: 'calendar-range', target: ()=> { console.log('heyyyy')} }
         ];
@@ -419,9 +450,10 @@ class MainLocationMap extends Component {
                 flexDirection: 'row', 
                 alignItems: 'center', 
                 right: 0, 
+                bottom: 0,
                 width: 60
             }}>
-            <MapButtonPanel buttons={config}/> 
+                <MapButtonPanel buttons={config}/> 
             </View>
         )
     }
@@ -437,10 +469,11 @@ class MainLocationMap extends Component {
             <View style={{flex: 1}}>
                 {this.modalWebView()}
                  <StatusBar barStyle = "light-content" hidden = {false}/>
-                 {this.mapView()}
-
-                 {this.mapButtonPanel()}
-                {this.modalListView()}
+                 <View style={{height: '100%', position: 'absolute', top: 0, right: 0, width: '100%'}}>
+                     {this.mapView()}
+                     {this.mapButtonPanel()}
+                 </View>
+                 {this.modalListView()}
                 {itemView}
             </View>
         );
