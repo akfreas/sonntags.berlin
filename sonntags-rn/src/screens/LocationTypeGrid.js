@@ -59,25 +59,34 @@ class LocationTypeGrid extends Component {
         }
     }
 
-    componentDidMount() {
+    componentWillMount() {
+        this.loadForProps(this.props);
+    }
 
+    componentWillReceiveProps(nextProps) {
+        this.loadForProps(nextProps);
+    }
+
+    loadForProps(props) {
         loadCategories().then((categories) => {
-            let ds = null;
-            if (this.props.activeFilter) {
-                let withAllCategory = [{
-                    name: I18n.t('clear_filter'), 
-                    backgroundColor: '#FDAF5A',
-                    iconName: 'close'}].concat(categories);
+                let ds = null;
+                if (props.activeFilter) {
+                    let withAllCategory = [{
+                        name: I18n.t('clear_filter'), 
+                        backgroundColor: '#FDAF5A',
+                        textColor: '#FFFFFF',
+                        iconName: 'close'}].concat(categories);
 
-                ds = this.state.dataSource.cloneWithRows(withAllCategory);
-            } else {
-                ds = this.state.dataSource.cloneWithRows(categories);
-            }
+                    ds = this.state.dataSource.cloneWithRows(withAllCategory);
+                } else {
+                    ds = this.state.dataSource.cloneWithRows(categories);
+                }
 
-            this.setState({
-                dataSource: ds
-            })
-        });
+                this.setState({
+                    dataSource: ds
+                })
+            });
+
     }
 
     categorySelected(category) {

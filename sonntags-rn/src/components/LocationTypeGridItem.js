@@ -23,6 +23,9 @@ export default class LocationTypeGridItem extends Component {
     render() {
 
         let rowStyle = styles.locationGridItem;
+        let iconColor = this.props.type.textColor ? this.props.type.textColor : '#3BB9BD';
+        let textColor = this.props.type.textColor ? this.props.type.textColor : 'black';
+
         if (this.props.type.backgroundColor) {
             rowStyle = [rowStyle, {backgroundColor: this.props.type.backgroundColor}];
         }
@@ -38,10 +41,10 @@ export default class LocationTypeGridItem extends Component {
                             style={styles.locationGridIcon}
                             name={this.props.type.iconName}
                             size={32}
-                            color='#3BB9BD'/>                        
+                            color={iconColor}/>                        
                     </View>
                     <View style={styles.locationGridTextContainer}>
-                        <Text style={styles.locationGridText}>{this.props.type.name}</Text>
+                        <Text style={[{color: textColor}, styles.locationGridText]}>{this.props.type.name}</Text>
                     </View>
                 </View>
             </TouchableOpacity>

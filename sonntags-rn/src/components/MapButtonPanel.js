@@ -25,7 +25,6 @@ class MapButtonPanel extends Component {
                     key={buttonConfig.icon}
                         style={{
                         flex: 1, 
-
                         justifyContent: 'center', 
                         flexDirection: 'row', 
                         alignItems: 'center', 
