@@ -9,6 +9,7 @@ import {
     TouchableOpacity,
     TouchableWithoutFeedback,
     PanResponder,
+    ActivityIndicator,
     View,
     Modal,
     AnimatedValue,
@@ -20,6 +21,10 @@ import {
 } from 'react-native';
 
 import { StatusBar } from 'react-native';
+
+import {create_i18n} from '../utilities';
+
+var I18n = create_i18n();
 
 import { 
   AdMobBanner, 
@@ -53,6 +58,7 @@ import LocationMapView from '../components/LocationMapView';
 import LocationListItem from '../components/LocationListItem';
 import Share, {ShareSheet} from 'react-native-share';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
+import OpeningDays from '../screens/OpeningDays';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 let width = Dimensions.get('window').width
@@ -60,9 +66,20 @@ let height = Dimensions.get('window').height
 
 class MainLocationMap extends Component {
 
-    static navigationOptions = ({ navigation }) => ({
-        title: 'sonntags',
-    });
+    static navigationOptions = ({ navigation }) => {
+        console.log(navigation);
+        const {state} = navigation;
+        let isLoading;
+        if (state.params) {
+            isLoading = state.params.isLoading;
+        } else {
+            isLoading = false;
+        }
+        return {
+            title: 'sonntags',
+            headerRight:<ActivityIndicator style={{padding: 5}} size="small" color="#fff" animating={isLoading}/>
+        }
+    };
 
     
     constructor(props) {
@@ -148,7 +165,8 @@ class MainLocationMap extends Component {
         return sortedLocations;
 
     }
-    hideCategoryList = () => {
+
+    hideCategoryList = (callback) => {
         Animated.timing(
             this.state.categoryViewAnim,
             {
@@ -157,8 +175,9 @@ class MainLocationMap extends Component {
             }
         ).start((finished) => {
             this.setState({
-                categoryListShown: true
+                categoryListShown: false
             });
+            callback();
         });
     }
 
@@ -178,10 +197,14 @@ class MainLocationMap extends Component {
     }
 
     loadLocationsForState() {
+        const {setParams} = this.props.navigation;
         let bounds = this.currentMapRegion;
         if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) { 
             return
         }
+        setParams({
+            isLoading: true
+        });
         loadLocations(this.state.selectedCategory, bounds).then((locations) => {
             let sorted = locations
             if (this.props.userLocation) {
@@ -190,7 +213,12 @@ class MainLocationMap extends Component {
             this.setState({
                 locations: sorted,
             })
+
+            setParams({
+                isLoading: false
+            });
         }).then(()=>{
+
             this.props.getUserLocation();
         });
     }
@@ -297,16 +325,17 @@ class MainLocationMap extends Component {
     onListItemSelected = (category) => {
 
 
-        this.hideCategoryList();
-        this.setState({
-            selectedCategory: category,
-        }, () => {;
-            this.loadLocationsForState();
+        this.hideCategoryList(() => {
+             this.setState({
+                selectedCategory: category,
+            }, () => {;
+                this.loadLocationsForState();
+            });
         });
-    }
+   }
 
     modalWebView() {
-        if (this.state.selectedLocation) {
+        if (this.state.openPage) {
             return (
                  <Modal
                     animationType="slide"
@@ -315,8 +344,8 @@ class MainLocationMap extends Component {
                     onRequestClose={() => {}}
                 >
                     <NavWebView 
-                        uri={this.state.selectedLocation.websiteUrl}
-                        title={this.state.selectedLocation.name}
+                        uri={this.state.openPage.url}
+                        title={this.state.openPage.name}
                         rightButtonPressed={() => this.setState({ websiteModalVisible: false })}
                     />
                 </Modal>
@@ -349,6 +378,28 @@ class MainLocationMap extends Component {
             </Animated.View>
         )
     }
+
+    sundayOpeningsModal() {
+        return (
+            <Animated.View style={{ top: this.state.categoryViewAnim}}
+                    onLayout={(event) => {
+                        var {x, y, width, height} = event.nativeEvent.layout;
+                        console.log("grid height", height);
+                        if (this.hasPerformedLayout) { return; }
+                        this.state.categoryViewAnim.setValue(-height);
+                        this.categoryViewHeight = height;
+                        this.categoryViewY = y;
+                            this.hasPerformedLayout = true;
+                    }}
+
+            >
+
+            </Animated.View>
+
+        ); 
+
+    }
+
     setBottomAnim(value) {
         if (value > 0) {
             return
@@ -435,12 +486,24 @@ class MainLocationMap extends Component {
         )
     }
 
+    showPage(title, uri) {
+        this.setState({
+            websiteModalVisible: true,
+            openPage: {
+                title: title,
+                url:  uri,
+        }});
+    }
+
+    
+
     mapButtonPanel() {
 
+        const { navigate } = this.props.navigation;
         let config = [
             {icon: 'filter', target: this.showCategoryList },
-            {icon: 'map-marker-plus', target: ()=> { console.log('heyyyy')} },
-            {icon: 'calendar-range', target: ()=> { console.log('heyyyy')} }
+            {icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
+            {icon: 'calendar-range', target: ()=> {         navigate('OpenSundays')} }
         ];
 
         return (
