@@ -67,7 +67,6 @@ let height = Dimensions.get('window').height
 class MainLocationMap extends Component {
 
     static navigationOptions = ({ navigation }) => {
-        console.log(navigation);
         const {state} = navigation;
         let isLoading;
         if (state.params) {
@@ -177,7 +176,9 @@ class MainLocationMap extends Component {
             this.setState({
                 categoryListShown: false
             });
-            callback();
+            if (callback) {
+                callback();
+            }
         });
     }
 
@@ -226,6 +227,13 @@ class MainLocationMap extends Component {
     componentDidMount() {
     }
 
+    componentWillUpdate(nextProps, nextState) {
+        if (!this.state.userLocation && nextState.userLocation) {
+            let coords = nextState.userLocation.coords;
+            this._map.zoomToLocation([coords.longitude, coords.latitude]);
+        }
+    }
+
     componentDidUpdate() {
         let markers = this.state.locations.map((location) => {
             return location.id;
@@ -268,7 +276,7 @@ class MainLocationMap extends Component {
                 /> 
             </View>
         )
-
+        
     }
 
     clearSelectedLocation() {
@@ -345,7 +353,7 @@ class MainLocationMap extends Component {
                 >
                     <NavWebView 
                         uri={this.state.openPage.url}
-                        title={this.state.openPage.name}
+                        title={this.state.openPage.title}
                         rightButtonPressed={() => this.setState({ websiteModalVisible: false })}
                     />
                 </Modal>
@@ -360,7 +368,6 @@ class MainLocationMap extends Component {
             <Animated.View style={{ top: this.state.categoryViewAnim}}
                     onLayout={(event) => {
                         var {x, y, width, height} = event.nativeEvent.layout;
-                        console.log("grid height", height);
                         if (this.hasPerformedLayout) { return; }
                         this.state.categoryViewAnim.setValue(-height);
                         this.categoryViewHeight = height;
@@ -420,10 +427,10 @@ class MainLocationMap extends Component {
 
     componentWillMount() {
         this._panResponder = PanResponder.create({
-          onStartShouldSetPanResponder: (evt, gestureState) => true,
-          onStartShouldSetPanResponderCapture: (evt, gestureState) => true,
-          onMoveShouldSetPanResponder: (evt, gestureState) => true,
-          onMoveShouldSetPanResponderCapture: (evt, gestureState) => true,
+          onStartShouldSetPanResponder: (evt, gestureState) => false,
+          onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
+          onMoveShouldSetPanResponder: (evt, gestureState) => false,
+          onMoveShouldSetPanResponderCapture: (evt, gestureState) => false,
 
           onPanResponderGrant: (evt, gestureState) => {
             this.animationStart = gestureState.y0;
@@ -431,23 +438,21 @@ class MainLocationMap extends Component {
           onPanResponderMove: (evt, gestureState) => {
               this.setBottomAnim(this.animationStart - gestureState.moveY);
           },
-          onPanResponderTerminationRequest: (evt, gestureState) => true,
+          onPanResponderTerminationRequest: (evt, gestureState) => false,
           onPanResponderRelease: (evt, gestureState) => {
             this.releaseSwipeGesture();
           },
           onPanResponderTerminate: (evt, gestureState) => {
           },
           onShouldBlockNativeResponder: (evt, gestureState) => {
-            return true;
+            return false;
           },
         });
 
     }
 
-    openWebsite() {
-        this.setState({
-            websiteModalVisible: true
-        });
+    openWebsite = () => {
+        this.showPage(this.state.selectedLocation.name, this.state.selectedLocation.websiteUrl);
     }
 
     itemView() {
@@ -475,7 +480,7 @@ class MainLocationMap extends Component {
                     location={this.state.selectedLocation}
                     distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
                     ref={'detailView'}
-                    openWebsite={() => this.openWebsite()}
+                    openWebsite={this.openWebsite}
                     startPhoneCall={() => {}}
                 />
                 <LocationActionComponent

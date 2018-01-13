@@ -133,7 +133,7 @@ class LocationTypeGrid extends Component {
                         width: 60,
                         height: 60
              }}>
-             <MapButtonPanel buttons={[{icon: 'close', target: this.props.onCloseTapped}]}/>
+             <MapButtonPanel buttons={[{icon: 'close', target: () => {this.props.onCloseTapped()}}]}/>
             </View>
 
 

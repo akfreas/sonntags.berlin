@@ -72,6 +72,14 @@ export default class LocationMapView extends Component {
         }
     }
 
+    zoomToLocation(location) {
+        this._map.setCamera({
+            centerCoordinate: location,
+            zoom: 12,
+            duration: 2000
+        });
+    }
+
   componentWillUnmount() {
     this._offlineProgressSubscription.remove();
     this._offlineMaxTilesSubscription.remove();
@@ -170,6 +178,7 @@ export default class LocationMapView extends Component {
                       zoomLevel={this.props.initialZoomLevel ? this.props.initialZoomLevel : 9}
                       initialDirection={0}
                       annotations={this.state.annotations}
+                      showUserLocation={true}
                       rotateEnabled={false}
                       scrollEnabled={true}
                       zoomEnabled={true}
