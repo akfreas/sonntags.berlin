@@ -32,7 +32,7 @@ export default class LocationDetailSummaryView extends Component {
  
         return(
             <View style={{flex: 1, flexDirection: 'row'}}>
-                <View style={{flex: 8, padding: 10, backgroundColor: 'white'}}>
+                <View style={{flex: 8, padding: 15, backgroundColor: 'white'}}>
                     <Text style={{fontFamily: 'Lato-Bold', fontSize: 24}}>{this.props.location.name}</Text>
                     <View style={styles.locationListItemTitleContainer}>
                         <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>

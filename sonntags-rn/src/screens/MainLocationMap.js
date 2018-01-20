@@ -197,16 +197,34 @@ class MainLocationMap extends Component {
         });
     }
 
+    expandBoundingBox(box) {
+        let factor = 0.001;
+        let newBox = [
+            [box[0][0]*(1+factor*2),
+                box[0][1]*(1+factor/2)],
+            [box[1][0]*(1-factor*2),
+                box[1][1]*(1-factor/2)]
+        ];
+        this.printBox(box);
+        this.printBox(newBox);
+        return newBox;
+    }
+
+    printBox(box) {
+        console.log([box[0][0], box[0][1], box[1][0], box[1][1]]);
+    }
+
     loadLocationsForState() {
         const {setParams} = this.props.navigation;
         let bounds = this.currentMapRegion;
         if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) { 
             return
         }
+        let expanded = this.expandBoundingBox(bounds);
         setParams({
             isLoading: true
         });
-        loadLocations(this.state.selectedCategory, bounds).then((locations) => {
+        loadLocations(this.state.selectedCategory, expanded).then((locations) => {
             let sorted = locations
             if (this.props.userLocation) {
                 sorted = this.locationsSortedByDistance(locations);
@@ -292,7 +310,7 @@ class MainLocationMap extends Component {
                 && this.state.selectedLocation.id == this.state.previousLocation.id) {
                 this.clearSelectedLocation();        
             }
-        }, 2000);
+        }, 500);
     }
 
     hideLocationSummary() {

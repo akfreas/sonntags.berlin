@@ -30,7 +30,10 @@ class MapButtonPanel extends Component {
                         alignItems: 'center', 
                         width: '100%'}}>
 
-                    <TouchableOpacity onPress={buttonConfig.target}>
+                        <TouchableOpacity style={{
+                            justifyContent: 'center', 
+                            alignItems: 'center',
+                            width: 44, height: 44}} onPress={buttonConfig.target}>
                         <Icon name={buttonConfig.icon} color='white' style={{}} size={21}/>
                     </TouchableOpacity>
                 </View>
