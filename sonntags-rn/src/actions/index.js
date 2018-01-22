@@ -1,6 +1,9 @@
 import firebase from 'firebase';
 import messaging from 'firebase';
-import { Platform } from 'react-native';
+import { 
+    Platform,
+    AsyncStorage
+} from 'react-native';
 const { createClient } = require('contentful/dist/contentful.browser.min.js');
 
 const firebaseConfig = {
@@ -26,6 +29,7 @@ var I18n = create_i18n();
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 import moment from 'moment';
 import Analytics from 'react-native-firebase-analytics';
+import * as StoreReview from 'react-native-store-review';
 const contentfulClient = createClient({
     space: '2dktdnk1iv2v',
     accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
@@ -48,6 +52,57 @@ function closeDrawer() {
     return {
         type: TOGGLE_DRAWER
     };
+}
+
+function markLaunch() {
+    getLaunchCount().then((count) => {
+        let newCount = 1;
+        if (count) {
+            newCount = Number(count) + 1;
+        }
+        AsyncStorage.setItem('@Sonntags:launchCount', newCount.toString());
+    });
+}
+
+function getLaunchCount() {
+    return AsyncStorage.getItem('@Sonntags:launchCount');
+}
+
+function shouldShowReview(callback) {
+    getLaunchCount().then((count) => {
+
+        if (true) {
+            wasReviewPromptShown().then((show) => {
+                callback(show == false);
+            });
+        } else {
+            callback(false);
+        }
+    });
+}
+
+function markReviewPromptAsShown() {
+    AsyncStorage.setItem('@Sonntags:reviewPromptShown', 'yes');
+}
+
+function wasReviewPromptShown() {
+    return AsyncStorage.getItem('@Sonntags:reviewPromptShown').then((shown) => {
+        if (shown) {
+            return shown == 'yes';
+        } else {
+            return false;
+        }
+    });
+}
+
+function showReviewIfNeeded() {
+    // This API is only available on iOS 10.3 or later
+    shouldShowReview((shouldShow) => {
+        if (shouldShow && StoreReview.isAvailable ) {
+          StoreReview.requestReview();
+           markReviewPromptAsShown(); 
+        }
+    });
 }
 
 function loadCategories() {
@@ -194,4 +249,7 @@ module.exports = {
     setDrawerGesturesEnabled,
     distanceFromUserLocation,
     formatHourString,
+    markLaunch,
+    shouldShowReview,
+    showReviewIfNeeded,
 }

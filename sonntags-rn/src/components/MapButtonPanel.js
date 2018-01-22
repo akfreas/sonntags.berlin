@@ -11,12 +11,22 @@ import {
     WebView,
     PropTypes
 } from 'react-native';
+
+import Analytics from 'react-native-firebase-analytics';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
 
 class MapButtonPanel extends Component {
 
+
+    buttonPress = (config) => {
+        debugger
+        Analytics.logEvent('mapbutton_press', {
+            'title': config.title
+        });
+        config.target();
+    }
 
     renderButtons() {
         var components = this.props.buttons.map((buttonConfig) => {
@@ -33,7 +43,7 @@ class MapButtonPanel extends Component {
                         <TouchableOpacity style={{
                             justifyContent: 'center', 
                             alignItems: 'center',
-                            width: 44, height: 44}} onPress={buttonConfig.target}>
+                            width: 44, height: 44}} onPress={() => this.buttonPress(buttonConfig)}>
                         <Icon name={buttonConfig.icon} color='white' style={{}} size={21}/>
                     </TouchableOpacity>
                 </View>

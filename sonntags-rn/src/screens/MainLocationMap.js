@@ -42,6 +42,9 @@ import {
     loadLocations,
     getUserLocation,
     distanceFromUserLocation,
+    markLaunch,
+    showReviewIfNeeded,
+    shouldShowReview
 } from '../actions';
 
 import NavWebView from '../screens/NavWebView';
@@ -60,6 +63,8 @@ import Share, {ShareSheet} from 'react-native-share';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as StoreReview from 'react-native-store-review';
+
 
 let width = Dimensions.get('window').width
 let height = Dimensions.get('window').height
@@ -89,6 +94,8 @@ class MainLocationMap extends Component {
             categoryViewAnim: new Animated.Value(0),
             websiteModalVisible: false,
         };
+
+        markLaunch();
     }
 
     locationSelected(location, source) {
@@ -279,7 +286,7 @@ class MainLocationMap extends Component {
 
     mapView() {
         return (
-            <View ref="mainView" style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}
+            <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}
             onLayout={(event) => {
                 var {x, y, width, height} = event.nativeEvent.layout;
                 this.mainViewHeight = height;
@@ -341,6 +348,7 @@ class MainLocationMap extends Component {
     }
 
     onAnnotationTapped(annotation) {
+        showReviewIfNeeded();
         let selectedLocation = this.state.locations.find((object)=> object.id == annotation.id);
         this.setState({
             selectedLocation: selectedLocation
@@ -497,7 +505,6 @@ class MainLocationMap extends Component {
                 <LocationDetailSummaryView 
                     location={this.state.selectedLocation}
                     distanceFromUser={distanceFromUserLocation(this.state.selectedLocation, this.props.userLocation)}
-                    ref={'detailView'}
                     openWebsite={this.openWebsite}
                     startPhoneCall={() => {}}
                 />
@@ -524,9 +531,9 @@ class MainLocationMap extends Component {
 
         const { navigate } = this.props.navigation;
         let config = [
-            {icon: 'filter', target: this.showCategoryList },
-            {icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
-            {icon: 'calendar-range', target: ()=> {         navigate('OpenSundays')} }
+            {title: 'show_filter', icon: 'filter', target: this.showCategoryList },
+            {title: 'add_location', icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
+            {title: 'show_sunday_list', icon: 'calendar-range', target: ()=> {         navigate('OpenSundays')} }
         ];
 
         return (
