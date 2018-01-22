@@ -33,6 +33,7 @@ target 'SonntagsBerlin' do
   pod 'Firebase/Crash'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
+  pod 'RNStoreReview', :path => '../node_modules/react-native-store-review/ios'
   target 'SonntagsBerlinTests' do
     inherit! :search_paths
     # Pods for testing
