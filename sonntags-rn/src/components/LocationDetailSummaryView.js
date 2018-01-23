@@ -29,13 +29,18 @@ var styles = require('../styles');
 export default class LocationDetailSummaryView extends Component {
     render() {
         let distance = this.props.distanceFromUser ? Math.round(this.props.distanceFromUser * 100) / 100 : null;
- 
         return(
             <View style={{flex: 1, flexDirection: 'row'}}>
                 <View style={{flex: 8, padding: 15, backgroundColor: 'white'}}>
                     <Text style={{fontFamily: 'Lato-Bold', fontSize: 24}}>{this.props.location.name}</Text>
                     <View style={styles.locationListItemTitleContainer}>
-                        <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text>
+                        <Text style={[styles.locationListItemTitleText, {padding: 0}]}>
+                            <Icon name={this.props.location.iconName} size={24}/>
+                            {' '}{this.props.location.localizedCategory}
+                        </Text>
+                        {this.props.location.address ?
+                            <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text> : <View/>
+                        }
                         <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.props.openWebsite.bind(this)}>
                             <Text style={styles.locationListItemDescriptionText}>{this.props.location.openingHoursString}</Text>
                             {distance ?

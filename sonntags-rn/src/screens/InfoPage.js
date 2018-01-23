@@ -5,7 +5,8 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
-    Image
+    Image,
+    Linking
 } from 'react-native';
 import {create_i18n} from '../utilities';
 import styles from '../styles';
@@ -18,6 +19,11 @@ export default class InfoPage extends Component {
     static navigationOptions = {
         title: I18n.t('about_screen_title')
     };
+
+
+    openEmail = () => {
+        Linking.openURL('mailto:alex@sashimiblade.com');
+    }
  
     render() {
         return (
@@ -60,6 +66,7 @@ Shopping should be one of those things.`}
                             <Text style={{textAlign: 'center', fontFamily: 'lato-regular', color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
                                 Interested in hiring me for your project?
                             </Text>
+                            <TouchableOpacity onPress={this.openEmail}>
                             <View style={{padding: 10, 
                                 alignItems: 'center', 
                                 borderRadius: 10, 
@@ -75,6 +82,7 @@ Shopping should be one of those things.`}
                                     {' '} Let's Talk.
                                 </Text>
                             </View>
+                            </TouchableOpacity>
 
 
                         </View>

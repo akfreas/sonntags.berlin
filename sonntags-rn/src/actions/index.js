@@ -105,7 +105,7 @@ function showReviewIfNeeded() {
     });
 }
 
-function loadCategories() {
+function getLocale() {
     var locale = I18n.currentLocale().split('-');
 
     if (locale.length > 0) {
@@ -113,7 +113,11 @@ function loadCategories() {
     } else {
         locale = "en";
     }
+    return locale;
+}
 
+function loadCategories() {
+    var locale = getLocale();
     return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
             return entries.items[0].fields.list.map((category) => {
 
@@ -155,6 +159,7 @@ function loadLocations(category, boundingBox) {
         queryDict['fields.categoryRef.sys.id'] = category.id;
         Analytics.logEvent('load_category', {'category_name': category.name});
     } 
+    queryDict['locale'] = getLocale();
     if (boundingBox) {
         var bb = boundingBox;
         queryDict['fields.location[within]'] = bb[0][1] + ',' + bb[0][0] + ',' + bb[1][1] + ',' + bb[1][0];
@@ -164,6 +169,8 @@ function loadLocations(category, boundingBox) {
             let fields = location.fields;
             fields.id = location.sys.id;
             fields.iconName = location.fields.categoryRef.fields.iconName;
+            fields.localizedCategory = location.fields.categoryRef.fields.name;
+
             fields.openingHoursString = formatHourString(fields);
             return fields;
         }, (error)=> {

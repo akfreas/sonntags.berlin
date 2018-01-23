@@ -126,7 +126,6 @@ export default class LocationMapView extends Component {
     }
 
     renderAnnotations() {
-        debugger
         let annotationViews = this.state.annotations.map((annotation) => {
             backgroundColor = styles.constants.secondaryColor;
             iconColor = styles.constants.secondaryColorNegative;
