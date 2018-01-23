@@ -36,6 +36,7 @@ function create_i18n() {
             more_info: 'More info at http://bit.ly/sonntags-berlin',
             special_opening_days_title: 'Special Opening Days',
             clear_filter: 'Clear Filter',
+            about_screen_title: 'About Sonntags'
         },
         de: {
             distance: 'km entfernt',
@@ -51,6 +52,7 @@ function create_i18n() {
             more_info: 'Mehr Infos: http://bit.ly/sonntags-berlin',
             special_opening_days_title: 'Sonderöffnungen',
             clear_filter: 'Clear Filter',
+            about_screen_title: 'Über Sonntags'
         }
     };
     return I18n;

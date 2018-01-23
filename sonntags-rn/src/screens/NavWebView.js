@@ -16,6 +16,7 @@ import {
 import calendarDays from '../../assets/images/calendardays.png';
 import Analytics from 'react-native-firebase-analytics';
 import NavigationBar from 'react-native-navbar';
+import styles from '../styles';
 
 export default class NavWebView extends Component {
 
@@ -41,7 +42,7 @@ export default class NavWebView extends Component {
       return {
         title: this.props.title,
           style: {
-              color: '#3BB9BD',
+              color: styles.primaryColor,
               fontFamily: 'Lato-Bold',
           },
       }

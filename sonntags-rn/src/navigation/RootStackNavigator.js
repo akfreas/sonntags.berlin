@@ -6,6 +6,7 @@ import OpeningDays from '../screens/OpeningDays';
 import LocationDetailView from '../screens/LocationDetailView.js';
 import NavWebView from '../screens/NavWebView.js';
 import MainLocationMap from '../screens/MainLocationMap';
+import InfoPage from '../screens/InfoPage';
 
 const paramsToProps = (SomeComponent) => {
 // turns this.props.navigation.state.params into this.params.<x>
@@ -21,7 +22,7 @@ const paramsToProps = (SomeComponent) => {
 }
 const defaultNavOptions = {
     headerStyle: {
-        backgroundColor: '#3BB9BD'
+        backgroundColor: styles.constants.primaryColor
     },
     headerBackTitle: null,
     headerTitleStyle: styles.headerTitleStyle,
@@ -50,6 +51,11 @@ export const RootStackNavigator = StackNavigator({
         screen: paramsToProps(LocationDetailView),
         navigationOptions: defaultNavOptions,
     },
+    InfoPage: {
+        screen: paramsToProps(InfoPage),
+        navigationOptions: defaultNavOptions
+    },
+
 });
 
 

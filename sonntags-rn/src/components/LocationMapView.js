@@ -126,18 +126,20 @@ export default class LocationMapView extends Component {
     }
 
     renderAnnotations() {
+        debugger
         let annotationViews = this.state.annotations.map((annotation) => {
-            backgroundColor = '#EEA845';
-            iconColor = 'white';
+            backgroundColor = styles.constants.secondaryColor;
+            iconColor = styles.constants.secondaryColorNegative;
             if (annotation.selected) {
-                backgroundColor = '#3BB9BD';
-                iconColor = 'white';
+                backgroundColor = styles.constants.primaryColor;
+                iconColor = styles.constants.primaryColorNegative;
             }
             return (
               <MapboxGL.PointAnnotation
                     id={annotation.id}
                     key={annotation.id}
                     coordinate={annotation.coordinates}
+                    attributionEnabled={false}
                     style={{alignItems: 'center', justifyContent: 'center', position: 'absolute'}}
                 >
                     <TouchableOpacity onPress={() => this.props.onAnnotationTapped(annotation)}>

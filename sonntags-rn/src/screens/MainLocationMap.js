@@ -533,7 +533,8 @@ class MainLocationMap extends Component {
         let config = [
             {title: 'show_filter', icon: 'filter', target: this.showCategoryList },
             {title: 'add_location', icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
-            {title: 'show_sunday_list', icon: 'calendar-range', target: ()=> {         navigate('OpenSundays')} }
+            {title: 'show_sunday_list', icon: 'calendar-range', target: ()=> { navigate('OpenSundays')} },
+            {title: 'info_page', icon: 'information-outline', target: ()=>{ navigate('InfoPage')}},
         ];
 
         return (

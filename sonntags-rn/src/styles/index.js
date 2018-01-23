@@ -1,6 +1,10 @@
 const React = require('react-native')
 const constants = {
-  actionColor: '#24CE84'
+    actionColor: '#24CE84',
+    primaryColor: '#3BB9BD',
+    primaryColorNegative: '#FFFFFF',
+    secondaryColor: '#EEA845',
+    secondaryColorNegative: '#FFFFFF',
 };
 
 import {
@@ -12,6 +16,7 @@ import {
   View,
   ListView
 } from 'react-native';
+
 
 var styles = StyleSheet.create({
     headerTitleStyle: {

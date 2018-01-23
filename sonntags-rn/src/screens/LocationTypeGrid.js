@@ -73,8 +73,8 @@ class LocationTypeGrid extends Component {
                 if (props.activeFilter) {
                     let withAllCategory = [{
                         name: I18n.t('clear_filter'), 
-                        backgroundColor: '#FDAF5A',
-                        textColor: '#FFFFFF',
+                        backgroundColor: styles.constants.secondaryColor,
+                        textColor: styles.constants.secondaryColorNegative,
                         iconName: 'close'}].concat(categories);
 
                     ds = this.state.dataSource.cloneWithRows(withAllCategory);
@@ -113,7 +113,7 @@ class LocationTypeGrid extends Component {
     
     render() {
         return (
-            <View style={{ height: "100%", backgroundColor: 'orange'}}>
+            <View style={{ height: "100%"}}>
              
                     
                 <ListView 

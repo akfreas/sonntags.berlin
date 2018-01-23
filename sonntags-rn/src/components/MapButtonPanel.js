@@ -14,14 +14,13 @@ import {
 
 import Analytics from 'react-native-firebase-analytics';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import styles from '../styles';
 
 
 class MapButtonPanel extends Component {
 
 
     buttonPress = (config) => {
-        debugger
         Analytics.logEvent('mapbutton_press', {
             'title': config.title
         });
@@ -53,7 +52,7 @@ class MapButtonPanel extends Component {
     }
 
     render() {
-        let bgColor = this.props.backgroundColor ? this.props.backgroundColor : '#3BB9BD';
+        let bgColor = this.props.backgroundColor ? this.props.backgroundColor : styles.constants.primaryColor;
         let panelHeight = this.props.buttons.length * 66.0;
         return (
                 <View style={{
