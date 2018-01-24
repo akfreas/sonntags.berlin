@@ -24,10 +24,14 @@ export default class InfoPage extends Component {
     openEmail = () => {
         Linking.openURL('mailto:alex@sashimiblade.com');
     }
+
+    onScroll(event) {
+        console.log(event.nativeEvent);
+    }
  
     render() {
         return (
-            <ScrollView style={{height: '100%', width: '100%'}} bounces={false} showScrollBars={false}>
+            <ScrollView style={{height: '100%', width: '100%'}} bounces={false} showScrollBars={false} scrollEventThrottle={8} onScroll={(event) => this.onScroll(event)}>
                 <View style={{backgroundColor: styles.constants.primaryColorNegative, flex: 1, flexDirection: 'column'}}>
                     <View style={{backgroundColor: styles.constants.primaryColor, flex: 1}}>
                         <Text style={{fontFamily: 'lato-bold', fontSize: 38, color: styles.constants.primaryColorNegative, padding: 10}}>
@@ -46,11 +50,11 @@ Shopping should be one of those things.`}
                             That's why I made this app.
                         </Text>
 
-                        <View style={{flex: 1}}>
+                        <View style={{flex: 1, alignItems: 'center'}}>
                             <Image source={require('../../assets/images/painted_me.png')} style={{top: 0}}/>
                             <View style={{
                                 backgroundColor: styles.constants.secondaryColor + 'CC', 
-                                top: 400, 
+                                bottom: 0, 
                                 height: 80, 
                                 width: '100%', 
                                 position: 'absolute', 
@@ -58,13 +62,13 @@ Shopping should be one of those things.`}
                                 alignItems: 'center'
                             }}>
                                 <Text style={{fontFamily: 'lato-bold', fontSize: 34, color: styles.constants.secondaryColorNegative}}>
-                                    Alex Freas
+                                    Hi, I'm Alex.
                                 </Text>
                             </View>
                         </View>
                         <View style={{alignItems: 'center',  flex: 1, backgroundColor: styles.constants.primaryColor}}>
                             <Text style={{textAlign: 'center', fontFamily: 'lato-regular', color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
-                                Interested in hiring me for your project?
+                                Want to work on something?
                             </Text>
                             <TouchableOpacity onPress={this.openEmail}>
                             <View style={{padding: 10, 
