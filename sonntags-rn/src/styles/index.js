@@ -21,7 +21,7 @@ import {
 var styles = StyleSheet.create({
     headerTitleStyle: {
         color: 'white',
-        fontFamily: 'lato-bold',
+        fontFamily: 'Lato-Bold',
         fontSize: 20
 
     },
@@ -89,7 +89,7 @@ var styles = StyleSheet.create({
         fontFamily: 'Lato-Regular',
     },
     locationListItemDistanceText: {
-        fontFamily: 'lato-italic',
+        fontFamily: 'Lato-Italic',
     },
     locationListItemTitleText: {
 

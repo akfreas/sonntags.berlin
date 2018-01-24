@@ -31,7 +31,7 @@ class OpeningDayItem extends Component {
                         </View>
                     </View>
                     <View style={{height: '100%', width: '80%', margin: 15}}>
-                        <Text numberOfLines={2} style={{flex: 1, fontFamily: 'lato-light', fontSize: 16}}>{this.props.openDay.dayName}</Text>
+                        <Text numberOfLines={2} style={{flex: 1, fontFamily: 'Lato-Light', fontSize: 16}}>{this.props.openDay.dayName}</Text>
                     </View>
                 </View>
             </View>

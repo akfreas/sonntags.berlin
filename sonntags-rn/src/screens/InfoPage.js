@@ -11,7 +11,7 @@ import {
 import {create_i18n} from '../utilities';
 import styles from '../styles';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-const fontStyle = {fontFamily: 'lato-regular', fontSize: 14, color: styles.constants.primaryColor};
+const fontStyle = {fontFamily: 'Lato-Regular', fontSize: 14, color: styles.constants.primaryColor};
 var I18n = create_i18n();
 
 
@@ -26,27 +26,28 @@ export default class InfoPage extends Component {
     }
 
     onScroll(event) {
-        console.log(event.nativeEvent);
+        //console.log(event.nativeEvent);
+        //scrollEventThrottle={8} onScroll={(event) => this.onScroll(event)
     }
  
     render() {
         return (
-            <ScrollView style={{height: '100%', width: '100%'}} bounces={false} showScrollBars={false} scrollEventThrottle={8} onScroll={(event) => this.onScroll(event)}>
+            <ScrollView style={{height: '100%', width: '100%'}} bounces={false} showScrollBars={false}>
                 <View style={{backgroundColor: styles.constants.primaryColorNegative, flex: 1, flexDirection: 'column'}}>
                     <View style={{backgroundColor: styles.constants.primaryColor, flex: 1}}>
-                        <Text style={{fontFamily: 'lato-bold', fontSize: 38, color: styles.constants.primaryColorNegative, padding: 10}}>
+                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 38, color: styles.constants.primaryColorNegative, padding: 10}}>
                             Be lazy.
                             Procrastinate. 
                             Support your local shops.
                         </Text>
                     </View>
                     <View style={{flexDirection: 'column', flex: 1}}>
-                        <Text style={{fontFamily: 'lato-regular', fontSize: 28, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 28, color: styles.constants.primaryColor, padding: 10}}>
                             {
 `Things happen spontaneously.
 Shopping should be one of those things.`} 
                         </Text>
-                        <Text style={{fontFamily: 'lato-regular', fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
                             That's why I made this app.
                         </Text>
 
@@ -61,13 +62,13 @@ Shopping should be one of those things.`}
                                 justifyContent: 'center',
                                 alignItems: 'center'
                             }}>
-                                <Text style={{fontFamily: 'lato-bold', fontSize: 34, color: styles.constants.secondaryColorNegative}}>
+                                <Text style={{fontFamily: 'Lato-Bold', fontSize: 34, color: styles.constants.secondaryColorNegative}}>
                                     Hi, I'm Alex.
                                 </Text>
                             </View>
                         </View>
                         <View style={{alignItems: 'center',  flex: 1, backgroundColor: styles.constants.primaryColor}}>
-                            <Text style={{textAlign: 'center', fontFamily: 'lato-regular', color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
+                            <Text style={{textAlign: 'center', fontFamily: 'Lato-Regular', color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
                                 Want to work on something?
                             </Text>
                             <TouchableOpacity onPress={this.openEmail}>
@@ -81,7 +82,7 @@ Shopping should be one of those things.`}
                                 borderColor: styles.constants.primaryColorNegative,
                                 borderWidth: 2.0
                             }}>
-                                <Text style={{fontFamily: 'lato-bold', fontSize: 24, color: styles.constants.secondaryColorNegative}}>
+                                <Text style={{fontFamily: 'Lato-Bold', fontSize: 24, color: styles.constants.secondaryColorNegative}}>
                                     <Icon name={'email-outline'} size={24}/>
                                     {' '} Let's Talk.
                                 </Text>
@@ -91,7 +92,7 @@ Shopping should be one of those things.`}
 
                         </View>
 
-                        <Text style={{fontFamily: 'lato-regular', fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
                             Some technical details...
                         </Text>
                         <View style={{flexDirection: 'row', flex: 1}}>
