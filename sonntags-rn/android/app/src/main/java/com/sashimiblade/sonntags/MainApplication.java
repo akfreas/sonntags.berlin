@@ -4,10 +4,8 @@ import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import com.mapbox.rctmgl.RCTMGLPackage;
-import com.mapbox.rctmgl.RCTMGLPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.evollu.react.fa.FIRAnalyticsPackage;
-import com.mapbox.rctmgl.RCTMGLPackage;
 import cl.json.RNSharePackage;
 import com.sbugert.rnadmob.RNAdMobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -31,7 +29,6 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RCTMGLPackage(),
             new RCTMGLPackage(),
             new RNI18nPackage(),
             new FIRAnalyticsPackage(),
