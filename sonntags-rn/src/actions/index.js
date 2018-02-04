@@ -71,7 +71,7 @@ function getLaunchCount() {
 function shouldShowReview(callback) {
     getLaunchCount().then((count) => {
 
-        if (true) {
+        if (Number(count) == 2 || Number(count) == 10) {
             wasReviewPromptShown().then((show) => {
                 callback(show == false);
             });
@@ -146,9 +146,7 @@ function getUserLocation(dispatch) {
             });
         }, (error) => {
             console.log(error);
-        },
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-      );
+        });
     };
 }
 

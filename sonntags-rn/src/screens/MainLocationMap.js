@@ -250,6 +250,7 @@ class MainLocationMap extends Component {
     }
 
     componentDidMount() {
+        this.props.getUserLocation()
     }
 
     componentWillUpdate(nextProps, nextState) {

@@ -81,9 +81,6 @@ export default class LocationMapView extends Component {
     }
 
   componentWillUnmount() {
-    this._offlineProgressSubscription.remove();
-    this._offlineMaxTilesSubscription.remove();
-    this._offlineErrorSubscription.remove();
   }
 
     componentWillReceiveProps(props) {
