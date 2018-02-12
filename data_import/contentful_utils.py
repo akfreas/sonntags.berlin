@@ -77,6 +77,8 @@ class ContentfulImporter(object):
                 formatted_fields = fields
         elif req_method == 'get':
             method = requests.get
+        elif req_method == 'put':
+            method = requests.put
 
 
         request = method(
@@ -88,7 +90,7 @@ class ContentfulImporter(object):
         return request
 
 
-    def import_location(self, category, fields, source, source_id):
+    def import_location(self, category, fields, source, source_id, publish=False):
 
         if source_id in self.unique_source_ids:
             print('location already exists with ID {}: '.format(source_id))
@@ -106,10 +108,32 @@ class ContentfulImporter(object):
         response = request.json()
 
         if request.status_code < 300:
-            print 'created location {} successfully: id {}'.format(fields['name'].encode('utf-8'), response['sys']['id'])
+            entry_id = response['sys']['id']
+            print('created location {} successfully: id {}'.format(
+                    fields['name'].encode('utf-8'), 
+                    response['sys']['id']
+            ))
+
+            if publish:
+                self.publish_entry(entry_id)
+
         else:
-            print 'failed to create with fields {}, got back {}'.format(new_fields, response)
+            print('failed to create with fields {}, got back {}'.format(new_fields, response))
             raise Exception('ContentfulImportException')
+
+    def publish_entry(self, entry_id):
+
+        url = '/entries/{}/published'.format(entry_id)
+        request = self.perform_contentful_request('put', url)
+        response = request.json()
+
+        if request.status_code < 300:
+            print('published entry {} successfully.'.format(entry_id))
+        else:
+            print('could not publish entry: {}'.format(response))
+            raise Exception('ContentfulImportException')
+
+
 
 
     def import_rewe_to_go(self):
