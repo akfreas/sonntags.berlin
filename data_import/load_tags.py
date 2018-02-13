@@ -21,7 +21,7 @@ def makeDict(tg):
     return retVal 
 
 
-def chunk_large_json(filename, start_pos):
+def chunk_large_json(filename, target_filename, start_pos):
 
     with codecs.open(filename, 'r', encoding='utf-8') as fp:
 
@@ -50,7 +50,7 @@ def chunk_large_json(filename, start_pos):
                         cat_list = extracted_stores.get(category, {})
                         cat_list[shop.get('osm_id')] = shop
                         extracted_stores[category] = cat_list
-                        update_json_with_extracted('hamburg-scraped-new.json', extracted_stores)
+                        update_json_with_extracted(target_filename, extracted_stores)
 
 
                 except AttributeError as e:
@@ -142,7 +142,7 @@ def extract_shop(listing):
 
 def scrape_hours(source_file, dest_file, start_pos=0):
 
-    formatted_listings = chunk_large_json(source_file, start_pos)
+    formatted_listings = chunk_large_json(source_file, dest_file, start_pos)
 
     with open(dest_file, 'w') as formatted_json:
         json.dump(formatted_listings, formatted_json, indent=4)
@@ -152,7 +152,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Scrape hours from OSM data')
     parser.add_argument('source', help='Source file')
     parser.add_argument('destination', help='Destination file')
-    parser.add_argument('-p', '--startpos', type=int, help='Starting file position')
+    parser.add_argument('-p', '--startpos', nargs='?', const=0, type=int, help='Starting file position')
     args = parser.parse_args()
 
     scrape_hours(args.source, args.destination, args.startpos)

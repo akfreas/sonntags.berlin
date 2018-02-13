@@ -86,6 +86,8 @@ class ContentfulImporter(object):
             method = requests.get
         elif req_method == 'put':
             method = requests.put
+        elif req_method == 'delete':
+            method = requests.delete
 
         
         content_type_id = self.fetch_content_type_id(content_type) if content_type else None
@@ -105,13 +107,36 @@ class ContentfulImporter(object):
         return request
 
 
+    def delete_location(self, contentful_id):
+        print('deleting entry {}'.format(contentful_id))
+        request = self.perform_contentful_request('delete', '/entries/{}'.format(contentful_id), 'location', fields={})
+        
+ 
+        if request.status_code < 300:
+            print('successfully deleted entry with id {}'.format(contentful_id))
+        else:
+
+            response = request.json()
+            print('failed to delete {}, got back {}'.format(contentful_id, response))
+            raise Exception('ContentfulImportException')
+
     def import_location(self, category, fields, source, source_id, publish=False):
+
+        existing_entries = self.contentful_client.entries({
+            'content_type': 'location', 
+            'fields.sourceId': source_id.split('/')[1:]
+        })
+
+        if existing_entries.total > 0:
+            for entry in [e.id for e in existing_entries]:
+                self.unpublish_entry(entry)
+                self.delete_location(entry)
 
         existing_entries = self.contentful_client.entries({
             'content_type': 'location', 
             'fields.sourceId': source_id
         })
-        if existing_entries.total == 1:
+        if existing_entries.total > 0:
             print('location already exists with ID {}: '.format(source_id))
             return
 
@@ -139,6 +164,22 @@ class ContentfulImporter(object):
         else:
             print('failed to create with fields {}, got back {}'.format(new_fields, response))
             raise Exception('ContentfulImportException')
+
+
+    def unpublish_entry(self, entry_id):
+        url = '/entries/{}/published'.format(entry_id)
+ 
+        request = self.perform_contentful_request('delete', url)
+        response = request.json()
+
+        if request.status_code < 300:
+            print('unpublished entry {} successfully.'.format(entry_id))
+        else:
+            print('could not unpublish entry: {}'.format(response))
+            raise Exception('ContentfulImportException')
+
+
+
 
     def publish_entry(self, entry_id, version):
 
