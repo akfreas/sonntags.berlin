@@ -48,11 +48,15 @@ class ContentfulImporter(object):
         except:
             return {}
 
-    def _publish_headers(self, content_type_id):
-        return {
+    def _publish_headers(self, content_type_id=None):
+        headers = {
             'Authorization': 'Bearer {}'.format(self.publish_token),
-            'X-Contentful-Content-Type': content_type_id
         }
+
+        if content_type_id:
+            headers['X-Contentful-Content-Type'] = content_type_id
+
+        return headers
 
     @property
     def _content_headers(self):
@@ -64,7 +68,10 @@ class ContentfulImporter(object):
     def space_url(self):
         return 'https://api.contentful.com/spaces/{}'.format(self.space_id)
 
-    def perform_contentful_request(self, req_method, endpoint, content_type, fields = None, localized = True):
+    def perform_contentful_request(self, req_method, \
+            endpoint, content_type=None, \
+            fields=None, localized=True,
+            additional_headers={}):
     
         method = None
         formatted_fields = None
@@ -80,19 +87,31 @@ class ContentfulImporter(object):
         elif req_method == 'put':
             method = requests.put
 
-
-        request = method(
-            self.space_url + endpoint, 
-            headers=self._publish_headers(self.fetch_content_type_id(content_type)), 
-            json=formatted_fields
-        )
+        
+        content_type_id = self.fetch_content_type_id(content_type) if content_type else None
+        headers = self._publish_headers(content_type_id)
+        headers.update(additional_headers)
+        try:
+            request = method(
+                self.space_url + endpoint, 
+                headers=headers, 
+                json=formatted_fields,
+                timeout=2.0
+            )
+        except requests.exceptions.Timeout as e:
+            print e
+            return self.perform_contentful_request(req_method, endpoint, content_type, fields, localized, additional_headers)
 
         return request
 
 
     def import_location(self, category, fields, source, source_id, publish=False):
 
-        if source_id in self.unique_source_ids:
+        existing_entries = self.contentful_client.entries({
+            'content_type': 'location', 
+            'fields.sourceId': source_id
+        })
+        if existing_entries.total == 1:
             print('location already exists with ID {}: '.format(source_id))
             return
 
@@ -115,16 +134,19 @@ class ContentfulImporter(object):
             ))
 
             if publish:
-                self.publish_entry(entry_id)
+                self.publish_entry(entry_id, response['sys']['version'])
 
         else:
             print('failed to create with fields {}, got back {}'.format(new_fields, response))
             raise Exception('ContentfulImportException')
 
-    def publish_entry(self, entry_id):
+    def publish_entry(self, entry_id, version):
 
         url = '/entries/{}/published'.format(entry_id)
-        request = self.perform_contentful_request('put', url)
+        headers = {'X-Contentful-Version': str(version)}
+ 
+        request = self.perform_contentful_request('put', url, 
+                additional_headers=headers)
         response = request.json()
 
         if request.status_code < 300:
