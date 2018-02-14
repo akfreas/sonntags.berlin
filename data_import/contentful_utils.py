@@ -128,9 +128,13 @@ class ContentfulImporter(object):
         })
 
         if existing_entries.total > 0:
+            print('found entry with existing source id {}'.format(source_id))
             for entry in [e.id for e in existing_entries]:
-                self.unpublish_entry(entry)
-                self.delete_location(entry)
+                try:
+                    self.unpublish_entry(entry)
+                    self.delete_location(entry)
+                except:
+                    pass
 
         existing_entries = self.contentful_client.entries({
             'content_type': 'location', 
