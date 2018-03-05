@@ -2,6 +2,7 @@ import json
 import ipdb
 import requests
 import contentful
+import time
 
 
 
@@ -158,7 +159,7 @@ class ContentfulImporter(object):
         if request.status_code < 300:
             entry_id = response['sys']['id']
             print('created location {} successfully: id {}'.format(
-                    fields['name'].encode('utf-8'), 
+                    fields['name'], 
                     response['sys']['id']
             ))
 
@@ -204,11 +205,12 @@ class ContentfulImporter(object):
 
 
     def import_rewe_to_go(self):
-
+        # on rewe to go site: 
+        # JSON.stringify(angular.element(document.getElementById('locationApp')).scope().data)
         json_file = open('./rewe-to-go.json')
 
         locations = json.load(json_file)
-        sundays_open = [loc for loc in locations if loc['city'] == 'Berlin' and 'So' in loc['openingsHours'][0]['weekDays'].split(' ')]
+        sundays_open = [loc for loc in locations if 'So' in loc['openingsHours'][0]['weekDays'].split(' ')]
 
         for location in sundays_open:
             street_name = ''.join([i for i in location['street'].encode('utf-8') if not i.isdigit()])
@@ -227,7 +229,8 @@ class ContentfulImporter(object):
             else:
                 fields['location'] = {'lat': lat_lon['lat'], 'lon': lat_lon['lng']}
 
-            import_location('grocery', fields)
+            source_id = 'rewe_to_go/' + location['$$hashKey'] 
+            self.import_location('grocery', fields, 'rewe_to_go_json', source_id, publish=True)
 
 
 
