@@ -125,7 +125,8 @@ class ContentfulImporter(object):
 
         existing_entries = self.contentful_client.entries({
             'content_type': 'location', 
-            'fields.sourceId': source_id.split('/')[1:]
+            'fields.sourceId': source_id,
+            'fields.dataSource': source
         })
 
         if existing_entries.total > 0:
