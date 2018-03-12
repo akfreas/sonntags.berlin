@@ -102,7 +102,7 @@ class ContentfulImporter(object):
                 timeout=2.0
             )
         except requests.exceptions.Timeout as e:
-            print e
+            print(e)
             return self.perform_contentful_request(req_method, endpoint, content_type, fields, localized, additional_headers)
 
         return request
@@ -125,8 +125,8 @@ class ContentfulImporter(object):
 
         existing_entries = self.contentful_client.entries({
             'content_type': 'location', 
-            'fields.sourceId': source_id,
             'fields.dataSource': source
+            'fields.sourceId': str(source_id)
         })
 
         if existing_entries.total > 0:

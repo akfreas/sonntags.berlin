@@ -4,7 +4,6 @@ from contentful_utils import ContentfulImporter
 from shapely.geometry import Point, Polygon
 
 def publish_osm_data(osm_json, category, target_category):
-    field_array = []
 
     importer = ContentfulImporter(
         space_id='2dktdnk1iv2v', 
@@ -49,7 +48,6 @@ def publish_osm_data(osm_json, category, target_category):
             fields['address'] = " ".join([street, house_number, post_code, city])
 
         importer.import_location(target_category, fields, 'openstreetmap', osm_id, publish=True)
-        field_array.append(fields)
 
 if __name__ == '__main__':
 
