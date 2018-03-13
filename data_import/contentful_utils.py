@@ -125,7 +125,7 @@ class ContentfulImporter(object):
 
         existing_entries = self.contentful_client.entries({
             'content_type': 'location', 
-            'fields.dataSource': source
+            'fields.dataSource': source,
             'fields.sourceId': str(source_id)
         })
 

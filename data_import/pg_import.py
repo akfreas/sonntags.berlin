@@ -5,7 +5,7 @@ from contentful_utils import ContentfulImporter
 from shapely.geometry import Point, Polygon
 
 
-conn = psycopg2.connect("dbname=gis user=postgres")
+conn = psycopg2.connect("dbname=sonntags user=postgres")
 cur = conn.cursor()
 category = 'bakery'
 cat_map = {
@@ -13,15 +13,16 @@ cat_map = {
         'bakery': 'bakery',
         'kiosk': 'kiosk',
         'dry_cleaning': 'laundry',
+        'laundry': 'laundry',
         'deli': 'grocery',
         'convenience': 'kiosk',
         'bicycle': 'bike_shop'
 }
 target_category = cat_map[category]
-query = "select osm_id, name, way, opening_hours, shop, \
+category_list = ', '.join('\'%s\'' % t for t in cat_map.keys())
+query = "select osm_id, name, st_asgeojson, opening_hours, shop, \
         \"addr:city\", \"addr:postcode\", \"addr:street\", \"addr:housenumber\" \
-        from sunday_open where shop = '{}' AND opening_hours LIKE '%Su%' \
-        AND opening_hours NOT LIKE '%ff'".format(category)
+        from sunday_open where shop in ({})".format(category_list)
 print(query)
 cur.execute(query)
 
