@@ -15,7 +15,10 @@ cat_map = {
         'laundry': 'laundry',
         'deli': 'grocery',
         'convenience': 'kiosk',
-        'bicycle': 'bike_shop'
+	'garden_centre': 'home_and_garden',
+        'bicycle': 'bike_shop',
+	'pastry': 'bakery',
+        'supermarket': 'grocery'
 }
 category_list = ', '.join('\'%s\'' % t for t in cat_map.keys())
 query = "select osm_id, name, st_asgeojson, opening_hours, shop, \

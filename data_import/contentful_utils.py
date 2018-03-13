@@ -42,7 +42,8 @@ class ContentfulImporter(object):
     def fetch_category_map(self):
         try:
             categories = self.contentful_client.entries({'content_type': 'category'})
-            category_map = {category.name.lower().replace(' ', '_'): category.sys['id'] for category in categories.items}
+            category_map = {category.name.lower().replace('&', 'and').replace(' ', '_'): category.sys['id'] for category in categories.items}
+
 
             return category_map
         except:
