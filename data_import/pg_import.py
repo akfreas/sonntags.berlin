@@ -7,7 +7,6 @@ from shapely.geometry import Point, Polygon
 
 conn = psycopg2.connect("dbname=sonntags user=postgres")
 cur = conn.cursor()
-category = 'bakery'
 cat_map = {
         'garden_centre': 'Home & Garden',
         'bakery': 'bakery',
@@ -18,7 +17,6 @@ cat_map = {
         'convenience': 'kiosk',
         'bicycle': 'bike_shop'
 }
-target_category = cat_map[category]
 category_list = ', '.join('\'%s\'' % t for t in cat_map.keys())
 query = "select osm_id, name, st_asgeojson, opening_hours, shop, \
         \"addr:city\", \"addr:postcode\", \"addr:street\", \"addr:housenumber\" \
@@ -54,6 +52,7 @@ for point in cur:
     osm_id, name, geojson, opening_hours, shop, city, post_code, street, house_number = point
 
 
+    target_category = cat_map[shop]
     sunday = extract_hours(opening_hours)
     if None in [sunday, name]:
         continue
@@ -73,8 +72,9 @@ for point in cur:
     lat, lon = inner.y, inner.x
     fields['location'] = {'lat': lat, 'lon': lon}
 
-    if None not in [house_number, street, city]:
-        fields['address'] = " ".join([street, house_number, post_code, city])
+    addr_components = [street, house_number, post_code, city]
+    if None not in addr_components:
+        fields['address'] = " ".join(addr_components)
 
     try:
         importer.import_location(target_category, fields, 'openstreetmap', osm_id, publish=True)
