@@ -69,7 +69,7 @@ Shopping should be one of those things.`}
                         </View>
                         <View style={{alignItems: 'center',  flex: 1, backgroundColor: styles.constants.primaryColor}}>
                             <Text style={{textAlign: 'center', fontFamily: 'Lato-Regular', color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
-                                Want to work on something?
+                                Want to get in touch?
                             </Text>
                             <TouchableOpacity onPress={this.openEmail}>
                             <View style={{padding: 10, 

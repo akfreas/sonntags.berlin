@@ -190,7 +190,7 @@ class MainLocationMap extends Component {
     }
 
     showCategoryList = () => {
-        this.hideLocationSummary();
+        this.hideLocationSummary(0);
         Animated.timing(
             this.state.categoryViewAnim,
             {
@@ -321,13 +321,14 @@ class MainLocationMap extends Component {
         }, 500);
     }
 
-    hideLocationSummary() {
+    hideLocationSummary(duration = 200) {
 
+        console.log('detail view height', this.detailViewHeight);
         Animated.timing(
             this.state.bottomAnim,
             {
-                toValue: -this.detailViewHeight,
-                duration: 200,
+                toValue: this.detailViewHeight ? -this.detailViewHeight : -this.mainViewHeight,
+                duration: duration,
             }
         ).start((finished) => {
             this.setState({
@@ -534,7 +535,6 @@ class MainLocationMap extends Component {
         let config = [
             {title: 'show_filter', icon: 'filter', target: this.showCategoryList },
             {title: 'add_location', icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
-            {title: 'show_sunday_list', icon: 'calendar-range', target: ()=> { navigate('OpenSundays')} },
             {title: 'info_page', icon: 'information-outline', target: ()=>{ navigate('InfoPage')}},
         ];
 
@@ -559,7 +559,7 @@ class MainLocationMap extends Component {
 
         if (this.state.selectedLocation) {
             itemView = this.itemView()
-        }
+        } 
         return (
             <View style={{flex: 1}}>
                 {this.modalWebView()}

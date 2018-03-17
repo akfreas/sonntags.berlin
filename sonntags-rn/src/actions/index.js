@@ -158,6 +158,7 @@ function loadLocations(category, boundingBox) {
         Analytics.logEvent('load_category', {'category_name': category.name});
     } 
     queryDict['locale'] = getLocale();
+    queryDict['limit'] = 250;
     if (boundingBox) {
         var bb = boundingBox;
         queryDict['fields.location[within]'] = bb[0][1] + ',' + bb[0][0] + ',' + bb[1][1] + ',' + bb[1][0];
