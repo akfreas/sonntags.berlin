@@ -13,7 +13,7 @@ def fetch_matching_filiale():
         response = requests.get(url)
         if "Sonntag:" in response.text:
             print('Found Sonntag in id ', i)
-            with open('steinecke_filialen/{}.html'.format(i), 'w') as filiale:
+            with open('./steinecke_filialen/{}.html'.format(i), 'w') as filiale:
                 filiale.write(response.text.encode('utf-8'))
 
 importer = ContentfulImporter(
