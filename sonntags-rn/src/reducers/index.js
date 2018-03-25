@@ -3,6 +3,7 @@ import {
     DRAWER_CLOSE,
     TOGGLE_DRAWER,
     SET_DRAWER_GESTURES_ENABLED,
+    SET_SPACE_INFO,
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -15,6 +16,12 @@ import { RootStackNavigator } from '../navigation/RootStackNavigator';
 
 export default function mainReducer(state=initialState, action) {
     switch(action.type) {
+
+
+        case SET_SPACE_INFO:
+            return Object.assign({}, state, {
+                spaceInfo: action.spaceInfo
+            });
 
         case SET_DRAWER_GESTURES_ENABLED:
             return Object.assign({}, state, {

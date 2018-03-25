@@ -212,8 +212,6 @@ class MainLocationMap extends Component {
             [box[1][0]*(1-factor*2),
                 box[1][1]*(1-factor/2)]
         ];
-        this.printBox(box);
-        this.printBox(newBox);
         return newBox;
     }
 

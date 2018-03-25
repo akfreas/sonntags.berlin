@@ -116,6 +116,14 @@ function getLocale() {
     return locale;
 }
 
+function getSpaceInfo(dispatch) {
+    return (dispatch) => {
+        contentfulClient.getSpace('2dktdnk1iv2v').then((info) => {
+            debugger
+        })
+    };
+}
+
 function loadCategories() {
     var locale = getLocale();
     return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
@@ -127,6 +135,7 @@ function loadCategories() {
             });
 
     }, (error) => {
+        console.log(error);
     });
         /* 
     getEntries(
@@ -145,6 +154,7 @@ function getUserLocation(dispatch) {
                 userLocation: position
             });
         }, (error) => {
+            console.log('error fetching categories:', error);
             console.log(error);
         });
     };
@@ -173,7 +183,7 @@ function loadLocations(category, boundingBox) {
             fields.openingHoursString = formatHourString(fields);
             return fields;
         }, (error)=> {
-            console.log(error);
+            console.log('error fetching locations for category ' + category + ':', error);
         })
     })
 }
@@ -258,4 +268,5 @@ module.exports = {
     markLaunch,
     shouldShowReview,
     showReviewIfNeeded,
+    getSpaceInfo,
 }

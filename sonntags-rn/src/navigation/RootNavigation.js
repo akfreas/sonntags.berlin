@@ -11,14 +11,19 @@ import DrawerMenu from '../components/DrawerMenu';
 import { RootStackNavigator } from './RootStackNavigator';
 
 import { addNavigationHelpers } from 'react-navigation';
+import { getSpaceInfo } from '../actions';
 
 class _RootNavigator extends React.Component {
 
     constructor(props) {
         super(props);
     }
+    componentWillMount() {
+      this.props.getSpaceInfo();
+    }
 
   componentDidMount() {
+
   }
 
   componentWillUnmount() {
@@ -33,8 +38,8 @@ class _RootNavigator extends React.Component {
                     ref={(ref)=> this._navigator = ref}/>
       );
   }
+
     componentWillReceiveProps(props) {
-        console.log(props);
     }
   
   _handleNotification = ({ origin, data }) => {
@@ -54,6 +59,9 @@ function mapStateToProps(state) {
 }
 const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
     return {
+        getSpaceInfo: () => {
+            dispatch(getSpaceInfo());
+        },
         setDrawerClosed: () => {
             dispatch(closeDrawer())
         },

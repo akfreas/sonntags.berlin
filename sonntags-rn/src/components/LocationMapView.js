@@ -163,7 +163,6 @@ export default class LocationMapView extends Component {
 
     onRegionDidChange(region) {
         this.props.onRegionDidChange(region.properties.visibleBounds);
-        console.log(region);
     }
 
     render() {
