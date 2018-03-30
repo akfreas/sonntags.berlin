@@ -27,7 +27,6 @@ target 'SonntagsBerlin' do
       "DevSupport",
     ]
   pod 'Firebase/Messaging'
-  pod 'Google-Mobile-Ads-SDK'
   pod 'Firebase/Core'
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
   pod 'Firebase/Crash'
