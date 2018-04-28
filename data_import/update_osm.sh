@@ -1,4 +1,5 @@
 FILENAME="berlin-latest.osm.pbf"
+rm ./$FILENAME
 dropdb $FILENAME
 createdb $FILENAME
 psql -d $FILENAME -c 'CREATE EXTENSION postgis; CREATE EXTENSION hstore;'
