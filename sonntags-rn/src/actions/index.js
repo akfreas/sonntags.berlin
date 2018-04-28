@@ -18,6 +18,7 @@ import {
     DRAWER_CLOSE,
     TOGGLE_DRAWER,
     SET_DRAWER_GESTURES_ENABLED,
+    SET_SPACE_INFO,
 } from '../constants/ActionTypes';
 import { 
     pad,
@@ -116,27 +117,48 @@ function getLocale() {
     return locale;
 }
 
-function getSpaceInfo(dispatch) {
+function getSpaceInfo(callback) {
     return (dispatch) => {
         contentfulClient.getSpace('2dktdnk1iv2v').then((info) => {
-            debugger
+            var promise = dispatch({
+                type: SET_SPACE_INFO,
+                spaceInfo: info
+            });
+            dispatch(callback());   
         })
     };
 }
 
-function loadCategories() {
-    var locale = getLocale();
-    return contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
-            return entries.items[0].fields.list.map((category) => {
+function loadCategories(callback, info) {
+    
+    return (dispatch, getState) => {
 
-                let fields = category.fields;
-                fields.id = category.sys.id;
-                return fields;
-            });
+        var spaceInfo = getState().main.spaceInfo;
+        if (!spaceInfo) {
+            dispatch(getSpaceInfo(() => { return loadCategories(callback)}));
+            return
+        }
 
-    }, (error) => {
-        console.log(error);
-    });
+        var locale = getLocale();
+        var spaceLocales = spaceInfo.locales.map((spaceLocale)=> { return spaceLocale.code});
+
+        if (!spaceLocales.find((element) => { return element == locale })) {
+            locale = 'en';
+        }
+        
+        contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
+                var processedEntries = entries.items[0].fields.list.map((category) => {
+
+                    let fields = category.fields;
+                    fields.id = category.sys.id;
+                    return fields;
+                });
+            callback(processedEntries);
+
+        }, (error) => {
+            console.log(error);
+        });
+    };
         /* 
     getEntries(
         { 'content_type': 'category' }).then((response)=> {
@@ -167,7 +189,7 @@ function loadLocations(category, boundingBox) {
         queryDict['fields.categoryRef.sys.id'] = category.id;
         Analytics.logEvent('load_category', {'category_name': category.name});
     } 
-    queryDict['locale'] = getLocale();
+    queryDict['locale'] = 'en';
     queryDict['limit'] = 250;
     if (boundingBox) {
         var bb = boundingBox;

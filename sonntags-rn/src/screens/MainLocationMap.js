@@ -27,13 +27,6 @@ import {create_i18n} from '../utilities';
 var I18n = create_i18n();
 
 import { 
-  AdMobBanner, 
-  AdMobInterstitial, 
-  PublisherBanner,
-  AdMobRewarded
-} from 'react-native-admob'
-
-import { 
     pad,
     openExternalApp
 } from '../utilities';
@@ -581,11 +574,11 @@ function mapStateToProps(state) {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, getState) => {
     return {
-        getUserLocation: () => {
-            return dispatch(getUserLocation());
-        }
+        getUserLocation: (callback) => {
+            return dispatch(getUserLocation(callback));
+        },
     }
 }
 

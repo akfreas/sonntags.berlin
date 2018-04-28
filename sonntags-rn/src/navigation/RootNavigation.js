@@ -19,7 +19,6 @@ class _RootNavigator extends React.Component {
         super(props);
     }
     componentWillMount() {
-      this.props.getSpaceInfo();
     }
 
   componentDidMount() {

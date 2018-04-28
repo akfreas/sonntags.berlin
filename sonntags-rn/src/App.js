@@ -18,6 +18,7 @@ import thunkMiddleware from 'redux-thunk';
 import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Analytics from 'react-native-firebase-analytics';
+import { connect } from 'react-redux'
 
 var styles = require('./styles/index.js');
 
@@ -58,3 +59,14 @@ export default class AppContainer extends React.Component {
 function select(store) {
     return {};
 }
+
+function mapStateToProps(state) {
+    return {
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+    }
+}
+

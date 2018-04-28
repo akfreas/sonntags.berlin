@@ -15,13 +15,6 @@ import {
     ListView
 } from 'react-native';
 
-import { 
-  AdMobBanner, 
-  AdMobInterstitial, 
-  PublisherBanner,
-  AdMobRewarded
-} from 'react-native-admob'
-
 import Analytics from 'react-native-firebase-analytics';
 import { NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
@@ -68,7 +61,10 @@ class LocationTypeGrid extends Component {
     }
 
     loadForProps(props) {
-        loadCategories().then((categories) => {
+        if (!props.loadCategories) {
+            return
+        }
+        props.loadCategories((categories) => {
                 let ds = null;
                 if (props.activeFilter) {
                     let withAllCategory = [{
@@ -85,7 +81,7 @@ class LocationTypeGrid extends Component {
                 this.setState({
                     dataSource: ds
                 })
-            });
+        });
 
     }
 
@@ -150,4 +146,12 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(LocationTypeGrid);
+function mapDispatchToProps(dispatch) {
+    return {
+        loadCategories: (callback) => {
+            return dispatch(loadCategories(callback))
+        }
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LocationTypeGrid);
