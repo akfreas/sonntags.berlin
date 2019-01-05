@@ -40,48 +40,51 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.5.0)
-  - React (0.51.0):
-    - React/Core (= 0.51.0)
-  - react-native-mapbox-gl (6.0.2)
-  - React/ART (0.51.0):
+  - React (0.57.8):
+    - React/Core (= 0.57.8)
+  - react-native-mapbox-gl (6.1.3):
+    - React
+  - React/ART (0.57.8):
     - React/Core
-  - React/Core (0.51.0):
-    - yoga (= 0.51.0.React)
-  - React/DevSupport (0.51.0):
+  - React/Core (0.57.8):
+    - yoga (= 0.57.8.React)
+  - React/DevSupport (0.57.8):
     - React/Core
     - React/RCTWebSocket
-  - React/fishhook (0.51.0)
-  - React/RCTActionSheet (0.51.0):
+  - React/fishhook (0.57.8)
+  - React/RCTActionSheet (0.57.8):
     - React/Core
-  - React/RCTAnimation (0.51.0):
+  - React/RCTAnimation (0.57.8):
     - React/Core
-  - React/RCTBlob (0.51.0):
+  - React/RCTBlob (0.57.8):
     - React/Core
-  - React/RCTCameraRoll (0.51.0):
+  - React/RCTCameraRoll (0.57.8):
     - React/Core
     - React/RCTImage
-  - React/RCTGeolocation (0.51.0):
+  - React/RCTGeolocation (0.57.8):
     - React/Core
-  - React/RCTImage (0.51.0):
+  - React/RCTImage (0.57.8):
     - React/Core
     - React/RCTNetwork
-  - React/RCTNetwork (0.51.0):
+  - React/RCTNetwork (0.57.8):
     - React/Core
-  - React/RCTText (0.51.0):
+  - React/RCTText (0.57.8):
     - React/Core
-  - React/RCTVibration (0.51.0):
+  - React/RCTVibration (0.57.8):
     - React/Core
-  - React/RCTWebSocket (0.51.0):
+  - React/RCTWebSocket (0.57.8):
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNI18n (2.0.10):
+  - RNGestureHandler (1.0.10):
+    - React
+  - RNI18n (2.0.15):
     - React
   - RNStoreReview (0.1.5):
     - React
-  - RNVectorIcons (4.5.0):
+  - RNVectorIcons (6.1.0):
     - React
-  - yoga (0.51.0.React)
+  - yoga (0.57.8.React)
 
 DEPENDENCIES:
   - Firebase/Core
@@ -100,16 +103,19 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNStoreReview (from `../node_modules/react-native-store-review/ios`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
-  - yoga (from `../node_modules/react-native/ReactCommon/yoga/Yoga.podspec`)
+  - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 EXTERNAL SOURCES:
   React:
     :path: ../node_modules/react-native
   react-native-mapbox-gl:
     :path: ../node_modules/@mapbox/react-native-mapbox-gl
+  RNGestureHandler:
+    :path: ../node_modules/react-native-gesture-handler/ios
   RNI18n:
     :path: ../node_modules/react-native-i18n
   RNStoreReview:
@@ -117,25 +123,26 @@ EXTERNAL SOURCES:
   RNVectorIcons:
     :path: ../node_modules/react-native-vector-icons
   yoga:
-    :path: ../node_modules/react-native/ReactCommon/yoga/Yoga.podspec
+    :path: ../node_modules/react-native/ReactCommon/yoga/yoga.podspec
 
 SPEC CHECKSUMS:
   Firebase: 92c6ba593e32db0defde464a9adc981d5cb49f97
   FirebaseAnalytics: 3dfae28d4a5e06f86c4fae830efc2ad3fadb19bc
   FirebaseCore: 872307b001bbefda1dfa0dbfffa50a6919023d4a
-  FirebaseCrash: cded0fc566c03651aea606a101bc156085f333ca
+  FirebaseCrash: a7d980468dc8aa2db9792493c3e02722d601f6ab
   FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
   FirebaseMessaging: db0e01c52ef7e1f42846431273558107d084ede4
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
-  React: 352f02f1db6e4744f9a758527e13e3fdefbbd6ba
-  react-native-mapbox-gl: 6826b2d226d82282df3392c78373f59b5daac650
-  RNI18n: cd4ddd958e326a2427b70f5474b3fb04aea793b2
+  React: adbac0757ce35e92fbd447ab98c810209d27d9b0
+  react-native-mapbox-gl: d0ac3b81a6cadbd7cadc80891da72e3e85379350
+  RNGestureHandler: 3e9dcf42b4d7400458d65a468f7f25d00da75617
+  RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNStoreReview: 62d6afd7c37db711a594bbffca6b0ea3a812b7a8
-  RNVectorIcons: 00632755ab42ae7b7d1a5877c9840d71e808efad
-  yoga: b5d96400ca8b2936965a7a6516da7c1177f432a3
+  RNVectorIcons: ac7bf6bfeafaf3ad34552cdc6eed6fb8c4b7c940
+  yoga: 74cdf036c30820443b25ade59916236b1e95ee93
 
-PODFILE CHECKSUM: 3438f5a847c0d985ac521b648529df9d88b3d64d
+PODFILE CHECKSUM: 32be5f87ec22664a68ea6bd3c8daae3fe6794be2
 
 COCOAPODS: 1.3.1

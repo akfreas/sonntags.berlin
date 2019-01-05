@@ -4,10 +4,10 @@ import android.support.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
 import com.mapbox.rctmgl.RCTMGLPackage;
+import com.mapbox.rctmgl.RCTMGLPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import com.evollu.react.fa.FIRAnalyticsPackage;
 import cl.json.RNSharePackage;
-import com.sbugert.rnadmob.RNAdMobPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -30,10 +30,10 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
             new RCTMGLPackage(),
+            new RCTMGLPackage(),
             new RNI18nPackage(),
             new FIRAnalyticsPackage(),
             new RNSharePackage(),
-            new RNAdMobPackage(),
             new VectorIconsPackage()
       );
     }

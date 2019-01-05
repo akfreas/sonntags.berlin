@@ -1,5 +1,4 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
 import {
     AppRegistry
 } from 'react-native';
@@ -30,10 +29,10 @@ class _RootNavigator extends React.Component {
 
   render() {
       return (
-                <RootStackNavigator navigation={addNavigationHelpers({
+                <RootStackNavigator navigation={{
                     dispatch: this.props.dispatch,
                     state: this.props.navigation,
-                })}
+                }}
                     ref={(ref)=> this._navigator = ref}/>
       );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import styles from '../styles';
 import LocationTypeGrid from '../screens/LocationTypeGrid';
 import OpeningDays from '../screens/OpeningDays';
@@ -29,7 +29,7 @@ const defaultNavOptions = {
     headerTintColor: 'white'
 }
 
-export const RootStackNavigator = StackNavigator({
+export const RootStackNavigator = createStackNavigator({
 
     Main: {
         screen: paramsToProps(MainLocationMap),
