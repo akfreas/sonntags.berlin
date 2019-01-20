@@ -44,26 +44,22 @@ export const RootStackNavigator = createStackNavigator({
         screen: paramsToProps(MainLocationMap),
         navigationOptions: defaultNavOptions,
     },
-    // CategoryView: {
-    //     screen: paramsToProps(MainLocationMap),
-    //     navigationOptions: defaultNavOptions,
-    // },
-    // OpenSundays: {
-    //     screen: paramsToProps(OpeningDays),
-    //     navigationOptions: defaultNavOptions,
-    // },
-    // NavWebView: {
-    //     screen: paramsToProps(NavWebView),
-    //     navigationOptions: defaultNavOptions,
-    // },
-    // LocationDetail: {
-    //     screen: paramsToProps(LocationDetailView),
-    //     navigationOptions: defaultNavOptions,
-    // },
-    // InfoPage: {
-    //     screen: paramsToProps(InfoPage),
-    //     navigationOptions: defaultNavOptions
-    // },
+    OpenSundays: {
+        screen: paramsToProps(OpeningDays),
+        navigationOptions: defaultNavOptions,
+    },
+    NavWebView: {
+        screen: paramsToProps(NavWebView),
+        navigationOptions: defaultNavOptions,
+    },
+    LocationDetail: {
+        screen: paramsToProps(LocationDetailView),
+        navigationOptions: defaultNavOptions,
+    },
+    InfoPage: {
+        screen: paramsToProps(InfoPage),
+        navigationOptions: defaultNavOptions
+    },
 
 });
 

@@ -580,5 +580,4 @@ const mapDispatchToProps = (dispatch, getState) => {
     }
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(MainLocationMap);
-export default MainLocationMap;
+export default connect(mapStateToProps, mapDispatchToProps)(MainLocationMap);

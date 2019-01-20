@@ -13,6 +13,10 @@ const firebaseConfig = {
   storageBucket: "",
 };
 
+const categoryContainerId = "3AO9j6ZpSnOrFDoOVPxSlU";
+const spaceId = "lb54rlmhepij";
+const accessToken = "d93d65f9aa0ca120116b007b46234ea18805c5ccce4e32868adbff59b79e1c75";
+
 import {
     SET_SPACE_INFO,
 } from '../constants/ActionTypes';
@@ -28,8 +32,8 @@ import moment from 'moment';
 import Analytics from 'react-native-firebase-analytics';
 import * as StoreReview from 'react-native-store-review';
 const contentfulClient = createClient({
-    space: '2dktdnk1iv2v',
-    accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
+    space: spaceId,
+    accessToken
 })
 
 function markLaunch() {
@@ -96,7 +100,7 @@ function getLocale() {
 
 function getSpaceInfo(callback) {
     return (dispatch) => {
-        contentfulClient.getSpace('2dktdnk1iv2v').then((info) => {
+        contentfulClient.getSpace(spaceId).then((info) => {
             var promise = dispatch({
                 type: SET_SPACE_INFO,
                 spaceInfo: info
@@ -123,7 +127,7 @@ function loadCategories(callback, info) {
             locale = 'en';
         }
         
-        contentfulClient.getEntries({'sys.id': '1H0SeRVFLCCUGyOCmQYYKE', 'locale': locale}).then((entries) => {
+        contentfulClient.getEntries({'sys.id': categoryContainerId, 'locale': locale}).then((entries) => {
                 var processedEntries = entries.items[0].fields.list.map((category) => {
 
                     let fields = category.fields;

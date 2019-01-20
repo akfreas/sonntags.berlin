@@ -18,7 +18,7 @@ import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Analytics from 'react-native-firebase-analytics';
 import { createAppContainer } from 'react-navigation';
-
+import { MainLocationMap } from './screens/MainLocationMap';
 var styles = require('./styles/index.js');
 
 
@@ -49,9 +49,9 @@ class App extends React.Component {
 
   render() {
       return (
-        //   <Provider store={store}>
-                <AppContainer />
-            // </Provider>
+        <Provider store={store}>
+            <AppContainer />
+        </Provider>
       );
   }
 }
@@ -70,5 +70,5 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default AppContainer;
+export default App;
 
