@@ -13,7 +13,11 @@ const firebaseConfig = {
   storageBucket: "",
 };
 
-const categoryContainerId = "3AO9j6ZpSnOrFDoOVPxSlU";
+const contentTypeIds = {
+    categoryContainer: "3AO9j6ZpSnOrFDoOVPxSlU",
+    location: "56OesOlX446g8kA6yqkC4k"
+}
+
 const spaceId = "lb54rlmhepij";
 const accessToken = "d93d65f9aa0ca120116b007b46234ea18805c5ccce4e32868adbff59b79e1c75";
 
@@ -114,20 +118,7 @@ function loadCategories(callback, info) {
     
     return (dispatch, getState) => {
 
-        var spaceInfo = getState().main.spaceInfo;
-        if (!spaceInfo) {
-            dispatch(getSpaceInfo(() => { return loadCategories(callback)}));
-            return
-        }
-
-        var locale = getLocale();
-        var spaceLocales = spaceInfo.locales.map((spaceLocale)=> { return spaceLocale.code});
-
-        if (!spaceLocales.find((element) => { return element == locale })) {
-            locale = "en";
-        }
-        
-        contentfulClient.getEntries({"sys.id": categoryContainerId, "locale": locale}).then((entries) => {
+        contentfulClient.getEntries({"sys.id": contentTypeIds.categoryContainer}).then((entries) => {
                 var processedEntries = entries.items[0].fields.list.map((category) => {
 
                     let fields = category.fields;
@@ -164,18 +155,20 @@ function getUserLocation(dispatch) {
 
 function loadLocations(category, boundingBox) {
 
-    let queryDict = {content_type: "location"}
+    let queryDict = {content_type: contentTypeIds.location}
     if (category) {
         queryDict["fields.categoryRef.sys.id"] = category.id;
         Analytics.logEvent("load_category", {"category_name": category.name});
     } 
-    queryDict["locale"] = "en";
+
     queryDict["limit"] = 250;
     if (boundingBox) {
         var bb = boundingBox;
         queryDict["fields.location[within]"] = bb[0][1] + "," + bb[0][0] + "," + bb[1][1] + "," + bb[1][0];
     }
+
     return contentfulClient.getEntries(queryDict).then((response) => {
+
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;
@@ -184,9 +177,9 @@ function loadLocations(category, boundingBox) {
 
             fields.openingHoursString = formatHourString(fields);
             return fields;
-        }, (error)=> {
-            console.log("error fetching locations for category " + category + ":", error);
-        })
+        });
+    }).catch((error) => {
+        console.log("error fetching locations:", error);
     })
 }
 
