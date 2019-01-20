@@ -78,7 +78,7 @@ var styles = StyleSheet.create({
     locationListItemDistanceContainer: {
         flex: 0.4,
         justifyContent: "center",
-        alignItems: "ce"ter'
+        alignItems: "center"
     },
     locationListItemTitleContainer: {
         flex: 1.0,
