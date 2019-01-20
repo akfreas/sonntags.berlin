@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Image,
@@ -9,20 +9,20 @@ import {
   TouchableOpacity,
   View,
   ListView
-} from 'react-native';
+} from "react-native";
 
-var styles = require('../styles');
+var styles = require("../styles");
 
 
-import { MonoText } from '../components/StyledText';
+import { MonoText } from "../components/StyledText";
 
-import LocationListItem from '../components/LocationListItem';
-import LocationTypeGrid from '../components/LocationTypeGrid';
+import LocationListItem from "../components/LocationListItem";
+import LocationTypeGrid from "../components/LocationTypeGrid";
 import {
     loadLocations
-} from '../actions';
+} from "../actions";
 
-var styles2 = require('../styles');
+var styles2 = require("../styles");
 
 export default class HomeScreen extends React.Component {
     constructor(props) {

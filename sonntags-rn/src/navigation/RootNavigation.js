@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import {
     AppRegistry
-} from 'react-native';
+} from "react-native";
 
-import { connect } from 'react-redux';
-import { RootStackNavigator } from './RootStackNavigator';
+import { connect } from "react-redux";
+import { RootStackNavigator } from "./RootStackNavigator";
 
-import { addNavigationHelpers } from 'react-navigation';
-import { getSpaceInfo } from '../actions';
+import { addNavigationHelpers } from "react-navigation";
+import { getSpaceInfo } from "../actions";
 
 class RootNavigator extends React.Component {
 
@@ -60,4 +60,4 @@ function mapStateToProps(state) {
 // })(_RootNavigator);
 
 export default RootNavigator;
-AppRegistry.registerComponent('RootStackNavigator', () => RootNavigator);
+AppRegistry.registerComponent("RootStackNavigator", () => RootNavigator);

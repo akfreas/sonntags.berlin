@@ -1,25 +1,24 @@
-import React from 'react';
+import React from "react";
 import { 
     Platform, 
     StatusBar, 
     View 
-} from 'react-native';
-import NavigationBar from 'react-native-navbar';
-import { Provider } from 'react-redux'
-import cacheAssetsAsync from './utilities/cacheAssetsAsync';
-import main from './reducers'
+} from "react-native";
+import NavigationBar from "react-native-navbar";
+import { Provider } from "react-redux"
+import cacheAssetsAsync from "./utilities/cacheAssetsAsync";
+import main from "./reducers"
 import { 
     createStore, 
     applyMiddleware,
     combineReducers,
-} from 'redux'
-import thunkMiddleware from 'redux-thunk';
-import { RootStackNavigator } from './navigation/RootStackNavigator.js';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import Analytics from 'react-native-firebase-analytics';
-import { createAppContainer } from 'react-navigation';
-import { MainLocationMap } from './screens/MainLocationMap';
-var styles = require('./styles/index.js');
+} from "redux"
+import thunkMiddleware from "redux-thunk";
+import { RootStackNavigator } from "./navigation/RootStackNavigator.js";
+import { composeWithDevTools } from "redux-devtools-extension";
+import Analytics from "react-native-firebase-analytics";
+import { createAppContainer } from "react-navigation";
+var styles = require("./styles/index.js");
 
 
 const store = createStore(

@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import moment from 'moment';
+import React, {Component} from "react";
+import moment from "moment";
 import {
     ScrollView,
     FlatList,
@@ -18,18 +18,18 @@ import {
     Platform,
     Linking,
     Button
-} from 'react-native';
+} from "react-native";
 
-import { StatusBar } from 'react-native';
+import { StatusBar } from "react-native";
 
-import {create_i18n} from '../utilities';
+import {create_i18n} from "../utilities";
 
 var I18n = create_i18n();
 
 import { 
     pad,
     openExternalApp
-} from '../utilities';
+} from "../utilities";
 
 import {
     loadLocations,
@@ -38,29 +38,29 @@ import {
     markLaunch,
     showReviewIfNeeded,
     shouldShowReview
-} from '../actions';
+} from "../actions";
 
-import NavWebView from '../screens/NavWebView';
-import Analytics from 'react-native-firebase-analytics';
-import LocationCallout from '../components/LocationCallout.js';
-import NavigationBar from 'react-native-navbar';
-import MapButtonPanel from '../components/MapButtonPanel';
-import LocationListView from '../components/LocationListView';
-import LocationDetailSummaryView from '../components/LocationDetailSummaryView';
-import LocationActionComponent from '../components/LocationActionComponent';
-import arrow from '../../assets/images/map-annotation.png';
-import { connect } from 'react-redux'
-import LocationMapView from '../components/LocationMapView'; 
-import LocationListItem from '../components/LocationListItem';
-import Share, {ShareSheet} from 'react-native-share';
-import LocationTypeGrid from '../screens/LocationTypeGrid';
-import OpeningDays from '../screens/OpeningDays';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import * as StoreReview from 'react-native-store-review';
+import NavWebView from "../screens/NavWebView";
+import Analytics from "react-native-firebase-analytics";
+import LocationCallout from "../components/LocationCallout.js";
+import NavigationBar from "react-native-navbar";
+import MapButtonPanel from "../components/MapButtonPanel";
+import LocationListView from "../components/LocationListView";
+import LocationDetailSummaryView from "../components/LocationDetailSummaryView";
+import LocationActionComponent from "../components/LocationActionComponent";
+import arrow from "../../assets/images/map-annotation.png";
+import { connect } from "react-redux"
+import LocationMapView from "../components/LocationMapView"; 
+import LocationListItem from "../components/LocationListItem";
+import Share, {ShareSheet} from "react-native-share";
+import LocationTypeGrid from "../screens/LocationTypeGrid";
+import OpeningDays from "../screens/OpeningDays";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import * as StoreReview from "react-native-store-review";
 
 
-let width = Dimensions.get('window').width
-let height = Dimensions.get('window').height
+let width = Dimensions.get("window").width
+let height = Dimensions.get("window").height
 
 class MainLocationMap extends Component {
 
@@ -73,7 +73,7 @@ class MainLocationMap extends Component {
             isLoading = false;
         }
         return {
-            title: 'sonntags',
+            title: "sonntags",
             headerRight:<ActivityIndicator style={{padding: 5}} size="small" color="#fff" animating={isLoading}/>
         }
     };
@@ -101,16 +101,16 @@ class MainLocationMap extends Component {
         var userLocation = "undefined"
         if (this.state.userLocation) {
             let userLocation = this.state.userLocation;
-            userLocation = JSON.stringify({'lat': userLocation.coords.latitude, 'lon': userLocation.coords.longitude});
+            userLocation = JSON.stringify({"lat": userLocation.coords.latitude, "lon": userLocation.coords.longitude});
         }
         let distanceFromUser = distanceFromUserLocation(location, this.state.userLocation);
-        Analytics.logEvent('location_selected', {
-            'location_name': location.name,
-            'user_location': userLocation,
-            'source': source,
-            'distance_from_user': distanceFromUser
+        Analytics.logEvent("location_selected", {
+            "location_name": location.name,
+            "user_location": userLocation,
+            "source": source,
+            "distance_from_user": distanceFromUser
         });
-        navigate('LocationDetail', {
+        navigate("LocationDetail", {
             location: location, 
             distanceFromUser: distanceFromUser
         });
@@ -118,7 +118,7 @@ class MainLocationMap extends Component {
  
     openInMaps() {
 
-        Analytics.logEvent('open_maps', {'location_name': this.state.selectedLocation.name});
+        Analytics.logEvent("open_maps", {"location_name": this.state.selectedLocation.name});
         let queryString = null;
         if (this.state.selectedLocation.address) {
             queryString = this.state.selectedLocation.address;
@@ -128,7 +128,7 @@ class MainLocationMap extends Component {
 
 
 
-        var url = 'https://www.google.com/maps/search/?api=1&query=' + queryString;
+        var url = "https://www.google.com/maps/search/?api=1&query=" + queryString;
         openExternalApp(url)
     }
 
@@ -145,9 +145,9 @@ class MainLocationMap extends Component {
             message: locationShareMessage,
             subject: "Shop here on Sundays",
         }).then((result) => {
-            Analytics.logEvent('location_share_succeeded');
+            Analytics.logEvent("location_share_succeeded");
         }).catch((result) => {
-            Analytics.logEvent('location_share_cancelled');
+            Analytics.logEvent("location_share_cancelled");
         });
     }
    
@@ -277,7 +277,7 @@ class MainLocationMap extends Component {
 
     mapView() {
         return (
-            <View style={{position: 'absolute', top: 0, left: 0, right: 0, height: '100%', width: '100%'}}
+            <View style={{position: "absolute", top: 0, left: 0, right: 0, height: "100%", width: "100%"}}
             onLayout={(event) => {
                 var {x, y, width, height} = event.nativeEvent.layout;
                 this.mainViewHeight = height;
@@ -313,7 +313,7 @@ class MainLocationMap extends Component {
 
     hideLocationSummary(duration = 200) {
 
-        console.log('detail view height', this.detailViewHeight);
+        console.log("detail view height", this.detailViewHeight);
         Animated.timing(
             this.state.bottomAnim,
             {
@@ -480,9 +480,9 @@ class MainLocationMap extends Component {
                     shadowOffset: {width: 0, height: 0},
                     shadowOpacity: 0.2,
                     shadowRadius: 5.0,
-                    shadowColor: 'black',
-                backgroundColor: 'white', 
-                position: 'absolute', 
+                    shadowColor: "black",
+                backgroundColor: "white", 
+                position: "absolute", 
                 bottom: this.state.bottomAnim, 
                 width: width,
                 }}
@@ -523,17 +523,17 @@ class MainLocationMap extends Component {
 
         const { navigate } = this.props.navigation;
         let config = [
-            {title: 'show_filter', icon: 'filter', target: this.showCategoryList },
-            {title: 'add_location', icon: 'map-marker-plus', target: ()=> { this.showPage(I18n.t('add_business'), 'https://goo.gl/forms/XMG8yMHfzU0rZ4qH3')}},
-            {title: 'info_page', icon: 'information-outline', target: ()=>{ navigate('InfoPage')}},
+            {title: "show_filter", icon: "filter", target: this.showCategoryList },
+            {title: "add_location", icon: "map-marker-plus", target: ()=> { this.showPage(I18n.t("add_business"), "https://goo.gl/forms/XMG8yMHfzU0rZ4qH3")}},
+            {title: "info_page", icon: "information-outline", target: ()=>{ navigate("InfoPage")}},
         ];
 
         return (
             <View style={{
                 flex:1, 
-                alignSelf: 'flex-end', 
-                flexDirection: 'row', 
-                alignItems: 'center', 
+                alignSelf: "flex-end", 
+                flexDirection: "row", 
+                alignItems: "center", 
                 right: 0, 
                 bottom: 0,
                 width: 60
@@ -554,7 +554,7 @@ class MainLocationMap extends Component {
             <View style={{flex: 1}}>
                 {this.modalWebView()}
                  <StatusBar barStyle = "light-content" hidden = {false}/>
-                 <View style={{height: '100%', position: 'absolute', top: 0, right: 0, width: '100%'}}>
+                 <View style={{height: "100%", position: "absolute", top: 0, right: 0, width: "100%"}}>
                      {this.mapView()}
                      {this.mapButtonPanel()}
                  </View>

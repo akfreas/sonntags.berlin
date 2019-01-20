@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 import {
     Image,
@@ -11,12 +11,12 @@ import {
     WebView,
     PropTypes,
     StatusBar
-} from 'react-native';
+} from "react-native";
 
-import calendarDays from '../../assets/images/calendardays.png';
-import Analytics from 'react-native-firebase-analytics';
-import NavigationBar from 'react-native-navbar';
-import styles from '../styles';
+import calendarDays from "../../assets/images/calendardays.png";
+import Analytics from "react-native-firebase-analytics";
+import NavigationBar from "react-native-navbar";
+import styles from "../styles";
 
 export default class NavWebView extends Component {
 
@@ -27,12 +27,12 @@ export default class NavWebView extends Component {
 
     constructor(props) {
         super(props);
-        Analytics.logEvent('open_web_view', {'url': props.uri});
+        Analytics.logEvent("open_web_view", {"url": props.uri});
     }
 
     rightButtonConfig() {
         return {
-            title: 'Close',
+            title: "Close",
             handler: () => this.props.rightButtonPressed(),
           style: [{
           }],
@@ -43,7 +43,7 @@ export default class NavWebView extends Component {
         title: this.props.title,
           style: {
               color: styles.primaryColor,
-              fontFamily: 'Lato-Bold',
+              fontFamily: "Lato-Bold",
           },
       }
     }

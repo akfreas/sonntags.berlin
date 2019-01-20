@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 import {
     Image,
@@ -12,8 +12,8 @@ import {
     StyleSheet,
     Row,
     ListView
-} from 'react-native';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+} from "react-native";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default class HamburgerBars extends Component {
     render() {
@@ -23,10 +23,10 @@ export default class HamburgerBars extends Component {
                         style={{padding: 7}}
                     >
 
-                       <FontAwesome name={'bars'}
+                       <FontAwesome name={"bars"}
                            size={32}
                            style={{height: 44, width: 44}}
-                       style={{color: 'white'}}/>
+                       style={{color: "white"}}/>
             </TouchableOpacity>
         );
     }

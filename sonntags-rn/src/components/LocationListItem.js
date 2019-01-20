@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
   Image,
   Linking,
@@ -9,12 +9,12 @@ import {
   TouchableOpacity,
   View,
   ListView
-} from 'react-native';
-import moment from 'moment';
-import { pad } from '../utilities';
+} from "react-native";
+import moment from "moment";
+import { pad } from "../utilities";
 
 
-var styles = require('../styles');
+var styles = require("../styles");
 
 export default class LocationListItem extends Component {
 
@@ -34,7 +34,7 @@ export default class LocationListItem extends Component {
             distance = Math.round(this.props.distanceFromUser * 100) / 100;
         }
         return (
-            <TouchableOpacity onPress={() => this.props.onLocationSelected(this.props.location,'list')}>
+            <TouchableOpacity onPress={() => this.props.onLocationSelected(this.props.location,"list")}>
                     <View style={[styles.locationListItem]}>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.name}</Text>

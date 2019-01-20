@@ -1,12 +1,12 @@
-import React from 'react';
-import { createStackNavigator } from 'react-navigation';
-import styles from '../styles';
-import LocationTypeGrid from '../screens/LocationTypeGrid';
-import OpeningDays from '../screens/OpeningDays';
-import LocationDetailView from '../screens/LocationDetailView.js';
-import NavWebView from '../screens/NavWebView.js';
-import MainLocationMap from '../screens/MainLocationMap';
-import InfoPage from '../screens/InfoPage';
+import React from "react";
+import { createStackNavigator } from "react-navigation";
+import styles from "../styles";
+import LocationTypeGrid from "../screens/LocationTypeGrid";
+import OpeningDays from "../screens/OpeningDays";
+import LocationDetailView from "../screens/LocationDetailView.js";
+import NavWebView from "../screens/NavWebView.js";
+import MainLocationMap from "../screens/MainLocationMap";
+import InfoPage from "../screens/InfoPage";
 
 class TestComponent extends React.Component {
     render() {
@@ -35,7 +35,7 @@ const defaultNavOptions = {
     },
     headerBackTitle: null,
     headerTitleStyle: styles.headerTitleStyle,
-    headerTintColor: 'white'
+    headerTintColor: "white"
 }
 
 export const RootStackNavigator = createStackNavigator({

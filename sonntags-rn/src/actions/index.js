@@ -1,10 +1,10 @@
-import firebase from 'firebase';
-import messaging from 'firebase';
+import firebase from "firebase";
+import messaging from "firebase";
 import { 
     Platform,
     AsyncStorage
-} from 'react-native';
-const { createClient } = require('contentful/dist/contentful.browser.min.js');
+} from "react-native";
+const { createClient } = require("contentful/dist/contentful.browser.min.js");
 
 const firebaseConfig = {
   apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
@@ -19,18 +19,18 @@ const accessToken = "d93d65f9aa0ca120116b007b46234ea18805c5ccce4e32868adbff59b79
 
 import {
     SET_SPACE_INFO,
-} from '../constants/ActionTypes';
+} from "../constants/ActionTypes";
 import { 
     pad,
     create_i18n,
-} from '../utilities';
+} from "../utilities";
 
 var I18n = create_i18n();
 
 const firebaseApp = firebase.initializeApp(firebaseConfig);
-import moment from 'moment';
-import Analytics from 'react-native-firebase-analytics';
-import * as StoreReview from 'react-native-store-review';
+import moment from "moment";
+import Analytics from "react-native-firebase-analytics";
+import * as StoreReview from "react-native-store-review";
 const contentfulClient = createClient({
     space: spaceId,
     accessToken
@@ -42,12 +42,12 @@ function markLaunch() {
         if (count) {
             newCount = Number(count) + 1;
         }
-        AsyncStorage.setItem('@Sonntags:launchCount', newCount.toString());
+        AsyncStorage.setItem("@Sonntags:launchCount", newCount.toString());
     });
 }
 
 function getLaunchCount() {
-    return AsyncStorage.getItem('@Sonntags:launchCount');
+    return AsyncStorage.getItem("@Sonntags:launchCount");
 }
 
 function shouldShowReview(callback) {
@@ -64,13 +64,13 @@ function shouldShowReview(callback) {
 }
 
 function markReviewPromptAsShown() {
-    AsyncStorage.setItem('@Sonntags:reviewPromptShown', 'yes');
+    AsyncStorage.setItem("@Sonntags:reviewPromptShown", "yes");
 }
 
 function wasReviewPromptShown() {
-    return AsyncStorage.getItem('@Sonntags:reviewPromptShown').then((shown) => {
+    return AsyncStorage.getItem("@Sonntags:reviewPromptShown").then((shown) => {
         if (shown) {
-            return shown == 'yes';
+            return shown == "yes";
         } else {
             return false;
         }
@@ -88,7 +88,7 @@ function showReviewIfNeeded() {
 }
 
 function getLocale() {
-    var locale = I18n.currentLocale().split('-');
+    var locale = I18n.currentLocale().split("-");
 
     if (locale.length > 0) {
         locale = locale[0];
@@ -124,10 +124,10 @@ function loadCategories(callback, info) {
         var spaceLocales = spaceInfo.locales.map((spaceLocale)=> { return spaceLocale.code});
 
         if (!spaceLocales.find((element) => { return element == locale })) {
-            locale = 'en';
+            locale = "en";
         }
         
-        contentfulClient.getEntries({'sys.id': categoryContainerId, 'locale': locale}).then((entries) => {
+        contentfulClient.getEntries({"sys.id": categoryContainerId, "locale": locale}).then((entries) => {
                 var processedEntries = entries.items[0].fields.list.map((category) => {
 
                     let fields = category.fields;
@@ -137,12 +137,12 @@ function loadCategories(callback, info) {
             callback(processedEntries);
 
         }, (error) => {
-            console.log(error);
+            console.log("error loading categories ", error);
         });
     };
         /* 
     getEntries(
-        { 'content_type': 'category' }).then((response)=> {
+        { "content_type": "category" }).then((response)=> {
     });
     */
 }
@@ -153,28 +153,27 @@ function getUserLocation(dispatch) {
         navigator.geolocation.getCurrentPosition((position) => {
             console.log("position: " + position.latitude);
             dispatch({
-                type: 'SET_LOCATION',
+                type: "SET_LOCATION",
                 userLocation: position
             });
         }, (error) => {
-            console.log('error fetching categories:', error);
-            console.log(error);
+            console.log("error getting user location: ", error);
         });
     };
 }
 
 function loadLocations(category, boundingBox) {
 
-    let queryDict = {content_type: 'location'}
+    let queryDict = {content_type: "location"}
     if (category) {
-        queryDict['fields.categoryRef.sys.id'] = category.id;
-        Analytics.logEvent('load_category', {'category_name': category.name});
+        queryDict["fields.categoryRef.sys.id"] = category.id;
+        Analytics.logEvent("load_category", {"category_name": category.name});
     } 
-    queryDict['locale'] = 'en';
-    queryDict['limit'] = 250;
+    queryDict["locale"] = "en";
+    queryDict["limit"] = 250;
     if (boundingBox) {
         var bb = boundingBox;
-        queryDict['fields.location[within]'] = bb[0][1] + ',' + bb[0][0] + ',' + bb[1][1] + ',' + bb[1][0];
+        queryDict["fields.location[within]"] = bb[0][1] + "," + bb[0][0] + "," + bb[1][1] + "," + bb[1][0];
     }
     return contentfulClient.getEntries(queryDict).then((response) => {
         return response.items.map((location) => {
@@ -186,7 +185,7 @@ function loadLocations(category, boundingBox) {
             fields.openingHoursString = formatHourString(fields);
             return fields;
         }, (error)=> {
-            console.log('error fetching locations for category ' + category + ':', error);
+            console.log("error fetching locations for category " + category + ":", error);
         })
     })
 }
@@ -231,17 +230,17 @@ function formatHourString(location) {
     let openingTimeString = pad(location.openingTime, 4);
     let closingTime = moment(closingTimeString, "HHmm").format("HH:mm");
     let openingTime = moment(openingTimeString, "HHmm").format("HH:mm");
-    let timeString = I18n.t('open_sundays') + openingTime + " - " +  closingTime;
+    let timeString = I18n.t("open_sundays") + openingTime + " - " +  closingTime;
         
     return timeString; 
 }
 
 function loadOpenSundays() {
 
-    Analytics.logEvent('load_open_sundays');
+    Analytics.logEvent("load_open_sundays");
     return contentfulClient.getEntries({
-        'content_type': 'sundayOpenings',
-        'fields.date[gte]': new Date(),
+        "content_type": "sundayOpenings",
+        "fields.date[gte]": new Date(),
     }).then((response) => {
         return response.items.map((day) => {
             let fields = day.fields;

@@ -1,10 +1,10 @@
-const React = require('react-native')
+const React = require("react-native")
 const constants = {
-    actionColor: '#24CE84',
-    primaryColor: '#3BB9BD',
-    primaryColorNegative: '#FFFFFF',
-    secondaryColor: '#EEA845',
-    secondaryColorNegative: '#FFFFFF',
+    actionColor: "#24CE84",
+    primaryColor: "#3BB9BD",
+    primaryColorNegative: "#FFFFFF",
+    secondaryColor: "#EEA845",
+    secondaryColorNegative: "#FFFFFF",
 };
 
 import {
@@ -15,32 +15,32 @@ import {
   TouchableOpacity,
   View,
   ListView
-} from 'react-native';
+} from "react-native";
 
 
 var styles = StyleSheet.create({
     headerTitleStyle: {
-        color: 'white',
-        fontFamily: 'Lato-Bold',
+        color: "white",
+        fontFamily: "Lato-Bold",
         fontSize: 20
 
     },
     categoryTable: {
 
-        backgroundColor: '#fff',
+        backgroundColor: "#fff",
     },
     categoryListItemDivider: {
         height: StyleSheet.hairlineWidth,
-        backgroundColor: 'rgb(233, 238, 255)',
+        backgroundColor: "rgb(233, 238, 255)",
     }, 
     locationGridList: {
-        justifyContent: 'center',
-        backgroundColor: '#fff',
+        justifyContent: "center",
+        backgroundColor: "#fff",
     },
     locationGridItem: {
-        backgroundColor: '#fff',
-        display: 'flex',
-        flexDirection: 'row',
+        backgroundColor: "#fff",
+        display: "flex",
+        flexDirection: "row",
         marginBottom: 1,
         height: 65,
     },
@@ -50,50 +50,50 @@ var styles = StyleSheet.create({
     },
     locationGridIconContainer: {
         flex: 0.25,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center",
     },
     locationGridTextContainer: {
         flex: 1.0,
-        justifyContent: 'center',
-        alignItems: 'flex-start',
+        justifyContent: "center",
+        alignItems: "flex-start",
     }, 
     locationGridText: {
-        textAlign: 'center',
+        textAlign: "center",
         marginLeft: 10,
         marginRight: 10,
-        fontFamily: 'Lato-Bold',
+        fontFamily: "Lato-Bold",
         fontSize: 20
     },
     locationList: {
-        justifyContent: 'center',
+        justifyContent: "center",
     },
     locationListItem: {
         padding: 10.0,
         height: 90.0,
-        display: 'flex',
-        flexDirection: 'row',
-        backgroundColor: 'white'
+        display: "flex",
+        flexDirection: "row",
+        backgroundColor: "white"
     },
     locationListItemDistanceContainer: {
         flex: 0.4,
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: "center",
+        alignItems: "ce"ter'
     },
     locationListItemTitleContainer: {
         flex: 1.0,
-        //justifyContent: 'start',
-        alignItems: 'flex-start',
+        //justifyContent: "start",
+        alignItems: "flex-start",
     },
     locationListItemDescriptionText: {
-        fontFamily: 'Lato-Regular',
+        fontFamily: "Lato-Regular",
     },
     locationListItemDistanceText: {
-        fontFamily: 'Lato-Italic',
+        fontFamily: "Lato-Italic",
     },
     locationListItemTitleText: {
 
-        fontFamily: 'Lato-Bold',
+        fontFamily: "Lato-Bold",
         fontSize: 18
     }
 })

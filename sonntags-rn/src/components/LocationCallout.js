@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import PropTypes from 'prop-types';
+import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {
   Image,
   Linking,
@@ -10,8 +10,8 @@ import {
   TouchableOpacity,
   View,
   ListView
-} from 'react-native';
-import moment from 'moment';
+} from "react-native";
+import moment from "moment";
 
 
 const propTypes = {
@@ -37,38 +37,38 @@ export default class LocationCallout extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    alignSelf: 'flex-start',
-      backgroundColor: 'red',
+    flexDirection: "column",
+    alignSelf: "flex-start",
+      backgroundColor: "red",
   },
   bubble: {
     width: 140,
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
-    backgroundColor: '#ffffff',
+    flexDirection: "row",
+    alignSelf: "flex-start",
+    backgroundColor: "#ffffff",
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 6,
-    borderColor: '#007a87',
+    borderColor: "#007a87",
     borderWidth: 0.5,
   },
   amount: {
     flex: 1,
   },
   arrow: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderWidth: 16,
-    borderColor: 'transparent',
-    borderTopColor: '#ffffff',
-    alignSelf: 'center',
+    borderColor: "transparent",
+    borderTopColor: "#ffffff",
+    alignSelf: "center",
     marginTop: -32,
   },
   arrowBorder: {
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderWidth: 16,
-    borderColor: 'transparent',
-    borderTopColor: '#007a87',
-    alignSelf: 'center',
+    borderColor: "transparent",
+    borderTopColor: "#007a87",
+    alignSelf: "center",
     marginTop: -0.5,
   },
 });

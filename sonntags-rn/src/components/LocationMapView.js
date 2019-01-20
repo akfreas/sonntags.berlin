@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 import {
     Image,
@@ -12,19 +12,19 @@ import {
     StyleSheet,
     Row,
     ListView
-} from 'react-native';
+} from "react-native";
 
-import MapboxGL, { MapView, Annotation }from '@mapbox/react-native-mapbox-gl';
+import MapboxGL, { MapView, Annotation }from "@mapbox/react-native-mapbox-gl";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-var styles = require('../styles');
+var styles = require("../styles");
 
-const forwardArrow = require('../../assets/images/arrow-forward.png');
-const accessToken = 'pk.eyJ1IjoiYWtmcmVhcyIsImEiOiJjajh3b252ODkxcW9jMnFydmw1NzNzNGtiIn0.8IeSD3SyJIf8gbXhqwHIAA';
+const forwardArrow = require("../../assets/images/arrow-forward.png");
+const accessToken = "pk.eyJ1IjoiYWtmcmVhcyIsImEiOiJjajh3b252ODkxcW9jMnFydmw1NzNzNGtiIn0.8IeSD3SyJIf8gbXhqwHIAA";
 
 MapboxGL.setAccessToken(accessToken);
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 export default class LocationMapView extends Component {
 
@@ -106,7 +106,7 @@ export default class LocationMapView extends Component {
             return {
                 id: location.id,
                 coordinates: [parseFloat(location.location.lon), parseFloat(location.location.lat)],
-                type: 'point',
+                type: "point",
                 category: location.category,
                 iconName: location.iconName,
                 selected: selected,
@@ -136,12 +136,12 @@ export default class LocationMapView extends Component {
                     key={annotation.id}
                     coordinate={annotation.coordinates}
                     attributionEnabled={false}
-                    style={{alignItems: 'center', justifyContent: 'center', position: 'absolute'}}
+                    style={{alignItems: "center", justifyContent: "center", position: "absolute"}}
                 >
                     <TouchableOpacity onPress={() => this.props.onAnnotationTapped(annotation)}>
 
                     <View style={{
-                        width: 27, height: 27, backgroundColor: 'white', flex: 1, justifyContent: 'center', alignItems: 'center',
+                        width: 27, height: 27, backgroundColor: "white", flex: 1, justifyContent: "center", alignItems: "center",
                         borderRadius: 100/2,
                         backgroundColor: backgroundColor,
 
@@ -167,7 +167,7 @@ export default class LocationMapView extends Component {
 
     render() {
         return(
-            <View style={{flex: 1, alignItems: 'stretch'}}>
+            <View style={{flex: 1, alignItems: "stretch"}}>
              <MapboxGL.MapView
                       ref={map => { this._map = map; }}
                       style={{flex: 1}}
@@ -181,7 +181,7 @@ export default class LocationMapView extends Component {
                       zoomEnabled={true}
                       onRegionDidChange={this.onRegionDidChange.bind(this)}
                       pitchEnabled={false}
-                      styleURL={'mapbox://styles/akfreas/cjbtmvqcaarka2qtgs0yakriu'}
+                      styleURL={"mapbox://styles/akfreas/cjbtmvqcaarka2qtgs0yakriu"}
                       onOpenAnnotation={this.onOpenAnnotation}
                       onPress={this.onTap}
                   >

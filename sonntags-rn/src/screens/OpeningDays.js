@@ -1,17 +1,17 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 import {
     ListView,
     View,
     Text,
     StyleSheet,
     Switch
-} from 'react-native';
+} from "react-native";
 
-import moment from 'moment';
-import Hyperlink from 'react-native-hyperlink';
-import { loadOpenSundays } from '../actions';
+import moment from "moment";
+import Hyperlink from "react-native-hyperlink";
+import { loadOpenSundays } from "../actions";
 
-import {create_i18n} from '../utilities';
+import {create_i18n} from "../utilities";
 
 var I18n = create_i18n();
 
@@ -23,15 +23,15 @@ class OpeningDayItem extends Component {
         let month = dateMoment.format("MMM");
         return (
             <View style={{height: 70.0, flex: 1}} >
-                <View style={{flexDirection: 'row', height: '100%'}}>
-                    <View style={{height: '100%', width: 60.0, justifyContent: 'center'}}>
-                        <View style={{width: '70%', height: '70%', margin: '15%'}}>
-                            <Text style={{flex: 1, textAlign: 'center', fontSize: 14, fontFamily: 'Lato-Bold'}}>{month}</Text>
-                            <Text style={{flex: 2, fontSize: 22, textAlign: 'center', fontFamily: 'Lato-Bold'}}>{day}</Text>
+                <View style={{flexDirection: "row", height: "100%"}}>
+                    <View style={{height: "100%", width: 60.0, justifyContent: "center"}}>
+                        <View style={{width: "70%", height: "70%", margin: "15%"}}>
+                            <Text style={{flex: 1, textAlign: "center", fontSize: 14, fontFamily: "Lato-Bold"}}>{month}</Text>
+                            <Text style={{flex: 2, fontSize: 22, textAlign: "center", fontFamily: "Lato-Bold"}}>{day}</Text>
                         </View>
                     </View>
-                    <View style={{height: '100%', width: '80%', margin: 15}}>
-                        <Text numberOfLines={2} style={{flex: 1, fontFamily: 'Lato-Light', fontSize: 16}}>{this.props.openDay.dayName}</Text>
+                    <View style={{height: "100%", width: "80%", margin: 15}}>
+                        <Text numberOfLines={2} style={{flex: 1, fontFamily: "Lato-Light", fontSize: 16}}>{this.props.openDay.dayName}</Text>
                     </View>
                 </View>
             </View>
@@ -43,7 +43,7 @@ export default class OpeningDaysList extends Component {
 
     
     static navigationOptions = {
-        title: I18n.t('special_opening_days_title')
+        title: I18n.t("special_opening_days_title")
     };
  
     constructor(props) {
@@ -86,7 +86,7 @@ export default class OpeningDaysList extends Component {
 
     openWebsite() {
         const { navigate } = this.props.navigation;
-        navigate('NavWebView', {title: 'berlin.de', uri: 'http://bit.ly/sonntags-berlin'});
+        navigate("NavWebView", {title: "berlin.de", uri: "http://bit.ly/sonntags-berlin"});
     }
 
     renderHeader() {
@@ -94,20 +94,20 @@ export default class OpeningDaysList extends Component {
             <View style={{flex: 1}}>
                 <View style={{flex: 1, margin: 10}}>
 
-                            <Hyperlink linkStyle={{ color: '#2980b9'}} onPress={this.openWebsite.bind(this)}>
+                            <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: 'Lato-Bold', fontSize: 16}}>{I18n.t('opening_days_bold')}{'\n'}</Text> 
-                        <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{I18n.t('opening_days_text')}</Text>
-                            <Text style={{fontFamily: 'Lato-Regular', fontSize: 16}}>{"\n\n"}{I18n.t('more_info')}</Text>
+                        <Text style={{fontFamily: "Lato-Bold", fontSize: 16}}>{I18n.t("opening_days_bold")}{"\n"}</Text> 
+                        <Text style={{fontFamily: "Lato-Regular", fontSize: 16}}>{I18n.t("opening_days_text")}</Text>
+                            <Text style={{fontFamily: "Lato-Regular", fontSize: 16}}>{"\n\n"}{I18n.t("more_info")}</Text>
                     </Text>
                         </Hyperlink>
 
                 </View>
                 <View style={{flex: 1, margin: 10}}>
-                    <View style={{flexDirection: 'row'}}>
+                    <View style={{flexDirection: "row"}}>
                         {/*
                         <View style={{flex: 4}}>
-                            <Text style={{fontFamily: 'Lato-Bold'}}>Notify me when shops are open on Sundays.</Text>
+                            <Text style={{fontFamily: "Lato-Bold"}}>Notify me when shops are open on Sundays.</Text>
                         </View>
                         <View style={{flex: 1}}>
                             <Switch style={{}} 
@@ -130,7 +130,7 @@ export default class OpeningDaysList extends Component {
                 renderHeader={this.renderHeader.bind(this)}
                 dataSource={this.state.dataSource}
                 renderRow={this.renderRow.bind(this)}
-                style={{backgroundColor: 'white'}}
+                style={{backgroundColor: "white"}}
             />
         )
     }

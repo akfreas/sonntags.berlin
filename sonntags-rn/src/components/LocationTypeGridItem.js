@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 import {
     Image,
@@ -12,11 +12,11 @@ import {
     StyleSheet,
     Row,
     ListView
-} from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+} from "react-native";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 
-var styles = require('../styles');
+var styles = require("../styles");
 
 export default class LocationTypeGridItem extends Component {
 
@@ -25,7 +25,7 @@ export default class LocationTypeGridItem extends Component {
         let rowStyle = styles.locationGridItem;
         let locationGridIconContainerStyle = styles.locationGridIconContainer;
         let iconColor = this.props.type.textColor ? this.props.type.textColor : styles.constants.primaryColor;
-        let textColor = this.props.type.textColor ? this.props.type.textColor : 'black';
+        let textColor = this.props.type.textColor ? this.props.type.textColor : "black";
 
         if (this.props.type.backgroundColor) {
             rowStyle = [rowStyle, {backgroundColor: this.props.type.backgroundColor}];

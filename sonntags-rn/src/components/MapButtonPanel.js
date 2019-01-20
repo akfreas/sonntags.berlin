@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 import {
     Image,
@@ -10,19 +10,19 @@ import {
     StyleSheet,
     WebView,
     PropTypes
-} from 'react-native';
+} from "react-native";
 
-import Analytics from 'react-native-firebase-analytics';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import styles from '../styles';
+import Analytics from "react-native-firebase-analytics";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import styles from "../styles";
 
 
 class MapButtonPanel extends Component {
 
 
     buttonPress = (config) => {
-        Analytics.logEvent('mapbutton_press', {
-            'title': config.title
+        Analytics.logEvent("mapbutton_press", {
+            "title": config.title
         });
         config.target();
     }
@@ -34,16 +34,16 @@ class MapButtonPanel extends Component {
                     key={buttonConfig.icon}
                         style={{
                         flex: 1, 
-                        justifyContent: 'center', 
-                        flexDirection: 'row', 
-                        alignItems: 'center', 
-                        width: '100%'}}>
+                        justifyContent: "center", 
+                        flexDirection: "row", 
+                        alignItems: "center", 
+                        width: "100%"}}>
 
                         <TouchableOpacity style={{
-                            justifyContent: 'center', 
-                            alignItems: 'center',
+                            justifyContent: "center", 
+                            alignItems: "center",
                             width: 44, height: 44}} onPress={() => this.buttonPress(buttonConfig)}>
-                        <Icon name={buttonConfig.icon} color='white' style={{}} size={21}/>
+                        <Icon name={buttonConfig.icon} color="white" style={{}} size={21}/>
                     </TouchableOpacity>
                 </View>
             );
@@ -57,8 +57,8 @@ class MapButtonPanel extends Component {
         return (
                 <View style={{
                     backgroundColor: bgColor, 
-                    alignItems: 'center', 
-                    flexDirection: 'column',
+                    alignItems: "center", 
+                    flexDirection: "column",
                     borderRadius: 10,
                     right: 0,
                     marginLeft: 10,
