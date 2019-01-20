@@ -8,6 +8,14 @@ import NavWebView from '../screens/NavWebView.js';
 import MainLocationMap from '../screens/MainLocationMap';
 import InfoPage from '../screens/InfoPage';
 
+class TestComponent extends React.Component {
+    render() {
+        return (
+            <div>hi</div>
+        )
+    }
+}
+
 const paramsToProps = (SomeComponent) => {
 // turns this.props.navigation.state.params into this.params.<x>
     return class extends React.Component {
@@ -16,6 +24,7 @@ const paramsToProps = (SomeComponent) => {
         render() {
             const {navigation, ...otherProps} = this.props
             const {state: {params}} = navigation
+            console.log(navigation);
             return <SomeComponent {...this.props} {...params} />
         }
     }
@@ -35,26 +44,26 @@ export const RootStackNavigator = createStackNavigator({
         screen: paramsToProps(MainLocationMap),
         navigationOptions: defaultNavOptions,
     },
-    CategoryView: {
-        screen: paramsToProps(MainLocationMap),
-        navigationOptions: defaultNavOptions,
-    },
-    OpenSundays: {
-        screen: paramsToProps(OpeningDays),
-        navigationOptions: defaultNavOptions,
-    },
-    NavWebView: {
-        screen: paramsToProps(NavWebView),
-        navigationOptions: defaultNavOptions,
-    },
-    LocationDetail: {
-        screen: paramsToProps(LocationDetailView),
-        navigationOptions: defaultNavOptions,
-    },
-    InfoPage: {
-        screen: paramsToProps(InfoPage),
-        navigationOptions: defaultNavOptions
-    },
+    // CategoryView: {
+    //     screen: paramsToProps(MainLocationMap),
+    //     navigationOptions: defaultNavOptions,
+    // },
+    // OpenSundays: {
+    //     screen: paramsToProps(OpeningDays),
+    //     navigationOptions: defaultNavOptions,
+    // },
+    // NavWebView: {
+    //     screen: paramsToProps(NavWebView),
+    //     navigationOptions: defaultNavOptions,
+    // },
+    // LocationDetail: {
+    //     screen: paramsToProps(LocationDetailView),
+    //     navigationOptions: defaultNavOptions,
+    // },
+    // InfoPage: {
+    //     screen: paramsToProps(InfoPage),
+    //     navigationOptions: defaultNavOptions
+    // },
 
 });
 

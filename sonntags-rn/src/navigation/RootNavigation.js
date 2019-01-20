@@ -3,16 +3,13 @@ import {
     AppRegistry
 } from 'react-native';
 
-import { closeDrawer } from '../actions';
 import { connect } from 'react-redux';
-import Drawer from 'react-native-drawer';
-import DrawerMenu from '../components/DrawerMenu';
 import { RootStackNavigator } from './RootStackNavigator';
 
 import { addNavigationHelpers } from 'react-navigation';
 import { getSpaceInfo } from '../actions';
 
-class _RootNavigator extends React.Component {
+class RootNavigator extends React.Component {
 
     constructor(props) {
         super(props);
@@ -29,11 +26,11 @@ class _RootNavigator extends React.Component {
 
   render() {
       return (
-                <RootStackNavigator navigation={{
-                    dispatch: this.props.dispatch,
-                    state: this.props.navigation,
-                }}
-                    ref={(ref)=> this._navigator = ref}/>
+                // <RootStackNavigator navigation={{
+                //     dispatch: this.props.dispatch,
+                //     state: this.props.navigation,
+                // }}
+                <RootStackNavigator />
       );
   }
 
@@ -50,22 +47,17 @@ class _RootNavigator extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        drawerOpen: state.main.drawerOpen,
-        navigation: state.navigation,
-        drawerGesturesEnabled: state.main.drawerGesturesEnabled,
+        navigation: state.navigation
     }
 }
-const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
-    return {
-        getSpaceInfo: () => {
-            dispatch(getSpaceInfo());
-        },
-        setDrawerClosed: () => {
-            dispatch(closeDrawer())
-        },
-        dispatch: dispatch
-    }
-})(_RootNavigator);
+// const RootNavigator = connect(mapStateToProps, function(dispatch, props) {
+//     return {
+//         getSpaceInfo: () => {
+//             dispatch(getSpaceInfo());
+//         },
+//         dispatch: dispatch
+//     }
+// })(_RootNavigator);
 
 export default RootNavigator;
 AppRegistry.registerComponent('RootStackNavigator', () => RootNavigator);

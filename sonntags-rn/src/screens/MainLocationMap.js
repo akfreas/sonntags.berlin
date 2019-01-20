@@ -235,7 +235,6 @@ class MainLocationMap extends Component {
                 isLoading: false
             });
         }).then(()=>{
-
             this.props.getUserLocation();
         });
     }
@@ -569,8 +568,7 @@ class MainLocationMap extends Component {
 
 function mapStateToProps(state) {
     return {
-        userLocation: state.main.userLocation,
-        drawerGesturesEnabled: state.main.drawerGesturesEnabled,
+        userLocation: state.main.userLocation
     }
 }
 
@@ -582,4 +580,5 @@ const mapDispatchToProps = (dispatch, getState) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MainLocationMap);
+// export default connect(mapStateToProps, mapDispatchToProps)(MainLocationMap);
+export default MainLocationMap;

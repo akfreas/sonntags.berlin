@@ -154,4 +154,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LocationTypeGrid);
+// export default connect(mapStateToProps, mapDispatchToProps)(LocationTypeGrid);
+export default LocationTypeGrid;

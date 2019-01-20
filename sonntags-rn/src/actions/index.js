@@ -14,10 +14,6 @@ const firebaseConfig = {
 };
 
 import {
-    DRAWER_OPEN,
-    DRAWER_CLOSE,
-    TOGGLE_DRAWER,
-    SET_DRAWER_GESTURES_ENABLED,
     SET_SPACE_INFO,
 } from '../constants/ActionTypes';
 import { 
@@ -35,25 +31,6 @@ const contentfulClient = createClient({
     space: '2dktdnk1iv2v',
     accessToken: '0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06'
 })
-
-
-function toggleDrawer() {
-    return {
-        type: TOGGLE_DRAWER
-    };
-}
-
-function openDrawer() {
-    return {
-        type: DRAWER_OPEN
-    };
-}
-
-function closeDrawer() {
-    return {
-        type: TOGGLE_DRAWER
-    };
-}
 
 function markLaunch() {
     getLaunchCount().then((count) => {
@@ -269,22 +246,11 @@ function loadOpenSundays() {
     })
 }
 
-function setDrawerGesturesEnabled(enabled) {
-    return {
-        type: SET_DRAWER_GESTURES_ENABLED,
-        drawerGesturesEnabled: enabled
-    }
-}
-
 module.exports = {
     loadLocations,
     loadOpenSundays,
     loadCategories,
-    openDrawer,
-    closeDrawer,
-    toggleDrawer,
     getUserLocation,
-    setDrawerGesturesEnabled,
     distanceFromUserLocation,
     formatHourString,
     markLaunch,

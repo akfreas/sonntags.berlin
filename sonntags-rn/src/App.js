@@ -4,7 +4,6 @@ import {
     StatusBar, 
     View 
 } from 'react-native';
-import RootNavigation from './navigation/RootNavigation';
 import NavigationBar from 'react-native-navbar';
 import { Provider } from 'react-redux'
 import cacheAssetsAsync from './utilities/cacheAssetsAsync';
@@ -18,10 +17,9 @@ import thunkMiddleware from 'redux-thunk';
 import { RootStackNavigator } from './navigation/RootStackNavigator.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import Analytics from 'react-native-firebase-analytics';
-import { connect } from 'react-redux'
+import { createAppContainer } from 'react-navigation';
 
 var styles = require('./styles/index.js');
-
 
 
 const store = createStore(
@@ -34,7 +32,9 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunkMiddleware)),
 )
 
-export default class AppContainer extends React.Component {
+const AppContainer = createAppContainer(RootStackNavigator);
+
+class App extends React.Component {
   state = {
     appIsReady: false,
   };
@@ -49,9 +49,9 @@ export default class AppContainer extends React.Component {
 
   render() {
       return (
-          <Provider store={store}>
-                <RootNavigation />
-            </Provider>
+        //   <Provider store={store}>
+                <AppContainer />
+            // </Provider>
       );
   }
 }
@@ -69,4 +69,6 @@ const mapDispatchToProps = (dispatch) => {
     return {
     }
 }
+
+export default AppContainer;
 
