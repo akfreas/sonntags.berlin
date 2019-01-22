@@ -1,4 +1,4 @@
-app_identifier "com.sashimiblade.sonntags" # The bundle identifier of your app
+app_identifier "com.sashimiblade.StilInBerlin" # The bundle identifier of your app
 apple_id "akfreas@gmail.com" # Your Apple email address
 
 team_id "KGJCC745S9" # Developer Portal Team ID

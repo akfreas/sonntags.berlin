@@ -161,7 +161,7 @@
 		33429C5AC71A6747F9EB4E2EE1F044F6 /* RCTMGLVectorSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A5CA7F99930BFE07C465F0E884F7ED0 /* RCTMGLVectorSource.m */; };
 		335214BAB18FA3AE1C8D4BC957DE928E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B53A15A241FD8AAFB51191B67D365185 /* Foundation.framework */; };
 		33EFD77E47B2992114E648AEF9749DED /* RCTMGLImageQueueOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = A88FF3BC9260B839737A59A426EA4D2A /* RCTMGLImageQueueOperation.m */; };
-		3459D1BD50EF225671ACF7E4A5769D1D /* Pods-SonntagsBerlinTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 851321EB575A1910478E12820F2BFC65 /* Pods-SonntagsBerlinTests-dummy.m */; };
+		3459D1BD50EF225671ACF7E4A5769D1D /* Pods-StilInBerlinTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 851321EB575A1910478E12820F2BFC65 /* Pods-StilInBerlinTests-dummy.m */; };
 		3484DD72DFDA2F2E2D95BAD081C051B4 /* RCTMGLFillExtrusionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 76D1BC2EDF4E105F56E127FFE6103E9D /* RCTMGLFillExtrusionLayer.m */; };
 		34B50741B5E60F71CA8251A0BE94A12E /* RCTSafeAreaShadowView.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B0708E288DC1E0F4EC194D1667D6C1A /* RCTSafeAreaShadowView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		34FEBA428248156FA0C0D9523EB02012 /* GPBCodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 55AB224879D9F5AC83752D7F7B272CC5 /* GPBCodedOutputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -287,7 +287,7 @@
 		5C5A2B774F78868883F482FC57179FCB /* RCTNullability.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C3CF1BAE258B17DA5ED6299AE2E1E18 /* RCTNullability.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C859417D77295FFF7C70B8A2C175B52 /* RCTBridge+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 657B6CF22105CCA491013789DAD7922B /* RCTBridge+Private.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5C89AF048C1B45339B37A7706DBA68B8 /* RCTParserUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = EA28D8BE17E12A05003F515EC4409F4F /* RCTParserUtils.m */; };
-		5CD27C48057DE7AD32B83486F86F4953 /* Pods-SonntagsBerlin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B459361388088175ED84D58C6925F6EE /* Pods-SonntagsBerlin-dummy.m */; };
+		5CD27C48057DE7AD32B83486F86F4953 /* Pods-StilInBerlin-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B459361388088175ED84D58C6925F6EE /* Pods-StilInBerlin-dummy.m */; };
 		5D9B4B0779EEC9CE42A927AB59DE29A6 /* RCTMGLLight.m in Sources */ = {isa = PBXBuildFile; fileRef = AF999315FC7DDA72179C91D221CECA7E /* RCTMGLLight.m */; };
 		5DF1C867EC067DC875714191EC0B483D /* RCTMGLBackgroundLayerManager.h in Headers */ = {isa = PBXBuildFile; fileRef = EA24E0BE78B0B416E5CC77B19BCBC1A9 /* RCTMGLBackgroundLayerManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5EC5BAEB156383C1F2A7CEEB43DD5CD6 /* RCTBaseTextInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 770F88E743E10928FA090A1938D0A253 /* RCTBaseTextInputView.m */; };
@@ -916,7 +916,7 @@
 		0AA74D24C7C91175CAFE73F4D6263F30 /* RCTMGLEventTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLEventTypes.h; path = ios/RCTMGL/RCTMGLEventTypes.h; sourceTree = "<group>"; };
 		0B1D3D39414527700322154F29FCF1D9 /* nanopb-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "nanopb-prefix.pch"; sourceTree = "<group>"; };
 		0B934EA6094C96AC46BE699CBDB79F0D /* GPBUnknownField_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBUnknownField_PackagePrivate.h; path = objectivec/GPBUnknownField_PackagePrivate.h; sourceTree = "<group>"; };
-		0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-SonntagsBerlinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SonntagsBerlinTests.release.xcconfig"; sourceTree = "<group>"; };
+		0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-StilInBerlinTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StilInBerlinTests.release.xcconfig"; sourceTree = "<group>"; };
 		0CC15895F2CD70053700A7DB79B6D719 /* NSTextStorage+FontScaling.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSTextStorage+FontScaling.h"; sourceTree = "<group>"; };
 		0CC3C765DDD4450C928C83100A2613F4 /* Api.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Api.pbobjc.h; path = objectivec/google/protobuf/Api.pbobjc.h; sourceTree = "<group>"; };
 		0CDDC696D534A3531F5508B03C778C56 /* RCTComponentData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTComponentData.m; sourceTree = "<group>"; };
@@ -1061,7 +1061,7 @@
 		36CF9373FD6DD3CE22EC7913B08C1326 /* RCTImageEditingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTImageEditingManager.h; path = Libraries/Image/RCTImageEditingManager.h; sourceTree = "<group>"; };
 		37A5B3FD05B319DB2BC0505409CF9750 /* RCTAccessibilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTAccessibilityManager.m; sourceTree = "<group>"; };
 		3903F5B6ABB1022DE186722AC8198524 /* RCTMGLImageSourceManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLImageSourceManager.h; path = ios/RCTMGL/RCTMGLImageSourceManager.h; sourceTree = "<group>"; };
-		39897B8A7EBAA549F47ABD565529036A /* Pods-SonntagsBerlin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SonntagsBerlin-frameworks.sh"; sourceTree = "<group>"; };
+		39897B8A7EBAA549F47ABD565529036A /* Pods-StilInBerlin-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-StilInBerlin-frameworks.sh"; sourceTree = "<group>"; };
 		39911E8E3FBE61819B327C1C5988ACA4 /* GoogleToolboxForMac-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GoogleToolboxForMac-dummy.m"; sourceTree = "<group>"; };
 		39ACE94C59DC344A42062F572C1472D7 /* RCTActivityIndicatorView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTActivityIndicatorView.m; sourceTree = "<group>"; };
 		39B84EF9D6EC5E10536801C4737ABF53 /* RCTFont+FA5.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RCTFont+FA5.m"; path = "RNVectorIconsManager/RCTFont+FA5.m"; sourceTree = "<group>"; };
@@ -1210,7 +1210,7 @@
 		67319D5F7B5164088AC825EE74DF774B /* RCTModalManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTModalManager.h; sourceTree = "<group>"; };
 		6733509486C11E670C2DD6FF1C0A5EEB /* ARTRenderableManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ARTRenderableManager.h; sourceTree = "<group>"; };
 		6785B3AA2E0400C7BDDB7EB87E791AAB /* RCTPackagerConnection.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTPackagerConnection.mm; sourceTree = "<group>"; };
-		6964455C62ED7FCD5E91E4A3F9B05CCE /* Pods-SonntagsBerlinTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SonntagsBerlinTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		6964455C62ED7FCD5E91E4A3F9B05CCE /* Pods-StilInBerlinTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-StilInBerlinTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		6964527E8AA5BCCF19DE5660EB409482 /* RCTBlobManager.mm */ = {isa = PBXFileReference; includeInIndex = 1; name = RCTBlobManager.mm; path = Libraries/Blob/RCTBlobManager.mm; sourceTree = "<group>"; };
 		69716B9A3ABDA01D7F2A006CE624674B /* ARTText.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ARTText.h; path = Libraries/ART/ARTText.h; sourceTree = "<group>"; };
 		69E7C795F3A19001DFFBAC7C3DA50968 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNVectorIcons.a; path = libRNVectorIcons.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1285,7 +1285,7 @@
 		7AAF1F8726253BE6A885BA35D70C44FC /* RCTProfile.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTProfile.h; sourceTree = "<group>"; };
 		7AE9FD153F485C3BDD982FDF83AFE472 /* GPBCodedInputStream.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedInputStream.h; path = objectivec/GPBCodedInputStream.h; sourceTree = "<group>"; };
 		7AEC61022499536A82D5B6F59A7CC170 /* RCTProgressViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTProgressViewManager.h; sourceTree = "<group>"; };
-		7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-SonntagsBerlinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SonntagsBerlinTests.a"; path = "libPods-SonntagsBerlinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-StilInBerlinTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-StilInBerlinTests.a"; path = "libPods-StilInBerlinTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C0A256AA04202359D442EFA02FBEEDE /* RNStoreReview.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNStoreReview.m; sourceTree = "<group>"; };
 		7C1FCF2E74148FB67CEF3A40377B84DE /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseMessaging.framework; path = Frameworks/FirebaseMessaging.framework; sourceTree = "<group>"; };
 		7C325AB4865F20128C41D077BADF990A /* RCTReconnectingWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTReconnectingWebSocket.h; path = Libraries/WebSocket/RCTReconnectingWebSocket.h; sourceTree = "<group>"; };
@@ -1310,7 +1310,7 @@
 		84689B8147CBA1F1D6A2A68FFD47A072 /* RCTNavItemManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTNavItemManager.m; sourceTree = "<group>"; };
 		84CBAB39068F554823C460A28DEA6C40 /* RCTTextShadowView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTextShadowView.h; sourceTree = "<group>"; };
 		84E208A4770D288ADC0982E61EE84827 /* RCTFrameUpdate.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTFrameUpdate.m; sourceTree = "<group>"; };
-		851321EB575A1910478E12820F2BFC65 /* Pods-SonntagsBerlinTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SonntagsBerlinTests-dummy.m"; sourceTree = "<group>"; };
+		851321EB575A1910478E12820F2BFC65 /* Pods-StilInBerlinTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-StilInBerlinTests-dummy.m"; sourceTree = "<group>"; };
 		853D7B5AC378EFAFD38AE99EB9E0C12E /* RCTNavItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTNavItem.h; sourceTree = "<group>"; };
 		857013F5218D42763B8CF6B9BC3B0D71 /* RCTRawTextViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTRawTextViewManager.h; sourceTree = "<group>"; };
 		85A9007FED073F41F483D2A8105DDD53 /* RCTMultilineTextInputViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTMultilineTextInputViewManager.m; sourceTree = "<group>"; };
@@ -1352,7 +1352,7 @@
 		92DF84B6EF89F5CE77007D7D52D5128A /* RCTConvert+Text.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RCTConvert+Text.h"; path = "Libraries/Text/RCTConvert+Text.h"; sourceTree = "<group>"; };
 		92EA8587BC572FDFBB3E6B7928D79B32 /* YGLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGLayout.h; path = yoga/YGLayout.h; sourceTree = "<group>"; };
 		9324AC99DEDF7002A1066C496D88DCA7 /* RCTVersion.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTVersion.m; sourceTree = "<group>"; };
-		936F3010496343122A85E98EFD9BF379 /* Pods-SonntagsBerlinTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SonntagsBerlinTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		936F3010496343122A85E98EFD9BF379 /* Pods-StilInBerlinTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-StilInBerlinTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		93FA0142A4E92EA74F1B4A94B60C88A8 /* RCTMGLPointAnnotationManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLPointAnnotationManager.h; path = ios/RCTMGL/RCTMGLPointAnnotationManager.h; sourceTree = "<group>"; };
 		948296736C33FE8C8A76A0B69E3691D8 /* RCTBorderStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTBorderStyle.h; sourceTree = "<group>"; };
@@ -1367,7 +1367,7 @@
 		97D0C92848BEA233AA19EB848773A4D4 /* RCTLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTLayout.m; sourceTree = "<group>"; };
 		97E6550D44CC7BE635055FB9EEFF0B28 /* RCTInvalidating.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTInvalidating.h; sourceTree = "<group>"; };
 		983962A6D24B590C017D469EB450C639 /* GPBUnknownField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBUnknownField.m; path = objectivec/GPBUnknownField.m; sourceTree = "<group>"; };
-		983ADF8155F4A3E2E253DA36E4F2679F /* Pods-SonntagsBerlinTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SonntagsBerlinTests-resources.sh"; sourceTree = "<group>"; };
+		983ADF8155F4A3E2E253DA36E4F2679F /* Pods-StilInBerlinTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-StilInBerlinTests-resources.sh"; sourceTree = "<group>"; };
 		983CF9002F5DF2C40BEE126647706DA6 /* Entypo.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = Entypo.ttf; path = Fonts/Entypo.ttf; sourceTree = "<group>"; };
 		98B79EB3256C64DEAB13A042BAE5A777 /* RCTTextTransform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTTextTransform.h; path = Libraries/Text/RCTTextTransform.h; sourceTree = "<group>"; };
 		98C57372747FADBD96B4C38E566B8CBA /* RCTSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSegmentedControl.h; sourceTree = "<group>"; };
@@ -1433,7 +1433,7 @@
 		A9358B043DB74D1F98FBB67768A1CB5C /* RCTAdditionAnimatedNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTAdditionAnimatedNode.h; sourceTree = "<group>"; };
 		A9D1BFA6845D568DE3681C04B0E798DF /* RCTMGLPointAnnotation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLPointAnnotation.m; path = ios/RCTMGL/RCTMGLPointAnnotation.m; sourceTree = "<group>"; };
 		AA08AADDD31FF078ED8740FE934E0064 /* UIView+React.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+React.m"; sourceTree = "<group>"; };
-		AA96CE2A0BD15D2062404F93E0C78FCB /* Pods-SonntagsBerlinTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SonntagsBerlinTests-frameworks.sh"; sourceTree = "<group>"; };
+		AA96CE2A0BD15D2062404F93E0C78FCB /* Pods-StilInBerlinTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-StilInBerlinTests-frameworks.sh"; sourceTree = "<group>"; };
 		AAAC72EF367C3890CD2FCC58AFC75E61 /* RCTSurfaceRootShadowViewDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSurfaceRootShadowViewDelegate.h; sourceTree = "<group>"; };
 		AB9B726463C8F2038593648D1C6FAD4F /* RCTScrollViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollViewManager.h; sourceTree = "<group>"; };
 		ABEFF7471F2EA039C4B1439B8615685F /* RCTTrackingAnimatedNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTrackingAnimatedNode.h; sourceTree = "<group>"; };
@@ -1462,7 +1462,7 @@
 		B3A2B77CF9A2F8246852D41FE6E4DC24 /* RCTModuleMethod.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTModuleMethod.mm; sourceTree = "<group>"; };
 		B3EEE1361F06D0B3FE29174ADA008270 /* RCTCxxConvert.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTCxxConvert.h; sourceTree = "<group>"; };
 		B433838D5638F620C1CFC7C2D30E391A /* ARTNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ARTNode.m; path = Libraries/ART/ARTNode.m; sourceTree = "<group>"; };
-		B459361388088175ED84D58C6925F6EE /* Pods-SonntagsBerlin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SonntagsBerlin-dummy.m"; sourceTree = "<group>"; };
+		B459361388088175ED84D58C6925F6EE /* Pods-StilInBerlin-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-StilInBerlin-dummy.m"; sourceTree = "<group>"; };
 		B478192F242B9C9A66BBE0197AE65677 /* RCTMGLStyle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLStyle.m; path = ios/RCTMGL/RCTMGLStyle.m; sourceTree = "<group>"; };
 		B4C1949BDA8D912F16CB64D1D9DA7817 /* RCTLayoutAnimationGroup.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTLayoutAnimationGroup.h; sourceTree = "<group>"; };
 		B4C9254FDC5381651214C5E3F55B14BD /* RCTNativeAnimatedNodesManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTNativeAnimatedNodesManager.h; path = Libraries/NativeAnimation/RCTNativeAnimatedNodesManager.h; sourceTree = "<group>"; };
@@ -1495,7 +1495,7 @@
 		BD9B00895377D721848D98E5EF49883A /* RCTActivityIndicatorView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTActivityIndicatorView.h; sourceTree = "<group>"; };
 		BDC715CF800C54B4D8B2AE8831D57D69 /* RCTAccessibilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTAccessibilityManager.h; sourceTree = "<group>"; };
 		BDFE01F2CF13EF4E50B05F176655F3EB /* RNRootViewGestureRecognizer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RNRootViewGestureRecognizer.m; sourceTree = "<group>"; };
-		BE0022078DFD88AC496645D3356CDF5A /* Pods-SonntagsBerlin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SonntagsBerlin-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BE0022078DFD88AC496645D3356CDF5A /* Pods-StilInBerlin-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-StilInBerlin-acknowledgements.markdown"; sourceTree = "<group>"; };
 		BE4378D81D42AB500644A4D7126B7483 /* RCTBorderDrawing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTBorderDrawing.h; sourceTree = "<group>"; };
 		BF784FF45D71BCA47DC891155BDE7053 /* RCTPhotoLibraryImageLoader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTPhotoLibraryImageLoader.h; path = Libraries/CameraRoll/RCTPhotoLibraryImageLoader.h; sourceTree = "<group>"; };
 		BFC8E27DEEBC9DB6EA42F20F751EDA88 /* RCTView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTView.h; sourceTree = "<group>"; };
@@ -1541,7 +1541,7 @@
 		CDF1DB6A2B7DB9A131612B1644365D88 /* RCTSafeAreaViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSafeAreaViewManager.h; sourceTree = "<group>"; };
 		CE311682669E188E62B0DC21B6BE7B18 /* RCTScrollContentViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollContentViewManager.h; sourceTree = "<group>"; };
 		CE541D55B5451334C2B353B44D0078AB /* RCTNavigator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTNavigator.m; sourceTree = "<group>"; };
-		CE6353ED3EF1843C10B8206538F3D30E /* libPods-SonntagsBerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SonntagsBerlin.a"; path = "libPods-SonntagsBerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE6353ED3EF1843C10B8206538F3D30E /* libPods-StilInBerlin.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-StilInBerlin.a"; path = "libPods-StilInBerlin.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CED36581D60C488487FFAA1F744AE00A /* RCTMGLVectorSourceManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLVectorSourceManager.h; path = ios/RCTMGL/RCTMGLVectorSourceManager.h; sourceTree = "<group>"; };
 		CEECB48EF8FC4A8D3FDB62B510C19A8B /* GPBCodedOutputStream_PackagePrivate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBCodedOutputStream_PackagePrivate.h; path = objectivec/GPBCodedOutputStream_PackagePrivate.h; sourceTree = "<group>"; };
 		CF00C725F2F3617D4338AB7C5AD504FE /* AntDesign.ttf */ = {isa = PBXFileReference; includeInIndex = 1; name = AntDesign.ttf; path = Fonts/AntDesign.ttf; sourceTree = "<group>"; };
@@ -1570,7 +1570,7 @@
 		D79D64CA880EF3720EC1F2C088351687 /* RCTTabBarItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTabBarItem.h; sourceTree = "<group>"; };
 		D7CB508D6E0D0BE6B6658B7E5364F15B /* Empty.pbobjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Empty.pbobjc.h; path = objectivec/google/protobuf/Empty.pbobjc.h; sourceTree = "<group>"; };
 		D841ACB68CC9E119160DAF6209321386 /* RCTTouchEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTTouchEvent.m; sourceTree = "<group>"; };
-		D8C08E6061C3E08605CAC0FBBB9B1F33 /* Pods-SonntagsBerlin-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SonntagsBerlin-resources.sh"; sourceTree = "<group>"; };
+		D8C08E6061C3E08605CAC0FBBB9B1F33 /* Pods-StilInBerlin-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-StilInBerlin-resources.sh"; sourceTree = "<group>"; };
 		D96EBA75A43A6FA447883EF8C2752533 /* RCTInputAccessoryView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInputAccessoryView.m; sourceTree = "<group>"; };
 		D993E48C29E72314F8A4505466442775 /* RCTScrollViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTScrollViewManager.m; sourceTree = "<group>"; };
 		DACD4ED54D8AAE785AF085131E330133 /* RCTMGLSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLSource.h; path = ios/RCTMGL/RCTMGLSource.h; sourceTree = "<group>"; };
@@ -1597,7 +1597,7 @@
 		E1CF22BEB7F61B756F3C12BE1497AB71 /* RCTEventDispatcher.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTEventDispatcher.h; sourceTree = "<group>"; };
 		E1D703E76CF35AFE8D972FB06B84ABB4 /* RCTMGLRasterLayerManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLRasterLayerManager.m; path = ios/RCTMGL/RCTMGLRasterLayerManager.m; sourceTree = "<group>"; };
 		E1EF01D2C13E60FD4E9E7ACB127D98B8 /* RNFlingHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RNFlingHandler.h; sourceTree = "<group>"; };
-		E2549CF95D87322C9D3F4210351FD406 /* Pods-SonntagsBerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SonntagsBerlin.release.xcconfig"; sourceTree = "<group>"; };
+		E2549CF95D87322C9D3F4210351FD406 /* Pods-StilInBerlin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StilInBerlin.release.xcconfig"; sourceTree = "<group>"; };
 		E2B1D56F1366EEB03143288D887B00CA /* RCTMGL.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGL.m; path = ios/RCTMGL/RCTMGL.m; sourceTree = "<group>"; };
 		E2F215C72361EF0324C906AEAE05FE7F /* RCTUIManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTUIManager.m; sourceTree = "<group>"; };
 		E33B11DE828ECF3B14C5FB49FCCA61E6 /* RCTInputAccessoryViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTInputAccessoryViewManager.h; sourceTree = "<group>"; };
@@ -1628,7 +1628,7 @@
 		E7763B732BC08929B321E8C0282A5CD2 /* GPBWellKnownTypes.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GPBWellKnownTypes.m; path = objectivec/GPBWellKnownTypes.m; sourceTree = "<group>"; };
 		E7BADD946F43518DB832A4A9FF98A6FD /* RCTMGLShapeSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLShapeSource.m; path = ios/RCTMGL/RCTMGLShapeSource.m; sourceTree = "<group>"; };
 		E856CF76C702F5F958911D2456D62989 /* RCTBlobManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTBlobManager.h; path = Libraries/Blob/RCTBlobManager.h; sourceTree = "<group>"; };
-		E87A55C010CBC655D16454EDBA144CDC /* Pods-SonntagsBerlinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SonntagsBerlinTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E87A55C010CBC655D16454EDBA144CDC /* Pods-StilInBerlinTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StilInBerlinTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E8E5934ABCA07C58EC1460F9FB5E1658 /* RCTMGLSymbolLayer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLSymbolLayer.h; path = ios/RCTMGL/RCTMGLSymbolLayer.h; sourceTree = "<group>"; };
 		E8F7FAA3AC4713E05D46A59561F6E248 /* RCTPerformanceLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTPerformanceLogger.h; sourceTree = "<group>"; };
 		E9830AB0367E362BC6A37BBD4C5B7210 /* RCTBorderDrawing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTBorderDrawing.m; sourceTree = "<group>"; };
@@ -1675,12 +1675,12 @@
 		F75ED50BAB2281B6776D93C668C68383 /* RCTConvert+Mapbox.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "RCTConvert+Mapbox.m"; path = "ios/RCTMGL/RCTConvert+Mapbox.m"; sourceTree = "<group>"; };
 		F76132C73F389C34A68B6805450F1121 /* RCTSpringAnimation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSpringAnimation.h; sourceTree = "<group>"; };
 		F7A3A665816378169A81D66721DC84EA /* RCTMGLFillLayerManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTMGLFillLayerManager.h; path = ios/RCTMGL/RCTMGLFillLayerManager.h; sourceTree = "<group>"; };
-		F8003616A1542AE672674EA91796AED7 /* Pods-SonntagsBerlin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SonntagsBerlin.debug.xcconfig"; sourceTree = "<group>"; };
+		F8003616A1542AE672674EA91796AED7 /* Pods-StilInBerlin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-StilInBerlin.debug.xcconfig"; sourceTree = "<group>"; };
 		F8D9D1720975295C4A8088F9C74102E7 /* RCTTextDecorationLineType.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTextDecorationLineType.h; sourceTree = "<group>"; };
 		F8E40DA6976B347E0B364BDA730532A2 /* RCTManagedPointer.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTManagedPointer.mm; sourceTree = "<group>"; };
 		F99F902B99CE3A367ABE07A75AC46280 /* FilterList.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FilterList.h; path = ios/RCTMGL/FilterList.h; sourceTree = "<group>"; };
 		F9E80FB09BD164302481985CBB97F8E6 /* YGNode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = YGNode.cpp; path = yoga/YGNode.cpp; sourceTree = "<group>"; };
-		F9E9246EB33C15E07D86624E2261E6A2 /* Pods-SonntagsBerlin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SonntagsBerlin-acknowledgements.plist"; sourceTree = "<group>"; };
+		F9E9246EB33C15E07D86624E2261E6A2 /* Pods-StilInBerlin-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-StilInBerlin-acknowledgements.plist"; sourceTree = "<group>"; };
 		FA09D414595318AFC6BF5F87FCE48F9A /* RCTMGLCircleLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLCircleLayer.m; path = ios/RCTMGL/RCTMGLCircleLayer.m; sourceTree = "<group>"; };
 		FA409D0183307175C0832FAF8E34B90D /* RCTAnimatedNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTAnimatedNode.m; sourceTree = "<group>"; };
 		FA69935E388EA154F8B7A3B5BDE449F0 /* RCTMGLFillLayer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTMGLFillLayer.m; path = ios/RCTMGL/RCTMGLFillLayer.m; sourceTree = "<group>"; };
@@ -1846,8 +1846,8 @@
 		0DB8C3AC07459A6BC06D26152725C2C8 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				B005972414CDE375C53467EB09484996 /* Pods-SonntagsBerlin */,
-				D8CD39BCF9C281A2487B25EF4885B95B /* Pods-SonntagsBerlinTests */,
+				B005972414CDE375C53467EB09484996 /* Pods-StilInBerlin */,
+				D8CD39BCF9C281A2487B25EF4885B95B /* Pods-StilInBerlinTests */,
 			);
 			name = "Targets Support Files";
 			sourceTree = "<group>";
@@ -2814,19 +2814,19 @@
 			path = "../Target Support Files/nanopb";
 			sourceTree = "<group>";
 		};
-		B005972414CDE375C53467EB09484996 /* Pods-SonntagsBerlin */ = {
+		B005972414CDE375C53467EB09484996 /* Pods-StilInBerlin */ = {
 			isa = PBXGroup;
 			children = (
-				BE0022078DFD88AC496645D3356CDF5A /* Pods-SonntagsBerlin-acknowledgements.markdown */,
-				F9E9246EB33C15E07D86624E2261E6A2 /* Pods-SonntagsBerlin-acknowledgements.plist */,
-				B459361388088175ED84D58C6925F6EE /* Pods-SonntagsBerlin-dummy.m */,
-				39897B8A7EBAA549F47ABD565529036A /* Pods-SonntagsBerlin-frameworks.sh */,
-				D8C08E6061C3E08605CAC0FBBB9B1F33 /* Pods-SonntagsBerlin-resources.sh */,
-				F8003616A1542AE672674EA91796AED7 /* Pods-SonntagsBerlin.debug.xcconfig */,
-				E2549CF95D87322C9D3F4210351FD406 /* Pods-SonntagsBerlin.release.xcconfig */,
+				BE0022078DFD88AC496645D3356CDF5A /* Pods-StilInBerlin-acknowledgements.markdown */,
+				F9E9246EB33C15E07D86624E2261E6A2 /* Pods-StilInBerlin-acknowledgements.plist */,
+				B459361388088175ED84D58C6925F6EE /* Pods-StilInBerlin-dummy.m */,
+				39897B8A7EBAA549F47ABD565529036A /* Pods-StilInBerlin-frameworks.sh */,
+				D8C08E6061C3E08605CAC0FBBB9B1F33 /* Pods-StilInBerlin-resources.sh */,
+				F8003616A1542AE672674EA91796AED7 /* Pods-StilInBerlin.debug.xcconfig */,
+				E2549CF95D87322C9D3F4210351FD406 /* Pods-StilInBerlin.release.xcconfig */,
 			);
-			name = "Pods-SonntagsBerlin";
-			path = "Target Support Files/Pods-SonntagsBerlin";
+			name = "Pods-StilInBerlin";
+			path = "Target Support Files/Pods-StilInBerlin";
 			sourceTree = "<group>";
 		};
 		B82C505E47DBCC20B10B7C6FE45B8DC0 /* Text */ = {
@@ -2911,8 +2911,8 @@
 			children = (
 				A6C96AED0DE43C4ED6517FF35447273D /* libGoogleToolboxForMac.a */,
 				0FD78EF3E744BC6625601C78947EE3A0 /* libnanopb.a */,
-				CE6353ED3EF1843C10B8206538F3D30E /* libPods-SonntagsBerlin.a */,
-				7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-SonntagsBerlinTests.a */,
+				CE6353ED3EF1843C10B8206538F3D30E /* libPods-StilInBerlin.a */,
+				7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-StilInBerlinTests.a */,
 				490DF748B0070E9B10B6F9B418EE316D /* libProtobuf.a */,
 				A36E692232636CD263EBBE8C1E02FA95 /* libReact.a */,
 				9954E04ADA3DCF0BAD23BC716C65A934 /* libreact-native-mapbox-gl.a */,
@@ -2966,19 +2966,19 @@
 			path = React/DevSupport;
 			sourceTree = "<group>";
 		};
-		D8CD39BCF9C281A2487B25EF4885B95B /* Pods-SonntagsBerlinTests */ = {
+		D8CD39BCF9C281A2487B25EF4885B95B /* Pods-StilInBerlinTests */ = {
 			isa = PBXGroup;
 			children = (
-				936F3010496343122A85E98EFD9BF379 /* Pods-SonntagsBerlinTests-acknowledgements.markdown */,
-				6964455C62ED7FCD5E91E4A3F9B05CCE /* Pods-SonntagsBerlinTests-acknowledgements.plist */,
-				851321EB575A1910478E12820F2BFC65 /* Pods-SonntagsBerlinTests-dummy.m */,
-				AA96CE2A0BD15D2062404F93E0C78FCB /* Pods-SonntagsBerlinTests-frameworks.sh */,
-				983ADF8155F4A3E2E253DA36E4F2679F /* Pods-SonntagsBerlinTests-resources.sh */,
-				E87A55C010CBC655D16454EDBA144CDC /* Pods-SonntagsBerlinTests.debug.xcconfig */,
-				0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-SonntagsBerlinTests.release.xcconfig */,
+				936F3010496343122A85E98EFD9BF379 /* Pods-StilInBerlinTests-acknowledgements.markdown */,
+				6964455C62ED7FCD5E91E4A3F9B05CCE /* Pods-StilInBerlinTests-acknowledgements.plist */,
+				851321EB575A1910478E12820F2BFC65 /* Pods-StilInBerlinTests-dummy.m */,
+				AA96CE2A0BD15D2062404F93E0C78FCB /* Pods-StilInBerlinTests-frameworks.sh */,
+				983ADF8155F4A3E2E253DA36E4F2679F /* Pods-StilInBerlinTests-resources.sh */,
+				E87A55C010CBC655D16454EDBA144CDC /* Pods-StilInBerlinTests.debug.xcconfig */,
+				0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-StilInBerlinTests.release.xcconfig */,
 			);
-			name = "Pods-SonntagsBerlinTests";
-			path = "Target Support Files/Pods-SonntagsBerlinTests";
+			name = "Pods-StilInBerlinTests";
+			path = "Target Support Files/Pods-StilInBerlinTests";
 			sourceTree = "<group>";
 		};
 		DBB2CDFC4919A26587ECAA91849AF316 /* Support Files */ = {
@@ -3843,9 +3843,9 @@
 			productReference = C2B6E5C454A9B849B488EC83F214C7CF /* libRNStoreReview.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		5157323ACBB0A61C12C2E48A6E4DEF63 /* Pods-SonntagsBerlinTests */ = {
+		5157323ACBB0A61C12C2E48A6E4DEF63 /* Pods-StilInBerlinTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5CB4156BEFFB895EA8B1FD3AF3BBE3D6 /* Build configuration list for PBXNativeTarget "Pods-SonntagsBerlinTests" */;
+			buildConfigurationList = 5CB4156BEFFB895EA8B1FD3AF3BBE3D6 /* Build configuration list for PBXNativeTarget "Pods-StilInBerlinTests" */;
 			buildPhases = (
 				4DAF70EFBB3D111753BC8111F149370B /* Sources */,
 				2531212D7E16BEA98AD407DB3E2D91EC /* Frameworks */,
@@ -3854,9 +3854,9 @@
 			);
 			dependencies = (
 			);
-			name = "Pods-SonntagsBerlinTests";
-			productName = "Pods-SonntagsBerlinTests";
-			productReference = 7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-SonntagsBerlinTests.a */;
+			name = "Pods-StilInBerlinTests";
+			productName = "Pods-StilInBerlinTests";
+			productReference = 7BA7B57926872AB27B1CD5CEB7C07042 /* libPods-StilInBerlinTests.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		6C307118CCB8A32B2D05442D606C3730 /* Protobuf */ = {
@@ -3894,9 +3894,9 @@
 			productReference = F36A3FDA2882421D2AC0185DC147F11D /* libRNGestureHandler.a */;
 			productType = "com.apple.product-type.library.static";
 		};
-		ABB61A683D6C37D72006C8C4C3D36F2B /* Pods-SonntagsBerlin */ = {
+		ABB61A683D6C37D72006C8C4C3D36F2B /* Pods-StilInBerlin */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 85731EC5DC7FE3CB42EB22BB67615C3B /* Build configuration list for PBXNativeTarget "Pods-SonntagsBerlin" */;
+			buildConfigurationList = 85731EC5DC7FE3CB42EB22BB67615C3B /* Build configuration list for PBXNativeTarget "Pods-StilInBerlin" */;
 			buildPhases = (
 				7098EC01F085A766880D7CB312B1D518 /* Sources */,
 				7113067B3D372B4FE6F577A50EF85AE2 /* Frameworks */,
@@ -3915,9 +3915,9 @@
 				8D4EE875D0388B149ADB16708436B6A1 /* PBXTargetDependency */,
 				1146753C1EB2743381F70074D2637259 /* PBXTargetDependency */,
 			);
-			name = "Pods-SonntagsBerlin";
-			productName = "Pods-SonntagsBerlin";
-			productReference = CE6353ED3EF1843C10B8206538F3D30E /* libPods-SonntagsBerlin.a */;
+			name = "Pods-StilInBerlin";
+			productName = "Pods-StilInBerlin";
+			productReference = CE6353ED3EF1843C10B8206538F3D30E /* libPods-StilInBerlin.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		B00184F8200960D1EFB18B3E4F7D3037 /* yoga */ = {
@@ -4048,8 +4048,8 @@
 			targets = (
 				FA9D13261AF395CF5D54BB3203DF2A6E /* GoogleToolboxForMac */,
 				CF4B35B9FC819386EB09219BC91827D7 /* nanopb */,
-				ABB61A683D6C37D72006C8C4C3D36F2B /* Pods-SonntagsBerlin */,
-				5157323ACBB0A61C12C2E48A6E4DEF63 /* Pods-SonntagsBerlinTests */,
+				ABB61A683D6C37D72006C8C4C3D36F2B /* Pods-StilInBerlin */,
+				5157323ACBB0A61C12C2E48A6E4DEF63 /* Pods-StilInBerlinTests */,
 				6C307118CCB8A32B2D05442D606C3730 /* Protobuf */,
 				251DCE81C70B8ACF3DC40FCB3A7C9028 /* React */,
 				F6BC7CA096944F9630AC46DB789009A2 /* react-native-mapbox-gl */,
@@ -4189,7 +4189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3459D1BD50EF225671ACF7E4A5769D1D /* Pods-SonntagsBerlinTests-dummy.m in Sources */,
+				3459D1BD50EF225671ACF7E4A5769D1D /* Pods-StilInBerlinTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4208,7 +4208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5CD27C48057DE7AD32B83486F86F4953 /* Pods-SonntagsBerlin-dummy.m in Sources */,
+				5CD27C48057DE7AD32B83486F86F4953 /* Pods-StilInBerlin-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4625,7 +4625,7 @@
 		};
 		093192A64FAC8FC1224895AEE2130527 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F8003616A1542AE672674EA91796AED7 /* Pods-SonntagsBerlin.debug.xcconfig */;
+			baseConfigurationReference = F8003616A1542AE672674EA91796AED7 /* Pods-StilInBerlin.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4722,7 +4722,7 @@
 		};
 		1D525C36BC602C0E1D7859CD6CCC91D1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-SonntagsBerlinTests.release.xcconfig */;
+			baseConfigurationReference = 0C31EE6E27A76B3CD5859DD2F8DBB1A6 /* Pods-StilInBerlinTests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -4975,7 +4975,7 @@
 		};
 		8D975FF79562A844292F965BA14D3214 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E2549CF95D87322C9D3F4210351FD406 /* Pods-SonntagsBerlin.release.xcconfig */;
+			baseConfigurationReference = E2549CF95D87322C9D3F4210351FD406 /* Pods-StilInBerlin.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5189,7 +5189,7 @@
 		};
 		F15A5CF20E2CF33A061552B40F4B9686 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E87A55C010CBC655D16454EDBA144CDC /* Pods-SonntagsBerlinTests.debug.xcconfig */;
+			baseConfigurationReference = E87A55C010CBC655D16454EDBA144CDC /* Pods-StilInBerlinTests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -5268,7 +5268,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5CB4156BEFFB895EA8B1FD3AF3BBE3D6 /* Build configuration list for PBXNativeTarget "Pods-SonntagsBerlinTests" */ = {
+		5CB4156BEFFB895EA8B1FD3AF3BBE3D6 /* Build configuration list for PBXNativeTarget "Pods-StilInBerlinTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F15A5CF20E2CF33A061552B40F4B9686 /* Debug */,
@@ -5277,7 +5277,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		85731EC5DC7FE3CB42EB22BB67615C3B /* Build configuration list for PBXNativeTarget "Pods-SonntagsBerlin" */ = {
+		85731EC5DC7FE3CB42EB22BB67615C3B /* Build configuration list for PBXNativeTarget "Pods-StilInBerlin" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				093192A64FAC8FC1224895AEE2130527 /* Debug */,
