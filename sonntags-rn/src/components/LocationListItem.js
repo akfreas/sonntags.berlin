@@ -1,14 +1,8 @@
 import React, {Component} from "react";
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  ListView
 } from "react-native";
 import moment from "moment";
 import { pad } from "../utilities";
@@ -38,9 +32,9 @@ export default class LocationListItem extends Component {
                     <View style={[styles.locationListItem]}>
                         <View style={styles.locationListItemTitleContainer}>
                             <Text style={styles.locationListItemTitleText}>{this.props.location.name}</Text>
-                            <Text style={styles.locationListItemDescriptionText}>{openingTime} - {closingTime}</Text>
+                            <Text style={styles.locationSummaryViewDescriptionTitle}>{openingTime} - {closingTime}</Text>
                             {distance &&
-                                <Text style={styles.locationListItemDistanceText}>{distance} km</Text>
+                                <Text style={styles.locationSummaryViewDistanceText}>{distance} km</Text>
                             }
                         </View>
                     </View>

@@ -26,12 +26,12 @@ class OpeningDayItem extends Component {
                 <View style={{flexDirection: "row", height: "100%"}}>
                     <View style={{height: "100%", width: 60.0, justifyContent: "center"}}>
                         <View style={{width: "70%", height: "70%", margin: "15%"}}>
-                            <Text style={{flex: 1, textAlign: "center", fontSize: 14, fontFamily: "Lato-Bold"}}>{month}</Text>
-                            <Text style={{flex: 2, fontSize: 22, textAlign: "center", fontFamily: "Lato-Bold"}}>{day}</Text>
+                            <Text style={{flex: 1, textAlign: "center", fontSize: 14, fontFamily: "AGaramondPro-Bold"}}>{month}</Text>
+                            <Text style={{flex: 2, fontSize: 22, textAlign: "center", fontFamily: "AGaramondPro-Bold"}}>{day}</Text>
                         </View>
                     </View>
                     <View style={{height: "100%", width: "80%", margin: 15}}>
-                        <Text numberOfLines={2} style={{flex: 1, fontFamily: "Lato-Light", fontSize: 16}}>{this.props.openDay.dayName}</Text>
+                        <Text numberOfLines={2} style={{flex: 1, fontFamily: "AGaramondPro-Light", fontSize: 16}}>{this.props.openDay.dayName}</Text>
                     </View>
                 </View>
             </View>
@@ -96,9 +96,9 @@ export default class OpeningDaysList extends Component {
 
                             <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={this.openWebsite.bind(this)}>
                     <Text>
-                        <Text style={{fontFamily: "Lato-Bold", fontSize: 16}}>{I18n.t("opening_days_bold")}{"\n"}</Text> 
-                        <Text style={{fontFamily: "Lato-Regular", fontSize: 16}}>{I18n.t("opening_days_text")}</Text>
-                            <Text style={{fontFamily: "Lato-Regular", fontSize: 16}}>{"\n\n"}{I18n.t("more_info")}</Text>
+                        <Text style={{fontFamily: "AGaramondPro-Bold", fontSize: 16}}>{I18n.t("opening_days_bold")}{"\n"}</Text> 
+                        <Text style={{fontFamily: "AGaramondPro-Regular", fontSize: 16}}>{I18n.t("opening_days_text")}</Text>
+                            <Text style={{fontFamily: "AGaramondPro-Regular", fontSize: 16}}>{"\n\n"}{I18n.t("more_info")}</Text>
                     </Text>
                         </Hyperlink>
 
@@ -107,7 +107,7 @@ export default class OpeningDaysList extends Component {
                     <View style={{flexDirection: "row"}}>
                         {/*
                         <View style={{flex: 4}}>
-                            <Text style={{fontFamily: "Lato-Bold"}}>Notify me when shops are open on Sundays.</Text>
+                            <Text style={{fontFamily: "AGaramondPro-Bold"}}>Notify me when shops are open on Sundays.</Text>
                         </View>
                         <View style={{flex: 1}}>
                             <Switch style={{}} 

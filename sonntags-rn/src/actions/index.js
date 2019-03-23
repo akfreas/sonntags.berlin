@@ -40,7 +40,7 @@ const contentfulClient = createClient({
     accessToken
 })
 
-function markLaunch() {
+export function markLaunch() {
     getLaunchCount().then((count) => {
         let newCount = 1;
         if (count) {
@@ -50,11 +50,11 @@ function markLaunch() {
     });
 }
 
-function getLaunchCount() {
+export function getLaunchCount() {
     return AsyncStorage.getItem("@Sonntags:launchCount");
 }
 
-function shouldShowReview(callback) {
+export function shouldShowReview(callback) {
     getLaunchCount().then((count) => {
 
         if (Number(count) == 2 || Number(count) == 10) {
@@ -67,11 +67,11 @@ function shouldShowReview(callback) {
     });
 }
 
-function markReviewPromptAsShown() {
+export function markReviewPromptAsShown() {
     AsyncStorage.setItem("@Sonntags:reviewPromptShown", "yes");
 }
 
-function wasReviewPromptShown() {
+export function wasReviewPromptShown() {
     return AsyncStorage.getItem("@Sonntags:reviewPromptShown").then((shown) => {
         if (shown) {
             return shown == "yes";
@@ -81,7 +81,7 @@ function wasReviewPromptShown() {
     });
 }
 
-function showReviewIfNeeded() {
+export function showReviewIfNeeded() {
     // This API is only available on iOS 10.3 or later
     shouldShowReview((shouldShow) => {
         if (shouldShow && StoreReview.isAvailable ) {
@@ -91,7 +91,7 @@ function showReviewIfNeeded() {
     });
 }
 
-function getLocale() {
+export function getLocale() {
     var locale = I18n.currentLocale().split("-");
 
     if (locale.length > 0) {
@@ -102,7 +102,7 @@ function getLocale() {
     return locale;
 }
 
-function getSpaceInfo(callback) {
+export function getSpaceInfo(callback) {
     return (dispatch) => {
         contentfulClient.getSpace(spaceId).then((info) => {
             var promise = dispatch({
@@ -114,7 +114,7 @@ function getSpaceInfo(callback) {
     };
 }
 
-function loadCategories(callback, info) {
+export function loadCategories(callback, info) {
     
     return (dispatch, getState) => {
 
@@ -138,7 +138,7 @@ function loadCategories(callback, info) {
     */
 }
 
-function getUserLocation(dispatch) {
+export function getUserLocation(dispatch) {
     return (dispatch) => {
         console.log("getting location");
         navigator.geolocation.getCurrentPosition((position) => {
@@ -153,7 +153,7 @@ function getUserLocation(dispatch) {
     };
 }
 
-function loadLocations(category, boundingBox) {
+export async function loadLocations(category, boundingBox) {
 
     let queryDict = {content_type: contentTypeIds.location}
     if (category) {
@@ -172,9 +172,8 @@ function loadLocations(category, boundingBox) {
         return response.items.map((location) => {
             let fields = location.fields;
             fields.id = location.sys.id;
-            fields.iconName = location.fields.categoryRef.fields.iconName;
-            fields.localizedCategory = location.fields.categoryRef.fields.name;
-
+            // fields.iconName = location.fields.categoryRef.fields.iconName;
+            // fields.localizedCategory = location.fields.categoryRef.fields.name;
             fields.openingHoursString = formatHourString(fields);
             return fields;
         });
@@ -183,7 +182,7 @@ function loadLocations(category, boundingBox) {
     })
 }
 
-function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
   var R = 6371; // Radius of the earth in km
   var dLat = deg2rad(lat2-lat1);  // deg2rad below
   var dLon = deg2rad(lon2-lon1);
@@ -203,7 +202,7 @@ function deg2rad(deg) {
 
 
 
-function distanceFromUserLocation(location, userLocation) {
+export function distanceFromUserLocation(location, userLocation) {
 
         if (userLocation == undefined || userLocation.coords == undefined) {
             return null
@@ -217,7 +216,21 @@ function distanceFromUserLocation(location, userLocation) {
         return distance
 }
 
-function formatHourString(location) {
+
+export function locationsSortedByDistance(userLocation, locations) {
+
+    let sortedLocations = locations.sort((a, b) => {
+        let distanceA = distanceFromUserLocation(a, userLocation);
+        let distanceB = distanceFromUserLocation(b, userLocation);
+        let retVal = distanceA - distanceB;
+        return retVal;
+    });
+
+    return sortedLocations;
+
+}
+
+export function formatHourString(location) {
 
     let closingTimeString = pad(location.closingTime, 4);
     let openingTimeString = pad(location.openingTime, 4);
@@ -228,7 +241,7 @@ function formatHourString(location) {
     return timeString; 
 }
 
-function loadOpenSundays() {
+export function loadOpenSundays() {
 
     Analytics.logEvent("load_open_sundays");
     return contentfulClient.getEntries({
@@ -240,17 +253,4 @@ function loadOpenSundays() {
             return fields;
         });
     })
-}
-
-module.exports = {
-    loadLocations,
-    loadOpenSundays,
-    loadCategories,
-    getUserLocation,
-    distanceFromUserLocation,
-    formatHourString,
-    markLaunch,
-    shouldShowReview,
-    showReviewIfNeeded,
-    getSpaceInfo,
 }

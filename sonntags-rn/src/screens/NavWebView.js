@@ -43,7 +43,7 @@ export default class NavWebView extends Component {
         title: this.props.title,
           style: {
               color: styles.primaryColor,
-              fontFamily: "Lato-Bold",
+              fontFamily: "AGaramondPro-Bold",
           },
       }
     }

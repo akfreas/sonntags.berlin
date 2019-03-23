@@ -1,18 +1,9 @@
 import React, {Component} from "react";
 
 import {
-    Image,
-    Linking,
-    Button,
-    Platform,
     Dimensions,
-    ScrollView,
-    Text,
-    TouchableOpacity,
     View,
-    StyleSheet,
-    Row,
-    ListView
+    FlatList
 } from "react-native";
 
 import Analytics from "react-native-firebase-analytics";
@@ -27,28 +18,26 @@ var I18n = create_i18n();
 var styles = require("../styles/index.js");
 
 import { loadCategories } from "../actions";
-import LocationTypeGridItem from "../components/LocationTypeGridItem";
+import CategorySelectionListItem from "../components/CategorySelectionListItem";
 
 let width = Dimensions.get("window").width
 let height = Dimensions.get("window").height
 
 
 
-class LocationTypeGrid extends Component {
+class CategorySelectionList extends Component {
     
     static navigationOptions = ({ navigation }) => {
         const { params = {} } = navigation.state;
         return {
-        title: "sonntags",
+        title: "STIL IN BERLIN",
     }};
-
+    
     constructor(props) {
         super(props);
 
         this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            })
+            categories: []
         }
     }
 
@@ -65,7 +54,7 @@ class LocationTypeGrid extends Component {
             return
         }
         props.loadCategories((categories) => {
-                let ds = null;
+                let cats = null;
                 if (props.activeFilter) {
                     let withAllCategory = [{
                         name: I18n.t("clear_filter"), 
@@ -73,13 +62,17 @@ class LocationTypeGrid extends Component {
                         textColor: styles.constants.secondaryColorNegative,
                         iconName: "close"}].concat(categories);
 
-                    ds = this.state.dataSource.cloneWithRows(withAllCategory);
+                    cats = withAllCategory;
                 } else {
-                    ds = this.state.dataSource.cloneWithRows(categories);
+                    cats = categories;
                 }
 
+                cats = cats.map((item) => {
+                    item.key = item.id;
+                    return item;
+                })
                 this.setState({
-                    dataSource: ds
+                    categories: cats
                 })
         });
 
@@ -95,7 +88,7 @@ class LocationTypeGrid extends Component {
 
     renderRow(item) {
         return (
-            <LocationTypeGridItem 
+            <CategorySelectionListItem 
                 type={item} 
                 active={item.id && this.props.activeFilter && item.id == this.props.activeFilter.id}
                 categorySelected={() => this.categorySelected(item)}
@@ -112,13 +105,13 @@ class LocationTypeGrid extends Component {
             <View style={{ height: "100%"}}>
              
                     
-                <ListView 
+                <FlatList 
                     style={[styles.categoryTable, {position: "absolute", top: 0, left: 0, width: "100%", height: "100%"}]}
                     renderSeparator={this.renderSeparator.bind(this)} 
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
+                    data={this.state.categories}
+                    renderItem={this.renderRow.bind(this)}
                 >
-             </ListView>
+             </FlatList>
              <View  style={{
                         alignSelf: "flex-end",
                         flexDirection: "row",
@@ -154,5 +147,5 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-// export default connect(mapStateToProps, mapDispatchToProps)(LocationTypeGrid);
-export default LocationTypeGrid;
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelectionList);
+// export default CategorySelectionList;

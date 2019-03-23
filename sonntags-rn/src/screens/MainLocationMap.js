@@ -1,23 +1,11 @@
 import React, {Component} from "react";
-import moment from "moment";
 import {
-    ScrollView,
-    FlatList,
-    Image,
     Dimensions,
-    Text,
-    TouchableOpacity,
-    TouchableWithoutFeedback,
     PanResponder,
     ActivityIndicator,
     View,
     Modal,
-    AnimatedValue,
     Animated,
-    StyleSheet,
-    Platform,
-    Linking,
-    Button
 } from "react-native";
 
 import { StatusBar } from "react-native";
@@ -37,30 +25,23 @@ import {
     distanceFromUserLocation,
     markLaunch,
     showReviewIfNeeded,
-    shouldShowReview
+    locationsSortedByDistance
 } from "../actions";
 
 import NavWebView from "../screens/NavWebView";
 import Analytics from "react-native-firebase-analytics";
-import LocationCallout from "../components/LocationCallout.js";
-import NavigationBar from "react-native-navbar";
 import MapButtonPanel from "../components/MapButtonPanel";
-import LocationListView from "../components/LocationListView";
 import LocationDetailSummaryView from "../components/LocationDetailSummaryView";
 import LocationActionComponent from "../components/LocationActionComponent";
-import arrow from "../../assets/images/map-annotation.png";
 import { connect } from "react-redux"
 import LocationMapView from "../components/LocationMapView"; 
-import LocationListItem from "../components/LocationListItem";
-import Share, {ShareSheet} from "react-native-share";
-import LocationTypeGrid from "../screens/LocationTypeGrid";
-import OpeningDays from "../screens/OpeningDays";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import * as StoreReview from "react-native-store-review";
+import Share from "react-native-share";
+import CategorySelectionList from "../screens/CategorySelectionList";
 
 
-let width = Dimensions.get("window").width
-let height = Dimensions.get("window").height
+const width = Dimensions.get("window").width;
+const height = Dimensions.get("window").height;
+const supplementarySummaryHeight = 0;
 
 class MainLocationMap extends Component {
 
@@ -73,7 +54,7 @@ class MainLocationMap extends Component {
             isLoading = false;
         }
         return {
-            title: "sonntags",
+            title: "STIL IN BERLIN",
             headerRight:<ActivityIndicator style={{padding: 5}} size="small" color="#fff" animating={isLoading}/>
         }
     };
@@ -83,7 +64,7 @@ class MainLocationMap extends Component {
         super(props);
         this.state = {
             locations: [],
-            bottomAnim: new Animated.Value(0),
+            bottomAnim: new Animated.Value(-supplementarySummaryHeight),
             categoryViewAnim: new Animated.Value(0),
             websiteModalVisible: false,
         };
@@ -91,31 +72,6 @@ class MainLocationMap extends Component {
         markLaunch();
     }
 
-    locationSelected(location, source) {
-        let previousLocation = this.state.selectedLocation;
-        this.setState({
-            previousLocation: previousLocation,
-            selectedLocation: location
-        });
-        const { navigate } = this.props.navigation;
-        var userLocation = "undefined"
-        if (this.state.userLocation) {
-            let userLocation = this.state.userLocation;
-            userLocation = JSON.stringify({"lat": userLocation.coords.latitude, "lon": userLocation.coords.longitude});
-        }
-        let distanceFromUser = distanceFromUserLocation(location, this.state.userLocation);
-        Analytics.logEvent("location_selected", {
-            "location_name": location.name,
-            "user_location": userLocation,
-            "source": source,
-            "distance_from_user": distanceFromUser
-        });
-        navigate("LocationDetail", {
-            location: location, 
-            distanceFromUser: distanceFromUser
-        });
-    }
- 
     openInMaps() {
 
         Analytics.logEvent("open_maps", {"location_name": this.state.selectedLocation.name});
@@ -149,20 +105,6 @@ class MainLocationMap extends Component {
         }).catch((result) => {
             Analytics.logEvent("location_share_cancelled");
         });
-    }
-   
-
-    locationsSortedByDistance(locations) {
-
-        let sortedLocations = locations.sort((a, b) => {
-            let distanceA = distanceFromUserLocation(a, this.state.userLocation);
-            let distanceB = distanceFromUserLocation(b, this.state.userLocation);
-            let retVal = distanceA - distanceB;
-            return retVal;
-        });
-
-        return sortedLocations;
-
     }
 
     hideCategoryList = (callback) => {
@@ -224,9 +166,9 @@ class MainLocationMap extends Component {
         });
         loadLocations(this.state.selectedCategory, expanded).then((locations) => {
             let sorted = locations
-            if (this.props.userLocation) {
-                sorted = this.locationsSortedByDistance(locations);
-            }
+            // if (this.props.userLocation) {
+            //     sorted = locationsSortedByDistance(this.props.userLocation, locations);
+            // }
             this.setState({
                 locations: sorted,
             })
@@ -251,10 +193,6 @@ class MainLocationMap extends Component {
     }
 
     componentDidUpdate() {
-        let markers = this.state.locations.map((location) => {
-            return location.id;
-        })
-        //this.map.fitToSuppliedMarkers(markers, true);
     }
 
 
@@ -263,9 +201,9 @@ class MainLocationMap extends Component {
         this.setState({
             userLocation: nextProps.userLocation,
         });
-        let sorted = this.locationsSortedByDistance(this.state.locations);
+        // let sorted = locationsSortedByDistance(this.props.userLocation, this.state.locations);
         this.setState({
-            locations: sorted,
+            locations: this.state.locations,
         });
     }
 
@@ -333,7 +271,7 @@ class MainLocationMap extends Component {
         Animated.timing(
             this.state.bottomAnim,
             {
-                toValue: 0,
+                toValue: -supplementarySummaryHeight,
                 duration: 200
             }
         ).start();
@@ -349,8 +287,6 @@ class MainLocationMap extends Component {
     }
 
     onListItemSelected = (category) => {
-
-
         this.hideCategoryList(() => {
              this.setState({
                 selectedCategory: category,
@@ -392,9 +328,8 @@ class MainLocationMap extends Component {
                         this.categoryViewY = y;
                             this.hasPerformedLayout = true;
                     }}
-
             >
-                <LocationTypeGrid 
+                <CategorySelectionList 
                     activeFilter={this.state.selectedCategory} 
                     onItemSelected={this.onListItemSelected}
                     onCloseTapped={this.hideCategoryList}
@@ -426,9 +361,15 @@ class MainLocationMap extends Component {
     }
 
     setBottomAnim(value) {
-        if (value > 0) {
-            return
-        }
+        // if (value > 0) {
+        //     this.setState({
+        //         showSupplementarySummary: true
+        //     });
+        // } else {
+        //     this.setState({
+        //         showSupplementarySummary: false
+        //     });
+        // }
         this.state.bottomAnim.setValue(value);
     }
 
@@ -454,7 +395,7 @@ class MainLocationMap extends Component {
             this.animationStart = gestureState.y0;
           },
           onPanResponderMove: (evt, gestureState) => {
-              this.setBottomAnim(this.animationStart - gestureState.moveY);
+              this.setBottomAnim(this.animationStart - gestureState.moveY - supplementarySummaryHeight);
           },
           onPanResponderTerminationRequest: (evt, gestureState) => false,
           onPanResponderRelease: (evt, gestureState) => {
@@ -492,7 +433,6 @@ class MainLocationMap extends Component {
                         this.detailViewHeight = height;
                         this.detailViewY = y;
                     }}
-
             >
                 <LocationDetailSummaryView 
                     location={this.state.selectedLocation}
@@ -500,10 +440,7 @@ class MainLocationMap extends Component {
                     openWebsite={this.openWebsite}
                     startPhoneCall={() => {}}
                 />
-                <LocationActionComponent
-                    googleMapsAction={() => this.openInMaps()}
-                    shareAction={() => this.shareSelectedLocation()}
-                 />
+                }
             </Animated.View>
         )
     }
@@ -524,8 +461,7 @@ class MainLocationMap extends Component {
         const { navigate } = this.props.navigation;
         let config = [
             {title: "show_filter", icon: "filter", target: this.showCategoryList },
-            {title: "add_location", icon: "map-marker-plus", target: ()=> { this.showPage(I18n.t("add_business"), "https://goo.gl/forms/XMG8yMHfzU0rZ4qH3")}},
-            {title: "info_page", icon: "information-outline", target: ()=>{ navigate("InfoPage")}},
+            {title: "info_page", icon: "information-outline", target: ()=>{ navigate("AppInfoPage")}},
         ];
 
         return (

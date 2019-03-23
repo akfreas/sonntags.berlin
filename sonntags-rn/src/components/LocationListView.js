@@ -6,7 +6,6 @@ import {
     FlatList,
     Image,
     Dimensions,
-    Text,
     View,
     StyleSheet,
 } from "react-native";
@@ -31,7 +30,7 @@ var styles = StyleSheet.create({
         flex: 1.0,
         alignItems: "flex-start",
     },
-    locationListItemDescriptionText: {
+    locationSummaryViewDescriptionTitle: {
     },
     locationListItemTitleText: {
         color: "black",
@@ -63,7 +62,7 @@ export default class LocationListView extends Component {
         title: this.props.category.name,
           style: {
               color: "#3BB9BD",
-              fontFamily: "Lato-Bold",
+              fontFamily: "AGaramondPro-Bold",
           },
       }
     }
@@ -84,36 +83,28 @@ export default class LocationListView extends Component {
         let height = Dimensions.get("window").height
  
         return(
-            <View style={{flex: 1}}>
-             <StatusBar barStyle = "dark-content" hidden = {false}/>
-                <NavigationBar
-                    rightButton={this.rightButtonConfig()}
-                    title={this.titleConfig()}
-                />
-                <View style={{flex: 1, backgroundColor: "#C2FDFF"}}>
-                    <View>
-                        <Image style={{
-                            height: width, 
-                            width: width, 
-                            position: "absolute", 
-                            bottom: -height,
-                            left: 0,
-                        }} source={require("../../assets/images/icon_background.png")}/>
-                        </View>
+            // <View style={{flex: 1}}>
+            //  <StatusBar barStyle = "dark-content" hidden = {false}/>
+            //     <NavigationBar
+            //         rightButton={this.rightButtonConfig()}
+            //         title={this.titleConfig()}
+            //     />
+            //     <View style={{flex: 1, backgroundColor: "#C2FDFF"}}>
+            //         <View>
+            //             <Image style={{
+            //                 height: width, 
+            //                 width: width, 
+            //                 position: "absolute", 
+            //                 bottom: -height,
+            //                 left: 0,
+            //             }} source={require("../../assets/images/icon_background.png")}/>
+            //             </View>
                      <FlatList
-                        ItemSeparatorComponent={({highlighted}) => (
-                            <View style={[styles.locationListItemSeparator, highlighted && {marginLeft: 0}]} />
-                       )}
-                       contentContainerStyle={{justifyContent: "center", backgroundColor: "white"}}
-                        style={{backgroundColor: "transparent", flex: 1}}
-                        data={this.props.locations}
-                        bounces={true}
-                        extraData={this.props.locations}
-                        renderItem={({item}) => this.renderRow(item)}
-                        keyExtractor={item => item.id}
+                        renderItem={({item}) => <Text>{item.key}</Text>}
+                        // renderItem={"hey"}
                     />
-                </View>
-            </View>
+            //     </View>
+            // </View>
         )
     }
 }

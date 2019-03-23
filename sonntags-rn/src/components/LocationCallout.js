@@ -1,15 +1,8 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
   StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ListView
+  View
 } from "react-native";
 import moment from "moment";
 

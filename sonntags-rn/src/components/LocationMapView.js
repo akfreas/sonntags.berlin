@@ -1,17 +1,8 @@
 import React, {Component} from "react";
 
 import {
-    Image,
-    Linking,
-    Button,
-    Platform,
-    ScrollView,
-    Text,
     TouchableOpacity,
     View,
-    StyleSheet,
-    Row,
-    ListView
 } from "react-native";
 
 import MapboxGL, { MapView, Annotation }from "@mapbox/react-native-mapbox-gl";
@@ -108,7 +99,7 @@ export default class LocationMapView extends Component {
                 coordinates: [parseFloat(location.location.lon), parseFloat(location.location.lat)],
                 type: "point",
                 category: location.category,
-                iconName: location.iconName,
+                // iconName: location.iconName,
                 selected: selected,
                 location: location,
             };
@@ -123,6 +114,7 @@ export default class LocationMapView extends Component {
     }
 
     renderAnnotations() {
+        const annotationSize = 20;
         let annotationViews = this.state.annotations.map((annotation) => {
             backgroundColor = styles.constants.secondaryColor;
             iconColor = styles.constants.secondaryColorNegative;
@@ -130,7 +122,7 @@ export default class LocationMapView extends Component {
                 backgroundColor = styles.constants.primaryColor;
                 iconColor = styles.constants.primaryColorNegative;
             }
-            return (
+            return (    
               <MapboxGL.PointAnnotation
                     id={annotation.id}
                     key={annotation.id}
@@ -141,16 +133,16 @@ export default class LocationMapView extends Component {
                     <TouchableOpacity onPress={() => this.props.onAnnotationTapped(annotation)}>
 
                     <View style={{
-                        width: 27, height: 27, backgroundColor: "white", flex: 1, justifyContent: "center", alignItems: "center",
+                        width: annotationSize, borderColor: "#FFFFFF", borderWidth: 1, height: annotationSize, backgroundColor: "white", flex: 1, justifyContent: "center", alignItems: "center",
                         borderRadius: 100/2,
-                        backgroundColor: backgroundColor,
+                        backgroundColor: "#D09CDE",
 
                     }}>
-                         <Icon
-                            style={styles.locationGridIcon}
+                         {/* <Icon
+                            style={styles.locationListIcon}
                             name={annotation.iconName}
                             size={14}
-                            color={iconColor}/>
+                            color={iconColor}/> */}
                     </View>
                 </TouchableOpacity>
               </MapboxGL.PointAnnotation>

@@ -1,28 +1,22 @@
 const React = require("react-native")
 const constants = {
     actionColor: "#24CE84",
-    primaryColor: "#3BB9BD",
-    primaryColorNegative: "#FFFFFF",
+    primaryColor: "#FFFFFF",
+    primaryColorNegative: "#000000",
     secondaryColor: "#EEA845",
-    secondaryColorNegative: "#FFFFFF",
+    secondaryColorNegative: "#000000",
 };
 
 import {
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ListView
+  StyleSheet
 } from "react-native";
 
 
 var styles = StyleSheet.create({
     headerTitleStyle: {
-        color: "white",
-        fontFamily: "Lato-Bold",
-        fontSize: 20
+        color: "black",
+        fontFamily: "AGaramondPro-Regular",
+        fontSize: 24
 
     },
     categoryTable: {
@@ -33,36 +27,36 @@ var styles = StyleSheet.create({
         height: StyleSheet.hairlineWidth,
         backgroundColor: "rgb(233, 238, 255)",
     }, 
-    locationGridList: {
+    locationListList: {
         justifyContent: "center",
         backgroundColor: "#fff",
     },
-    locationGridItem: {
+    locationListItem: {
         backgroundColor: "#fff",
         display: "flex",
         flexDirection: "row",
         marginBottom: 1,
         height: 65,
     },
-    locationGridIcon: {
+    locationListIcon: {
         padding: 0,
 
     },
-    locationGridIconContainer: {
+    locationListIconContainer: {
         flex: 0.25,
         justifyContent: "center",
         alignItems: "center",
     },
-    locationGridTextContainer: {
+    locationListTextContainer: {
         flex: 1.0,
         justifyContent: "center",
         alignItems: "flex-start",
     }, 
-    locationGridText: {
+    locationListText: {
         textAlign: "center",
         marginLeft: 10,
         marginRight: 10,
-        fontFamily: "Lato-Bold",
+        fontFamily: "AGaramondPro-Bold",
         fontSize: 20
     },
     locationList: {
@@ -85,16 +79,23 @@ var styles = StyleSheet.create({
         //justifyContent: "start",
         alignItems: "flex-start",
     },
-    locationListItemDescriptionText: {
-        fontFamily: "Lato-Regular",
+    locationSummaryViewDescriptionTitle: {
+        fontFamily: "AGaramondPro-Regular",
     },
-    locationListItemDistanceText: {
-        fontFamily: "Lato-Italic",
+    locationSummaryViewDistanceText: {
+        fontFamily: "AGaramondPro-Italic",
     },
     locationListItemTitleText: {
 
-        fontFamily: "Lato-Bold",
+        fontFamily: "AGaramondPro-Bold",
         fontSize: 18
+    },
+    locationSummaryViewDescriptionText: {
+        fontFamily: "AGaramondPro-Regular",
+    },
+    locationSummaryViewTitle: {
+        fontFamily: "AGaramondPro-Italic",
+         fontSize: 38
     }
 })
 

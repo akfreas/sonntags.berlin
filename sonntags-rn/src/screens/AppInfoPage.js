@@ -11,11 +11,11 @@ import {
 import {create_i18n} from "../utilities";
 import styles from "../styles";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-const fontStyle = {fontFamily: "Lato-Regular", fontSize: 14, color: styles.constants.primaryColor};
+const fontStyle = {fontFamily: "AGaramondPro-Regular", fontSize: 14, color: styles.constants.primaryColor};
 var I18n = create_i18n();
 
 
-export default class InfoPage extends Component {
+export default class AppInfoPage extends Component {
     static navigationOptions = {
         title: I18n.t("about_screen_title")
     };
@@ -35,19 +35,19 @@ export default class InfoPage extends Component {
             <ScrollView style={{height: "100%", width: "100%"}} bounces={false} showScrollBars={false}>
                 <View style={{backgroundColor: styles.constants.primaryColorNegative, flex: 1, flexDirection: "column"}}>
                     <View style={{backgroundColor: styles.constants.primaryColor, flex: 1}}>
-                        <Text style={{fontFamily: "Lato-Bold", fontSize: 38, color: styles.constants.primaryColorNegative, padding: 10}}>
+                        <Text style={{fontFamily: "AGaramondPro-Bold", fontSize: 38, color: styles.constants.primaryColorNegative, padding: 10}}>
                             Be lazy.
                             Procrastinate. 
                             Support your local shops.
                         </Text>
                     </View>
                     <View style={{flexDirection: "column", flex: 1}}>
-                        <Text style={{fontFamily: "Lato-Regular", fontSize: 28, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: "AGaramondPro-Regular", fontSize: 28, color: styles.constants.primaryColor, padding: 10}}>
                             {
 `Things happen spontaneously.
 Shopping should be one of those things.`} 
                         </Text>
-                        <Text style={{fontFamily: "Lato-Regular", fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: "AGaramondPro-Regular", fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
                             That"s why I made this app.
                         </Text>
 
@@ -62,13 +62,13 @@ Shopping should be one of those things.`}
                                 justifyContent: "center",
                                 alignItems: "center"
                             }}>
-                                <Text style={{fontFamily: "Lato-Bold", fontSize: 34, color: styles.constants.secondaryColorNegative}}>
+                                <Text style={{fontFamily: "AGaramondPro-Bold", fontSize: 34, color: styles.constants.secondaryColorNegative}}>
                                     Hi, I"m Alex.
                                 </Text>
                             </View>
                         </View>
                         <View style={{alignItems: "center",  flex: 1, backgroundColor: styles.constants.primaryColor}}>
-                            <Text style={{textAlign: "center", fontFamily: "Lato-Regular", color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
+                            <Text style={{textAlign: "center", fontFamily: "AGaramondPro-Regular", color: styles.constants.primaryColorNegative, fontSize: 24, padding: 10}}>
                                 Want to get in touch?
                             </Text>
                             <TouchableOpacity onPress={this.openEmail}>
@@ -82,7 +82,7 @@ Shopping should be one of those things.`}
                                 borderColor: styles.constants.primaryColorNegative,
                                 borderWidth: 2.0
                             }}>
-                                <Text style={{fontFamily: "Lato-Bold", fontSize: 24, color: styles.constants.secondaryColorNegative}}>
+                                <Text style={{fontFamily: "AGaramondPro-Bold", fontSize: 24, color: styles.constants.secondaryColorNegative}}>
                                     <Icon name={"email-outline"} size={24}/>
                                     {" "} Let"s Talk.
                                 </Text>
@@ -92,12 +92,12 @@ Shopping should be one of those things.`}
 
                         </View>
 
-                        <Text style={{fontFamily: "Lato-Regular", fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
+                        <Text style={{fontFamily: "AGaramondPro-Regular", fontSize: 18, color: styles.constants.primaryColor, padding: 10}}>
                             Some technical details...
                         </Text>
                         <View style={{flexDirection: "row", flex: 1}}>
                             <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
-                                <Icon style={[styles.locationGridIcon, {color: "#2DD1FC"}]}
+                                <Icon style={[styles.locationListIcon, {color: "#2DD1FC"}]}
                                     name={"react"}
                                     size={60}
                                 />

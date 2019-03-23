@@ -1,12 +1,12 @@
 import React from "react";
 import { createStackNavigator } from "react-navigation";
 import styles from "../styles";
-import LocationTypeGrid from "../screens/LocationTypeGrid";
+import CategorySelectionList from "../screens/CategorySelectionList";
 import OpeningDays from "../screens/OpeningDays";
 import LocationDetailView from "../screens/LocationDetailView.js";
 import NavWebView from "../screens/NavWebView.js";
 import MainLocationMap from "../screens/MainLocationMap";
-import InfoPage from "../screens/InfoPage";
+import AppInfoPage from "../screens/AppInfoPage";
 
 class TestComponent extends React.Component {
     render() {
@@ -56,8 +56,8 @@ export const RootStackNavigator = createStackNavigator({
         screen: paramsToProps(LocationDetailView),
         navigationOptions: defaultNavOptions,
     },
-    InfoPage: {
-        screen: paramsToProps(InfoPage),
+    AppInfoPage: {
+        screen: paramsToProps(AppInfoPage),
         navigationOptions: defaultNavOptions
     },
 

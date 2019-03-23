@@ -1,14 +1,8 @@
 import React, {Component, PropTypes} from "react";
 import {
-  Image,
-  Linking,
-  Platform,
-  ScrollView,
-  StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-  ListView
+  Image
 } from "react-native";
 
 import Analytics from "react-native-firebase-analytics";
@@ -31,37 +25,38 @@ export default class LocationDetailSummaryView extends Component {
         let distance = this.props.distanceFromUser ? Math.round(this.props.distanceFromUser * 100) / 100 : null;
         return(
             <View style={{flex: 1, flexDirection: "row"}}>
-                <View style={{flex: 8, padding: 15, backgroundColor: "white"}}>
-                    <Text style={{fontFamily: "Lato-Bold", fontSize: 24}}>{this.props.location.name}</Text>
-                    <View style={styles.locationListItemTitleContainer}>
-                        <Text style={[styles.locationListItemTitleText, {padding: 0}]}>
-                            <Icon name={this.props.location.iconName} size={24}/>
-                            {" "}{this.props.location.localizedCategory}
-                        </Text>
-                        {this.props.location.address ?
-                            <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text> : <View/>
-                        }
-                        <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={this.props.openWebsite.bind(this)}>
-                            <Text style={styles.locationListItemDescriptionText}>{this.props.location.openingHoursString}</Text>
-                            {distance ?
-                                <Text style={styles.locationListItemDistanceText}>{distance} {I18n.t("distance")}</Text> : <Text/>
+                
+                <View style={{flex: 8, padding: 0, backgroundColor: "white"}}>
+                {this.props.location.imageUrl ? 
+                    <Image 
+                        style={{flex:1, height: 100}}
+                        source={{uri: this.props.location.imageUrl}}/>
+                    : null}
+                    <View style={{flex: 8, padding: 14, backgroundColor: "white"}}>
+                        <Text style={styles.locationSummaryViewTitle}>{this.props.location.name}</Text>
+                        <View style={styles.locationListItemTitleContainer}>
+                            <Text style={[styles.locationListItemTitleText, {padding: 0}]}>
+                                {/* <Icon name={this.props.location.iconName} size={24}/> */}
+                                {""}{this.props.location.tags}
+                            </Text>
+                            {this.props.location.address ?
+                                <Text style={styles.locationListItemTitleText}>{this.props.location.address}</Text> : <View/>
                             }
-                            <Text style={styles.locationListItemDescriptionText}>{this.props.location.websiteUrl}</Text>
-                        </Hyperlink>
-                        <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={() => this.props.startPhoneCall()}>
-                            <Text style={styles.locationListItemDescriptionText}>{this.props.location.phoneNumber}</Text>
-                        </Hyperlink>
+                            {this.props.location.description ? 
+                                <Text style={styles.locationSummaryViewDescriptionText}>{this.props.location.description}</Text> : null
+                            }
+                                <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={this.props.openWebsite.bind(this)}>
+                                {distance ?
+                                    <Text style={styles.locationSummaryViewDistanceText}>{distance} {I18n.t("distance")}</Text> : <Text/>
+                                }
+                                <Text style={styles.locationSummaryViewDescriptionTitle}>{this.props.location.websiteUrl}</Text>
+                            </Hyperlink>
+                            <Hyperlink linkStyle={{ color: "#2980b9"}} onPress={() => this.props.startPhoneCall()}>
+                                <Text style={styles.locationSummaryViewDescriptionTitle}>{this.props.location.phoneNumber}</Text>
+                            </Hyperlink>
+                        </View>
                     </View>
                 </View>
-                {this.props.showChevron &&
-                <View style={{flex: 1, alignItems: "center", justifyContent: "center"}}>
-                    <Icon
-                        name={"chevron-up"}
-                        size={32}
-                        color={"black"}
-                    />
-                </View>
-                }
             </View>
         )
     }

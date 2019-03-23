@@ -43,7 +43,7 @@ class MapButtonPanel extends Component {
                             justifyContent: "center", 
                             alignItems: "center",
                             width: 44, height: 44}} onPress={() => this.buttonPress(buttonConfig)}>
-                        <Icon name={buttonConfig.icon} color="white" style={{}} size={21}/>
+                        <Icon name={buttonConfig.icon} color={styles.constants.primaryColorNegative} style={{}} size={21}/>
                     </TouchableOpacity>
                 </View>
             );
@@ -61,6 +61,8 @@ class MapButtonPanel extends Component {
                     flexDirection: "column",
                     borderRadius: 10,
                     right: 0,
+                    borderColor: "#6C6C6C",
+                    borderWidth: 1,
                     marginLeft: 10,
                     paddingRight: 10,
                     top: 0, 
