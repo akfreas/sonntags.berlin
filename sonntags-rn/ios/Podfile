@@ -3,11 +3,11 @@
 platform :ios, '11.0'
 plugin 'cocoapods-fix-react-native'
 
-target 'StilInBerlin' do
+target 'Sonntags' do
   # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
   # use_frameworks!
 
-  # Pods for StilInBerlin
+  # Pods for Sonntags
   #
   #
     pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga/yoga.podspec'
@@ -35,7 +35,7 @@ target 'StilInBerlin' do
   pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
   pod 'RNStoreReview', :path => '../node_modules/react-native-store-review/ios'
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
-  target 'StilInBerlinTests' do
+  target 'SonntagsTests' do
     inherit! :search_paths
     # Pods for testing
   end

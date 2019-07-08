@@ -17,11 +17,11 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.sashimiblade.StilInBerlin</string>
+	<string>com.sashimiblade.Sonntags</string>
 	<key>PROJECT_ID</key>
-	<string>StilInBerlin-c927b</string>
+	<string>Sonntags-c927b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>StilInBerlin-c927b.appspot.com</string>
+	<string>Sonntags-c927b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -35,6 +35,6 @@
 	<key>GOOGLE_APP_ID</key>
 	<string>1:41572437844:ios:4188adceae467366</string>
 	<key>DATABASE_URL</key>
-	<string>https://StilInBerlin-c927b.firebaseio.com</string>
+	<string>https://Sonntags-c927b.firebaseio.com</string>
 </dict>
 </plist>
