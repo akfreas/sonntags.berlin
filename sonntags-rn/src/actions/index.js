@@ -14,12 +14,12 @@ const firebaseConfig = {
 };
 
 const contentTypeIds = {
-    categoryContainer: "3AO9j6ZpSnOrFDoOVPxSlU",
-    location: "56OesOlX446g8kA6yqkC4k"
+    categoryContainer: "1H0SeRVFLCCUGyOCmQYYKE",
+    location: "location"
 }
 
-const spaceId = "lb54rlmhepij";
-const accessToken = "d93d65f9aa0ca120116b007b46234ea18805c5ccce4e32868adbff59b79e1c75";
+const spaceId = "2dktdnk1iv2v";
+const accessToken = "0c4c38965da326004aee2e05781bdea695d50429eb7a7222003399cfb2035d06";
 
 import {
     SET_SPACE_INFO,

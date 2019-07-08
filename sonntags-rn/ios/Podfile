@@ -34,7 +34,7 @@ target 'Sonntags' do
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
   pod 'react-native-mapbox-gl', :path => '../node_modules/@mapbox/react-native-mapbox-gl'
   pod 'RNStoreReview', :path => '../node_modules/react-native-store-review/ios'
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler/ios'
+  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
   target 'SonntagsTests' do
     inherit! :search_paths
     # Pods for testing

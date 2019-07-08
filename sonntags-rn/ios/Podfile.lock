@@ -76,13 +76,13 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNGestureHandler (1.0.10):
+  - RNGestureHandler (1.3.0):
     - React
   - RNI18n (2.0.15):
     - React
   - RNStoreReview (0.1.5):
     - React
-  - RNVectorIcons (6.1.0):
+  - RNVectorIcons (6.6.0):
     - React
   - yoga (0.57.8.React)
 
@@ -103,7 +103,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler/ios`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNI18n (from `../node_modules/react-native-i18n`)
   - RNStoreReview (from `../node_modules/react-native-store-review/ios`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
@@ -115,7 +115,7 @@ EXTERNAL SOURCES:
   react-native-mapbox-gl:
     :path: ../node_modules/@mapbox/react-native-mapbox-gl
   RNGestureHandler:
-    :path: ../node_modules/react-native-gesture-handler/ios
+    :path: ../node_modules/react-native-gesture-handler
   RNI18n:
     :path: ../node_modules/react-native-i18n
   RNStoreReview:
@@ -137,12 +137,12 @@ SPEC CHECKSUMS:
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   React: adbac0757ce35e92fbd447ab98c810209d27d9b0
   react-native-mapbox-gl: d0ac3b81a6cadbd7cadc80891da72e3e85379350
-  RNGestureHandler: 3e9dcf42b4d7400458d65a468f7f25d00da75617
+  RNGestureHandler: 5329a942fce3d41c68b84c2c2276ce06a696d8b0
   RNI18n: e2f7e76389fcc6e84f2c8733ea89b92502351fd8
   RNStoreReview: 62d6afd7c37db711a594bbffca6b0ea3a812b7a8
-  RNVectorIcons: ac7bf6bfeafaf3ad34552cdc6eed6fb8c4b7c940
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 74cdf036c30820443b25ade59916236b1e95ee93
 
-PODFILE CHECKSUM: 32be5f87ec22664a68ea6bd3c8daae3fe6794be2
+PODFILE CHECKSUM: a421472a393b8cc662e1e444146cf4a24545d1d6
 
 COCOAPODS: 1.3.1
