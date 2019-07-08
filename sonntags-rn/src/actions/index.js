@@ -4,7 +4,7 @@ import {
     Platform,
     AsyncStorage
 } from "react-native";
-const { createClient } = require("contentful/dist/contentful.browser.min.js");
+const { createClient } = require("contentful/dist/contentful.browser.js");
 
 const firebaseConfig = {
   apiKey: "AIzaSyBoJyMTSdPABBhKFNHhhWUzoYvYYZLBoZU",
