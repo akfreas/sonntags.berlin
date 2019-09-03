@@ -3,9 +3,15 @@ import json
 import re
 from contentful_utils import ContentfulImporter
 from shapely.geometry import Point, Polygon
+import os
 
 
-conn = psycopg2.connect("dbname=berlin-latest.osm.pbf user=postgres")
+conn = psycopg2.connect({
+        'host': os.environ['POSTGRES_DB'],
+        'database': os.environ['PG_ENV_POSTGRES_DB'],
+        'user': os.environ['POSTGRES_USER'],
+        'password': os.environ['POSTGIS_PASSWORD']
+    })
 cur = conn.cursor()
 cat_map = {
         'garden_centre': 'Home & Garden',
@@ -90,6 +96,7 @@ for point in cur:
         fields['address'] = " ".join(addr_components)
 
     try:
-        importer.import_location(target_category, fields, 'openstreetmap', osm_id, publish=True)
+        print fields;
+        #importer.import_location(target_category, fields, 'openstreetmap', osm_id, publish=True)
     except: 
         continue
