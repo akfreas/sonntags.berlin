@@ -440,7 +440,6 @@ class MainLocationMap extends Component {
                     openWebsite={this.openWebsite}
                     startPhoneCall={() => {}}
                 />
-                }
             </Animated.View>
         )
     }

@@ -6,12 +6,11 @@ from shapely.geometry import Point, Polygon
 import os
 
 
-conn = psycopg2.connect({
-        'host': os.environ['POSTGRES_DB'],
-        'database': os.environ['PG_ENV_POSTGRES_DB'],
-        'user': os.environ['POSTGRES_USER'],
-        'password': os.environ['POSTGIS_PASSWORD']
-    })
+conn = psycopg2.connect(
+        host='localhost',
+        database=os.environ['POSTGRES_DB'],
+        user=os.environ['POSTGRES_USER'],
+        password=os.environ['POSTGIS_PASSWORD'])
 cur = conn.cursor()
 cat_map = {
         'garden_centre': 'Home & Garden',
@@ -38,7 +37,8 @@ query = "select osm_id, name, website, \"contact:phone\", \"contact:website\", \
 
 
 print(query)
-cur.execute(query)
+return
+#cur.execute(query)
 
 
 

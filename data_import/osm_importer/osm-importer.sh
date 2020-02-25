@@ -51,11 +51,18 @@ function importosm () {
     trap "Importing in progress, ignored SIGINT & SIGTERM." SIGINT SIGTERM
     PGPASSWORD=$PG_ENV_POSTGRES_PASSWORD \
         osm2pgsql --create --slim --cache 2000 \
+        --style /osm/default.style \
         --host $PG_PORT_5432_TCP_ADDR \
         --database $PG_ENV_POSTGRES_DB \
         --username $PG_ENV_POSTGRES_USER \
         --port $PG_PORT_5432_TCP_PORT \
         $UPDATEPBF && mv -v $UPDATEPBF $PBF
+    psql -d $PG_ENV_POSTGRES_DB -c "create table sunday_open as
+        select *
+        from planet_osm_point where opening_hours LIKE '%Su%' AND opening_hours NOT LIKE '%ff'
+        and shop is not null
+        and name is not null;"
+
 }
 
 while : ; do

@@ -42,4 +42,5 @@ RUN apt-get install -y osmctools=${OSMCTOOLS_VERSION} postgresql-client-10 \
 COPY ./osm-importer.sh /usr/local/bin/osm-importer.sh
 COPY ./wait-for-it.sh /usr/local/bin/wait-for-it.sh
 WORKDIR /osm
+COPY ./default.style /osm
 CMD ["/bin/bash", "-i", "/usr/local/bin/wait-for-it.sh", "-t", "60", "postgis:5432", "--", "/usr/local/bin/osm-importer.sh"]
