@@ -1,0 +1,42 @@
+{
+  "name": "sonntags-rn",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "jest-expo": "~20.0.0",
+    "metro-react-native-babel-preset": "^0.51.1",
+    "react-native-scripts": "^2.0.1",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "redux-devtools-extension": "^2.13.8"
+  },
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "test": "node node_modules/jest/bin/jest.js --watch"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/",
+      "./assets/images/"
+    ]
+  },
+  "jest": {
+    "preset": "jest-expo"
+  },
+  "dependencies": {
+    "@babel/core": "^7.0.0-0",
+    "@react-native-firebase/analytics": "^6.3.4",
+    "@react-native-mapbox-gl/maps": "^7.2.0",
+    "contentful": "^7.14.0",
+    "firebase": "^7.9.1",
+    "moment": "^2.24.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.9.0",
+    "react-native": "^0.61.5",
+    "react-navigation": "^4.2.1",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "request-promise": "^4.2.5"
+  }
+}
