@@ -144,17 +144,23 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 dependencies {
+    implementation project(':@react-native-community_masked-view')
+    implementation project(':react-native-safe-area-context')
     implementation project(':react-native-screens')
     implementation project(':react-native-reanimated')
     implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation project(':@react-native-mapbox-gl_maps')
     addUnimodulesDependencies()
     implementation project(path: ':react-native-reanimated')
     implementation project(path: ':react-native-gesture-handler')
     implementation project(path: ':react-native-screens')
+    implementation project(':@react-native-mapbox-gl_maps')
+    implementation project(':react-native-share')
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

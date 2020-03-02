@@ -1,73 +1,62 @@
 import React from "react";
-import { 
-    Platform, 
-    StatusBar, 
-    View 
-} from "react-native";
+import { Platform, StatusBar, View } from "react-native";
 import NavigationBar from "react-native-navbar";
-import { Provider } from "react-redux"
+import { Provider } from "react-redux";
 import cacheAssetsAsync from "./utilities/cacheAssetsAsync";
-import main from "./reducers"
-import { 
-    createStore, 
-    applyMiddleware,
-    combineReducers,
-} from "redux"
+import main from "./reducers";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunkMiddleware from "redux-thunk";
 import { RootStackNavigator } from "./navigation/RootStackNavigator.js";
 import { composeWithDevTools } from "redux-devtools-extension";
 import Analytics from "react-native-firebase-analytics";
-import { createAppContainer } from "react-navigation";
 var styles = require("./styles/index.js");
-
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
 
 const store = createStore(
-    combineReducers({
-        main,
-        navigation: (state, action) => (
-            RootStackNavigator.router.getStateForAction(action, state)
-        )
-    }),
-    composeWithDevTools(applyMiddleware(thunkMiddleware)),
-)
+  combineReducers({
+    main
+    // navigation: (state, action) =>
+    //   RootStackNavigator.router.getStateForAction(action, state)
+  }),
+  composeWithDevTools(applyMiddleware(thunkMiddleware))
+);
 
-const AppContainer = createAppContainer(RootStackNavigator);
+// const AppContainer = createAppContainer(RootStackNavigator);
 
 class App extends React.Component {
   state = {
-    appIsReady: false,
+    appIsReady: false
   };
 
-  componentWillMount() {
-      this._loadAssetsAsync();
-      Analytics.setEnabled(true);
+  UNSAFE_componentWillMount() {
+    this._loadAssetsAsync();
+    // Analytics.setEnabled(true);
   }
 
-  async _loadAssetsAsync() {
-  }
+  async _loadAssetsAsync() {}
 
   render() {
-      return (
+    return (
+      <NavigationContainer>
         <Provider store={store}>
-            <AppContainer />
+          <RootStackNavigator />
         </Provider>
-      );
+      </NavigationContainer>
+    );
   }
 }
 
 function select(store) {
-    return {};
+  return {};
 }
 
 function mapStateToProps(state) {
-    return {
-    }
+  return {};
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-    }
-}
+const mapDispatchToProps = dispatch => {
+  return {};
+};
 
 export default App;
-

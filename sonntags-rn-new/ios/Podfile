@@ -40,4 +40,8 @@ target 'Sonntags' do
 
   # Automatically detect installed unimodules
   use_unimodules!
+  pod 'react-native-safe-area-context', :path => '../node_modules/react-native-safe-area-context'
+
+  pod 'RNCMaskedView', :path => '../node_modules/@react-native-community/masked-view'
+
 end

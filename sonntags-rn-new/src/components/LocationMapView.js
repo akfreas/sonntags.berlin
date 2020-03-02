@@ -42,8 +42,6 @@ export default class LocationMapView extends Component {
   //     this.setState({ userTrackingMode });
   //   };
 
-  componentWillMount() {}
-
   componentDidMount() {
     this.handleNewLocationProps(this.props.locations);
     if (this.props.centerCoordinate) {
@@ -63,7 +61,7 @@ export default class LocationMapView extends Component {
 
   componentWillUnmount() {}
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (props.locations) {
       this.handleNewLocationProps(props.locations, props.selectedLocation);
     }
@@ -106,7 +104,7 @@ export default class LocationMapView extends Component {
   renderAnnotations() {
     const annotationSize = 20;
     let annotationViews = this.state.annotations.map(annotation => {
-      backgroundColor = styles.constants.secondaryColor;
+      let backgroundColor = styles.constants.secondaryColor;
       iconColor = styles.constants.secondaryColorNegative;
       if (annotation.selected) {
         backgroundColor = styles.constants.primaryColor;

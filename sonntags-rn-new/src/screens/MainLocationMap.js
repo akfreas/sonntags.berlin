@@ -185,7 +185,7 @@ class MainLocationMap extends Component {
     this.props.getUserLocation();
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     if (!this.state.userLocation && nextState.userLocation) {
       let coords = nextState.userLocation.coords;
       this._map.zoomToLocation([coords.longitude, coords.latitude]);
@@ -194,7 +194,7 @@ class MainLocationMap extends Component {
 
   componentDidUpdate() {}
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.setState({
       userLocation: nextProps.userLocation
     });
@@ -392,7 +392,7 @@ class MainLocationMap extends Component {
     }
   }
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this._panResponder = PanResponder.create({
       onStartShouldSetPanResponder: (evt, gestureState) => true,
       onStartShouldSetPanResponderCapture: (evt, gestureState) => false,
