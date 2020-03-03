@@ -153,6 +153,9 @@ class MainLocationMap extends Component {
   }
 
   loadLocationsForState() {
+    this.setState({
+      locations: []
+    });
     const { setParams } = this.props.navigation;
     let bounds = this.currentMapRegion;
     if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) {
@@ -205,6 +208,7 @@ class MainLocationMap extends Component {
   }
 
   onRegionDidChange(coordinates) {
+    console.log("region did change", coordinates);
     this.currentMapRegion = coordinates;
     this.loadLocationsForState();
   }
@@ -280,6 +284,7 @@ class MainLocationMap extends Component {
   }
 
   onAnnotationTapped(annotation) {
+    console.log("xxxx annotation", annotation);
     showReviewIfNeeded();
     let selectedLocation = this.state.locations.find(
       object => object.id == annotation.id

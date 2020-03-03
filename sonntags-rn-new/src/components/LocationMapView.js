@@ -14,7 +14,12 @@ const accessToken =
 
 MapboxGL.setAccessToken(accessToken);
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
+const styles1 = {
+  icon: {
+    iconImage: "{icon}",
+    iconSize: 1
+  }
+};
 export default class LocationMapView extends Component {
   constructor(props) {
     super(props);
@@ -101,6 +106,10 @@ export default class LocationMapView extends Component {
     return this._map.getVisibleBounds();
   }
 
+  touched() {
+    console.log("tapped annotaiton");
+  }
+
   renderAnnotations() {
     const annotationSize = 20;
     let annotationViews = this.state.annotations.map(annotation => {
@@ -111,42 +120,33 @@ export default class LocationMapView extends Component {
         iconColor = styles.constants.primaryColorNegative;
       }
       return (
-        <MapboxGL.PointAnnotation
+        <MapboxGL.SymbolLayer
           id={annotation.id}
           key={annotation.id}
           coordinate={annotation.coordinates}
           attributionEnabled={false}
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            position: "absolute"
-          }}
         >
-          <TouchableOpacity
-            onPress={() => this.props.onAnnotationTapped(annotation)}
+          <View
+            style={{
+              width: annotationSize,
+              borderColor: "#FFFFFF",
+              borderWidth: 1,
+              height: annotationSize,
+              backgroundColor: "white",
+              flex: 1,
+              justifyContent: "center",
+              alignItems: "center",
+              borderRadius: 100 / 2,
+              backgroundColor: "#D09CDE"
+            }}
           >
-            <View
-              style={{
-                width: annotationSize,
-                borderColor: "#FFFFFF",
-                borderWidth: 1,
-                height: annotationSize,
-                backgroundColor: "white",
-                flex: 1,
-                justifyContent: "center",
-                alignItems: "center",
-                borderRadius: 100 / 2,
-                backgroundColor: "#D09CDE"
-              }}
-            >
-              {/* <Icon
+            {/* <Icon
                             style={styles.locationListIcon}
                             name={annotation.iconName}
                             size={14}
                             color={iconColor}/> */}
-            </View>
-          </TouchableOpacity>
-        </MapboxGL.PointAnnotation>
+          </View>
+        </MapboxGL.SymbolLayer>
       );
     });
 
@@ -158,6 +158,28 @@ export default class LocationMapView extends Component {
   }
 
   render() {
+    const featureCollection = {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          id: "heyhey1",
+          geometry: {
+            type: "Point",
+            coordinates: [52.53348362334978, 13.502004606934804]
+          }
+        },
+        {
+          type: "Feature",
+          id: "heyhey2",
+          geometry: {
+            type: "Point",
+            coordinates: [13.502004606934804, 52.53348362334978]
+          }
+        }
+      ]
+    };
+
     return (
       <View style={{ flex: 1, alignItems: "stretch" }}>
         <MapboxGL.MapView
@@ -165,7 +187,7 @@ export default class LocationMapView extends Component {
             this._map = map;
           }}
           style={{ flex: 1 }}
-          centerCoordinate={[13.39127, 52.51743]}
+          centerCoordinate={[13.502004606934804, 52.53348362334978]}
           zoomLevel={
             this.props.initialZoomLevel ? this.props.initialZoomLevel : 9
           }
@@ -181,7 +203,20 @@ export default class LocationMapView extends Component {
           onOpenAnnotation={this.onOpenAnnotation}
           onPress={this.onTap}
         >
-          {this.renderAnnotations()}
+          <MapboxGL.Images
+            images={{
+              assets: [
+                "pin",
+                "m2_marker",
+                "m1_marker",
+                "m3_marker",
+                "m4_marker"
+              ]
+            }}
+          />
+          <MapboxGL.ShapeSource id="mainShapeSource" shape={featureCollection}>
+            <MapboxGL.SymbolLayer id="heyhey" style={styles1.icon} />
+          </MapboxGL.ShapeSource>
         </MapboxGL.MapView>
       </View>
     );
