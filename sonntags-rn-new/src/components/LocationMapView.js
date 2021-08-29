@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View, StyleSheet } from "react-native";
 
 import MapboxGL, { MapView, Annotation } from "@react-native-mapbox-gl/maps";
 
@@ -9,6 +9,8 @@ import PropTypes from "prop-types";
 var styles = require("../styles");
 
 const forwardArrow = require("../../assets/images/arrow-forward.png");
+const annotationImage = require("../../assets/images/map-annotation.png");
+
 const accessToken =
   "pk.eyJ1IjoiYWtmcmVhcyIsImEiOiJjajh3b252ODkxcW9jMnFydmw1NzNzNGtiIn0.8IeSD3SyJIf8gbXhqwHIAA";
 
@@ -179,7 +181,32 @@ export default class LocationMapView extends Component {
         }
       ]
     };
+    const styles = StyleSheet.create({
+      page: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "#F5FCFF"
+      },
+      container: {
+        height: 300,
+        width: 300,
+        backgroundColor: "tomato"
+      },
+      map: {
+        flex: 1
+      }
+    });
 
+    const images = {
+      example: annotationImage,
+      assets: ["pin"]
+    };
+    //<View style={styles.page}>
+    //      <View style={styles.container}>
+    //      <MapboxGL.MapView style={styles.map} />
+    //  </View>
+    // </View>
     return (
       <View style={{ flex: 1, alignItems: "stretch" }}>
         <MapboxGL.MapView

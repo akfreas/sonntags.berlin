@@ -136,3 +136,4 @@ freeline/
 freeline_project_description.json
 
 **/report.xml
+**/Pods/*

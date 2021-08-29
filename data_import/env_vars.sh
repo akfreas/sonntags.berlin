@@ -1,6 +1,0 @@
-export POSTGRES_USER=postgres
-export POSTGRES_DB=postgres
-export POSTGIS_PASSWORD=sonntags
-export PG_ENV_POSTGRES_DB=postgres
-export PG_ENV_POSTGRES_USER="${POSTGRES_USER}"
-export PG_ENV_POSTGRES_PASSWORD="${POSTGIS_PASSWORD}"
