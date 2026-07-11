@@ -32,7 +32,10 @@ class CategorySelectionList extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    this.loadForProps(nextProps);
+    // parent re-renders pass the same filter constantly; only refetch on change
+    if (nextProps.activeFilter !== this.props.activeFilter) {
+      this.loadForProps(nextProps);
+    }
   }
 
   loadForProps(props) {

@@ -48,7 +48,7 @@ class OpeningDayItem extends Component {
               numberOfLines={2}
               style={{
                 flex: 1,
-                fontFamily: "AGaramondPro-Light",
+                fontFamily: "AGaramondPro-Regular",
                 fontSize: 16
               }}
             >

@@ -8,7 +8,13 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.sashimiblade.Sonntags"
+      "bundleIdentifier": "com.sashimiblade.Sonntags",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true,
+          "NSAllowsArbitraryLoadsInWebContent": true
+        }
+      }
     },
     "android": {
       "package": "com.sashimiblade.sonntags",
@@ -22,9 +28,17 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/splash.png",
-          "imageWidth": 200,
-          "backgroundColor": "#ffffff"
+          "image": "./assets/images/calendardays@3x.png",
+          "imageWidth": 300,
+          "backgroundColor": "#3BB9BD"
+        }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true
+          }
         }
       ],
       [

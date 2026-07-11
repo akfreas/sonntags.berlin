@@ -134,14 +134,14 @@ class MainLocationMap extends Component {
   }
 
   loadLocationsForState() {
+    let bounds = this.currentMapRegion;
+    if (!bounds || !bounds[0] || !bounds[1]) {
+      return;
+    }
     this.setState({
       locations: []
     });
     const { setParams } = this.props.navigation;
-    let bounds = this.currentMapRegion;
-    if (bounds[0] == bounds[1] || !bounds[0] || !bounds[1]) {
-      return;
-    }
     let expanded = this.expandBoundingBox(bounds);
     setParams({
       isLoading: true
@@ -188,6 +188,13 @@ class MainLocationMap extends Component {
   }
 
   onRegionDidChange(coordinates) {
+    // onMapIdle re-fires after every ShapeSource data update; without this
+    // guard each fetch triggers the next one forever (~3 req/s to Contentful)
+    let boundsKey = JSON.stringify(coordinates);
+    if (boundsKey === this.lastLoadedBoundsKey) {
+      return;
+    }
+    this.lastLoadedBoundsKey = boundsKey;
     console.log("region did change", coordinates);
     this.currentMapRegion = coordinates;
     this.loadLocationsForState();
@@ -297,7 +304,7 @@ class MainLocationMap extends Component {
           animationType="slide"
           transparent={false}
           visible={this.state.websiteModalVisible}
-          onRequestClose={() => {}}
+          onRequestClose={() => this.setState({ websiteModalVisible: false })}
         >
           <NavWebView
             uri={this.state.openPage.url}
@@ -494,7 +501,7 @@ class MainLocationMap extends Component {
     return (
       <View style={{ flex: 1 }}>
         {this.modalWebView()}
-        <StatusBar barStyle="light-content" hidden={false} />
+        <StatusBar barStyle="dark-content" hidden={false} />
         <View
           style={{
             height: "100%",

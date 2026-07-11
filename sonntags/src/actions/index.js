@@ -166,6 +166,7 @@ export async function loadLocations(category, boundingBox) {
     })
     .catch(error => {
       console.log("error fetching locations:", error && error.message, error);
+      return [];
     });
 }
 
@@ -228,7 +229,7 @@ export function loadOpenSundays() {
   return contentfulClient
     .getEntries({
       content_type: "sundayOpenings",
-      "fields.date[gte]": new Date().toISOString()
+      "fields.date[gte]": new Date().toISOString().slice(0, 10)
     })
     .then(response => {
       return response.items.map(day => {

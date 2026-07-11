@@ -28,7 +28,7 @@ const defaultNavOptions = {
   },
   headerBackTitle: "",
   headerTitleStyle: styles.headerTitleStyle,
-  headerTintColor: "white"
+  headerTintColor: "black"
 };
 
 const Stack = createStackNavigator();
@@ -45,7 +45,7 @@ export function RootStackNavigator() {
             <ActivityIndicator
               style={{ padding: 5 }}
               size="small"
-              color="#fff"
+              color="#000"
               animating={(route.params && route.params.isLoading) || false}
             />
           )
