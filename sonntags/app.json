@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Sonntags",
+    "slug": "sonntags",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.sashimiblade.Sonntags"
+    },
+    "android": {
+      "package": "com.sashimiblade.sonntags",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff",
+        "foregroundImage": "./assets/icon.png"
+      }
+    },
+    "plugins": [
+      "@rnmapbox/maps",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash.png",
+          "imageWidth": 200,
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/AGaramondPro-Regular.otf",
+            "./assets/fonts/AGaramondPro-Bold.otf",
+            "./assets/fonts/AGaramondPro-Italic.otf",
+            "./assets/fonts/AGaramondPro-BoldItalic.otf"
+          ]
+        }
+      ]
+    ]
+  }
+}
