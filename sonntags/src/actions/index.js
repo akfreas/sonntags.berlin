@@ -1,5 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const { createClient } = require("contentful/dist/contentful.browser.js");
+// contentful's exports map: "require" → node CJS (needs util/stream/http, breaks Metro),
+// browser.js → IIFE (empty under require). The ESM build is the one that bundles.
+const { createClient } = require("contentful/dist/esm/index.js");
 
 const contentTypeIds = {
   categoryContainer: "1H0SeRVFLCCUGyOCmQYYKE",
@@ -163,7 +165,7 @@ export async function loadLocations(category, boundingBox) {
       });
     })
     .catch(error => {
-      console.log("error fetching locations:", error);
+      console.log("error fetching locations:", error && error.message, error);
     });
 }
 
@@ -226,7 +228,7 @@ export function loadOpenSundays() {
   return contentfulClient
     .getEntries({
       content_type: "sundayOpenings",
-      "fields.date[gte]": new Date()
+      "fields.date[gte]": new Date().toISOString()
     })
     .then(response => {
       return response.items.map(day => {

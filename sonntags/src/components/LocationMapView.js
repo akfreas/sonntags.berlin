@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 
-import { TouchableOpacity, View } from "react-native";
+import { View } from "react-native";
 
-import Mapbox, { MapView, Camera, PointAnnotation } from "@rnmapbox/maps";
+import Mapbox, {
+  MapView,
+  Camera,
+  ShapeSource,
+  CircleLayer
+} from "@rnmapbox/maps";
 
 var styles = require("../styles");
 
@@ -77,37 +82,47 @@ export default class LocationMapView extends Component {
     }
   };
 
+  onShapePress = event => {
+    let feature = event.features && event.features[0];
+    if (!feature) {
+      return;
+    }
+    let annotation = this.annotations().find(
+      a => a.id == feature.properties.id
+    );
+    if (annotation) {
+      this.onAnnotationTapped(annotation);
+    }
+  };
+
   renderAnnotations() {
-    const annotationSize = 20;
-    return this.annotations().map(annotation => {
-      let backgroundColor = annotation.selected
-        ? styles.constants.secondaryColor
-        : "#D09CDE";
-      return (
-        <PointAnnotation
-          id={annotation.id}
-          // key includes selection so iOS re-renders the child view on select
-          key={annotation.id + (annotation.selected ? "-selected" : "")}
-          coordinate={annotation.coordinates}
-          onSelected={() => this.onAnnotationTapped(annotation)}
-        >
-          <TouchableOpacity
-            onPress={() => this.onAnnotationTapped(annotation)}
-          >
-            <View
-              style={{
-                width: annotationSize,
-                height: annotationSize,
-                borderColor: "#FFFFFF",
-                borderWidth: 1,
-                borderRadius: annotationSize / 2,
-                backgroundColor: backgroundColor
-              }}
-            />
-          </TouchableOpacity>
-        </PointAnnotation>
-      );
-    });
+    let features = {
+      type: "FeatureCollection",
+      features: this.annotations().map(annotation => ({
+        type: "Feature",
+        id: annotation.id,
+        geometry: { type: "Point", coordinates: annotation.coordinates },
+        properties: { id: annotation.id, selected: !!annotation.selected }
+      }))
+    };
+    return (
+      <ShapeSource id="locations" shape={features} onPress={this.onShapePress}>
+        <CircleLayer
+          id="location-pins"
+          style={{
+            circleRadius: 10,
+            circleColor: [
+              "case",
+              ["get", "selected"],
+              styles.constants.secondaryColor,
+              "#D09CDE"
+            ],
+            circleStrokeColor: "#FFFFFF",
+            circleStrokeWidth: 1
+          }}
+        />
+      </ShapeSource>
+    );
   }
 
   render() {

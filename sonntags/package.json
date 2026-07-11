@@ -8,7 +8,7 @@
     "@react-navigation/native": "^7.3.8",
     "@react-navigation/stack": "^7.10.11",
     "@rnmapbox/maps": "^10.3.2",
-    "contentful": "^7.15.2",
+    "contentful": "^11.12.7",
     "expo": "~57.0.4",
     "expo-font": "~57.0.0",
     "expo-splash-screen": "~57.0.2",

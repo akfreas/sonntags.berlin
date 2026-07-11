@@ -182,10 +182,9 @@ class MainLocationMap extends Component {
     this.setState({
       userLocation: nextProps.userLocation
     });
-    // let sorted = locationsSortedByDistance(this.props.userLocation, this.state.locations);
-    this.setState({
-      locations: this.state.locations
-    });
+    // NOTE: the old `setState({locations: this.state.locations})` "refresh" here
+    // clobbered freshly loaded locations with stale [] under React 18+ batching
+    // (setParams triggers this hook mid-batch). Removed.
   }
 
   onRegionDidChange(coordinates) {
